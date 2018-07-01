@@ -1,14 +1,22 @@
 package com.GlitchyDev.Networking.Packets.ClientPackets.General;
 
+import com.GlitchyDev.Networking.Packets.EntityType;
 import com.GlitchyDev.Networking.Packets.PacketBase;
 import com.GlitchyDev.Networking.Packets.PacketType;
 
+import java.util.UUID;
+
 // Give SecretUUID || ( Username/Password)
 public class ClientIntroductionPacket extends PacketBase {
-    private final PacketType packetType = PacketType.C_INTROUCTION;
+    private final PacketType packetType = PacketType.C_INTRODUCTION;
 
-    public ClientIntroductionPacket(String uuid) {
-        super(PacketType.C_INTROUCTION + "_" + uuid);
+    public ClientIntroductionPacket(PacketBase packet) {
+            super(packet.getRawPacket());
+    }
+
+    public ClientIntroductionPacket(String uuid)
+    {
+        super(PacketType.C_INTRODUCTION + "-" + uuid);
     }
 
     public String getUUID()

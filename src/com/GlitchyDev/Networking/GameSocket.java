@@ -1,30 +1,34 @@
 package com.GlitchyDev.Networking;
 
-import com.GlitchyDev.Networking.Packets.ClientPackets.General.ClientGoodByePacket;
+import com.GlitchyDev.Networking.Packets.BasicPackets.GoodbyePacket;
 import com.GlitchyDev.Networking.Packets.PacketBase;
-import com.GlitchyDev.Networking.Packets.ServerPackets.General.ServerGoodbyePacket;
-import com.GlitchyDev.Networking.Packets.ServerPackets.OverworldPackets.MoveEntityPacket;
+import com.GlitchyDev.Networking.Packets.PacketType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GameSocket {
     //private
     private NetworkType networkType;
+    private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
     private Collection<PacketBase> unproccessedPackets;
     private SocketInputThread socketInputThread;
+    private AtomicBoolean isConnected = new AtomicBoolean(true);
 
     public GameSocket(NetworkType networkType, Socket socket)
     {
         this.networkType = networkType;
+        this.socket = socket;
 
         try {
             out = new PrintWriter(socket.getOutputStream());
@@ -34,8 +38,13 @@ public class GameSocket {
         }
 
         unproccessedPackets = Collections.synchronizedCollection(new ArrayList<>());
-        socketInputThread = new SocketInputThread(in,unproccessedPackets);
+        socketInputThread = new SocketInputThread(in,unproccessedPackets,isConnected);
         socketInputThread.start();
+    }
+
+    public Socket getSocket()
+    {
+        return socket;
     }
 
     public void sendPacket(PacketBase packet) {
@@ -51,20 +60,29 @@ public class GameSocket {
         out.flush();
     }
 
-    public void disconnect(String reason)
+    public void disconnect(NetworkDisconnectType reason)
     {
+        sendPacket(new GoodbyePacket(reason));
+        disconnect();
+    }
+
+    public void disconnect()
+    {
+        isConnected.set(false);
         socketInputThread.stopThread();
-        if(networkType == NetworkType.SERVER)
-        {
-            sendPacket(new ServerGoodbyePacket(reason));
-        }
-        else
-        {
-            sendPacket(new ClientGoodByePacket(reason));
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public Collection<PacketBase> getUnproccessedPackets()
+    public boolean isConnected()
+    {
+        return isConnected.get();
+    }
+
+    public Collection<PacketBase> getUnprocessedPackets()
     {
         return unproccessedPackets;
     }
@@ -73,22 +91,31 @@ public class GameSocket {
     private class SocketInputThread extends Thread {
         private BufferedReader in;
         private Collection<PacketBase> unproccessedPackets;
-        private boolean doStopThread = false;
+        private AtomicBoolean isConnected;
 
-        public SocketInputThread(BufferedReader in, Collection<PacketBase> unproccessedPackets)
+        public SocketInputThread(BufferedReader in, Collection<PacketBase> unproccessedPackets,  AtomicBoolean isConnected)
         {
             this.in = in;
             this.unproccessedPackets = unproccessedPackets;
+            this.isConnected = isConnected;
         }
 
         @Override
         public void run() {
-            while(!doStopThread)
+            while(isConnected.get())
             {
                 try {
                     String rawPacket = in.readLine();
                     PacketBase packet = new PacketBase(rawPacket);
-                    unproccessedPackets.add(packet);
+                    if(packet.getPacketType() == PacketType.A_GOODBYE)
+                    {
+                        System.out.println("GameSocket: Connection lost for reason " + new GoodbyePacket(packet).getDisconnectType());
+                        socket.close();
+                        isConnected.set(false);
+                    }
+                    else {
+                        unproccessedPackets.add(packet);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     stopThread();
@@ -98,7 +125,7 @@ public class GameSocket {
 
         public void stopThread()
         {
-            doStopThread = true;
+            isConnected.set(false);
         }
     }
 

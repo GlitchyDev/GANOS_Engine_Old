@@ -11,7 +11,14 @@ import java.util.UUID;
 public class DespawnEntityPacket extends PacketBase {
     private final PacketType packetType = PacketType.S_DESPAWN_ENTITY;
 
-    public DespawnEntityPacket(String uuid) { super(PacketType.S_RETURN_GREETING + "_" + uuid); }
+    public DespawnEntityPacket(PacketBase packet) {
+        super(packet.getRawPacket());
+    }
+
+    public DespawnEntityPacket(UUID uuid)
+    {
+        super(PacketType.S_DESPAWN_ENTITY + "-" + uuid);
+    }
 
     public UUID getUUID()
     {

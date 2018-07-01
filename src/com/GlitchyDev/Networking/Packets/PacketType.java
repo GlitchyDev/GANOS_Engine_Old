@@ -1,6 +1,10 @@
 package com.GlitchyDev.Networking.Packets;
 
 public enum PacketType {
+
+    // Basic
+    A_GOODBYE,
+
     // Server *****
 
     // OverworldPacket
@@ -9,15 +13,12 @@ public enum PacketType {
     S_DESPAWN_ENTITY, // Entity UUID, X, Y
 
     // General
-    S_INTRODUCTION,
     S_RETURN_GREETING,
-    S_GOODBYE,
 
     // Client *****
 
     // General
-    C_INTROUCTION,
-    C_GOODBYE,
+    C_INTRODUCTION,
 
 
 }

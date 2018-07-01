@@ -1,7 +1,5 @@
 package com.GlitchyDev.Networking.Packets;
 
-import java.lang.reflect.Array;
-
 public class PacketBase {
     protected PacketType packetType;
     final protected String[] data;
@@ -10,7 +8,7 @@ public class PacketBase {
     public PacketBase(String packetInfo)
     {
         rawPacket = packetInfo;
-        data = packetInfo.split("_");
+        data = packetInfo.split("-");
         packetType = PacketType.valueOf(data[0]);
     }
 

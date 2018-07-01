@@ -33,7 +33,7 @@ public class SaveLoader {
         }
         else
         {
-            return "NA";
+            return null;
         }
     }
 

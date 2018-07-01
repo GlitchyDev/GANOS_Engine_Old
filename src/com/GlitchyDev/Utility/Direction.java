@@ -1,7 +1,5 @@
 package com.GlitchyDev.Utility;
 
-import java.util.ArrayList;
-
 public enum Direction {
     NORTH,
     EAST,

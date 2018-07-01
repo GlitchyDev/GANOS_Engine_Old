@@ -12,8 +12,13 @@ import java.util.UUID;
 public class SpawnEntityPacket extends PacketBase {
     private final PacketType packetType = PacketType.S_SPAWN_ENTITY;
 
-    public SpawnEntityPacket(EntityType entityType, UUID uuid, int x, int y) {
-        super(PacketType.S_SPAWN_ENTITY + "_" + uuid + "_" + x + "_" + y);
+    public SpawnEntityPacket(PacketBase packet) {
+        super(packet.getRawPacket());
+    }
+
+    public SpawnEntityPacket(EntityType entityType, UUID uuid, int x, int y)
+    {
+        super(PacketType.S_SPAWN_ENTITY + "-" + entityType + "-" + uuid + "-" + x + "-" + y);
     }
 
     public EntityType getEntityType()

@@ -11,8 +11,13 @@ import java.util.UUID;
 public class MoveEntityPacket extends PacketBase {
     private final PacketType packetType = PacketType.S_SPAWN_ENTITY;
 
-    public MoveEntityPacket(UUID uuid, int x, int y) {
-        super(PacketType.S_SPAWN_ENTITY + "_" + uuid + "_" + x + "_" + y);
+    public MoveEntityPacket(PacketBase packet) {
+        super(packet.getRawPacket());
+    }
+
+    public MoveEntityPacket(UUID uuid, int x, int y)
+    {
+        super(PacketType.S_SPAWN_ENTITY + "-" + uuid + "-" + x + "-" + y);
     }
 
     public UUID getUUID()

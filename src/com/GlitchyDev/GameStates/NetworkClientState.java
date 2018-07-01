@@ -1,38 +1,31 @@
 package com.GlitchyDev.GameStates;
 
-import com.GlitchyDev.GANOS_Client;
-import com.GlitchyDev.Networking.GANOSClientReader;
-import com.GlitchyDev.Utility.BasicControllerGameState;
+import com.GlitchyDev.Networking.ClientNetworkConnection;
+import com.GlitchyDev.Utility.BasicMonitoredGameState;
+import com.GlitchyDev.Utility.GButtons;
+import com.GlitchyDev.Utility.GameController;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
-public class NetworkClientState extends BasicControllerGameState {
-    private Collection<String> commands;
+public class NetworkClientState extends BasicMonitoredGameState {
     private int x = 0;
     private int y = 0;
+    private ClientNetworkConnection clientNetworkConnection;
 
 
-    public NetworkClientState()
+    public NetworkClientState(ClientNetworkConnection clientNetworkConnection)
     {
-        try {
-            Socket socket = new Socket("192.168.1.3",9001);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            commands = Collections.synchronizedCollection(new ArrayList<>());
-            new GANOSClientReader(commands,in).start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.clientNetworkConnection = clientNetworkConnection;
+    }
+
+    @Override
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+
     }
 
     @Override
@@ -50,34 +43,24 @@ public class NetworkClientState extends BasicControllerGameState {
             }
         }
 
-        graphics.setColor(Color.red);
+        if(clientNetworkConnection.isConnected()) {
+            graphics.setColor(Color.red);
+        }
+        else
+        {
+            graphics.setColor(Color.red);
+        }
         graphics.fillRect(this.x * 50, this.y * 50, 50, 50);
+
+        graphics.setColor(Color.blue);
+        graphics.drawString(String.valueOf(this.getTotalUtilization()),0,0);
     }
 
     @Override
     protected void doUpdate(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        if (commands.size() > 0) {
-            for (String command : commands) {
-                switch (command) {
-                    case "MOVEUP":
-                        y--;
-                        y = y <= 0 ? 0 : y;
-                        break;
-                    case "MOVEDOWN":
-                        y++;
-                        y = y > 10 ? 10 : y;
-                        break;
-                    case "MOVERIGHT":
-                        x++;
-                        x = x > 10 ? 10 : x;
-                        break;
-                    case "MOVELEFT":
-                        x--;
-                        x = x <= 0 ? 0 : x;
-                        break;
-                }
-            }
-            commands.clear();
+        if(GameController.isButtonPressed(GButtons.START) && !clientNetworkConnection.isConnected())
+        {
+            clientNetworkConnection.createConnection("192.168.1.3");
         }
 
 
@@ -87,4 +70,6 @@ public class NetworkClientState extends BasicControllerGameState {
     public int getID() {
         return 0;
     }
+
+
 }

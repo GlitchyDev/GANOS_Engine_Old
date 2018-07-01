@@ -1,15 +1,8 @@
 package com.GlitchyDev;
 
 
-
-import org.newdawn.slick.*;
-
-import javax.imageio.ImageIO;
 import javax.sound.midi.*;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.net.MalformedURLException;
 
 public class Main {
 

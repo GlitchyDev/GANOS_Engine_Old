@@ -7,10 +7,13 @@ import com.GlitchyDev.Networking.Packets.PacketType;
 public class ServerReturnGreetingPacket extends PacketBase {
     private final PacketType packetType = PacketType.S_RETURN_GREETING;
 
-    public ServerReturnGreetingPacket(String greeting) { super(PacketType.S_RETURN_GREETING + "_" + greeting); }
-
-    public String getReturnedGreeting()
-    {
-        return data[1];
+    public ServerReturnGreetingPacket(PacketBase packet) {
+        super(packet.getRawPacket());
     }
+
+    public ServerReturnGreetingPacket()
+    {
+        super(PacketType.S_RETURN_GREETING + "");
+    }
+
 }

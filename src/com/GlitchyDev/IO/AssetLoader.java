@@ -1,14 +1,12 @@
 package com.GlitchyDev.IO;
 
-import javafx.scene.media.Media;
-import org.newdawn.slick.*;
-import org.newdawn.slick.openal.AudioLoader;
-import org.newdawn.slick.util.ResourceLoader;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
-import java.io.*;
-import java.net.MalformedURLException;
+import java.io.File;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class AssetLoader {
     private static HashMap<String,Image> spriteAssets;

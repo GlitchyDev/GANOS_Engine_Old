@@ -1,25 +1,16 @@
 package com.GlitchyDev;
 
-import com.GlitchyDev.GameStates.NetworkClientState;
 import com.GlitchyDev.GameStates.NetworkServerState;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.IO.SaveLoader;
-import com.GlitchyDev.Networking.GANOSClientReader;
+import com.GlitchyDev.Networking.GameSocket;
+import com.GlitchyDev.Networking.NetworkDisconnectType;
+import com.GlitchyDev.Networking.ServerNetworkConnection;
 import com.GlitchyDev.Utility.GameController;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class GANOS_Server extends StateBasedGame {
 
@@ -28,6 +19,7 @@ public class GANOS_Server extends StateBasedGame {
     public static final int HEIGHT = 500;
     public static final int FPS_TARGET = 60;
     public static final int SCALE = 1;
+    private ServerNetworkConnection serverNetworkConnection;
 
 
 
@@ -41,8 +33,8 @@ public class GANOS_Server extends StateBasedGame {
     // Initialize your game states (calls init method of each gamestate, and set's the state ID)
     public void initStatesList(GameContainer gc) {
         AssetLoader.loadAssets();
-
-        this.addState(new NetworkServerState());
+        serverNetworkConnection = new ServerNetworkConnection();
+        this.addState(new NetworkServerState(serverNetworkConnection));
     }
 
     // Main Method
@@ -58,10 +50,17 @@ public class GANOS_Server extends StateBasedGame {
             SaveLoader.loadSave();
             GameController.linkControls(app);
 
-            AssetLoader.setDefaultIconss(app,"GameAssets/Sprites/Pet_Icon/PET_1.png","GameAssets/Sprites/Pet_Icon/PET_3.png");
+
+            //AssetLoader.setDefaultIconss(app,"GameAssets/Sprites/Pet_Icon/PET_1.png","GameAssets/Sprites/Pet_Icon/PET_3.png");
             app.start();
         } catch(SlickException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean closeRequested() {
+        serverNetworkConnection.endConnection(NetworkDisconnectType.SERVER_WINDOW_CLOSED);
+        return super.closeRequested();
     }
 }

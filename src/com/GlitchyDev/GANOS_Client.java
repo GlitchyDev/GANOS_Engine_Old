@@ -3,25 +3,18 @@ package com.GlitchyDev;
 import com.GlitchyDev.GameStates.NetworkClientState;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.IO.SaveLoader;
-import com.GlitchyDev.Networking.GANOSClientReader;
+import com.GlitchyDev.Networking.ClientNetworkConnection;
+import com.GlitchyDev.Networking.NetworkDisconnectType;
 import com.GlitchyDev.Utility.GameController;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
 public class GANOS_Client extends StateBasedGame {
 
     // Application Properties
+    private ClientNetworkConnection clientNetworkConnection;
     public static final int WIDTH = 500;
     public static final int HEIGHT = 500;
     public static final int FPS_TARGET = 60;
@@ -38,7 +31,9 @@ public class GANOS_Client extends StateBasedGame {
     public void initStatesList(GameContainer gc) {
         AssetLoader.loadAssets();
 
-        this.addState(new NetworkClientState());
+        clientNetworkConnection = new ClientNetworkConnection();
+
+        this.addState(new NetworkClientState(clientNetworkConnection));
     }
 
     // Main Method
@@ -55,12 +50,19 @@ public class GANOS_Client extends StateBasedGame {
             GameController.linkControls(app);
 
 
-
-
-            AssetLoader.setDefaultIconss(app,"GameAssets/Sprites/Pet_Icon/PET_1.png","GameAssets/Sprites/Pet_Icon/PET_3.png");
+            //AssetLoader.setDefaultIconss(app,"GameAssets/Sprites/Pet_Icon/PET_1.png","GameAssets/Sprites/Pet_Icon/PET_3.png");
             app.start();
         } catch(SlickException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean closeRequested() {
+        if(clientNetworkConnection.isConnected())
+        {
+            clientNetworkConnection.getGameSocket().disconnect(NetworkDisconnectType.CLIENT_WINDOW_CLOSED);
+        }
+        return super.closeRequested();
     }
 }
