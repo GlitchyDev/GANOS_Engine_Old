@@ -3,13 +3,13 @@ package com.GlitchyDev.Networking;
 import com.GlitchyDev.Networking.Packets.BasicPackets.GoodbyePacket;
 import com.GlitchyDev.Networking.Packets.PacketBase;
 import com.GlitchyDev.Networking.Packets.PacketType;
+import com.GlitchyDev.Utility.GameType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GameSocket {
     //private
-    private NetworkType networkType;
+    private GameType gameType;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -25,9 +25,9 @@ public class GameSocket {
     private SocketInputThread socketInputThread;
     private AtomicBoolean isConnected = new AtomicBoolean(true);
 
-    public GameSocket(NetworkType networkType, Socket socket)
+    public GameSocket(GameType gameType, Socket socket)
     {
-        this.networkType = networkType;
+        this.gameType = gameType;
         this.socket = socket;
 
         try {
@@ -105,21 +105,22 @@ public class GameSocket {
             while(isConnected.get())
             {
                 try {
-                    String rawPacket = in.readLine();
-                    PacketBase packet = new PacketBase(rawPacket);
-                    if(packet.getPacketType() == PacketType.A_GOODBYE)
-                    {
-                        System.out.println("GameSocket: Connection lost for reason " + new GoodbyePacket(packet).getDisconnectType());
-                        socket.close();
-                        isConnected.set(false);
-                    }
-                    else {
-                        unproccessedPackets.add(packet);
+                    if(in.ready()) {
+                        String rawPacket = in.readLine();
+                        PacketBase packet = new PacketBase(rawPacket);
+                        if (packet.getPacketType() == PacketType.A_GOODBYE) {
+                            System.out.println("GameSocket: Connection lost for reason " + new GoodbyePacket(packet).getDisconnectType());
+                            socket.close();
+                            isConnected.set(false);
+                        } else {
+                            unproccessedPackets.add(packet);
+                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                     stopThread();
                 }
+
             }
         }
 

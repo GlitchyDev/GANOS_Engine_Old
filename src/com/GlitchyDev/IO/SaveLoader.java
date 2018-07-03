@@ -1,19 +1,34 @@
 package com.GlitchyDev.IO;
 
+import com.GlitchyDev.Utility.GameType;
+
+import java.io.File;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SaveLoader {
-    private static boolean doesSaveExists = true;
-    private static HashMap<String,String> rawSaveData;
+    private static boolean doesSaveExists = false;
+    private static HashMap<String,String> saveData;
+    private static final String DEFAULTSAVEPATH = "GameAssets/Saves/";
     // Add Save Stuff here
 
 
-    public static void loadSave()
+    public static void loadSave(GameType gameType)
     {
-        rawSaveData = new HashMap<>();
-        rawSaveData.put("SUUID","James");
+        saveData = new HashMap<>();
+        switch(gameType)
+        {
+            case CLIENT:
+                File saveFile = new File(DEFAULTSAVEPATH + "ClientSave/SaveFile.Dev");
+                break;
+            case SERVER:
+
+                break;
+        }
+        saveData.put("SUUID","Jam");
+        saveData = new HashMap<>();
         doesSaveExists = true;
-        // Do loading from bianary file
     }
 
     public static void createSave()
@@ -29,7 +44,7 @@ public class SaveLoader {
     public static String getSaveValue(String value)
     {
         if(doesSaveExists()) {
-            return rawSaveData.get(value);
+            return saveData.get(value);
         }
         else
         {

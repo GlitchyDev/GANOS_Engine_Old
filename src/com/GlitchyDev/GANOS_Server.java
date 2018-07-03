@@ -7,6 +7,8 @@ import com.GlitchyDev.Networking.GameSocket;
 import com.GlitchyDev.Networking.NetworkDisconnectType;
 import com.GlitchyDev.Networking.ServerNetworkConnection;
 import com.GlitchyDev.Utility.GameController;
+import com.GlitchyDev.Utility.GameType;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -15,10 +17,10 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GANOS_Server extends StateBasedGame {
 
     // Application Properties
-    public static final int WIDTH = 500;
-    public static final int HEIGHT = 500;
+    public static final int WIDTH = 850;
+    public static final int HEIGHT = 700;
     public static final int FPS_TARGET = 60;
-    public static final int SCALE = 1;
+    //public static final int SCALE = 1;
     private ServerNetworkConnection serverNetworkConnection;
 
 
@@ -42,12 +44,15 @@ public class GANOS_Server extends StateBasedGame {
 
         try {
             AppGameContainer app = new AppGameContainer(new GANOS_Server("GANOS Server Test"));
-            app.setDisplayMode(WIDTH * SCALE, HEIGHT * SCALE, false);
+            app.setDisplayMode(WIDTH, HEIGHT, false);
             app.setTargetFrameRate(FPS_TARGET);
             app.setShowFPS(false);
             app.setAlwaysRender(true);
 
-            SaveLoader.loadSave();
+            Display.setLocation(500,0);
+
+
+            SaveLoader.loadSave(GameType.SERVER);
             GameController.linkControls(app);
 
 

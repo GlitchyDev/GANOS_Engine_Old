@@ -17,7 +17,6 @@ public abstract class BasicMonitoredGameState extends BasicGameState {
         long startRender = gameContainer.getTime();
         doRender(gameContainer,stateBasedGame,graphics);
         long endRender = gameContainer.getTime();
-
         long length = endRender-startRender;
         renderingUtilization = (100.0/(1000.0/GANOS_Client.FPS_TARGET))* length;
 
@@ -28,7 +27,6 @@ public abstract class BasicMonitoredGameState extends BasicGameState {
         long startRender = gameContainer.getTime();
         doUpdate(gameContainer,stateBasedGame,i);
         long endRender = gameContainer.getTime();
-
         long length = endRender-startRender;
         updateUtilization = (100.0/(1000.0/GANOS_Client.FPS_TARGET))* length;
     }

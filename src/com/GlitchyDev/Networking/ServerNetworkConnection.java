@@ -2,8 +2,8 @@ package com.GlitchyDev.Networking;
 
 import com.GlitchyDev.Networking.Packets.ClientPackets.General.ClientIntroductionPacket;
 import com.GlitchyDev.Networking.Packets.PacketBase;
-import com.GlitchyDev.Networking.Packets.PacketType;
 import com.GlitchyDev.Networking.Packets.ServerPackets.General.ServerReturnGreetingPacket;
+import com.GlitchyDev.Utility.GameType;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -96,7 +96,7 @@ public class ServerNetworkConnection {
         @Override
         public void run() {
             System.out.println("ServerNetwork: A client is attempting a connection");
-            GameSocket gameSocket = new GameSocket(NetworkType.SERVER, socket);
+            GameSocket gameSocket = new GameSocket(GameType.SERVER, socket);
             while (socket.isConnected() && gameSocket.getUnprocessedPackets().size() == 0) {
 
             }

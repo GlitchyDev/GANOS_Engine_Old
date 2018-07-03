@@ -6,6 +6,8 @@ import com.GlitchyDev.IO.SaveLoader;
 import com.GlitchyDev.Networking.ClientNetworkConnection;
 import com.GlitchyDev.Networking.NetworkDisconnectType;
 import com.GlitchyDev.Utility.GameController;
+import com.GlitchyDev.Utility.GameType;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -46,8 +48,10 @@ public class GANOS_Client extends StateBasedGame {
             app.setShowFPS(false);
             app.setAlwaysRender(true);
 
-            SaveLoader.loadSave();
+            SaveLoader.loadSave(GameType.CLIENT);
             GameController.linkControls(app);
+
+            Display.setLocation(0,0);
 
 
             //AssetLoader.setDefaultIconss(app,"GameAssets/Sprites/Pet_Icon/PET_1.png","GameAssets/Sprites/Pet_Icon/PET_3.png");

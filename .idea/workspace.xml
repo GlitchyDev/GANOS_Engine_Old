@@ -7,600 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e9bc26f-019e-4c83-8913-d8041e6027fb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/BasicPackets/GoodbyePacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/d.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/e.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/f.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/g.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/h.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/i.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/j.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/k.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/l.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/n.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/o.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/p.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/q.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/r.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/s.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/u.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/v.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/w.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/y.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Lowercase/z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/!!.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/!.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/#.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/$.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/%.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/&amp;.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/'.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/(.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/+.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/,.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/....png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/..png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/.CENTERED.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/.OPEN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/;.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/=.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/@.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/ALPHA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/AQUA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/ASTRIC.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/BDOWN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/BETA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/BLEFT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/BNOTE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/BRICK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/BRIGHT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/B^.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/CELCIUS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/COLEN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/DIVIDE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/DOWN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/DOWNFACINGU.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/DQUOTE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/DQUOTEEND.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/FEMALE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/HAND.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/HEART.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/JPBRACKET.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/JPBRACKETEND.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/LEFT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/LEFTFACINGU.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/LEFTSLANT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/MALE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/NOTE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/OPENDONUT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/OPENDOT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/OPENDOWN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/OPENQUAD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/OPENSQUARE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/OPENUP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/PIPE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/QUESTIONMARK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/RIGHT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/RIGHTFACINGU.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/RIGHTSLANT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SDQUOTE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SIGMA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SOLIDDOT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SOLIDDOWN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SOLIDLEFT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SOLIDQUAD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SOLIDRIGHT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SOLIDSQUARE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/SOLIDUP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/STAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/TIMES.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/UNDERSCORE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/UNDERSCORE2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/UP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/UPPERSCORE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/XSTAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/YEN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/[.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/[[.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/].png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/]].png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/^.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Special/~.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/A.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/B.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/C.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/E.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/G.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/I.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/K.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/O.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/Q.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/S.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/U.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/W.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/Y.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Fonts/Thin_Uppercase/Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sounds/BackgroundThemes/JackIn.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sounds/BackgroundThemes/MainMenu_Theme.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sounds/SFX/Deselect.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sounds/SFX/PressStart.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sounds/SFX/SelectSave.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sounds/SFX/SwitchOptions.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Indicator.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackInPet_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackInPet_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackInPet_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackIn_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackIn_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackIn_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackIn_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackIn_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_JackIn_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_East_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_East_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_East_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_East_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_East_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_East_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_East_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_East_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_NorthEast_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_NorthEast_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_NorthEast_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_NorthEast_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_NorthEast_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_NorthEast_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_NorthEast_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_NorthEast_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_North_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_North_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_North_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_North_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_North_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_North_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_North_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_North_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_SouthEast_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_SouthEast_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_SouthEast_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_SouthEast_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_SouthEast_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_SouthEast_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_SouthEast_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_SouthEast_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_South_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_South_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_South_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_South_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_South_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_South_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_South_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Running_South_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Standing_East.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Standing_North.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Standing_NorthEast.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Standing_South.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Standing_SouthEast.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_East_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_East_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_East_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_East_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_East_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_East_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_NorthEast_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_NorthEast_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_NorthEast_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_NorthEast_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_NorthEast_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_NorthEast_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_North_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_North_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_North_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_North_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_North_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_North_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_SouthEast_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_SouthEast_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_SouthEast_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_SouthEast_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_SouthEast_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_SouthEast_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_South_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_South_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_South_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_South_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_South_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Lan_Walking_South_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Shadow_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Shadow_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Lan/Shadow_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/Capcom_Logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/Continue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/ContinueG.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/Copyright.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/Cursor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/Menu_Title.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/NewGame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/NewGameG.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/Press_Start.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/MainMenuUIElements/Title_Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Maps/Lans_Bedroom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Maps/Lans_Bedroom_Collision.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_17.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_18.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_19.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_21.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_23.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_24.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_25.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_26.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_27.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_28.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_29.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_30.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_31.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/NetworkLogin/NetworkLogin_9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Pet_Icon/PET_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Pet_Icon/PET_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Pet_Icon/PET_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/Pet_Icon/PET_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Sprites/SFX/JackIn_9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/d.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/e.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/f.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/g.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/h.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/i.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/j.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/k.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/l.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/m.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/n.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/o.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/p.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/q.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/r.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/s.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/u.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/v.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/w.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/y.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Lowercase/z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/!!.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/!.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/#.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/$.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/%.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/&amp;.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/'.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/(.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/+.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/,.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/....png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/..png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/.CENTERED.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/.OPEN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/;.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/=.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/@.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/ALPHA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/AQUA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/ASTRIC.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/BDOWN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/BETA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/BLEFT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/BNOTE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/BRICK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/BRIGHT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/B^.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/CELCIUS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/COLEN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/DIVIDE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/DOWN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/DOWNFACINGU.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/DQUOTE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/DQUOTEEND.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/FEMALE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/HAND.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/HEART.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/JPBRACKET.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/JPBRACKETEND.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/LEFT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/LEFTFACINGU.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/LEFTSLANT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/MALE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/NOTE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/OPENDONUT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/OPENDOT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/OPENDOWN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/OPENQUAD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/OPENSQUARE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/OPENUP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/PIPE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/QUESTIONMARK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/RIGHT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/RIGHTFACINGU.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/RIGHTSLANT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SDQUOTE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SIGMA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SOLIDDOT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SOLIDDOWN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SOLIDLEFT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SOLIDQUAD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SOLIDRIGHT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SOLIDSQUARE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/SOLIDUP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/STAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/TIMES.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/UNDERSCORE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/UNDERSCORE2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/UP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/UPPERSCORE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/XSTAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/YEN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/[.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/[[.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/].png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/]].png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/^.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Special/~.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/A.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/B.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/C.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/E.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/G.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/I.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/K.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/O.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/Q.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/S.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/U.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/W.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/Y.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Fonts/Thin_Uppercase/Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sounds/BackgroundThemes/JackIn.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sounds/BackgroundThemes/MainMenu_Theme.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sounds/SFX/Deselect.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sounds/SFX/PressStart.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sounds/SFX/SelectSave.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sounds/SFX/SwitchOptions.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Indicator.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackInPet_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackInPet_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackInPet_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackIn_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackIn_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackIn_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackIn_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackIn_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_JackIn_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_East_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_East_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_East_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_East_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_East_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_East_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_East_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_East_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_NorthEast_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_NorthEast_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_NorthEast_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_NorthEast_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_NorthEast_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_NorthEast_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_NorthEast_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_NorthEast_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_North_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_North_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_North_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_North_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_North_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_North_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_North_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_North_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_SouthEast_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_SouthEast_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_SouthEast_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_SouthEast_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_SouthEast_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_SouthEast_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_SouthEast_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_SouthEast_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_South_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_South_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_South_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_South_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_South_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_South_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_South_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Running_South_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Standing_East.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Standing_North.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Standing_NorthEast.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Standing_South.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Standing_SouthEast.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_East_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_East_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_East_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_East_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_East_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_East_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_NorthEast_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_NorthEast_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_NorthEast_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_NorthEast_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_NorthEast_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_NorthEast_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_North_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_North_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_North_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_North_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_North_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_North_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_SouthEast_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_SouthEast_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_SouthEast_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_SouthEast_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_SouthEast_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_SouthEast_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_South_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_South_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_South_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_South_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_South_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Lan_Walking_South_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Shadow_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Shadow_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Lan/Shadow_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/Capcom_Logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/Continue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/ContinueG.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/Copyright.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/Cursor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/Menu_Title.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/NewGame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/NewGameG.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/Press_Start.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/MainMenuUIElements/Title_Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Maps/Lans_Bedroom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Maps/Lans_Bedroom_Collision.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_17.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_18.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_19.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_21.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_23.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_24.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_25.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_26.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_27.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_28.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_29.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_30.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_31.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/NetworkLogin/NetworkLogin_9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Pet_Icon/PET_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Pet_Icon/PET_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Pet_Icon/PET_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/Pet_Icon/PET_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Sprites/SFX/JackIn_9.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSClientReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSServerHost.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientGoodByePacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerGoodbyePacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerIntroductionPacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerReturnGreetingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerReturnGreetingPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/DespawnEntityPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/DespawnEntityPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/MoveEntityPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/MoveEntityPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/SpawnEntityPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/SpawnEntityPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/GameType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicControllerGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicControllerGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -612,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GANOS_Client.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GANOS_Client.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="206">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -627,8 +44,8 @@
       <file leaf-file-name="GANOS_Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="-218">
+              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -636,11 +53,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerNetworkConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java">
+      <file leaf-file-name="ClientIntroductionPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="106" column="96" selection-start-line="106" selection-start-column="96" selection-end-line="106" selection-end-column="96" />
+            <state relative-caret-position="223">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
+              <folding>
+                <element signature="e#707#708#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NetworkClientState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="93" column="10" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -648,15 +77,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSocket.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java">
+      <file leaf-file-name="ClientNetworkConnection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="106" selection-start-line="106" selection-end-line="106" />
+            <state relative-caret-position="986">
+              <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3713#3714#0" expanded="true" />
-                <element signature="e#3759#3760#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -673,6 +100,11 @@
         <option value="Enum" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>red</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -698,7 +130,6 @@
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/NetworkedGame.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/NetworkedClientGame.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketBase.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSClientReader.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/SpawnEntityPacket.java" />
@@ -709,17 +140,22 @@
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/MoveEntityPacket.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerReturnGreetingPacket.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkErrorType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/BasicPackets/GoodbyePacket.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/GameType.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" />
+        <option value="$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev" />
+        <option value="$PROJECT_DIR$/GameAssets/Saves/ClientSave/SaveFile.Dev" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" />
       </list>
     </option>
   </component>
@@ -736,6 +172,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -751,13 +189,15 @@
             <path>
               <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
               <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
+              <item name="Saves" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
               <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
+              <item name="Saves" type="462c0819:PsiDirectoryNode" />
+              <item name="ServerConfigs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
@@ -796,42 +236,6 @@
               <item name="GANOS" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
-              <item name="Networking" type="462c0819:PsiDirectoryNode" />
-              <item name="Packets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
-              <item name="Networking" type="462c0819:PsiDirectoryNode" />
-              <item name="Packets" type="462c0819:PsiDirectoryNode" />
-              <item name="BasicPackets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
-              <item name="Networking" type="462c0819:PsiDirectoryNode" />
-              <item name="Packets" type="462c0819:PsiDirectoryNode" />
-              <item name="ClientPackets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
-              <item name="Networking" type="462c0819:PsiDirectoryNode" />
-              <item name="Packets" type="462c0819:PsiDirectoryNode" />
-              <item name="ClientPackets" type="462c0819:PsiDirectoryNode" />
-              <item name="General" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
               <item name="Utility" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -839,8 +243,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -850,11 +252,13 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\src\com\GlitchyDev\Networking\Packets\ServerPackets" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Saves\ClientSave" />
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Saves" />
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\src\com\GlitchyDev\Networking\Packets\ServerPackets" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -869,7 +273,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GANOS_Server">
+  <component name="RunManager" selected="Application.GANOS_Client">
     <configuration name="GANOS_Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.GlitchyDev.GANOS_Client" />
       <module name="GANOS" />
@@ -979,24 +383,24 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32591414" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2306003" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3290938" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21888727" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3990461" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3290938" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -1010,54 +414,16 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+        <state relative-caret-position="357">
+          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSServerHost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSClientReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSServerHost.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSClientReader.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -1082,26 +448,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/OldClass/GANOS_NetworkClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/OldClass/GANOS_NetworkServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/OldClass/GANOS_NetworkClient.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/OldClass/GANOS_NetworkServer.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/OverworldTestState.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/OverworldControllerGameState.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Main.java">
@@ -1118,36 +466,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/OldClass/GANOS_NetworkClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/OldClass/GANOS_NetworkServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSServerHost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/OldClass/GANOS_NetworkClient.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/OldClass/GANOS_NetworkServer.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSServerHost.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/GButtons.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1162,54 +483,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/TIAD">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/Fuck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/PacketCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/NetworkedClientGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/Fuck.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/PacketCommands.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/NetworkedClientGame.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -1217,16 +494,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSClientReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSClientReader.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/EntityType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1241,27 +509,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientGoodByePacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" selection-start-line="15" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientGoodByePacket.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/DespawnEntityPacket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" selection-start-line="17" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#602#603#0" expanded="true" />
-            <element signature="e#670#671#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1276,46 +528,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerGoodbyePacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerGoodbyePacket.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerReturnGreetingPacket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerIntroductionPacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" selection-start-line="14" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#478#479#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerIntroductionPacket.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Direction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1323,30 +547,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="971">
-          <caret line="60" column="42" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/BasicPackets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/BasicPackets.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1361,47 +562,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="57" column="78" selection-start-line="57" selection-start-column="78" selection-end-line="57" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2610#2611#0" expanded="true" />
-            <element signature="e#2634#2635#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="43" column="55" lean-forward="true" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="68" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/BasicPackets/GoodbyePacket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1415,10 +579,99 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/GameType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="117" column="21" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/gui/TextField.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/Font.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15">
+          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#707#708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="93" column="10" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="-218">
+          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1427,22 +680,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        <state relative-caret-position="206">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3713#3714#0" expanded="true" />
-            <element signature="e#3759#3760#0" expanded="true" />
           </folding>
         </state>
       </provider>
