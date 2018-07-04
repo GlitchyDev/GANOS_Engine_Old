@@ -15,13 +15,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class GANOS_Server extends StateBasedGame {
-
     // Application Properties
     public static final int WIDTH = 850;
     public static final int HEIGHT = 700;
     public static final int FPS_TARGET = 60;
-    //public static final int SCALE = 1;
+
     private ServerNetworkConnection serverNetworkConnection;
+
 
 
 
@@ -65,7 +65,7 @@ public class GANOS_Server extends StateBasedGame {
 
     @Override
     public boolean closeRequested() {
-        serverNetworkConnection.endConnection(NetworkDisconnectType.SERVER_WINDOW_CLOSED);
+        serverNetworkConnection.disconnectAll(NetworkDisconnectType.SERVER_WINDOW_CLOSED);
         return super.closeRequested();
     }
 }

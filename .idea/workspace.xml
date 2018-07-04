@@ -7,17 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e9bc26f-019e-4c83-8913-d8041e6027fb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev" beforeDir="false" afterPath="$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/GameType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,14 +28,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GANOS_Client.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GANOS_Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
+            <state relative-caret-position="195">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerNetworkConnection.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasicMonitoredGameState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -44,8 +64,8 @@
       <file leaf-file-name="GANOS_Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-218">
-              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+            <state relative-caret-position="126">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,35 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientIntroductionPacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java">
+      <file leaf-file-name="NetworkServerState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-              <folding>
-                <element signature="e#707#708#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NetworkClientState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="93" column="10" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientNetworkConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
+            <state relative-caret-position="126">
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,6 +100,9 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>red</find>
+      <find>socket</find>
+      <find>isAuth</find>
+      <find>socket =</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,20 +141,20 @@
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerReturnGreetingPacket.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkErrorType.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/BasicPackets/GoodbyePacket.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/GameType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" />
-        <option value="$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev" />
         <option value="$PROJECT_DIR$/GameAssets/Saves/ClientSave/SaveFile.Dev" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java" />
+        <option value="$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" />
       </list>
     </option>
   </component>
@@ -172,8 +171,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,6 +239,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -252,13 +251,13 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Saves\ClientSave" />
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Saves" />
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\src\com\GlitchyDev\Networking\Packets\ServerPackets" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -273,7 +272,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GANOS_Client">
+  <component name="RunManager" selected="Application.GANOS_Server">
     <configuration name="GANOS_Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.GlitchyDev.GANOS_Client" />
       <module name="GANOS" />
@@ -350,8 +349,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GANOS_Client" />
         <item itemvalue="Application.GANOS_Server" />
+        <item itemvalue="Application.GANOS_Client" />
         <item itemvalue="Application.GANOS_NetworkClient" />
         <item itemvalue="Application.GANOS_NetworkServer" />
         <item itemvalue="Application.Main" />
@@ -383,24 +382,24 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32591414" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3227345" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21888727" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3290938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3990461" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3990461" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3290938" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -408,20 +407,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSServerHost.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GANOSClientReader.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java">
@@ -437,6 +426,8 @@
           <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#1227#1228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -548,13 +539,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/BasicPackets.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -566,13 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="106" column="96" selection-start-line="106" selection-start-column="96" selection-end-line="106" selection-end-column="96" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -593,20 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="117" column="21" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/gui/TextField.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -621,57 +584,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.base/java/net/DualStackPlainSocketImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="66">
+          <caret line="290" column="22" selection-start-line="290" selection-start-column="22" selection-end-line="290" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java">
+    <entry file="file://$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="170">
+          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
           <folding>
+            <element signature="e#677#678#0" expanded="true" />
             <element signature="e#707#708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/NetworkDisconnectType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1587#1588#0" expanded="true" />
+            <element signature="e#1623#1624#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="93" column="10" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-218">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="153">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -680,8 +640,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="195">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkServerState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

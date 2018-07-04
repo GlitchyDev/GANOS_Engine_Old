@@ -1,117 +1,170 @@
 package com.GlitchyDev.Networking;
 
 import com.GlitchyDev.Networking.Packets.ClientPackets.General.ClientIntroductionPacket;
-import com.GlitchyDev.Networking.Packets.PacketBase;
 import com.GlitchyDev.Networking.Packets.ServerPackets.General.ServerReturnGreetingPacket;
-import com.GlitchyDev.Utility.GameType;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ServerNetworkConnection {
-    // Tag this with Players, or give Players the SUUID to tag over here
-    protected ConcurrentHashMap<String, GameSocket> allConnectedClients;
-    protected Collection<String> approvedUsers = Arrays.asList("James");
-    private final int portNum = 9001;
-    private ServerClientConnectingThread serverClientConnectingThread;
+    private ConcurrentHashMap<String,GameSocket> connectedClients;
+    private Collection<String> connectedUsers;
+    private Collection<String> approvedUsers;
 
-    public ServerNetworkConnection() {
-        allConnectedClients = new ConcurrentHashMap<>();
-        serverClientConnectingThread = new ServerClientConnectingThread(allConnectedClients, approvedUsers);
-        serverClientConnectingThread.start();
+    private AcceptingClientThread acceptingClientThread;
+    private AtomicBoolean acceptingClients = new AtomicBoolean(false);
+
+    private final String SERVERCONFIGPATH = "GameAssets/Saves/ServerConfigs/";
+
+
+    public ServerNetworkConnection()
+    {
+        connectedClients = new ConcurrentHashMap<>();
+
+        connectedUsers = Collections.synchronizedCollection(new ArrayList<>());
+        approvedUsers = Collections.synchronizedCollection(new ArrayList<>());
+
+        System.out.println("ServerNetwork: Loading Approved Users");
+        approvedUsers.addAll(getConfigList(new File(SERVERCONFIGPATH + "ApprovedUsers.Dev")));
+        enableAcceptingClients();
     }
 
-    public void endConnection(NetworkDisconnectType reason) {
-        serverClientConnectingThread.stopThread();
-        for (GameSocket gameSocket : allConnectedClients.values()) {
-            gameSocket.disconnect(reason);
+    public ArrayList<String> getConfigList(File file)
+    {
+        ArrayList<String> configList = new ArrayList<>();
+        System.out.println("ServerNetwork: Loading File " + file.getName());
+
+        try {
+            Scanner scanner = new  Scanner(file);
+            while(scanner.hasNext())
+            {
+                configList.add(scanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return configList;
+    }
+
+    public HashMap<String,String> getConfigSettings(File file)
+    {
+        HashMap<String,String> configSettings = new HashMap<>();
+        System.out.println("ServerNetwork: Loading File " + file.getName());
+
+        try {
+            Scanner scanner = new  Scanner(file);
+            while(scanner.hasNext())
+            {
+                String configLine = scanner.nextLine();
+                configSettings.put(configLine.split(": ")[0],configLine.split(": ")[1]);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return configSettings;
+    }
+
+    public void enableAcceptingClients()
+    {
+        System.out.println("ServerNetwork: Enabled Login for Users");
+        acceptingClientThread = new AcceptingClientThread();
+        acceptingClients.set(true);
+        acceptingClientThread.start();
+
+    }
+
+    public void disableAcceptingClients()
+    {
+        acceptingClients.set(false);
+        acceptingClientThread = null;
+    }
+
+    public void disconnectUser(String name, NetworkDisconnectType reason)
+    {
+        System.out.println("ServerNetwork: Disconnected User " + name);
+
+        connectedClients.get(name).disconnect(reason);
+        connectedClients.remove(name);
+        connectedUsers.remove(name);
+    }
+
+    public void disconnectAll(NetworkDisconnectType reason)
+    {
+        System.out.println("ServerNetwork: Disconnected All Users");
+
+        Iterator<String> userIterator = connectedUsers.iterator();
+        while(userIterator.hasNext()) {
+            String name = userIterator.next();
+            System.out.println("ServerNetwork: Disconnected User " + name);
+            connectedClients.get(name).disconnect(reason);
+            connectedClients.remove(name);
+            userIterator.remove();
         }
     }
 
-    public ConcurrentHashMap<String, GameSocket> getAllConnectedClients() {
-        return allConnectedClients;
+    public Collection<String> getApprovedUsers()
+    {
+        return approvedUsers;
+    }
+
+    public Collection<String> getConnectedUsers()
+    {
+        return connectedUsers;
     }
 
 
-    private class ServerClientConnectingThread extends Thread {
-        private ServerSocket serverSocket;
-        private ConcurrentHashMap<String, GameSocket> allConnectedClients;
-        private Collection<String> approvedUsers;
-        private boolean doStopThread = false;
-
-        public ServerClientConnectingThread(ConcurrentHashMap<String, GameSocket> allConnectedClients, Collection<String> approvedUsers) {
-            this.allConnectedClients = allConnectedClients;
+    private class AcceptingClientThread extends Thread {
+        @Override
+        public void run() {
             try {
-                serverSocket = new ServerSocket(portNum);
+                ServerSocket serverSocket = new ServerSocket(GameSocket.PORTNUM);
+                while(acceptingClients.get())
+                {
+                    Socket possibleSocket = serverSocket.accept();
+                    AuthenticatingClientThread authenticatingClientThreat = new AuthenticatingClientThread(new GameSocket(possibleSocket));
+                    authenticatingClientThreat.start();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            this.approvedUsers = approvedUsers;
-        }
-
-        @Override
-        public void run() {
-            int connectionAttemptCount = 0;
-            while (!doStopThread) {
-                try {
-                    new ConnectionAttemptThread(allConnectedClients, approvedUsers, serverSocket.accept()).start();
-                    System.out.println("Attempt " + connectionAttemptCount);
-
-                    // Resolve Multiple Login in issue?
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    connectionAttemptCount++;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    stopThread();
-                }
-            }
-        }
-
-        public void stopThread() {
-            doStopThread = true;
         }
     }
 
-
-    private class ConnectionAttemptThread extends Thread {
-        private ConcurrentHashMap<String, GameSocket> allConnectedClients;
-        private Collection<String> approvedUsers;
-        private Socket socket;
-
-        public ConnectionAttemptThread(ConcurrentHashMap<String, GameSocket> allConnectedClients, Collection<String> approvedUsers, Socket socket) {
-            this.allConnectedClients = allConnectedClients;
-            this.approvedUsers = approvedUsers;
-            this.socket = socket;
+    private class AuthenticatingClientThread extends Thread {
+        private GameSocket gameSocket;
+        public AuthenticatingClientThread(GameSocket gameSocket)
+        {
+            this.gameSocket = gameSocket;
         }
 
         @Override
         public void run() {
-            System.out.println("ServerNetwork: A client is attempting a connection");
-            GameSocket gameSocket = new GameSocket(GameType.SERVER, socket);
-            while (socket.isConnected() && gameSocket.getUnprocessedPackets().size() == 0) {
+            System.out.println("ServerNetwork: Processing Incoming User");
 
+            while(!gameSocket.hasUnprocessedPackets())
+            {
+                Thread.yield();
             }
-            ClientIntroductionPacket introduction = new ClientIntroductionPacket((PacketBase) gameSocket.getUnprocessedPackets().toArray()[0]);
-            System.out.println("ServerNetwork: Recieved Authetnication UUID" + introduction.getUUID());
-
-            if (!approvedUsers.contains(introduction.getUUID())) {
-                System.out.println("ServerNetwork: User " + introduction.getUUID() + " Denied");
-                gameSocket.disconnect(NetworkDisconnectType.INCORRECT_LOGIN_CREDENTIALS);
-            } else {
-                System.out.println("Client " + introduction.getUUID() + " Logged in!");
+            ClientIntroductionPacket clientIntroductionPacket = new ClientIntroductionPacket(gameSocket.getUnprocessedPackets().get(0));
+            if(approvedUsers.contains(clientIntroductionPacket.getUUID()))
+            {
                 gameSocket.sendPacket(new ServerReturnGreetingPacket());
-                allConnectedClients.put(introduction.getUUID(), gameSocket);
+                connectedClients.put(clientIntroductionPacket.getUUID(),gameSocket);
+                connectedUsers.add(clientIntroductionPacket.getUUID());
+                System.out.println("ServerNetwork: User " + clientIntroductionPacket.getUUID() + " Authenticated");
             }
-            gameSocket.getUnprocessedPackets().clear();
+            else
+            {
+                gameSocket.disconnect(NetworkDisconnectType.INCORRECT_LOGIN_CREDENTIALS);
+                System.out.println("ServerNetwork: User " + clientIntroductionPacket.getUUID() + " Denied Login");
+            }
         }
     }
+
 }

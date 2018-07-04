@@ -1,22 +1,26 @@
 package com.GlitchyDev.GameStates;
 
 import com.GlitchyDev.Networking.GameSocket;
+import com.GlitchyDev.Networking.NetworkDisconnectType;
 import com.GlitchyDev.Networking.Packets.PacketBase;
 import com.GlitchyDev.Networking.Packets.PacketType;
 import com.GlitchyDev.Networking.ServerNetworkConnection;
 import com.GlitchyDev.Utility.BasicMonitoredGameState;
+import com.GlitchyDev.Utility.GButtons;
+import com.GlitchyDev.Utility.GameController;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 public class NetworkServerState extends BasicMonitoredGameState {
-    private ServerNetworkConnection serverNetworkConnection;
-
-
+    ServerNetworkConnection serverNetworkConnection;
+    private Collection<String> currentUsers;
+    private Collection<String> approvedUsers;
 
     public NetworkServerState(ServerNetworkConnection serverNetworkConnection)
     {
@@ -25,52 +29,41 @@ public class NetworkServerState extends BasicMonitoredGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-
+        currentUsers = serverNetworkConnection.getConnectedUsers();
+        approvedUsers = serverNetworkConnection.getApprovedUsers();
     }
 
     @Override
     protected void doRender(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-        Iterator<String> itr = serverNetworkConnection.getAllConnectedClients().keys().asIterator();
+        graphics.setColor(Color.white);
 
-
-        //System.out.println(serverNetworkConnection.getAllConnectedClients().size());
-        graphics.setColor(Color.red);
-        graphics.drawString("Connected Clients:",0,0);
+        graphics.drawString("Connected Users",0,0);
         int i = 1;
-        while (itr.hasNext()) {
-            String key = itr.next();
-            graphics.setColor(Color.red);
-            graphics.drawString(key,0,i*20);
+        Iterator<String> currentUserIterator = currentUsers.iterator();
+        while(currentUserIterator.hasNext())
+        {
+            graphics.drawString(currentUserIterator.next(),0,20*i);
             i++;
         }
+
+
+        graphics.drawString("Whitelist",150,0);
+        i = 1;
+        Iterator<String> approvedUserIterator = approvedUsers.iterator();
+        while(approvedUserIterator.hasNext())
+        {
+            graphics.drawString(approvedUserIterator.next(),150,20*i);
+            i++;
+        }
+
 
     }
 
     @Override
     protected void doUpdate(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
-        Iterator<String> uuidIterator = serverNetworkConnection.getAllConnectedClients().keys().asIterator();
-        while(uuidIterator.hasNext())
+        if(GameController.isButtonPressed(GButtons.START))
         {
-            String uuid = uuidIterator.next();
-            if(!serverNetworkConnection.getAllConnectedClients().get(uuid).isConnected())
-            {
-                serverNetworkConnection.getAllConnectedClients().remove(uuid);
-            }
-        }
-
-        for(GameSocket gameSocket: serverNetworkConnection.getAllConnectedClients().values())
-        {
-            // Get packets
-            if(gameSocket.getUnprocessedPackets().size() != 0)
-            {
-                Iterator<PacketBase> packets = gameSocket.getUnprocessedPackets().iterator();
-                while(packets.hasNext())
-                {
-                    PacketBase packet = packets.next();
-                    // Do packet Stuff
-                }
-            }
+            serverNetworkConnection.disconnectAll(NetworkDisconnectType.DEBUG);
         }
     }
 
@@ -78,5 +71,7 @@ public class NetworkServerState extends BasicMonitoredGameState {
     public int getID() {
         return 0;
     }
+
+
 
 }

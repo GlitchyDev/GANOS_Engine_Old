@@ -1,27 +1,29 @@
 package com.GlitchyDev.Networking;
 
-import com.GlitchyDev.IO.SaveLoader;
 import com.GlitchyDev.Networking.Packets.ClientPackets.General.ClientIntroductionPacket;
 import com.GlitchyDev.Networking.Packets.PacketBase;
 import com.GlitchyDev.Networking.Packets.PacketType;
-import com.GlitchyDev.Utility.GameType;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ClientNetworkConnection {
-    protected GameSocket gameSocket;
-    private final int portNum = 9001;
-    protected AtomicBoolean hasServerConnection = new AtomicBoolean(false);
+    private GameSocket gameSocket;
+    private AttemptConnectionThread attemptConnectionThread;
+    private AtomicBoolean isAuthenticated = new AtomicBoolean(false);
+    private AtomicBoolean currentlyAuthenticating = new AtomicBoolean(false);
 
 
-    public void createConnection(String ip, String suuid)
+
+    public void connect(String ip, String username)
     {
-        new CreateSocketThread(gameSocket,ip,suuid).start();
-
-        // In the event you don't have an SUUID, send NA
-
+        if(!currentlyAuthenticating.get()) {
+            currentlyAuthenticating.set(true);
+            System.out.println("ClientNetwork: Attempting Login to " + ip + " under name " + username);
+            attemptConnectionThread = new AttemptConnectionThread(ip, username);
+            attemptConnectionThread.start();
+        }
     }
 
     public GameSocket getGameSocket()
@@ -29,71 +31,67 @@ public class ClientNetworkConnection {
         return gameSocket;
     }
 
-    public boolean isConnected()
+    public boolean isAuthenticated()
     {
-        return hasServerConnection.get();
+        if(gameSocket != null && !gameSocket.isActive())
+        {
+            isAuthenticated.set(false);
+        }
+        return isAuthenticated.get();
     }
 
-    private class CreateSocketThread extends Thread {
-        private GameSocket gameSocket;
-        private String ip;
-        private String suuid;
+    public void disconnect(NetworkDisconnectType reason)
+    {
+        gameSocket.disconnect(reason);
+    }
 
-        public CreateSocketThread(GameSocket gameSocket, String ip, String suuid)
+
+
+
+
+    private class AttemptConnectionThread extends Thread
+    {
+        private String ip;
+        private String username;
+
+
+        public AttemptConnectionThread(String ip, String username)
         {
-            this.gameSocket = gameSocket;
             this.ip = ip;
-            this.suuid = suuid;
+            this.username = username;
         }
 
-        @Override
         public void run() {
             try {
 
-                Socket socket = new Socket(ip,portNum);
-                gameSocket = new GameSocket(GameType.CLIENT,socket);
-                AttemptConnectThread attemptConnectThread = new AttemptConnectThread(gameSocket, hasServerConnection,suuid);
-                attemptConnectThread.start();
+
+                gameSocket = new GameSocket(new Socket(ip,GameSocket.PORTNUM));
+                gameSocket.sendPacket(new ClientIntroductionPacket(username));
+
+                while(!gameSocket.hasUnprocessedPackets())
+                {
+                    Thread.yield();
+                }
+
+                PacketBase packet = gameSocket.getUnprocessedPackets().get(0);
+                if(packet.getPacketType() == PacketType.S_RETURN_GREETING)
+                {
+                    System.out.println("ClientNetwork: Connected to Server");
+                    isAuthenticated.set(true);
+                }
+                else
+                {
+                    System.out.println("ClientNetwork: Connection Denied! Unknown Username");
+                }
+                currentlyAuthenticating.set(false);
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private class AttemptConnectThread extends Thread {
-        private GameSocket gameSocket;
-        private AtomicBoolean isConnected;
-        private String suuid;
-        public AttemptConnectThread(GameSocket gameSocket, AtomicBoolean isConnected, String suuid)
-        {
-            this.gameSocket = gameSocket;
-            this.isConnected = isConnected;
-            this.suuid = suuid;
-        }
 
-        @Override
-        public void run() {
-            System.out.println("ClientNetwork: Attempting Connection with the Server");
-            gameSocket.sendPacket(new ClientIntroductionPacket(suuid));
-            while(gameSocket.getSocket().isConnected() && gameSocket.getUnprocessedPackets().size() == 0)
-            {
 
-            }
-            PacketBase responce = gameSocket.getUnprocessedPackets().iterator().next();
-            if(responce.getPacketType() == PacketType.S_RETURN_GREETING)
-            {
-                System.out.println("ClientNetwork: Connection Founded");
-                isConnected.set(true);
-                gameSocket.getUnprocessedPackets().clear();
-            }
-            else
-            {
-                System.out.println("ClientNetwork: Connection Failed");
-                gameSocket.disconnect();
-                gameSocket.getUnprocessedPackets().clear();
-            }
-
-            // Wait for a Server Return Reply if
-        }
-    }
 }

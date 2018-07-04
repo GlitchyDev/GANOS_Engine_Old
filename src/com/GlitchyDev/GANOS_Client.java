@@ -16,11 +16,12 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GANOS_Client extends StateBasedGame {
 
     // Application Properties
-    private ClientNetworkConnection clientNetworkConnection;
     public static final int WIDTH = 500;
     public static final int HEIGHT = 500;
     public static final int FPS_TARGET = 60;
     public static final int SCALE = 1;
+
+    private ClientNetworkConnection clientNetworkConnection;
 
 
     // Class Constructor
@@ -33,8 +34,8 @@ public class GANOS_Client extends StateBasedGame {
     public void initStatesList(GameContainer gc) {
         AssetLoader.loadAssets();
 
-        clientNetworkConnection = new ClientNetworkConnection();
 
+        clientNetworkConnection = new ClientNetworkConnection();
         this.addState(new NetworkClientState(clientNetworkConnection));
     }
 
@@ -63,10 +64,7 @@ public class GANOS_Client extends StateBasedGame {
 
     @Override
     public boolean closeRequested() {
-        if(clientNetworkConnection.isConnected())
-        {
-            clientNetworkConnection.getGameSocket().disconnect(NetworkDisconnectType.CLIENT_WINDOW_CLOSED);
-        }
+        clientNetworkConnection.disconnect(NetworkDisconnectType.CLIENT_WINDOW_CLOSED);
         return super.closeRequested();
     }
 }
