@@ -64,7 +64,9 @@ public class GANOS_Client extends StateBasedGame {
 
     @Override
     public boolean closeRequested() {
-        clientNetworkConnection.disconnect(NetworkDisconnectType.CLIENT_WINDOW_CLOSED);
+        if(clientNetworkConnection.isAuthenticated() || clientNetworkConnection.isCurrentlyAuthenticating()) {
+            clientNetworkConnection.disconnect(NetworkDisconnectType.CLIENT_WINDOW_CLOSED);
+        }
         return super.closeRequested();
     }
 }

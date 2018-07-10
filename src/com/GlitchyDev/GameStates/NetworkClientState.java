@@ -1,21 +1,19 @@
 package com.GlitchyDev.GameStates;
 
+
+import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Networking.ClientNetworkConnection;
 import com.GlitchyDev.Utility.BasicMonitoredGameState;
 import com.GlitchyDev.Utility.GButtons;
 import com.GlitchyDev.Utility.GameController;
-import org.lwjgl.opengl.Display;
+import com.GlitchyDev.Utility.ShaderProgram;
 import org.newdawn.slick.*;
-import org.newdawn.slick.font.effects.ColorEffect;
-import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
-
-
 
 public class NetworkClientState extends BasicMonitoredGameState {
 
     private ClientNetworkConnection clientNetworkConnection;
-    private TextField textField;
+
 
     public NetworkClientState(ClientNetworkConnection clientNetworkConnection) {
         this.clientNetworkConnection = clientNetworkConnection;
@@ -23,23 +21,59 @@ public class NetworkClientState extends BasicMonitoredGameState {
 
 
     @Override
-    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
-    {
-        Font font = getNewFont("Arial",20);
-        ((UnicodeFont) font).loadGlyphs();
-        textField = new TextField(gameContainer, font, 0, 0, 300, 50);
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+
+
     }
 
-    public UnicodeFont getNewFont(String fontName , int fontSize){
-        UnicodeFont returnFont = new UnicodeFont(new java.awt.Font(fontName , java.awt.Font.PLAIN , fontSize));
-        returnFont.addAsciiGlyphs();
-        returnFont.getEffects().add(new ColorEffect(java.awt.Color.black));
-        return (returnFont);
-    }
+
+
+
 
     @Override
     protected void doRender(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
+
+
+        graphics.drawString("Utilization " + getTotalUtilization(),0,0);
+
+    }
+
+
+    @Override
+    protected void doUpdate(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+        if (GameController.isButtonPressed(GButtons.START) && !clientNetworkConnection.isAuthenticated()) {
+            //clientNetworkConnection.connect("192.168.1.3", textField.getText());
+        }
+        //clientNetworkConnection.updateConnections();
+
+    }
+
+    @Override
+    public int getID() {
+        return 0;
+    }
+
+}
+
+
+      /*
+        graphics.setColor(Color.blue);
+        graphics.drawString(String.valueOf(getTotalUtilization()),400,0);
+        graphics.setColor(Color.white);
+        */
+
+
+        /*
+        for (int i = 0; i < 1000; i++) {
+
+            SpriteUtil.drawSprite("Test",(int)(Math.random()*500),(int)(Math.random()*500),0.2);
+        }
+        */
+
+
+
+        /*
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 10; y++) {
                 double random = Math.random();
@@ -58,27 +92,37 @@ public class NetworkClientState extends BasicMonitoredGameState {
         textField.setBorderColor(Color.red);
         textField.render(gameContainer, graphics);
 
-    }
+        graphics.setColor(Color.blue);
+        graphics.drawString(String.valueOf(getTotalUtilization()),400,0);
+
+        //SpriteUtil.drawSprite("Test",250,0,1.0f);
+        SpriteUtil.drawSprite("Test",100,0,1.0f);
 
 
+        Image i = AssetLoader.getSprite("Test");
 
-
-
-
-    @Override
-    protected void doUpdate(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        if(GameController.isButtonPressed(GButtons.START) && !clientNetworkConnection.isAuthenticated())
+        for(int x = 0; x < i.getWidth(); x++)
         {
-            clientNetworkConnection.connect("192.168.1.3",textField.getText());
+            for(int y = 0; y < i.getHeight(); y++)
+            {
+                Color color = i.getColor(x,y);
+                //System.out.println(x + " " + y + ": " + color.a + color.r + color.g + color.b);
+
+                if (color.a <= 0.25) {
+                    i.getGraphics().setColor(Color.green);
+                    if (color.a <= 0.15) {
+                        i.getGraphics().setColor(Color.blue);
+                        if (color.a <= 0.10) {
+                            i.getGraphics().setColor(Color.red);
+                            if (i.getColor(x, y).a <= 0.05) {
+                                i.getGraphics().setColor(Color.yellow);
+                            }
+                        }
+                    }
+                    //int width = (int) (25 * Math.random());
+                    //int height = (int) (25 * Math.random());
+                    i.getGraphics().fillRect(x, y, 1, 1);
+                }
+            }
         }
-
-    }
-
-    @Override
-    public int getID() {
-        return 0;
-    }
-
-
-
-}
+        */

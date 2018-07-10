@@ -1,9 +1,6 @@
 package com.GlitchyDev.GameStates;
 
-import com.GlitchyDev.Networking.GameSocket;
 import com.GlitchyDev.Networking.NetworkDisconnectType;
-import com.GlitchyDev.Networking.Packets.PacketBase;
-import com.GlitchyDev.Networking.Packets.PacketType;
 import com.GlitchyDev.Networking.ServerNetworkConnection;
 import com.GlitchyDev.Utility.BasicMonitoredGameState;
 import com.GlitchyDev.Utility.GButtons;
@@ -35,8 +32,9 @@ public class NetworkServerState extends BasicMonitoredGameState {
 
     @Override
     protected void doRender(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-        graphics.setColor(Color.white);
 
+
+        graphics.setColor(Color.white);
         graphics.drawString("Connected Users",0,0);
         int i = 1;
         Iterator<String> currentUserIterator = currentUsers.iterator();
@@ -45,8 +43,6 @@ public class NetworkServerState extends BasicMonitoredGameState {
             graphics.drawString(currentUserIterator.next(),0,20*i);
             i++;
         }
-
-
         graphics.drawString("Whitelist",150,0);
         i = 1;
         Iterator<String> approvedUserIterator = approvedUsers.iterator();
@@ -56,11 +52,14 @@ public class NetworkServerState extends BasicMonitoredGameState {
             i++;
         }
 
+        graphics.setColor(Color.blue);
+        graphics.drawString(String.valueOf(getTotalUtilization()),400,0);
 
     }
 
     @Override
     protected void doUpdate(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+        serverNetworkConnection.updateConnections();
         if(GameController.isButtonPressed(GButtons.START))
         {
             serverNetworkConnection.disconnectAll(NetworkDisconnectType.DEBUG);

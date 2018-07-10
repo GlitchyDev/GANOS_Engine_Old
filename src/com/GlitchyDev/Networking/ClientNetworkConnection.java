@@ -11,18 +11,24 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ClientNetworkConnection {
     private GameSocket gameSocket;
     private AttemptConnectionThread attemptConnectionThread;
-    private AtomicBoolean isAuthenticated = new AtomicBoolean(false);
-    private AtomicBoolean currentlyAuthenticating = new AtomicBoolean(false);
-
-
+    private AtomicBoolean isConnected = new AtomicBoolean(false);
+    private AtomicBoolean isCurrentlyAuthenticating = new AtomicBoolean(false);
 
     public void connect(String ip, String username)
     {
-        if(!currentlyAuthenticating.get()) {
-            currentlyAuthenticating.set(true);
+        if(!isCurrentlyAuthenticating.get()) {
+            isCurrentlyAuthenticating.set(true);
             System.out.println("ClientNetwork: Attempting Login to " + ip + " under name " + username);
             attemptConnectionThread = new AttemptConnectionThread(ip, username);
             attemptConnectionThread.start();
+        }
+    }
+
+    public void updateConnections()
+    {
+        if(gameSocket != null && !gameSocket.isActive())
+        {
+            isConnected.set(false);
         }
     }
 
@@ -33,11 +39,12 @@ public class ClientNetworkConnection {
 
     public boolean isAuthenticated()
     {
-        if(gameSocket != null && !gameSocket.isActive())
-        {
-            isAuthenticated.set(false);
-        }
-        return isAuthenticated.get();
+        return isConnected.get();
+    }
+
+    public boolean isCurrentlyAuthenticating()
+    {
+        return isCurrentlyAuthenticating.get();
     }
 
     public void disconnect(NetworkDisconnectType reason)
@@ -54,7 +61,6 @@ public class ClientNetworkConnection {
         private String ip;
         private String username;
 
-
         public AttemptConnectionThread(String ip, String username)
         {
             this.ip = ip;
@@ -63,8 +69,6 @@ public class ClientNetworkConnection {
 
         public void run() {
             try {
-
-
                 gameSocket = new GameSocket(new Socket(ip,GameSocket.PORTNUM));
                 gameSocket.sendPacket(new ClientIntroductionPacket(username));
 
@@ -77,14 +81,13 @@ public class ClientNetworkConnection {
                 if(packet.getPacketType() == PacketType.S_RETURN_GREETING)
                 {
                     System.out.println("ClientNetwork: Connected to Server");
-                    isAuthenticated.set(true);
+                    isConnected.set(true);
                 }
                 else
                 {
                     System.out.println("ClientNetwork: Connection Denied! Unknown Username");
                 }
-                currentlyAuthenticating.set(false);
-
+                isCurrentlyAuthenticating.set(false);
 
             } catch (IOException e) {
                 e.printStackTrace();

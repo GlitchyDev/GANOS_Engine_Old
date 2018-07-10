@@ -48,19 +48,20 @@ public class AssetLoader {
         File spriteAssetFolder = new File("GameAssets/Sprites");
         for(File spriteSubFolder: spriteAssetFolder.listFiles()) {
             System.out.println("AssetLoader: Loading Folder " + spriteSubFolder.getName());
-            for(File sprite: spriteSubFolder.listFiles())
-            {
-                System.out.println("AssetLoader: Loading " + sprite.getPath());
+            if(spriteSubFolder.isDirectory() && spriteSubFolder.listFiles().length != 0) {
+                for (File sprite : spriteSubFolder.listFiles()) {
+                    System.out.println("AssetLoader: Loading " + sprite.getPath());
 
-                String name = sprite.getName().replace(".png","");
-                Image spriteImage = null;
-                try {
-                    spriteImage = new Image(sprite.getPath());
-                    spriteImage.setFilter(Image.FILTER_NEAREST);
-                } catch (SlickException e) {
+                    String name = sprite.getName().replace(".png", "");
+                    Image spriteImage = null;
+                    try {
+                        spriteImage = new Image(sprite.getPath());
+                        spriteImage.setFilter(Image.FILTER_NEAREST);
+                    } catch (SlickException e) {
 
+                    }
+                    spriteAssets.put(name, spriteImage);
                 }
-                spriteAssets.put(name,spriteImage);
             }
         }
 

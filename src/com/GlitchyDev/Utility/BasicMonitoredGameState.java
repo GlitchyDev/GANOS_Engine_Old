@@ -14,21 +14,29 @@ public abstract class BasicMonitoredGameState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-        long startRender = gameContainer.getTime();
+        final long startRender = System.nanoTime();
         doRender(gameContainer,stateBasedGame,graphics);
-        long endRender = gameContainer.getTime();
-        long length = endRender-startRender;
-        renderingUtilization = (100.0/(1000.0/GANOS_Client.FPS_TARGET))* length;
+        final long endRender = System.nanoTime();
+        final long length = endRender-startRender;
+
+        final int frameLength = 1000000000;
+        final double total = (100.0/(frameLength/60))*length;
+
+        renderingUtilization = total;
 
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        long startRender = gameContainer.getTime();
+        final long startRender = System.nanoTime();
         doUpdate(gameContainer,stateBasedGame,i);
-        long endRender = gameContainer.getTime();
-        long length = endRender-startRender;
-        updateUtilization = (100.0/(1000.0/GANOS_Client.FPS_TARGET))* length;
+        final long endRender = System.nanoTime();
+        final long length = endRender-startRender;
+
+        final int frameLength = 1000000000;
+        final double total = (100.0/(frameLength/60))*length;
+
+        updateUtilization = total;
     }
 
     protected abstract void doRender(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException;

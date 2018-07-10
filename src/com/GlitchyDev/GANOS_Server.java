@@ -53,6 +53,9 @@ public class GANOS_Server extends StateBasedGame {
 
 
             SaveLoader.loadSave(GameType.SERVER);
+            AssetLoader.loadAssets();
+
+
             GameController.linkControls(app);
 
 

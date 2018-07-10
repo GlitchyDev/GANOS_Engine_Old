@@ -1,8 +1,10 @@
 package com.GlitchyDev.Networking;
 
+import com.GlitchyDev.IO.SaveLoader;
 import com.GlitchyDev.Networking.Packets.ClientPackets.General.ClientIntroductionPacket;
 import com.GlitchyDev.Networking.Packets.ServerPackets.General.ServerReturnGreetingPacket;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,51 +26,31 @@ public class ServerNetworkConnection {
     public ServerNetworkConnection()
     {
         connectedClients = new ConcurrentHashMap<>();
-
         connectedUsers = Collections.synchronizedCollection(new ArrayList<>());
         approvedUsers = Collections.synchronizedCollection(new ArrayList<>());
 
         System.out.println("ServerNetwork: Loading Approved Users");
-        approvedUsers.addAll(getConfigList(new File(SERVERCONFIGPATH + "ApprovedUsers.Dev")));
+        approvedUsers.addAll(SaveLoader.getConfigList(new File(SERVERCONFIGPATH + "ApprovedUsers.Dev")));
         enableAcceptingClients();
     }
 
-    public ArrayList<String> getConfigList(File file)
+    public void updateConnections()
     {
-        ArrayList<String> configList = new ArrayList<>();
-        System.out.println("ServerNetwork: Loading File " + file.getName());
-
-        try {
-            Scanner scanner = new  Scanner(file);
-            while(scanner.hasNext())
+        Iterator<String> userIterator = connectedUsers.iterator();
+        while(userIterator.hasNext())
+        {
+            String username = userIterator.next();
+            GameSocket socket = connectedClients.get(username);
+            if(!socket.isActive())
             {
-                configList.add(scanner.nextLine());
+                userIterator.remove();
+                connectedClients.remove(username);
+                System.out.println("ServerNetwork: User " + username + " has been removed");
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
 
-        return configList;
     }
 
-    public HashMap<String,String> getConfigSettings(File file)
-    {
-        HashMap<String,String> configSettings = new HashMap<>();
-        System.out.println("ServerNetwork: Loading File " + file.getName());
-
-        try {
-            Scanner scanner = new  Scanner(file);
-            while(scanner.hasNext())
-            {
-                String configLine = scanner.nextLine();
-                configSettings.put(configLine.split(": ")[0],configLine.split(": ")[1]);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return configSettings;
-    }
 
     public void enableAcceptingClients()
     {
@@ -154,10 +136,17 @@ public class ServerNetworkConnection {
             ClientIntroductionPacket clientIntroductionPacket = new ClientIntroductionPacket(gameSocket.getUnprocessedPackets().get(0));
             if(approvedUsers.contains(clientIntroductionPacket.getUUID()))
             {
-                gameSocket.sendPacket(new ServerReturnGreetingPacket());
-                connectedClients.put(clientIntroductionPacket.getUUID(),gameSocket);
-                connectedUsers.add(clientIntroductionPacket.getUUID());
-                System.out.println("ServerNetwork: User " + clientIntroductionPacket.getUUID() + " Authenticated");
+                if(!connectedUsers.contains(clientIntroductionPacket.getUUID())) {
+                    gameSocket.sendPacket(new ServerReturnGreetingPacket());
+                    connectedClients.put(clientIntroductionPacket.getUUID(), gameSocket);
+                    connectedUsers.add(clientIntroductionPacket.getUUID());
+                    System.out.println("ServerNetwork: User " + clientIntroductionPacket.getUUID() + " Authenticated");
+                }
+                else
+                {
+                    gameSocket.disconnect(NetworkDisconnectType.USER_ALREADY_LOGGED_IN);
+                    System.out.println("ServerNetwork: User " + clientIntroductionPacket.getUUID() + " Is already Logged in");
+                }
             }
             else
             {
