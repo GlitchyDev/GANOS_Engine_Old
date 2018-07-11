@@ -9,82 +9,43 @@ import java.io.File;
 import java.util.HashMap;
 
 public class AssetLoader {
+    private static HashMap<String,File> fileLoader;
     private static HashMap<String,Image> spriteAssets;
-    private static HashMap<String,HashMap<String,Image>> fonts;
     private static HashMap<String,Sound> soundAssets;
     private static String[] icons;
 
 
     public static void loadAssets()  {
 
+        fileLoader = new HashMap<>();
         spriteAssets = new HashMap<>();
         soundAssets = new HashMap<>();
-        fonts = new HashMap<>();
-
-        System.out.println("AssetLoader: Start Loading");
-        // At a later point add in other ways of managing files
-
-        System.out.println("AssetLoader: Start Sound Loading");
-        File soundAssetFolder = new File("GameAssets/Sounds");
-        for(File soundSubFolder: soundAssetFolder.listFiles()) {
-            System.out.println("AssetLoader: Loading Folder " + soundSubFolder.getName());
-            for(File sound: soundSubFolder.listFiles())
+        File assetFolder = new File("GameAssets");
+        for(File mainFolder: assetFolder.listFiles())
+        {
+            System.out.println("Loading " + mainFolder.getName() + " Assets");
+            for(File subFolder: mainFolder.listFiles())
             {
-                System.out.println("AssetLoader: Loading " + sound.getPath());
-
-                String name = sound.getName().replace(".wav","");
-                Sound soundClip = null;
-                try {
-                    soundClip = new Sound(sound.getPath());
-                } catch (SlickException e) {
-                    e.printStackTrace();
-                }
-                soundAssets.put(name,soundClip);
-            }
-        }
-
-
-        System.out.println("AssetLoader: Start Sprite Loading");
-        File spriteAssetFolder = new File("GameAssets/Sprites");
-        for(File spriteSubFolder: spriteAssetFolder.listFiles()) {
-            System.out.println("AssetLoader: Loading Folder " + spriteSubFolder.getName());
-            if(spriteSubFolder.isDirectory() && spriteSubFolder.listFiles().length != 0) {
-                for (File sprite : spriteSubFolder.listFiles()) {
-                    System.out.println("AssetLoader: Loading " + sprite.getPath());
-
-                    String name = sprite.getName().replace(".png", "");
-                    Image spriteImage = null;
-                    try {
-                        spriteImage = new Image(sprite.getPath());
-                        spriteImage.setFilter(Image.FILTER_NEAREST);
-                    } catch (SlickException e) {
-
-                    }
-                    spriteAssets.put(name, spriteImage);
-                }
-            }
-        }
-
-        System.out.println("AssetLoader: Start Font Loading");
-        File fontAssetFolder = new File("GameAssets/Fonts");
-        for(File fontSubFolder: fontAssetFolder.listFiles()) {
-            System.out.println("AssetLoader: Loading Font " + fontSubFolder.getName());
-            for(File character: fontSubFolder.listFiles())
-            {
-
-                String name = character.getName().replace(".png","");
-                System.out.println("AssetLoader: Loading " + fontSubFolder.getName() + "[ " + name + " ]");
-                Image characterImage = null;
-                try {
-                    characterImage = new Image(character.getPath());
-                } catch (SlickException e) {
-
-                }
-                if(!fonts.containsKey(fontSubFolder.getName()))
+                System.out.println("Loading Folder " + subFolder.getName());
+                for(File file: subFolder.listFiles())
                 {
-                    fonts.put(fontSubFolder.getName(),new HashMap<>());
+                    System.out.println("Loading Asset " + file.getName());
+
+                    String name = file.getName();
+                    String friendlyName = file.getName().split("\\.")[0];
+
+
+
+
+                    switch(mainFolder.getName())
+                    {
+                        case "Sounds":
+                            break;
+                        case "Sprites":
+                        default:
+                            fileLoader.put(name,file);
+                    }
                 }
-                fonts.get(fontSubFolder.getName()).put(name,characterImage);
             }
         }
     }
@@ -98,11 +59,6 @@ public class AssetLoader {
     }
 
 
-    public Image getCharacter(String font, String character)
-    {
-        return fonts.get(font).get(character);
-    }
-
     public static Image getSprite(String name)
     {
         return spriteAssets.get(name);
@@ -111,6 +67,7 @@ public class AssetLoader {
     {
         return soundAssets.get(name);
     }
+    public static File getFile(String name){return fileLoader.get(name);}
 
 
 

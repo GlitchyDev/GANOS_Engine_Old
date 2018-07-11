@@ -3,12 +3,10 @@ package com.GlitchyDev;
 import com.GlitchyDev.GameStates.NetworkServerState;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.IO.SaveLoader;
-import com.GlitchyDev.Networking.GameSocket;
 import com.GlitchyDev.Networking.NetworkDisconnectType;
 import com.GlitchyDev.Networking.ServerNetworkConnection;
 import com.GlitchyDev.Utility.GameController;
 import com.GlitchyDev.Utility.GameType;
-import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -49,7 +47,7 @@ public class GANOS_Server extends StateBasedGame {
             app.setShowFPS(false);
             app.setAlwaysRender(true);
 
-            Display.setLocation(500,0);
+            //Display.setLocation(500,0);
 
 
             SaveLoader.loadSave(GameType.SERVER);

@@ -1,13 +1,13 @@
 package com.GlitchyDev.GameStates;
 
 
-import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Networking.ClientNetworkConnection;
 import com.GlitchyDev.Utility.BasicMonitoredGameState;
 import com.GlitchyDev.Utility.GButtons;
 import com.GlitchyDev.Utility.GameController;
-import com.GlitchyDev.Utility.ShaderProgram;
-import org.newdawn.slick.*;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class NetworkClientState extends BasicMonitoredGameState {

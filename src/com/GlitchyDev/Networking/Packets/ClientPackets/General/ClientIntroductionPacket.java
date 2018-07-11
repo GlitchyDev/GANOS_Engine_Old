@@ -1,10 +1,7 @@
 package com.GlitchyDev.Networking.Packets.ClientPackets.General;
 
-import com.GlitchyDev.Networking.Packets.EntityType;
 import com.GlitchyDev.Networking.Packets.PacketBase;
 import com.GlitchyDev.Networking.Packets.PacketType;
-
-import java.util.UUID;
 
 // Give SecretUUID || ( Username/Password)
 public class ClientIntroductionPacket extends PacketBase {

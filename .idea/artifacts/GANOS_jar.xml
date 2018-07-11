@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="GANOS:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/GANOS_jar</output-path>
+  <artifact type="jar" name="GANOS:jar">
+    <output-path />
     <root id="archive" name="GANOS.jar">
       <element id="module-output" name="GANOS" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Slick/lib/slick.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Slick/lib/lwjgl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/Slick/lib/slick.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/Slick/lib/lwjgl.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
