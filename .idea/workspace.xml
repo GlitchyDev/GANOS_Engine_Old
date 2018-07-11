@@ -7,33 +7,120 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e9bc26f-019e-4c83-8913-d8041e6027fb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/LWJGL.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GameAssets/Shaders/Test/Test.frag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GameAssets/Shaders/Test/Test.vert" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/LWJGL_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Model.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Shader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/AABBd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/AABBf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/AxisAngle4d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/AxisAngle4f.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Circled.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Circlef.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Extensions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/FrustumIntersection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/FrustumRayBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/GeometryUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Interpolationd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Interpolationf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Intersectiond.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Intersectionf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/JOML.gwt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/LineSegmentd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/LineSegmentf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Math.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3dStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3dc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3f.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3fStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3x2d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3x2dStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3x2dc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3x2f.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3x2fStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix3x2fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4dStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4dc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4f.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4fStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4x3d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4x3dStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4x3dc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4x3f.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4x3fStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Matrix4x3fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Planed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Planef.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/PolygonsIntersection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Quaterniond.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/QuaterniondInterpolator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Quaterniondc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Quaternionf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/QuaternionfInterpolator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Quaternionfc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Random.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/RayAabIntersection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Rayd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Rayf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Rectangled.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Rectanglef.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/SimplexNoise.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Sphered.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Spheref.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector2d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector2dc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector2f.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector2fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector2i.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector2ic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector3d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector3dc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector3f.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector3fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector3i.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector3ic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector4d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector4dc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector4f.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector4fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector4i.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/Vector4ic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/internal/MemUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/internal/Options.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/internal/Platform.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/internal/Runtime.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/internal/SharedLibraryLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/internal/package.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/io/DataOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/io/Externalizable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/io/ObjectInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/io/ObjectOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/lang/ClassNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/lang/ReflectiveOperationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/text/DecimalFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/text/DecimalFormatSymbols.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/text/FieldPosition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/text/Format.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/text/NumberFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/jre/java/text/ParsePosition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/package.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/BestCandidateSampling.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/Callback2d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/Callback3d.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/Convolution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/Math.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/PoissonSampling.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/SpiralSampling.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/StratifiedSampling.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/UniformSampling.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/joml/sampling/package.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/GANOS_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/GANOS_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lwjgl.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/slick.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/slick.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/LWJGL.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GANOS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GANOS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameAssets/Saves/ServerConfigs/ApprovedUsers.Dev" beforeDir="false" afterPath="$PROJECT_DIR$/Saves/ServerConfigs/ApprovedUsers.Dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/GameStates/NetworkClientState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/General/ClientIntroductionPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/ShaderProgram.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/SpriteBatch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/TextureSampler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/ke.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/LWJGL_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/LWJGL_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Shader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Shader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,8 +135,8 @@
       <file leaf-file-name="LWJGL_Test.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/LWJGL_Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="95" column="11" lean-forward="true" selection-start-line="95" selection-start-column="11" selection-end-line="95" selection-end-column="11" />
+            <state relative-caret-position="158">
+              <caret line="89" selection-start-line="89" selection-end-line="89" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,53 +144,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Image.class" pinned="false" current-in-tab="true">
-        <entry file="jar://$PROJECT_DIR$/../../../Libraries/Slick/lib/slick.jar!/org/newdawn/slick/Image.class">
+      <file leaf-file-name="Matrix4fc.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/org/joml/Matrix4fc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2142">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Texture.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="888">
-              <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="69" column="16" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Test.vert" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Test/Test.vert">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Test.frag" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Test/Test.frag">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="124">
+              <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -111,10 +156,31 @@
       <file leaf-file-name="Shader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Shader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="100" selection-start-line="100" selection-end-line="100" />
+            <state relative-caret-position="668">
+              <caret line="48" column="76" selection-start-line="48" selection-start-column="76" selection-end-line="48" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Model.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="48" column="37" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Texture.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="22" selection-start-line="22" selection-end-line="41" selection-end-column="26" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2045#2046#0" expanded="true" />
+                <element signature="e#2066#2067#0" expanded="true" />
+                <element signature="e#2111#2112#0" expanded="true" />
+                <element signature="e#2140#2141#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -149,7 +215,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/EntityType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/SpawnEntityPacket.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/MoveEntityPacket.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/OverworldPackets/MoveEntityPacket.java" />
@@ -192,18 +257,19 @@
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Server.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Model.java" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Test/Test.frag" />
-        <option value="$PROJECT_DIR$/src/org/joml/jre/java/io/DataOutput.java" />
         <option value="$PROJECT_DIR$/src/org/joml/Matrix4f.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Shader.java" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Test/Test.vert" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Shader.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/Sprite.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Utility/LWJGL_Test.java" />
+        <option value="$PROJECT_DIR$/src/org/joml/jre/java/io/DataOutput.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="488" />
     <option name="width" value="819" />
     <option name="height" value="735" />
@@ -218,6 +284,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -235,13 +302,6 @@
               <item name="GANOS" type="462c0819:PsiDirectoryNode" />
               <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
               <item name="Shaders" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Shaders" type="462c0819:PsiDirectoryNode" />
-              <item name="Test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
@@ -281,34 +341,73 @@
               <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
               <item name="Utility" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="joml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="joml" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="joml" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="joml" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="joml" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="text" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Libraries/JOML-CI-JOML-8df33cb.zip!/" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Libraries/Slick/lib/lwjgl.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.16894531" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\src" />
-      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Shaders\Test" />
-      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\Libraries" />
-      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Sprites\Debug" />
-      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Sprites" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS" />
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Sprites\Debug" />
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Saves\ClientSave" />
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Saves" />
       <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\src\com\GlitchyDev\Networking\Packets\ServerPackets" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\src" />
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Shaders\Test" />
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\Libraries" />
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Sprites\Debug" />
+      <recent name="C:\Users\Rober\Desktop\control\Java Projects\GANOS\GameAssets\Sprites" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -404,30 +503,30 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4816984" weight="0.3290938" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" sideWeight="0.477306" visible="true" weight="0.3290938" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5183016" side_tool="true" visible="true" weight="0.3227345" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.522694" side_tool="true" visible="true" weight="0.3290938" />
       <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47877014" weight="0.3227345" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4816984" visible="true" weight="0.3227345" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21888727" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49853587" weight="0.3290938" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49707174" weight="0.3990461" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49853587" weight="0.3290938" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -439,6 +538,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="jar://$PROJECT_DIR$/../../../Libraries/Slick/lib/slick.jar!/org/newdawn/slick/Image.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerIntroductionPacket.java" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Direction.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -469,20 +575,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/gui/TextField.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/Font.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/gui/TextField.class" />
+    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/Font.class" />
     <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.base/java/net/DualStackPlainSocketImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -494,10 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-          <folding>
-            <element signature="e#677#678#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -505,11 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1587#1588#0" expanded="true" />
-            <element signature="e#1623#1624#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -520,13 +605,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Saves/ServerConfigs/ApprovedUsers.Dev">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="3" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Saves/ServerConfigs/ApprovedUsers.Dev" />
     <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.desktop/javax/accessibility/Accessible.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -559,9 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="854">
           <caret line="147" column="126" selection-start-line="147" selection-start-column="126" selection-end-line="147" selection-end-column="126" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -569,9 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
           <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -582,13 +655,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/Image.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9513">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/Image.class" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -596,24 +663,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/GameContainer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="214" column="16" selection-start-line="214" selection-start-column="16" selection-end-line="214" selection-end-column="16" />
-          <folding>
-            <element signature="e#5631#5632#0" expanded="true" />
-            <element signature="e#5702#5703#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../Slick/lib/slick.jar!/org/newdawn/slick/GameContainer.class" />
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Networking/ClientNetworkConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
           <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -621,9 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -631,31 +682,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="721" selection-start-line="721" selection-end-line="721" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2282#2283#0" expanded="true" />
-            <element signature="e#2314#2315#0" expanded="true" />
-            <element signature="e#2958#2959#0" expanded="true" />
-            <element signature="e#2987#2988#0" expanded="true" />
-            <element signature="e#3066#3067#0" expanded="true" />
-            <element signature="e#3123#3124#0" expanded="true" />
-            <element signature="e#3388#3405#0" expanded="true" />
-            <element signature="e#3519#3536#0" expanded="true" />
-          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Sprites/Debug/Test.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/BasicMonitoredGameState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-          <folding>
-            <element signature="e#1792#1793#0" expanded="true" />
-            <element signature="e#1855#1856#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -663,17 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7106">
           <caret line="432" column="6" selection-start-line="432" selection-start-column="6" selection-end-line="432" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1036#1037#0" expanded="true" />
-            <element signature="e#1096#1097#0" expanded="true" />
-            <element signature="e#1336#1337#0" expanded="true" />
-            <element signature="e#1382#1383#0" expanded="true" />
-            <element signature="e#1872#1873#0" expanded="true" />
-            <element signature="e#1898#1899#0" expanded="true" />
-            <element signature="e#1934#1935#0" expanded="true" />
-            <element signature="e#1978#1979#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -701,9 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Sprites/Debug/Error.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GANOS_Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -728,12 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Sprites/Debug/Filter.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Sprites/Debug/Icon.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9">
@@ -747,13 +760,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/joml/jre/java/io/DataOutput.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/joml/Extensions.kt">
+    <entry file="file://$PROJECT_DIR$/src/org/joml/Extensions.kt" />
+    <entry file="file://$PROJECT_DIR$/src/org/joml/Matrix4x3fc.java" />
+    <entry file="file://$PROJECT_DIR$/src/org/joml/Matrix4f.java" />
+    <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Test/Test.frag" />
+    <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Test/Test.vert" />
+    <entry file="jar://$PROJECT_DIR$/../../../Libraries/Slick/lib/slick.jar!/org/newdawn/slick/Image.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2414">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        <state relative-caret-position="17">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameAssets/Sprites/Debug/Icon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="48" column="37" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Shader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="668">
+          <caret line="48" column="76" selection-start-line="48" selection-start-column="76" selection-end-line="48" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="22" selection-start-line="22" selection-end-line="41" selection-end-column="26" />
+          <folding>
+            <element signature="e#2045#2046#0" expanded="true" />
+            <element signature="e#2066#2067#0" expanded="true" />
+            <element signature="e#2111#2112#0" expanded="true" />
+            <element signature="e#2140#2141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Sprite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-676">
+          <caret line="94" column="24" lean-forward="true" selection-start-line="94" selection-start-column="24" selection-end-line="94" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3542#3543#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#6209#6210#0" expanded="true" />
+            <element signature="e#6252#6253#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -764,81 +823,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/joml/Matrix4x3fc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-267">
-          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/joml/Matrix4f.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Shader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Test/Test.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Test/Test.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="69" column="16" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/Texture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="888">
-          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/org/joml/jre/java/io/DataOutput.java">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/LWJGL_Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="95" column="11" lean-forward="true" selection-start-line="95" selection-start-column="11" selection-end-line="95" selection-end-column="11" />
+        <state relative-caret-position="158">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../Libraries/Slick/lib/slick.jar!/org/newdawn/slick/Image.class">
+    <entry file="file://$PROJECT_DIR$/src/org/joml/Matrix4fc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2142">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="124">
+          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -909,7 +910,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>LWJGL</last-edited>
+          <last-edited>slick</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

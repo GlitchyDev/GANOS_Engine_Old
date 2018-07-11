@@ -22,7 +22,7 @@ public class Shader {
         glCompileShader(vs);
         if(glGetShaderi(vs,GL_COMPILE_STATUS) != 1)
         {
-            System.err.println("Vertex Shader \n" + readFile(vertexShader) + glGetShaderInfoLog(vs));
+            System.err.println("Vertex Shader \n" + readFile(vertexShader) + glGetShaderInfoLog(vs,Integer.MAX_VALUE));
             System.exit(1);
         }
 
@@ -32,7 +32,7 @@ public class Shader {
         glCompileShader(fs);
         if(glGetShaderi(fs,GL_COMPILE_STATUS) != 1)
         {
-            System.err.println("Fragment Shader \n" + readFile(fragmentShader) + glGetShaderInfoLog(fs));
+            System.err.println("Fragment Shader \n" + readFile(fragmentShader) + glGetShaderInfoLog(fs,Integer.MAX_VALUE));
             System.exit(1);
         }
 
@@ -46,13 +46,13 @@ public class Shader {
         glLinkProgram(program);
         if(glGetProgrami(program,GL_LINK_STATUS) != 1)
         {
-            System.err.println(glGetProgramInfoLog(program));
+            System.err.println(glGetProgramInfoLog(program,Integer.MAX_VALUE));
             System.exit(1);
         }
         glValidateProgram(program);
         if(glGetProgrami(program,GL_VALIDATE_STATUS) != 1)
         {
-            System.err.println(glGetProgramInfoLog(program));
+            System.err.println(glGetProgramInfoLog(program,Integer.MAX_VALUE));
             System.exit(1);
         }
     }

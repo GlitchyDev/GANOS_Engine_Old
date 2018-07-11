@@ -1,6 +1,5 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="GANOS:jar">
-    <output-path />
     <root id="archive" name="GANOS.jar">
       <element id="module-output" name="GANOS" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/Slick/lib/slick.jar" path-in-jar="/" />
