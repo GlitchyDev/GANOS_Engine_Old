@@ -1,10 +1,7 @@
 package com.GlitchyDev.Game;
 
-import com.GlitchyDev.Game.GameStates.General.GameStateBase;
 import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.Utility.GlobalClientData;
-
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
 public class ClientGame extends BasicGame {
 

@@ -1,7 +1,6 @@
 package com.GlitchyDev.Game.GameStates.General;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Networking.Sockets.GameSocketBase;
 import com.GlitchyDev.Utility.GlobalDataBase;
 
 public abstract class MonitoredGameState extends GameStateBase {
@@ -56,6 +55,7 @@ public abstract class MonitoredGameState extends GameStateBase {
         fpsCount = 0;
         renderUtilization = 0;
         logicUtilization = 0;
+
     }
 
     // Getters

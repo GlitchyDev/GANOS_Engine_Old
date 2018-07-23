@@ -8,8 +8,7 @@ import org.lwjgl.opengl.GL;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -61,14 +60,14 @@ public class GameWindow {
             throw new RuntimeException("Failed to create the GLFW window");
         }
 
-        /*
+
         // Setup resize callback
         glfwSetFramebufferSizeCallback(windowHandle, (window, width, height) -> {
             this.width = width;
             this.height = height;
             this.setResized(true);
         });
-        */
+
 
         // Get the resolution of the primary monitor
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -96,8 +95,6 @@ public class GameWindow {
 
         setIcon(windowHandle, new File("GameAssets/Textures/Icon/Icon16x16.png") , new File("GameAssets/Textures/Icon/Icon24x24.png"));
 
-
-
     }
 
     public void showWindow()
@@ -111,6 +108,65 @@ public class GameWindow {
     public void update() {
         glfwSwapBuffers(windowHandle);
         glfwPollEvents();
+    }
+
+    public void setCursor(File icon) {
+        InputStream stream = null;
+        try {
+            stream = new FileInputStream(icon);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        int[] pixels = new int[width * height];
+        image.getRGB(0, 0, width, height, pixels, 0, width);
+
+        // convert image to RGBA format
+        ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * 4);
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                int pixel = pixels[y * width + x];
+
+                buffer.put((byte) ((pixel >> 16) & 0xFF));  // red
+                buffer.put((byte) ((pixel >> 8) & 0xFF));   // green
+                buffer.put((byte) (pixel & 0xFF));          // blue
+                buffer.put((byte) ((pixel >> 24) & 0xFF));  // alpha
+            }
+        }
+        buffer.flip(); // this will flip the cursor image vertically
+
+        // create a GLFWImage
+        GLFWImage cursorImg= GLFWImage.create();
+        cursorImg.width(width);     // setup the images' width
+        cursorImg.height(height);   // setup the images' height
+        cursorImg.pixels(buffer);   // pass image data
+
+        // create custom cursor and store its ID
+        int hotspotX = 0;
+        int hotspotY = 0;
+        long cursorID = org.lwjgl.glfw.GLFW.glfwCreateCursor(cursorImg, hotspotX , hotspotY);
+
+        // set current cursor
+        glfwSetCursor(getWindowHandle(), cursorID);
+
+        //glfwSetCursor(getWindowHandle(), glfwCreateStandardCursor(GLFW_HAND_CURSOR));
+    }
+
+    public void setDefaultCursor(int glfwCursor)
+    {
+        glfwSetCursor(getWindowHandle(), glfwCreateStandardCursor(glfwCursor));
     }
 
     public void setIcon(long window, File icon1, File icon2) {
