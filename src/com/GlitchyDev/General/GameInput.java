@@ -33,7 +33,7 @@ public class GameInput {
             {
                 if(action == GLFW_RELEASE)
                 {
-                    activeKeys.remove(key);
+                    activeKeys.remove(Integer.valueOf(key));
                 }
             }
             currentKeyModifier = mods;

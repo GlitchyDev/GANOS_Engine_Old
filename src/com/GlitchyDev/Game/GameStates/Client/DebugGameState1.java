@@ -2,24 +2,20 @@ package com.GlitchyDev.Game.GameStates.Client;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Game.GameStates.General.InputGameState;
-import com.GlitchyDev.Game.GameStates.General.MonitoredGameState;
 import com.GlitchyDev.Utility.GlobalDataBase;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.PointerBuffer;
-import org.lwjgl.glfw.*;
-import org.lwjgl.opengl.GL11;
+import com.GlitchyDev.graph.*;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+import java.awt.*;
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.text.DecimalFormat;
-
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
+import java.util.ArrayList;
 
 
 public class DebugGameState1 extends InputGameState {
+    private Renderer renderer;
+    private Camera camera;
+    private GameItem[] gameItems;
+    private TextItem[] hudItems;
+    private SpriteItem[] spriteItems;
 
 
     public DebugGameState1(GlobalDataBase globalDataBase) {
@@ -28,31 +24,64 @@ public class DebugGameState1 extends InputGameState {
     }
 
     @Override
+    public void init() {
+        renderer = new Renderer();
+        renderer.init();
+        camera = new Camera();
+
+        Mesh mesh = OBJLoader.loadMesh("/Mesh/Default/cube.obj");
+        Texture texture = new Texture("/Textures/Default/grassblock.png");
+        mesh.setTexture(texture);
+
+        GameItem gameItem = new GameItem(mesh);
+        gameItem.setScale(0.5f);
+        gameItem.setPosition(0, 0, -2);
+
+        GameItem gameItem2 = new GameItem(mesh);
+        gameItem2.setScale(0.5f);
+        gameItem2.setPosition(0, 1, -2);
+
+
+        gameItems = new GameItem[]{gameItem,gameItem2};
+
+
+        final Font FONT = new Font("Arial", Font.PLAIN, 20);
+        final String CHARSET = "ISO-8859-1";
+
+        FontTexture fontTexture = new FontTexture(FONT,CHARSET);
+        TextItem item = new TextItem("0",fontTexture);
+        hudItems = new TextItem[]{item};
+
+        spriteItems = new SpriteItem[]{new SpriteItem(new Texture("/Textures/Icon/Icon16x16.png"))};
+
+
+    }
+
+    @Override
     public void render() {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+
+        renderer.render(globalDataBase.getGameWindow(),camera,gameItems,hudItems,spriteItems);
     }
 
     @Override
     public void logic() {
-        float percentageRed = (float) ((1.0/globalDataBase.getGameWindow().getWidth()) * gameInput.getMouseX());
-        float percentageGreen = (float) ((1.0/globalDataBase.getGameWindow().getHeight()) * gameInput.getMouseY());
-        //System.out.println("FPS : " + getCurrentFPS() + " LOGIC: " + df.format(getLogicUtilization()) + " RENDER: " + df.format(getRenderUtilization()));
-        if(gameInput.isMouseInWindow()) {
-            globalDataBase.getGameWindow().setClearColor(percentageRed, percentageGreen, 0.0f, 1.0f);
+
+        camera.setRotation(0, (float) (30*Math.sin((Math.PI/1000.0) * (System.currentTimeMillis()%2000))),0);
+
+        gameItems[0].setPosition((float) (4*Math.sin((Math.PI/1000.0) * (System.currentTimeMillis()%2000))), 0,-2);
+
+        if(Math.random() > 0.5) {
+            spriteItems[0].getPosition().x = (spriteItems[0].getPosition().x + 5) % (globalDataBase.getGameWindow().getWidth() + 1);
         }
         else
         {
-            globalDataBase.getGameWindow().setClearColor(0.0f,0.0f, 1.0f, 1.0f);
+            spriteItems[0].getPosition().y = (spriteItems[0].getPosition().y + 5) % (globalDataBase.getGameWindow().getHeight() + 1);
 
         }
+        hudItems[0].setText(getCurrentFPS() + " " + spriteItems[0].getPosition().x + " " + spriteItems[0].getPosition().y);
 
-
-
-
-    }
-
-    @Override
-    public void init() {
 
 
     }

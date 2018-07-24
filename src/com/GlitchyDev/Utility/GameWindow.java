@@ -148,7 +148,7 @@ public class GameWindow {
         buffer.flip(); // this will flip the cursor image vertically
 
         // create a GLFWImage
-        GLFWImage cursorImg= GLFWImage.create();
+        GLFWImage cursorImg = GLFWImage.create();
         cursorImg.width(width);     // setup the images' width
         cursorImg.height(height);   // setup the images' height
         cursorImg.pixels(buffer);   // pass image data
