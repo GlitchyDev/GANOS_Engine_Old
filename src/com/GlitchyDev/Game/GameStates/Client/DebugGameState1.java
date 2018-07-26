@@ -2,6 +2,7 @@ package com.GlitchyDev.Game.GameStates.Client;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Game.GameStates.General.InputGameState;
+import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Utility.GlobalDataBase;
 import com.GlitchyDev.graph.*;
 
@@ -29,8 +30,8 @@ public class DebugGameState1 extends InputGameState {
         renderer.init();
         camera = new Camera();
 
-        Mesh mesh = OBJLoader.loadMesh("/Mesh/Default/cube.obj");
-        Texture texture = new Texture("/Textures/Default/grassblock.png");
+        Mesh mesh = AssetLoader.getMeshAsset("cube");
+        Texture texture = AssetLoader.getTextureAsset("grassblock");
         mesh.setTexture(texture);
 
         GameItem gameItem = new GameItem(mesh);
@@ -52,7 +53,7 @@ public class DebugGameState1 extends InputGameState {
         TextItem item = new TextItem("0",fontTexture);
         hudItems = new TextItem[]{item};
 
-        spriteItems = new SpriteItem[]{new SpriteItem(new Texture("/Textures/Icon/Icon16x16.png"))};
+        spriteItems = new SpriteItem[]{new SpriteItem(AssetLoader.getTextureAsset("Icon16x16"))};
 
 
     }
@@ -68,9 +69,11 @@ public class DebugGameState1 extends InputGameState {
     @Override
     public void logic() {
 
-        camera.setRotation(0, (float) (30*Math.sin((Math.PI/1000.0) * (System.currentTimeMillis()%2000))),0);
 
-        gameItems[0].setPosition((float) (4*Math.sin((Math.PI/1000.0) * (System.currentTimeMillis()%2000))), 0,-2);
+        double length = 5000;
+        camera.setRotation(0, (float) (30*Math.sin((Math.PI/(length/2)) * (System.currentTimeMillis()%length))),0);
+
+        gameItems[0].setPosition((float) (4*Math.sin((Math.PI/(length/2)) * (System.currentTimeMillis()%length))), 0,-5);
 
         if(Math.random() > 0.5) {
             spriteItems[0].getPosition().x = (spriteItems[0].getPosition().x + 5) % (globalDataBase.getGameWindow().getWidth() + 1);
@@ -83,13 +86,12 @@ public class DebugGameState1 extends InputGameState {
         hudItems[0].setText(getCurrentFPS() + " " + spriteItems[0].getPosition().x + " " + spriteItems[0].getPosition().y);
 
 
-
     }
 
     @Override
     public void enterState(GameStateType previousGameState) {
         super.enterState(previousGameState);
-        globalDataBase.getGameWindow().setCursor(new File("GameAssets/Textures/Icon/Icon16x16.png"));
+        globalDataBase.getGameWindow().setCursor(AssetLoader.getGeneralAsset("Icon24x24.png"),0,0);
     }
 
     @Override

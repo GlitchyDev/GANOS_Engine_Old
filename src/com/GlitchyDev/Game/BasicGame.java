@@ -24,7 +24,7 @@ public abstract class BasicGame {
             currentGameState.doRender();
             long frameEnd = System.currentTimeMillis();
 
-            long leftover = (long) ((1000.0/60) - (frameEnd-frameStart));
+            long leftover = (long) ((1000.0/FPS_Target) - (frameEnd-frameStart));
             if(leftover > 0)
             {
                 try {

@@ -93,7 +93,7 @@ public class GameWindow {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        setIcon(windowHandle, new File("GameAssets/Textures/Icon/Icon16x16.png") , new File("GameAssets/Textures/Icon/Icon24x24.png"));
+        //setIcon(windowHandle, new File("GameAssets/Textures/Icon/Icon16x16.png") , new File("GameAssets/Textures/Icon/Icon24x24.png"));
 
     }
 
@@ -110,12 +110,10 @@ public class GameWindow {
         glfwPollEvents();
     }
 
-    public void setCursor(File icon) {
-        InputStream stream = null;
-        try {
-            stream = new FileInputStream(icon);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public void setCursor(InputStream stream, int xOffset, int yOffset) {
+        if(stream == null)
+        {
+            System.out.println("FUCUUUCL");
         }
         BufferedImage image = null;
         try {
@@ -154,8 +152,8 @@ public class GameWindow {
         cursorImg.pixels(buffer);   // pass image data
 
         // create custom cursor and store its ID
-        int hotspotX = 0;
-        int hotspotY = 0;
+        int hotspotX = xOffset;
+        int hotspotY = yOffset;
         long cursorID = org.lwjgl.glfw.GLFW.glfwCreateCursor(cursorImg, hotspotX , hotspotY);
 
         // set current cursor

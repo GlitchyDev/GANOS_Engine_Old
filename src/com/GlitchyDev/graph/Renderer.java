@@ -1,5 +1,6 @@
 package com.GlitchyDev.graph;
 
+import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Utility.GameWindow;
 import org.joml.Matrix4f;
 
@@ -38,8 +39,8 @@ public class Renderer {
     private void setupEnvironmentShader() {
         try {
             environmentShaderProgram = new ShaderProgram();
-            environmentShaderProgram.createVertexShader(Utils.loadResource("/Shaders/Default/Default3D.vs"));
-            environmentShaderProgram.createFragmentShader(Utils.loadResource("/Shaders/Default/Default3D.fs"));
+            environmentShaderProgram.createVertexShader(AssetLoader.getVertexAsset("Default3D"));
+            environmentShaderProgram.createFragmentShader(AssetLoader.getFragmentAsset("Default3D"));
             environmentShaderProgram.link();
 
             // Create uniforms for modelView and projection matrices and texture
@@ -47,8 +48,7 @@ public class Renderer {
             environmentShaderProgram.createUniform("modelViewMatrix");
             environmentShaderProgram.createUniform("texture_sampler");
             // Create uniform for default colour and the flag that controls it
-            environmentShaderProgram.createUniform("colour");
-            environmentShaderProgram.createUniform("useColour");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,8 +57,8 @@ public class Renderer {
     private void setupHudShader() {
         try {
             hudShaderProgram = new ShaderProgram();
-            hudShaderProgram.createVertexShader(Utils.loadResource("/Shaders/Default/Default2D.vs"));
-            hudShaderProgram.createFragmentShader(Utils.loadResource("/Shaders/Default/Default2D.fs"));
+            hudShaderProgram.createVertexShader(AssetLoader.getVertexAsset("Default2D"));
+            hudShaderProgram.createFragmentShader(AssetLoader.getFragmentAsset("Default2D"));
             hudShaderProgram.link();
 
             // Create uniforms for Ortographic-model projection matrix and base colour
@@ -107,8 +107,7 @@ public class Renderer {
             Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
             environmentShaderProgram.setUniform("modelViewMatrix", modelViewMatrix);
             // Render the mesh for this game item
-            environmentShaderProgram.setUniform("colour", mesh.getColour());
-            environmentShaderProgram.setUniform("useColour", mesh.isTextured() ? 0 : 1);
+
             mesh.render();
 
         }

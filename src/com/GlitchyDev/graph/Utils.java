@@ -9,23 +9,21 @@ import java.util.Scanner;
 
 public class Utils {
 
-    public static String loadResource(String fileName) throws Exception {
+    public static String loadResource(InputStream stream) throws Exception {
         String result;
-        try (InputStream in = Class.forName(Utils.class.getName()).getResourceAsStream(fileName);
-             Scanner scanner = new Scanner(in, "UTF-8")) {
-            result = scanner.useDelimiter("\\A").next();
-        }
+        InputStream in = stream;
+        Scanner scanner = new Scanner(in, "UTF-8");
+        result = scanner.useDelimiter("\\A").next();
         return result;
     }
 
-    public static List<String> readAllLines(String fileName) throws Exception {
+    public static List<String> readAllLines(InputStream stream) throws Exception {
         List<String> list = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(Class.forName(Utils.class.getName()).getResourceAsStream(fileName)))) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(stream));
             String line;
             while ((line = br.readLine()) != null) {
                 list.add(line);
             }
-        }
         return list;
     }
 

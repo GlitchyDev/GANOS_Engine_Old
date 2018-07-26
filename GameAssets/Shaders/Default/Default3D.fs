@@ -9,12 +9,20 @@ uniform int useColour;
 
 void main()
 {
-    if ( useColour == 1 )
+    if (useColour == 1)
     {
-        fragColor = vec4(colour, 1);
+        fragColor = vec4(colour, 1.0);
+
     }
     else
     {
-        fragColor = texture(texture_sampler, outTexCoord);
+        if(texture(texture_sampler, outTexCoord).g < 0.5)
+        {
+            fragColor = texture(texture_sampler, outTexCoord);
+        }
+        else
+        {
+            fragColor = texture(texture_sampler, outTexCoord) * 1.5;
+        }
     }
 }

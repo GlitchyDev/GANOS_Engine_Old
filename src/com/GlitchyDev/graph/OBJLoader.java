@@ -3,22 +3,22 @@ package com.GlitchyDev.graph;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OBJLoader {
 
-    public static Mesh loadMesh(String fileName) {
+    public static Mesh loadMesh(InputStream stream) {
         List<String> lines = null;
         try {
-            lines = Files.readAllLines(Paths.get(OBJLoader.class.getResource(fileName).toURI()));
+            lines = readAllLines(stream);
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
@@ -64,6 +64,20 @@ public class OBJLoader {
         }
         return reorderLists(vertices, textures, normals, faces);
     }
+
+    public static List<String> readAllLines(InputStream stream) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
+            List<String> result = new ArrayList<>();
+            for (;;) {
+                String line = reader.readLine();
+                if (line == null)
+                    break;
+                result.add(line);
+            }
+            return result;
+        }
+    }
+
 
     private static Mesh reorderLists(List<Vector3f> posList, List<Vector2f> textCoordList,
             List<Vector3f> normList, List<Face> facesList) {
