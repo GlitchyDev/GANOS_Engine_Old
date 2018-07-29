@@ -24,12 +24,14 @@ public class AssetLoader {
 
 
     public static void loadAssets() throws Exception {
+        System.out.println("AssetLoader: Loading Assets");
         long startTime = System.currentTimeMillis();
         detectIfJar();
         if(!isLoadedFromJar) {
             updateAssetRegistry();
         }
 
+        System.out.println("AssetLoader: Initialing Assets");
         InputStream is = AssetLoader.class.getResourceAsStream("/Configs/General/AssetRegistry.txt");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
@@ -40,7 +42,7 @@ public class AssetLoader {
         }
 
         long endTime = System.currentTimeMillis();
-        System.out.println("Time : " + (endTime - startTime)/1000.0);
+        System.out.println("AssetLoader: Assets Created in " + (endTime - startTime)/1000.0 + "s");
 
 
     }
@@ -58,27 +60,27 @@ public class AssetLoader {
         switch(fileType)
         {
             case "obj":
-                System.out.println("Loading Mesh Asset: " + name + " " + fileType);
+                System.out.println("AssetLoader: Loading Mesh Asset: " + name + " " + fileType);
                 meshAssets.put(name, OBJLoader.loadMesh(inputStream));
                 break;
             case "png":
 
-                System.out.println("Loading Texture Asset: " + name + " " + fileType);
+                System.out.println("AssetLoader: Loading Texture Asset: " + name + " " + fileType);
                 textureAssets.put(name,new Texture(inputStream));
                 break;
             case "wav":
                 // Load Sounds
                 break;
             case "vs":
-                System.out.println("Loading Vertex Shader Asset: " + name + " " + fileType);
+                System.out.println("AssetLoader: Loading Vertex Shader Asset: " + name + " " + fileType);
                 vertexAssets.put(name, Utils.loadResource(inputStream));
                 break;
             case "fs":
-                System.out.println("Loading Fragment Shader Asset: " + name + " " + fileType);
+                System.out.println("AssetLoader: Loading Fragment Shader Asset: " + name + " " + fileType);
                 fragmentAssets.put(name,Utils.loadResource(inputStream));
                 break;
             case "config":
-                System.out.println("Loading Config Asset: " + name + " " + fileType);
+                System.out.println("AssetLoader: Loading Config Asset: " + name + " " + fileType);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 HashMap<String,String> configMap = new HashMap<>();
                 while(reader.ready())
@@ -96,6 +98,8 @@ public class AssetLoader {
 
 
     private static void updateAssetRegistry() throws IOException {
+        System.out.println("AssetLoader: Updating Asset Registry");
+
         File sourceFolder = new File("GameAssets");
 
         File assetRegistry = new File("GameAssets/Configs/General/AssetRegistry.txt");
@@ -116,6 +120,7 @@ public class AssetLoader {
         else
         {
             if(!file.getName().equals("AssetRegistry.txt")) {
+                System.out.println("AssetLoader: Registered Asset " + file.getName());
                 writer.println(file.getPath());
             }
         }
@@ -124,6 +129,13 @@ public class AssetLoader {
     private static void detectIfJar()
     {
         isLoadedFromJar = AssetLoader.class.getResource("AssetLoader.class").toString().contains("jar");
+        if(isLoadedFromJar) {
+            System.out.println("AssetLoader: Loading from Jar");
+        }
+        else
+        {
+            System.out.println("AssetLoader: Loading Assets from IDE, update AssetRegistry");
+        }
     }
 
     public static InputStream getGeneralAsset(String name)

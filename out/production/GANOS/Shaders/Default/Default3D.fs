@@ -16,13 +16,13 @@ void main()
     }
     else
     {
-        if(texture(texture_sampler, outTexCoord).g < 0.5)
+        if(texture(texture_sampler, outTexCoord).g < 0.7)
         {
             fragColor = texture(texture_sampler, outTexCoord);
         }
         else
         {
-            fragColor = texture(texture_sampler, outTexCoord) * 1.5;
+
         }
     }
 }

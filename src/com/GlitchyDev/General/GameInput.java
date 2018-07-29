@@ -1,11 +1,10 @@
 package com.GlitchyDev.General;
 
-import org.lwjgl.glfw.*;
+import org.lwjgl.glfw.GLFWDropCallback;
 
 import java.util.ArrayList;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.glfw.GLFW.glfwSetDropCallback;
 
 public class GameInput {
     private int[] keyMapping = new int[512];
@@ -17,6 +16,7 @@ public class GameInput {
     private int mouseButton2 = 0;
     private int mouseButton3 = 0;
     private double mouseScroll = 0;
+    private boolean mouseScrollEnabled = false;
     private boolean mouseInWindow = true;
     private ArrayList<String> draggedFiles = new ArrayList<>();
 
@@ -65,6 +65,7 @@ public class GameInput {
 
         glfwSetScrollCallback(windowHandle, (windowID, xoffset, yoffset) -> {
             mouseScroll = yoffset;
+            mouseScrollEnabled = true;
         });
 
         glfwSetDropCallback(windowHandle, (windowID, count, paths) -> {
@@ -107,6 +108,14 @@ public class GameInput {
 
     public double getMouseScroll() {
         return mouseScroll;
+    }
+
+    public boolean isMouseScrollEnabled() {
+        return mouseScrollEnabled;
+    }
+
+    public void setMouseScrollEnabled(boolean scrollEnabled) {
+        mouseScrollEnabled = scrollEnabled;
     }
 
     public double getMouseX() {

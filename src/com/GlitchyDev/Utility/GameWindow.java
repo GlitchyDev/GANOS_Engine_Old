@@ -8,7 +8,9 @@ import org.lwjgl.opengl.GL;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -53,24 +55,37 @@ public class GameWindow {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        //glfwWindowHint(GLFW_AUTO_ICONIFY, GL_FALSE);
+
+
+        // Get the resolution of the primary monitor
+        GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+        width = 500;
+        height = 500;
+
+        System.out.println("WINDOW WIDTH " + width + " HEIGHT " + height);
 
         // Create the window
         windowHandle = glfwCreateWindow(width, height, title, NULL, NULL);
+       //windowHandle = glfwCreateWindow(width, height, title, glfwGetPrimaryMonitor(), NULL);
         if (windowHandle == NULL) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
 
+        glfwSetWindowSize(windowHandle,width,height);
 
         // Setup resize callback
+        /*
         glfwSetFramebufferSizeCallback(windowHandle, (window, width, height) -> {
             this.width = width;
             this.height = height;
             this.setResized(true);
         });
+        */
 
 
-        // Get the resolution of the primary monitor
-        GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
         // Center our window
         glfwSetWindowPos(windowHandle, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
 
@@ -111,10 +126,6 @@ public class GameWindow {
     }
 
     public void setCursor(InputStream stream, int xOffset, int yOffset) {
-        if(stream == null)
-        {
-            System.out.println("FUCUUUCL");
-        }
         BufferedImage image = null;
         try {
             image = ImageIO.read(stream);
@@ -167,7 +178,7 @@ public class GameWindow {
         glfwSetCursor(getWindowHandle(), glfwCreateStandardCursor(glfwCursor));
     }
 
-    public void setIcon(long window, File icon1, File icon2) {
+    public void setIcon(long window, InputStream icon1, InputStream icon2) {
 
         BufferedImage img = null;
         BufferedImage img2 = null;
@@ -230,6 +241,10 @@ public class GameWindow {
 
     public boolean getWindowShouldClose() {
         return glfwWindowShouldClose(windowHandle);
+    }
+
+    public void makeWindowClose() {
+        glfwSetWindowShouldClose(windowHandle,true);
     }
 
     public String getTitle() {

@@ -3,10 +3,10 @@ package com.GlitchyDev.Utility;
 import com.GlitchyDev.Game.GameStates.Client.DebugGameState1;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 
-public class GlobalClientData extends GlobalDataBase {
+public class GlobalClientGameData extends GlobalGameDataBase {
 
 
-    public GlobalClientData(GameWindow gameWindow) {
+    public GlobalClientGameData(GameWindow gameWindow) {
         super(gameWindow);
     }
 

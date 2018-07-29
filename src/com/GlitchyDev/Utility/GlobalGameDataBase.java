@@ -5,12 +5,12 @@ import com.GlitchyDev.Game.GameStates.General.GameStateBase;
 
 import java.util.HashMap;
 
-public abstract class GlobalDataBase {
+public abstract class GlobalGameDataBase {
     private GameWindow gameWindow;
     private HashMap<GameStateType,GameStateBase> loadedGameStates;
     private GameStateType currentGameState;
 
-    public GlobalDataBase(GameWindow gameWindow)
+    public GlobalGameDataBase(GameWindow gameWindow)
     {
         this.gameWindow = gameWindow;
         loadedGameStates = new HashMap<>();

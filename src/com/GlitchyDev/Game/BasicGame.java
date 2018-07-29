@@ -2,37 +2,26 @@ package com.GlitchyDev.Game;
 
 import com.GlitchyDev.Game.GameStates.General.GameStateBase;
 import com.GlitchyDev.Utility.GameWindow;
-import com.GlitchyDev.Utility.GlobalDataBase;
+import com.GlitchyDev.Utility.GlobalGameDataBase;
 
 public abstract class BasicGame {
     protected GameWindow gameWindow;
-    protected GlobalDataBase globalDataBase;
+    protected GlobalGameDataBase globalGameData;
 
     public void run()
     {
-        final int FPS_Target = globalDataBase.getGameWindow().getTargetFPS();
+        final int FPS_Target = globalGameData.getGameWindow().getTargetFPS();
 
         GameStateBase currentGameState;
-        while(!globalDataBase.getGameWindow().getWindowShouldClose()) {
+        while(!globalGameData.getGameWindow().getWindowShouldClose()) {
 
             gameWindow.update();
 
-            currentGameState = globalDataBase.getCurrentGameState();
+            currentGameState = globalGameData.getCurrentGameState();
 
-            long frameStart = System.currentTimeMillis();
             currentGameState.doLogic();
             currentGameState.doRender();
-            long frameEnd = System.currentTimeMillis();
 
-            long leftover = (long) ((1000.0/FPS_Target) - (frameEnd-frameStart));
-            if(leftover > 0)
-            {
-                try {
-                    Thread.sleep(leftover);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
 
             if(gameWindow.getWindowShouldClose())
             {
@@ -41,12 +30,5 @@ public abstract class BasicGame {
         }
     }
 
-
-    // Getters
-
-    public long getWindowHandle()
-    {
-        return globalDataBase.getGameWindow().getWindowHandle();
-    }
 
 }

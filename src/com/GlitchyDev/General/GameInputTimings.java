@@ -1,10 +1,7 @@
 package com.GlitchyDev.General;
 
-import org.lwjgl.system.CallbackI;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class GameInputTimings {
     private final GameInput gameInput;
@@ -12,6 +9,7 @@ public class GameInputTimings {
     private int activeMouseButton1Time = 0;
     private int activeMouseButton2Time = 0;
     private int activeMouseButton3Time = 0;
+    private double currentScroll = 0.0;
 
     public GameInputTimings(GameInput gameInput)
     {
@@ -109,9 +107,41 @@ public class GameInputTimings {
                 activeMouseButton3Time++;
             }
         }
+        if(gameInput.isMouseScrollEnabled())
+        {
+            currentScroll = gameInput.getMouseScroll();
+            gameInput.setMouseScrollEnabled(false);
+        }
+        else
+        {
+            currentScroll = 0;
+        }
     }
 
-    public GameInput getGameInput() {
-        return gameInput;
+
+    public int getActiveKeyTime(int key)
+    {
+        return activeKeyTime.get(key);
+    }
+
+    public int getActiveMouseButton1Time()
+    {
+        return activeMouseButton1Time;
+    }
+
+    public int getActiveMouseButton2Time()
+    {
+        return activeMouseButton2Time;
+    }
+
+    public int getActiveMouseButton3Time()
+    {
+        return activeMouseButton3Time;
+    }
+
+    public double getActiveScroll() {
+
+        return currentScroll;
+
     }
 }

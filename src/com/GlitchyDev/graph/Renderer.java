@@ -4,7 +4,6 @@ import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Utility.GameWindow;
 import org.joml.Matrix4f;
 
-
 import static org.lwjgl.opengl.GL11.*;
 
 public class Renderer {

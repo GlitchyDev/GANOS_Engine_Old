@@ -8,3 +8,4 @@ GameAssets\Textures\Icon\Icon16x16.png
 GameAssets\Textures\Icon\Icon24x24.png
 GameAssets\Textures\Icon\Icon32x32.png
 GameAssets\Textures\Icon\invert_grassblock.png
+GameAssets\Textures\Icon\Tomo.png

@@ -1,7 +1,7 @@
 package com.GlitchyDev.Game.GameStates.General;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Utility.GlobalDataBase;
+import com.GlitchyDev.Utility.GlobalGameDataBase;
 
 public abstract class MonitoredGameState extends GameStateBase {
     protected int currentFPS = 0;
@@ -10,8 +10,8 @@ public abstract class MonitoredGameState extends GameStateBase {
     protected double renderUtilization = 0.0;
     protected double logicUtilization = 0.0;
 
-    public MonitoredGameState(GlobalDataBase globalDataBase) {
-        super(globalDataBase);
+    public MonitoredGameState(GlobalGameDataBase globalGameDataBase) {
+        super(globalGameDataBase);
     }
 
     // Abstract Functions
@@ -28,7 +28,7 @@ public abstract class MonitoredGameState extends GameStateBase {
         renderUtilization = (100.0)/(1000000000.0/60.0) * (renderEnd-renderStart);
 
         fpsCount++;
-        if(fpsCount >= globalDataBase.getGameWindow().getTargetFPS())
+        if(System.currentTimeMillis() > lastFPSCount + 1000)
         {
             currentFPS = fpsCount;
             fpsCount = 0;
@@ -61,6 +61,10 @@ public abstract class MonitoredGameState extends GameStateBase {
     // Getters
     public int getCurrentFPS() {
         return currentFPS;
+    }
+
+    public int getFPSCount() {
+        return fpsCount;
     }
 
     public double getRenderUtilization() {

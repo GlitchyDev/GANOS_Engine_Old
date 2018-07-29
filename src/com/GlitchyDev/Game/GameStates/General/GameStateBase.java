@@ -1,13 +1,13 @@
 package com.GlitchyDev.Game.GameStates.General;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Utility.GlobalDataBase;
+import com.GlitchyDev.Utility.GlobalGameDataBase;
 
 public abstract class GameStateBase {
-    protected GlobalDataBase globalDataBase;
+    protected GlobalGameDataBase globalGameData;
 
-    public GameStateBase(GlobalDataBase globalDataBase) {
-        this.globalDataBase = globalDataBase;
+    public GameStateBase(GlobalGameDataBase globalGameData) {
+        this.globalGameData = globalGameData;
     }
 
     public abstract void doRender();
@@ -28,6 +28,6 @@ public abstract class GameStateBase {
     // Functions
 
     protected long getWindowHandle() {
-        return globalDataBase.getGameWindow().getWindowHandle();
+        return globalGameData.getGameWindow().getWindowHandle();
     }
 }
