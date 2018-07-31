@@ -1,4 +1,4 @@
-package com.GlitchyDev.Networking.Packets.ClientPackets.General;
+package com.GlitchyDev.Networking.Packets.ClientPackets;
 
 import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
@@ -13,7 +13,7 @@ public class ClientIntroductionPacket extends Packet {
 
     public ClientIntroductionPacket(String uuid)
     {
-        super(PacketType.C_INTRODUCTION + "-" + uuid);
+        super(PacketType.C_INTRODUCTION + Packet.DIV + uuid);
     }
 
     public String getUUID()

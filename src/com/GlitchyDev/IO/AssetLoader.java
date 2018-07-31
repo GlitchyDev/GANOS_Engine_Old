@@ -8,6 +8,7 @@ import com.GlitchyDev.graph.Utils;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AssetLoader {
@@ -17,7 +18,9 @@ public class AssetLoader {
     private static HashMap<String,Mesh> meshAssets = new HashMap<>();
     private static HashMap<String,String> vertexAssets = new HashMap<>();
     private static HashMap<String,String> fragmentAssets = new HashMap<>();
-    private static HashMap<String,HashMap<String,String>> configAssets = new HashMap<>();
+    private static HashMap<String,HashMap<String,String>> configOptionAssets = new HashMap<>();
+    private static HashMap<String, ArrayList<String>> configListAssets = new HashMap<>();
+
 
     private static boolean isLoadedFromJar;
 
@@ -79,17 +82,27 @@ public class AssetLoader {
                 System.out.println("AssetLoader: Loading Fragment Shader Asset: " + name + " " + fileType);
                 fragmentAssets.put(name,Utils.loadResource(inputStream));
                 break;
-            case "config":
-                System.out.println("AssetLoader: Loading Config Asset: " + name + " " + fileType);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            case "configOptions":
+                System.out.println("AssetLoader: Loading Config Option Asset: " + name + " " + fileType);
+                BufferedReader configOptionReader = new BufferedReader(new InputStreamReader(inputStream));
                 HashMap<String,String> configMap = new HashMap<>();
-                while(reader.ready())
+                while(configOptionReader.ready())
                 {
-                    String line = reader.readLine();
+                    String line = configOptionReader.readLine();
                     String[] configList = line.trim().split(":");
                     configMap.put(configList[0],configList[1]);
                 }
-                configAssets.put(name,configMap);
+                configOptionAssets.put(name,configMap);
+                break;
+            case "configList":
+                System.out.println("AssetLoader: Loading Config List Asset: " + name + " " + fileType);
+                BufferedReader configListReader = new BufferedReader(new InputStreamReader(inputStream));
+                ArrayList<String> configList = new ArrayList<>();
+                while(configListReader.ready())
+                {
+                    configList.add(configListReader.readLine());
+                }
+                configListAssets.put(name,configList);
                 break;
         }
         inputStream = AssetLoader.class.getResourceAsStream(filePath);
@@ -163,8 +176,14 @@ public class AssetLoader {
         return fragmentAssets.get(name);
     }
 
-    public static HashMap<String,String> getConfigAsset(String name)
+    public static HashMap<String,String> getConfigOptionAsset(String name)
     {
-        return configAssets.get(name);
+        return configOptionAssets.get(name);
     }
+
+    public static ArrayList<String> getConfigListAsset(String name)
+    {
+        return configListAssets.get(name);
+    }
+
 }

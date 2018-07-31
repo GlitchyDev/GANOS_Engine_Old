@@ -17,7 +17,7 @@ public class DespawnEntityPacket extends Packet {
 
     public DespawnEntityPacket(UUID uuid)
     {
-        super(PacketType.S_DESPAWN_ENTITY + "-" + uuid);
+        super(PacketType.S_DESPAWN_ENTITY + Packet.DIV + uuid);
     }
 
     public UUID getUUID()

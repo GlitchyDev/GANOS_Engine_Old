@@ -18,7 +18,7 @@ public class SpawnEntityPacket extends Packet {
 
     public SpawnEntityPacket(EntityType entityType, UUID uuid, int x, int y)
     {
-        super(PacketType.S_SPAWN_ENTITY + "-" + entityType + "-" + uuid + "-" + x + "-" + y);
+        super(PacketType.S_SPAWN_ENTITY + Packet.DIV + entityType + Packet.DIV + uuid + Packet.DIV + x + Packet.DIV + y);
     }
 
     public EntityType getEntityType()

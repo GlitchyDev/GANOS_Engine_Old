@@ -1,12 +1,13 @@
 package com.GlitchyDev.Game.GameStates.General;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Utility.GlobalGameDataBase;
+import com.GlitchyDev.Utility.GlobalGameData;
 
 public abstract class GameStateBase {
-    protected GlobalGameDataBase globalGameData;
+    protected GlobalGameData globalGameData;
+    protected GameStateType gameStateType;
 
-    public GameStateBase(GlobalGameDataBase globalGameData) {
+    public GameStateBase(GlobalGameData globalGameData) {
         this.globalGameData = globalGameData;
     }
 
@@ -29,5 +30,9 @@ public abstract class GameStateBase {
 
     protected long getWindowHandle() {
         return globalGameData.getGameWindow().getWindowHandle();
+    }
+
+    public GameStateType getGameStateType() {
+        return gameStateType;
     }
 }

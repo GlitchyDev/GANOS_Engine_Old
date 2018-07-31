@@ -3,8 +3,11 @@ package com.GlitchyDev.Game.GameStates.Client;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Game.GameStates.General.InputGameState;
 import com.GlitchyDev.IO.AssetLoader;
+import com.GlitchyDev.Networking.GameSocket;
+import com.GlitchyDev.Networking.Packets.General.DebugScrollPacket;
+import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.ServerNetworkConnection;
-import com.GlitchyDev.Utility.GlobalGameDataBase;
+import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.graph.*;
 
 import java.awt.*;
@@ -19,14 +22,14 @@ public class DebugGameState2 extends InputGameState {
     private TextItem[] hudItems;
     private SpriteItem[] spriteItems;
 
+    private GameStateType gameStateType = GameStateType.DEBUG_2;
+
     private ServerNetworkConnection serverNetworkConnection;
 
-    public DebugGameState2(GlobalGameDataBase globalGameDataBase) {
+    public DebugGameState2(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase);
         init();
 
-        serverNetworkConnection = new ServerNetworkConnection();
-        serverNetworkConnection.enableAcceptingClients();
     }
 
     @Override
@@ -56,7 +59,9 @@ public class DebugGameState2 extends InputGameState {
 
         FontTexture fontTexture = new FontTexture(FONT,CHARSET);
         TextItem item = new TextItem("0",fontTexture);
-        hudItems = new TextItem[]{item};
+        TextItem item2 = new TextItem("0",fontTexture);
+        item2.setPosition(0,100,0);
+        hudItems = new TextItem[]{item,item2};
 
         spriteItems = new SpriteItem[1];
         for(int i = 0; i < spriteItems.length; i++) {
@@ -65,7 +70,8 @@ public class DebugGameState2 extends InputGameState {
             spriteItems[i].setScale(1.0f);
         }
 
-
+        serverNetworkConnection = new ServerNetworkConnection();
+        serverNetworkConnection.enableAcceptingClients();
     }
 
     @Override
@@ -79,14 +85,37 @@ public class DebugGameState2 extends InputGameState {
             globalGameData.getGameWindow().makeWindowClose();
             System.out.println("DebugGameState: CLOSING WINDOW");
         }
+
+
         String total = "ConnectedUsers: ";
         Iterator iterator = serverNetworkConnection.getConnectedUsers().iterator();
         while(iterator.hasNext())
         {
-            total += " " + iterator.next();
+            total += iterator.next();
         }
         hudItems[0].setText(total);
 
+        String total2 = "Approved Users: ";
+        Iterator iterator2 = serverNetworkConnection.getApprovedUsers().iterator();
+        while(iterator2.hasNext())
+        {
+            total2 += iterator2.next() + " ";
+        }
+        hudItems[1].setText(total2);
+
+
+        if(serverNetworkConnection.getNumberOfConnectedUsers() == 1)
+        {
+            GameSocket gameSocket = serverNetworkConnection.getUsersGameSocket("James");
+            if(gameSocket.hasUnprocessedPackets())
+            {
+                Packet packet = gameSocket.getUnprocessedPackets().get(0);
+
+                System.out.println("PacketInfo " + packet.getRawPacket());
+                DebugScrollPacket debugScrollPacket = new DebugScrollPacket(packet);
+                spriteItems[0].setPosition(0,(float)(debugScrollPacket.getUnit()),0);
+            }
+        }
 
 
 
@@ -107,6 +136,8 @@ public class DebugGameState2 extends InputGameState {
 
     @Override
     public void windowClose() {
+
+        serverNetworkConnection.disableAcceptingClients();
 
     }
 }

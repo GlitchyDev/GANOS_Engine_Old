@@ -13,17 +13,17 @@ import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class BasicSocket {
+public class GameSocket {
     private PacketReadThread packetReadThread;
 
     private Socket socket;
     private BufferedReader socketInput;
     private PrintWriter socketOutput;
 
-    private List<Packet> unproccesedPackets;
+    private List<Packet> unprocessedPackets;
 
 
-    public BasicSocket(Socket socket)
+    public GameSocket(Socket socket)
     {
         this.socket = socket;
         try {
@@ -32,7 +32,7 @@ public class BasicSocket {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        unproccesedPackets = Collections.synchronizedList(new ArrayList<>());
+        unprocessedPackets = Collections.synchronizedList(new ArrayList<>());
 
         packetReadThread = new PacketReadThread();
         packetReadThread.start();
@@ -56,17 +56,19 @@ public class BasicSocket {
     public ArrayList<Packet> getUnprocessedPackets()
     {
         ArrayList<Packet> packets = new ArrayList<>();
-        Iterator<Packet> packetIterator = unproccesedPackets.iterator();
-        while(packetIterator.hasNext())
-        {
-            packets.add(packetIterator.next());
+        synchronized(unprocessedPackets) {
+            Iterator<Packet> packetIterator = unprocessedPackets.iterator();
+            while (packetIterator.hasNext()) {
+                packets.add(packetIterator.next());
+            }
+            unprocessedPackets.clear();
         }
         return packets;
     }
 
     public boolean hasUnprocessedPackets()
     {
-        return unproccesedPackets.size() != 0;
+        return unprocessedPackets.size() != 0;
     }
 
     public void disconnect(NetworkDisconnectType reason)
@@ -107,7 +109,7 @@ public class BasicSocket {
                         {
                             disconnect();
                         }
-                        unproccesedPackets.add(packet);
+                        unprocessedPackets.add(packet);
                     }
                 }
             } catch (IOException e) {

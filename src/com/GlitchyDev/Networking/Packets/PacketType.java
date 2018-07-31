@@ -4,6 +4,7 @@ public enum PacketType {
 
     // Basic
     A_GOODBYE,
+    A_DEBUGSCROLL,
 
     // Server *****
 

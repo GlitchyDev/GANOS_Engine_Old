@@ -14,7 +14,7 @@ public class GoodbyePacket extends Packet {
 
     public GoodbyePacket(NetworkDisconnectType networkDisconnectType)
     {
-        super(PacketType.A_GOODBYE + "-" + networkDisconnectType);
+        super(PacketType.A_GOODBYE + Packet.DIV + networkDisconnectType);
     }
 
 

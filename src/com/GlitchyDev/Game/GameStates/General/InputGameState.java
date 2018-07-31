@@ -2,14 +2,14 @@ package com.GlitchyDev.Game.GameStates.General;
 
 import com.GlitchyDev.General.GameInput;
 import com.GlitchyDev.General.GameInputTimings;
-import com.GlitchyDev.Utility.GlobalGameDataBase;
+import com.GlitchyDev.Utility.GlobalGameData;
 
 public abstract class InputGameState extends MonitoredGameState {
     protected GameInput gameInput;
     protected GameInputTimings gameInputTimings;
 
 
-    public InputGameState(GlobalGameDataBase globalGameDataBase) {
+    public InputGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase);
         gameInput = new GameInput();
         gameInput.bind(getWindowHandle());

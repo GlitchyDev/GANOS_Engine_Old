@@ -1,7 +1,7 @@
 package com.GlitchyDev.Game.GameStates.General;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Utility.GlobalGameDataBase;
+import com.GlitchyDev.Utility.GlobalGameData;
 
 public abstract class MonitoredGameState extends GameStateBase {
     protected int currentFPS = 0;
@@ -10,15 +10,15 @@ public abstract class MonitoredGameState extends GameStateBase {
     protected double renderUtilization = 0.0;
     protected double logicUtilization = 0.0;
 
-    public MonitoredGameState(GlobalGameDataBase globalGameDataBase) {
+    public MonitoredGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase);
     }
 
     // Abstract Functions
 
-    public abstract void render();
-
     public abstract void logic();
+
+    public abstract void render();
 
     // Functions
     public void doRender() {
@@ -74,4 +74,5 @@ public abstract class MonitoredGameState extends GameStateBase {
     public double getLogicUtilization() {
         return logicUtilization;
     }
+
 }

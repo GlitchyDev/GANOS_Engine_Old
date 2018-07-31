@@ -17,7 +17,7 @@ public class MoveEntityPacket extends Packet {
 
     public MoveEntityPacket(UUID uuid, int x, int y)
     {
-        super(PacketType.S_SPAWN_ENTITY + "-" + uuid + "-" + x + "-" + y);
+        super(PacketType.S_SPAWN_ENTITY + Packet.DIV + uuid + Packet.DIV + x + Packet.DIV + y);
     }
 
     public UUID getUUID()

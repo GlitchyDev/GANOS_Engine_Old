@@ -3,10 +3,18 @@ package com.GlitchyDev.Game.GameStates.Client;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Game.GameStates.General.InputGameState;
 import com.GlitchyDev.IO.AssetLoader;
-import com.GlitchyDev.Utility.GlobalGameDataBase;
+import com.GlitchyDev.Networking.GameSocket;
+import com.GlitchyDev.Networking.Packets.ClientPackets.ClientIntroductionPacket;
+import com.GlitchyDev.Networking.Packets.General.DebugScrollPacket;
+import com.GlitchyDev.Networking.Packets.NetworkDisconnectType;
+import com.GlitchyDev.Networking.Packets.Packet;
+import com.GlitchyDev.Networking.Packets.PacketType;
+import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.graph.*;
 
 import java.awt.*;
+import java.io.IOException;
+import java.net.Socket;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -17,9 +25,11 @@ public class DebugGameState1 extends InputGameState {
     private GameItem[] gameItems;
     private TextItem[] hudItems;
     private SpriteItem[] spriteItems;
+    private GameStateType gameStateType = GameStateType.DEBUG_1;
 
+    private GameSocket gameSocket;
 
-    public DebugGameState1(GlobalGameDataBase globalGameDataBase) {
+    public DebugGameState1(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase);
         init();
     }
@@ -72,7 +82,6 @@ public class DebugGameState1 extends InputGameState {
     @Override
     public void logic() {
 
-
         double length = 5000;
         camera.setRotation(0, (float) (50*Math.sin((Math.PI/(length/2)) * (System.currentTimeMillis()%length))),0);
 
@@ -86,6 +95,35 @@ public class DebugGameState1 extends InputGameState {
             System.out.println("DebugGameState: CLOSING WINDOW");
         }
 
+        if (gameInput.getKeyValue(GLFW_KEY_0) == 1) {
+            if(gameSocket == null)
+            {
+                try {
+                    Socket socket = new Socket("192.168.1.3",8001);
+                    gameSocket = new GameSocket(socket);
+
+                    gameSocket.sendPacket(new ClientIntroductionPacket("James"));
+                    while(!gameSocket.hasUnprocessedPackets())
+                    {
+                        Thread.yield();
+                    }
+                    Packet packet = gameSocket.getUnprocessedPackets().get(0);
+                    if(packet.getPacketType() == PacketType.A_GOODBYE)
+                    {
+                        gameSocket = null;
+                    }
+                    else
+                    {
+                        globalGameData.getGameWindow().setClearColor(1.0f,0.0f,0.0f,1.0f);
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
         if(gameInputTimings.getActiveMouseButton1Time() != 0) {
             hudItems[0].setText("" + gameInputTimings.getActiveMouseButton1Time());
 
@@ -97,6 +135,9 @@ public class DebugGameState1 extends InputGameState {
 
 
         spriteItems[0].getPosition().y += gameInputTimings.getActiveScroll() * 10;
+        if(gameSocket != null) {
+            gameSocket.sendPacket(new DebugScrollPacket(spriteItems[0].getPosition().y));
+        }
 
 
 
@@ -116,6 +157,10 @@ public class DebugGameState1 extends InputGameState {
 
     @Override
     public void windowClose() {
+        if(gameSocket != null)
+        {
+            gameSocket.disconnect(NetworkDisconnectType.WINDOW_CLOSED);
+        }
 
     }
 }

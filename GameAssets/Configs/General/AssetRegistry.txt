@@ -1,3 +1,4 @@
+GameAssets\Configs\Server\ApprovedUsers.configList
 GameAssets\Mesh\Default\cube.obj
 GameAssets\Shaders\Default\Default2D.fs
 GameAssets\Shaders\Default\Default2D.vs

@@ -5,18 +5,17 @@ import com.GlitchyDev.Game.GameStates.General.GameStateBase;
 
 import java.util.HashMap;
 
-public abstract class GlobalGameDataBase {
+public class GlobalGameData {
     private GameWindow gameWindow;
     private HashMap<GameStateType,GameStateBase> loadedGameStates;
     private GameStateType currentGameState;
 
-    public GlobalGameDataBase(GameWindow gameWindow)
+    public GlobalGameData(GameWindow gameWindow)
     {
         this.gameWindow = gameWindow;
         loadedGameStates = new HashMap<>();
+        currentGameState = null;
     }
-
-    public abstract void initGameStates();
 
 
     public void switchGameState(GameStateType gameStateType)
@@ -32,9 +31,14 @@ public abstract class GlobalGameDataBase {
         return loadedGameStates.get(currentGameState);
     }
 
-    public void registerGameState(GameStateType gameStateType, GameStateBase gameState)
+    public void registerGameState(GameStateBase gameState)
     {
-        loadedGameStates.put(gameStateType,gameState);
+        loadedGameStates.put(gameState.getGameStateType(),gameState);
+        if(currentGameState == null)
+        {
+            currentGameState = gameState.getGameStateType();
+            gameState.enterState(GameStateType.NONE);
+        }
     }
 
     // Getters
@@ -43,8 +47,4 @@ public abstract class GlobalGameDataBase {
         return gameWindow;
     }
 
-    public void setCurrentGameState(GameStateType currentGameState) {
-        this.currentGameState = currentGameState;
-        getCurrentGameState().enterState(GameStateType.NONE);
-    }
 }
