@@ -1,9 +1,6 @@
-package com.GlitchyDev.General;
+package com.GlitchyDev.DebugMain;
 
 import com.GlitchyDev.Game.GANOSGame;
-
-import java.io.IOException;
-import java.net.ServerSocket;
 
 public class ServerMain {
 

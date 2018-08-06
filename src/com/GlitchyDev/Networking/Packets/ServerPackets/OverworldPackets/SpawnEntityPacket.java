@@ -1,8 +1,8 @@
 package com.GlitchyDev.Networking.Packets.ServerPackets.OverworldPackets;
 
-import com.GlitchyDev.World.Entities.EntityType;
 import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
+import com.GlitchyDev.World.Entities.EntityType;
 
 import java.util.UUID;
 

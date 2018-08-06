@@ -1,5 +1,6 @@
-package com.GlitchyDev.graph;
+package com.GlitchyDev.Rendering.Elements;
 
+import com.GlitchyDev.Rendering.Assets.Mesh;
 import org.joml.Vector3f;
 
 public class GameItem {

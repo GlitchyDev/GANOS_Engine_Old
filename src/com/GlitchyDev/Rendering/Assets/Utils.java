@@ -1,4 +1,4 @@
-package com.GlitchyDev.graph;
+package com.GlitchyDev.Rendering.Assets;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -1,30 +1,39 @@
 package com.GlitchyDev.Game.GameStates.Client;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Game.GameStates.General.InputGameState;
+import com.GlitchyDev.Game.GameStates.InputGameStateBase;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Networking.GameSocket;
 import com.GlitchyDev.Networking.Packets.General.DebugScrollPacket;
 import com.GlitchyDev.Networking.Packets.Packet;
+import com.GlitchyDev.Networking.Packets.PacketType;
 import com.GlitchyDev.Networking.ServerNetworkConnection;
+import com.GlitchyDev.Rendering.Assets.FontTexture;
+import com.GlitchyDev.Rendering.Assets.Mesh;
+import com.GlitchyDev.Rendering.Assets.Texture;
+import com.GlitchyDev.Rendering.Elements.Camera;
+import com.GlitchyDev.Rendering.Elements.GameItem;
+import com.GlitchyDev.Rendering.Elements.SpriteItem;
+import com.GlitchyDev.Rendering.Elements.TextItem;
+import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.Utility.GlobalGameData;
-import com.GlitchyDev.graph.*;
 
 import java.awt.*;
 import java.util.Iterator;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
 
-public class DebugGameState2 extends InputGameState {
+public class DebugGameState2 extends InputGameStateBase {
+    private GameStateType gameStateType = GameStateType.DEBUG_2;
+    private ServerNetworkConnection serverNetworkConnection;
+
     private Renderer renderer;
     private Camera camera;
     private GameItem[] gameItems;
     private TextItem[] hudItems;
     private SpriteItem[] spriteItems;
 
-    private GameStateType gameStateType = GameStateType.DEBUG_2;
 
-    private ServerNetworkConnection serverNetworkConnection;
 
     public DebugGameState2(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase);
@@ -109,11 +118,12 @@ public class DebugGameState2 extends InputGameState {
             GameSocket gameSocket = serverNetworkConnection.getUsersGameSocket("James");
             if(gameSocket.hasUnprocessedPackets())
             {
-                Packet packet = gameSocket.getUnprocessedPackets().get(0);
-
-                System.out.println("PacketInfo " + packet.getRawPacket());
-                DebugScrollPacket debugScrollPacket = new DebugScrollPacket(packet);
-                spriteItems[0].setPosition(0,(float)(debugScrollPacket.getUnit()),0);
+                for(Packet packet: gameSocket.getUnprocessedPackets()) {
+                    if(packet.getPacketType() == PacketType.A_DEBUGSCROLL) {
+                        DebugScrollPacket debugScrollPacket = new DebugScrollPacket(packet);
+                        spriteItems[0].getPosition().add(0, (float) (debugScrollPacket.getUnit()), 0);
+                    }
+                }
             }
         }
 

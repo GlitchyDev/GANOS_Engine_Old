@@ -1,9 +1,9 @@
 package com.GlitchyDev.IO;
 
-import com.GlitchyDev.graph.Mesh;
-import com.GlitchyDev.graph.OBJLoader;
-import com.GlitchyDev.graph.Texture;
-import com.GlitchyDev.graph.Utils;
+import com.GlitchyDev.Rendering.Assets.Mesh;
+import com.GlitchyDev.Rendering.Assets.OBJLoader;
+import com.GlitchyDev.Rendering.Assets.Texture;
+import com.GlitchyDev.Rendering.Assets.Utils;
 
 import java.io.*;
 import java.nio.file.Path;

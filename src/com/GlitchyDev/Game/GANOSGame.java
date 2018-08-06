@@ -2,8 +2,7 @@ package com.GlitchyDev.Game;
 
 import com.GlitchyDev.Game.GameStates.Client.DebugGameState1;
 import com.GlitchyDev.Game.GameStates.Client.DebugGameState2;
-import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Game.GameStates.General.GameStateBase;
+import com.GlitchyDev.Game.GameStates.GameStateBase;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.Utility.GlobalGameData;

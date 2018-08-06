@@ -1,4 +1,4 @@
-package com.GlitchyDev.General;
+package com.GlitchyDev.GameInput;
 
 import org.lwjgl.glfw.GLFWDropCallback;
 

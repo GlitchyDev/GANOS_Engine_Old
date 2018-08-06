@@ -1,4 +1,4 @@
-package com.GlitchyDev.graph;
+package com.GlitchyDev.Rendering.Assets;
 
 import org.joml.Vector2f;
 import org.joml.Vector3f;

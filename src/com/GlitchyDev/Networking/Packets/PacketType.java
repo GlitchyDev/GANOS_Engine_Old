@@ -13,12 +13,12 @@ public enum PacketType {
     S_MOVE_ENTITY, // Entity UUID, X, Y
     S_DESPAWN_ENTITY, // Entity UUID, X, Y
 
-    // General
+    // DebugMain
     S_RETURN_GREETING,
 
     // Client *****
 
-    // General
+    // DebugMain
     C_INTRODUCTION,
 
 

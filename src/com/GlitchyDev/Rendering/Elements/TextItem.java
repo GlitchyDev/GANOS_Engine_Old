@@ -1,4 +1,8 @@
-package com.GlitchyDev.graph;
+package com.GlitchyDev.Rendering.Elements;
+
+import com.GlitchyDev.Rendering.Assets.FontTexture;
+import com.GlitchyDev.Rendering.Assets.Mesh;
+import com.GlitchyDev.Rendering.Assets.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

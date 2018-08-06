@@ -1,4 +1,4 @@
-package com.GlitchyDev.graph;
+package com.GlitchyDev.Rendering.Assets;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

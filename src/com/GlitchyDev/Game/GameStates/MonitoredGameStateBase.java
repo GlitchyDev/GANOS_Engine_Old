@@ -1,16 +1,15 @@
-package com.GlitchyDev.Game.GameStates.General;
+package com.GlitchyDev.Game.GameStates;
 
-import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Utility.GlobalGameData;
 
-public abstract class MonitoredGameState extends GameStateBase {
+public abstract class MonitoredGameStateBase extends GameStateBase {
     protected int currentFPS = 0;
     private int fpsCount = 0;
     private long lastFPSCount = 0;
     protected double renderUtilization = 0.0;
     protected double logicUtilization = 0.0;
 
-    public MonitoredGameState(GlobalGameData globalGameDataBase) {
+    public MonitoredGameStateBase(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase);
     }
 

@@ -1,4 +1,4 @@
-package com.GlitchyDev.General;
+package com.GlitchyDev.GameInput;
 
 import java.util.ArrayList;
 import java.util.HashMap;

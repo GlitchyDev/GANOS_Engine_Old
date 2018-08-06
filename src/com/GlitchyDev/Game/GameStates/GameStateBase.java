@@ -1,6 +1,5 @@
-package com.GlitchyDev.Game.GameStates.General;
+package com.GlitchyDev.Game.GameStates;
 
-import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Utility.GlobalGameData;
 
 public abstract class GameStateBase {
@@ -11,14 +10,11 @@ public abstract class GameStateBase {
         this.globalGameData = globalGameData;
     }
 
+    public abstract void init();
+
     public abstract void doRender();
 
     public abstract void doLogic();
-
-    /**
-     * Initialize the GameState's NonInherited variables to default
-     */
-    public abstract void init();
 
     public abstract void enterState(GameStateType previousGameState);
 

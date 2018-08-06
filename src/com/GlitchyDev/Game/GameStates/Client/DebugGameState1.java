@@ -1,7 +1,7 @@
 package com.GlitchyDev.Game.GameStates.Client;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Game.GameStates.General.InputGameState;
+import com.GlitchyDev.Game.GameStates.InputGameStateBase;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Networking.GameSocket;
 import com.GlitchyDev.Networking.Packets.ClientPackets.ClientIntroductionPacket;
@@ -9,17 +9,25 @@ import com.GlitchyDev.Networking.Packets.General.DebugScrollPacket;
 import com.GlitchyDev.Networking.Packets.NetworkDisconnectType;
 import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
+import com.GlitchyDev.Rendering.Assets.FontTexture;
+import com.GlitchyDev.Rendering.Assets.Mesh;
+import com.GlitchyDev.Rendering.Assets.Texture;
+import com.GlitchyDev.Rendering.Elements.Camera;
+import com.GlitchyDev.Rendering.Elements.GameItem;
+import com.GlitchyDev.Rendering.Elements.SpriteItem;
+import com.GlitchyDev.Rendering.Elements.TextItem;
+import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.Utility.GlobalGameData;
-import com.GlitchyDev.graph.*;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.Socket;
 
-import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_0;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
 
 
-public class DebugGameState1 extends InputGameState {
+public class DebugGameState1 extends InputGameStateBase {
     private Renderer renderer;
     private Camera camera;
     private GameItem[] gameItems;
@@ -136,7 +144,7 @@ public class DebugGameState1 extends InputGameState {
 
         spriteItems[0].getPosition().y += gameInputTimings.getActiveScroll() * 10;
         if(gameSocket != null) {
-            gameSocket.sendPacket(new DebugScrollPacket(spriteItems[0].getPosition().y));
+            gameSocket.sendPacket(new DebugScrollPacket(gameInputTimings.getActiveScroll() * 10));
         }
 
 
