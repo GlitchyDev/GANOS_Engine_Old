@@ -1,4 +1,4 @@
-package com.GlitchyDev.Rendering.Elements;
+package com.GlitchyDev.Rendering.WorldElements;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;

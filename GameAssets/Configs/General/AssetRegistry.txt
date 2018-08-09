@@ -4,6 +4,8 @@ GameAssets\Shaders\Default\Default2D.fs
 GameAssets\Shaders\Default\Default2D.vs
 GameAssets\Shaders\Default\Default3D.fs
 GameAssets\Shaders\Default\Default3D.vs
+GameAssets\Shaders\Special\Glitchy2D.fs
+GameAssets\Shaders\Special\Glitchy2D.vs
 GameAssets\Textures\Default\grassblock.png
 GameAssets\Textures\Icon\Icon16x16.png
 GameAssets\Textures\Icon\Icon24x24.png

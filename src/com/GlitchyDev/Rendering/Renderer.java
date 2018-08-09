@@ -3,7 +3,7 @@ package com.GlitchyDev.Rendering;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.ShaderProgram;
-import com.GlitchyDev.Rendering.Elements.*;
+import com.GlitchyDev.Rendering.WorldElements.*;
 import com.GlitchyDev.Utility.GameWindow;
 import org.joml.Matrix4f;
 

@@ -14,6 +14,7 @@ import java.nio.ByteBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class GameWindow {
@@ -54,6 +55,7 @@ public class GameWindow {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
         //glfwWindowHint(GLFW_AUTO_ICONIFY, GL_FALSE);
 
 
@@ -106,6 +108,7 @@ public class GameWindow {
         // Support for transparencies
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 
         //setIcon(windowHandle, new File("GameAssets/Textures/Icon/Icon16x16.png") , new File("GameAssets/Textures/Icon/Icon24x24.png"));
 

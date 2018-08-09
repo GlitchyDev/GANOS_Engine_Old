@@ -1,20 +1,46 @@
-package com.GlitchyDev.Rendering.Elements;
+package com.GlitchyDev.Rendering.WorldElements;
 
 import com.GlitchyDev.Rendering.Assets.Mesh;
+import com.GlitchyDev.Rendering.Assets.RenderBuffer;
 import com.GlitchyDev.Rendering.Assets.Texture;
 import com.GlitchyDev.Rendering.Assets.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SpriteItem extends GameItem {
 
+
     public SpriteItem(Texture spriteTexture) {
         super();
-        setMesh(buildMesh(spriteTexture));
+        setMesh(buildMesh(spriteTexture,false));
     }
 
-    private Mesh buildMesh(Texture spriteTexture) {
+    public SpriteItem(RenderBuffer renderBuffer) {
+        super();
+        setMesh(buildMesh(new Texture(renderBuffer),true));
+    }
+
+    public List<Float> getReversedTextCoords()
+    {
+        List<Float> textCoords = new ArrayList();
+        textCoords.add(0.0f);
+        textCoords.add(1.0f);
+
+        textCoords.add(0.0f);
+        textCoords.add(0.0f);
+
+        textCoords.add(1.0f);
+        textCoords.add(0.0f);
+
+        textCoords.add(1.0f);
+        textCoords.add(1.0f);
+        return textCoords;
+
+    }
+
+    private Mesh buildMesh(Texture spriteTexture, boolean flippped) {
         List<Float> positions = new ArrayList();
         List<Float> textCoords = new ArrayList();
         float[] normals = new float[0];
@@ -48,7 +74,7 @@ public class SpriteItem extends GameItem {
         indices.add(2);
 
         // Right Top vertex
-        positions.add((float) spriteTexture.getHeight()); // x
+        positions.add((float) spriteTexture.getWidth()); // x
         positions.add(0.0f); //y
         positions.add(0.0f); //z
         textCoords.add(1.0f);
@@ -62,6 +88,10 @@ public class SpriteItem extends GameItem {
 
         float[] posArr = Utils.listToArray(positions);
         float[] textCoordsArr = Utils.listToArray(textCoords);
+        if(flippped)
+        {
+            textCoordsArr = Utils.listToArray(getReversedTextCoords());
+        }
         int[] indicesArr = indices.stream().mapToInt(i->i).toArray();
         Mesh mesh = new Mesh(posArr, textCoordsArr, normals, indicesArr);
         try {

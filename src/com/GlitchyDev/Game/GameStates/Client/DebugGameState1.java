@@ -11,11 +11,12 @@ import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
 import com.GlitchyDev.Rendering.Assets.FontTexture;
 import com.GlitchyDev.Rendering.Assets.Mesh;
+import com.GlitchyDev.Rendering.Assets.RenderBuffer;
 import com.GlitchyDev.Rendering.Assets.Texture;
-import com.GlitchyDev.Rendering.Elements.Camera;
-import com.GlitchyDev.Rendering.Elements.GameItem;
-import com.GlitchyDev.Rendering.Elements.SpriteItem;
-import com.GlitchyDev.Rendering.Elements.TextItem;
+import com.GlitchyDev.Rendering.WorldElements.Camera;
+import com.GlitchyDev.Rendering.WorldElements.GameItem;
+import com.GlitchyDev.Rendering.WorldElements.SpriteItem;
+import com.GlitchyDev.Rendering.WorldElements.TextItem;
 import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.Utility.GlobalGameData;
 
@@ -34,8 +35,10 @@ public class DebugGameState1 extends InputGameStateBase {
     private TextItem[] hudItems;
     private SpriteItem[] spriteItems;
     private GameStateType gameStateType = GameStateType.DEBUG_1;
-
     private GameSocket gameSocket;
+
+    private RenderBuffer debugBuffer;
+    private SpriteItem debugItem;
 
     public DebugGameState1(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase);
@@ -79,12 +82,23 @@ public class DebugGameState1 extends InputGameStateBase {
         }
 
 
+
+        debugBuffer = new RenderBuffer(500,500);
+        debugItem = new SpriteItem(debugBuffer);
+
+
+        debugItem.setPosition(50,50,0);
+
+
     }
 
     @Override
     public void render() {
 
+        debugBuffer.bindToRender();
         renderer.render(globalGameData.getGameWindow(),camera,gameItems,hudItems,spriteItems);
+        debugBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
+        renderer.render(globalGameData.getGameWindow(),camera,gameItems,hudItems,new SpriteItem[]{debugItem});
     }
 
     @Override
@@ -104,6 +118,7 @@ public class DebugGameState1 extends InputGameStateBase {
         }
 
         if (gameInput.getKeyValue(GLFW_KEY_0) == 1) {
+
             if(gameSocket == null)
             {
                 try {

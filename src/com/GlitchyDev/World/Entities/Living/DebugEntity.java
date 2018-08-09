@@ -1,7 +1,7 @@
 package com.GlitchyDev.World.Entities.Living;
 
 import com.GlitchyDev.Game.GameStates.Server.DebugWorldGameStateBase;
-import com.GlitchyDev.Rendering.Elements.SpriteItem;
+import com.GlitchyDev.Rendering.WorldElements.SpriteItem;
 import com.GlitchyDev.World.Entities.BasicPhysicalEntity;
 import com.GlitchyDev.World.Location;
 

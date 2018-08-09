@@ -1,4 +1,4 @@
-package com.GlitchyDev.Rendering.Elements;
+package com.GlitchyDev.Rendering.WorldElements;
 
 import com.GlitchyDev.Rendering.Assets.FontTexture;
 import com.GlitchyDev.Rendering.Assets.Mesh;

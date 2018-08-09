@@ -49,6 +49,13 @@ public class Texture {
         }
     }
 
+    public Texture(RenderBuffer renderBuffer)
+    {
+        this.width = renderBuffer.getWidth();
+        this.height = renderBuffer.getHeight();
+        this.id = renderBuffer.getTextureID();
+    }
+
     //public void bind() {glBindTexture(GL_TEXTURE_2D, id);}
 
     public int getId() {

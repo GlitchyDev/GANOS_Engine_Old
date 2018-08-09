@@ -11,10 +11,10 @@ import com.GlitchyDev.Networking.ServerNetworkConnection;
 import com.GlitchyDev.Rendering.Assets.FontTexture;
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.Texture;
-import com.GlitchyDev.Rendering.Elements.Camera;
-import com.GlitchyDev.Rendering.Elements.GameItem;
-import com.GlitchyDev.Rendering.Elements.SpriteItem;
-import com.GlitchyDev.Rendering.Elements.TextItem;
+import com.GlitchyDev.Rendering.WorldElements.Camera;
+import com.GlitchyDev.Rendering.WorldElements.GameItem;
+import com.GlitchyDev.Rendering.WorldElements.SpriteItem;
+import com.GlitchyDev.Rendering.WorldElements.TextItem;
 import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.Utility.GlobalGameData;
 
