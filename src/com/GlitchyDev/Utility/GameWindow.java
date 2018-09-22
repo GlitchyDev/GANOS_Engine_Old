@@ -165,9 +165,7 @@ public class GameWindow {
         cursorImg.pixels(buffer);   // pass image data
 
         // create custom cursor and store its ID
-        int hotspotX = xOffset;
-        int hotspotY = yOffset;
-        long cursorID = org.lwjgl.glfw.GLFW.glfwCreateCursor(cursorImg, hotspotX , hotspotY);
+        long cursorID = org.lwjgl.glfw.GLFW.glfwCreateCursor(cursorImg, xOffset , yOffset);
 
         // set current cursor
         glfwSetCursor(getWindowHandle(), cursorID);

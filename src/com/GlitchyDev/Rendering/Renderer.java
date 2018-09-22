@@ -136,8 +136,6 @@ public class Renderer {
             Matrix4f projModelMatrix = transformation.getOrtoProjModelMatrix(gameItem, ortho);
             hudShaderProgram.setUniform("projModelMatrix", projModelMatrix);
             mesh.render();
-
-
         }
 
 
@@ -160,7 +158,6 @@ public class Renderer {
             Matrix4f projModelMatrix = transformation.getOrtoProjModelMatrix(gameItem, ortho);
             hudShaderProgram.setUniform("projModelMatrix", projModelMatrix);
             mesh.render();
-
 
         }
 

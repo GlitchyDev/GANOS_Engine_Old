@@ -20,7 +20,7 @@ public class GameSocket {
     private BufferedReader socketInput;
     private PrintWriter socketOutput;
 
-    private List<Packet> unprocessedPackets;
+    private final List<Packet> unprocessedPackets;
 
 
     public GameSocket(Socket socket)
@@ -57,9 +57,8 @@ public class GameSocket {
     {
         ArrayList<Packet> packets = new ArrayList<>();
         synchronized(unprocessedPackets) {
-            Iterator<Packet> packetIterator = unprocessedPackets.iterator();
-            while (packetIterator.hasNext()) {
-                packets.add(packetIterator.next());
+            for (Packet unprocessedPacket : unprocessedPackets) {
+                packets.add(unprocessedPacket);
             }
             unprocessedPackets.clear();
         }

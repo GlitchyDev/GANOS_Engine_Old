@@ -55,16 +55,21 @@ public class DebugGameState1 extends InputGameStateBase {
         Texture texture = AssetLoader.getTextureAsset("grassblock");
         mesh.setTexture(texture);
 
-        GameItem gameItem = new GameItem(mesh);
-        gameItem.setScale(0.5f);
-        gameItem.setPosition(0, 0, -2);
 
-        GameItem gameItem2 = new GameItem(mesh);
-        gameItem2.setScale(0.5f);
-        gameItem2.setPosition(0, 1, -2);
+        int length = 1000;
+        gameItems = new GameItem[length];
+        for(int i = 0; i < length; i++)
+        {
+            GameItem gameItem = new GameItem(mesh);
+            gameItem.setScale(0.5f);
+            gameItem.setPosition(i%9-4, (float) (Math.random() * 10)-5, -2 - i/9);
+            gameItems[i] = gameItem;
 
 
-        gameItems = new GameItem[]{gameItem,gameItem2};
+        }
+
+
+
 
 
         final Font FONT = new Font("Arial", Font.PLAIN, 20);
@@ -87,17 +92,19 @@ public class DebugGameState1 extends InputGameStateBase {
         debugItem = new SpriteItem(debugBuffer);
 
 
-        debugItem.setPosition(50,50,0);
 
-
+        debugItem.setPosition(0,10,0);
     }
 
     @Override
     public void render() {
 
-        debugBuffer.bindToRender();
-        renderer.render(globalGameData.getGameWindow(),camera,gameItems,hudItems,spriteItems);
-        debugBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
+
+        if(Math.random() < 0.3) {
+            debugBuffer.bindToRender();
+            renderer.render(globalGameData.getGameWindow(), camera, gameItems, hudItems, spriteItems);
+            debugBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
+        }
         renderer.render(globalGameData.getGameWindow(),camera,gameItems,hudItems,new SpriteItem[]{debugItem});
     }
 

@@ -97,18 +97,14 @@ public class DebugGameState2 extends InputGameStateBase {
 
 
         String total = "ConnectedUsers: ";
-        Iterator iterator = serverNetworkConnection.getConnectedUsers().iterator();
-        while(iterator.hasNext())
-        {
-            total += iterator.next();
+        for (Object o : serverNetworkConnection.getConnectedUsers()) {
+            total += o;
         }
         hudItems[0].setText(total);
 
         String total2 = "Approved Users: ";
-        Iterator iterator2 = serverNetworkConnection.getApprovedUsers().iterator();
-        while(iterator2.hasNext())
-        {
-            total2 += iterator2.next() + " ";
+        for (Object o : serverNetworkConnection.getApprovedUsers()) {
+            total2 += o + " ";
         }
         hudItems[1].setText(total2);
 

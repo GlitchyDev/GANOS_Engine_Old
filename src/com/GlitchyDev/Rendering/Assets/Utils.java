@@ -1,18 +1,29 @@
 package com.GlitchyDev.Rendering.Assets;
 
+import org.lwjgl.BufferUtils;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.SeekableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static org.lwjgl.BufferUtils.createByteBuffer;
 
 public class Utils {
 
     public static String loadResource(InputStream stream) throws Exception {
         String result;
-        InputStream in = stream;
-        Scanner scanner = new Scanner(in, "UTF-8");
+        Scanner scanner = new Scanner(stream, "UTF-8");
         result = scanner.useDelimiter("\\A").next();
         return result;
     }
@@ -34,5 +45,33 @@ public class Utils {
             floatArr[i] = list.get(i);
         }
         return floatArr;
+    }
+
+
+    public static ByteBuffer ioResourceToByteBuffer(InputStream inputStream, int bufferSize) throws IOException {
+        ByteBuffer buffer;
+
+
+        ReadableByteChannel rbc = Channels.newChannel(inputStream);
+        buffer = createByteBuffer(bufferSize);
+        while (true) {
+            int bytes = rbc.read(buffer);
+            if (bytes == -1) {
+                break;
+            }
+            if (buffer.remaining() == 0) {
+                buffer = resizeBuffer(buffer, buffer.capacity() * 2);
+            }
+        }
+        buffer.flip();
+        return buffer;
+    }
+
+
+    private static ByteBuffer resizeBuffer(ByteBuffer buffer, int newCapacity) {
+        ByteBuffer newBuffer = BufferUtils.createByteBuffer(newCapacity);
+        buffer.flip();
+        newBuffer.put(buffer);
+        return newBuffer;
     }
 }
