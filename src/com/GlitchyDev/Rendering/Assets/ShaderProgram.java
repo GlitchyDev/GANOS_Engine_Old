@@ -1,5 +1,6 @@
 package com.GlitchyDev.Rendering.Assets;
 
+import com.GlitchyDev.IO.AssetLoader;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryStack;
@@ -13,13 +14,12 @@ import static org.lwjgl.opengl.GL20.*;
 public class ShaderProgram {
 
     private final int programId;
-
     private int vertexShaderId;
-
     private int fragmentShaderId;
-
     private final Map<String, Integer> uniforms;
 
+
+    /*
     public ShaderProgram() throws Exception {
         programId = glCreateProgram();
         if (programId == 0) {
@@ -27,6 +27,24 @@ public class ShaderProgram {
         }
         uniforms = new HashMap<>();
     }
+    */
+
+    public ShaderProgram(String shader) throws Exception {
+        programId = glCreateProgram();
+        if (programId == 0) {
+            throw new Exception("Could not create Shader");
+        }
+        uniforms = new HashMap<>();
+
+        createFragmentShader(AssetLoader.getFragmentAsset(shader));
+        createVertexShader(AssetLoader.getVertexAsset(shader));
+        link();
+        for(String uniform: AssetLoader.getConfigListAsset(shader))
+        {
+            createUniform(uniform);
+        }
+    }
+
 
     public void createUniform(String uniformName) throws Exception {
         int uniformLocation = glGetUniformLocation(programId, uniformName);

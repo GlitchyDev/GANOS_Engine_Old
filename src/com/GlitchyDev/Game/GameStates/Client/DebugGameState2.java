@@ -44,7 +44,6 @@ public class DebugGameState2 extends InputGameStateBase {
     @Override
     public void init() {
         renderer = new Renderer();
-        renderer.init();
         camera = new Camera();
 
         Mesh mesh = AssetLoader.getMeshAsset("cube");
@@ -85,7 +84,6 @@ public class DebugGameState2 extends InputGameStateBase {
 
     @Override
     public void render() {
-        renderer.render(globalGameData.getGameWindow(),camera,gameItems,hudItems,spriteItems);
     }
 
     @Override

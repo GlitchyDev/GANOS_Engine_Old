@@ -16,8 +16,8 @@ public class AssetLoader {
 
     private static HashMap<String,Texture> textureAssets = new HashMap<>();
     private static HashMap<String,Mesh> meshAssets = new HashMap<>();
-    private static HashMap<String,String> vertexAssets = new HashMap<>();
-    private static HashMap<String,String> fragmentAssets = new HashMap<>();
+    private static HashMap<String,String> vertexShaderAssets = new HashMap<>();
+    private static HashMap<String,String> fragmentShaderAssets = new HashMap<>();
     private static HashMap<String,HashMap<String,String>> configOptionAssets = new HashMap<>();
     private static HashMap<String, ArrayList<String>> configListAssets = new HashMap<>();
 
@@ -67,20 +67,23 @@ public class AssetLoader {
                 meshAssets.put(name, OBJLoader.loadMesh(inputStream));
                 break;
             case "png":
-
                 System.out.println("AssetLoader: Loading Texture Asset: " + name + " " + fileType);
                 textureAssets.put(name,new Texture(inputStream));
                 break;
             case "wav":
                 // Load Sounds
                 break;
+            case "config":
+                System.out.println("AssetLoader: Loading Vertex Shader Asset: " + name + " " + fileType);
+                vertexShaderAssets.put(name, Utils.loadResource(inputStream));
+                break;
             case "vs":
                 System.out.println("AssetLoader: Loading Vertex Shader Asset: " + name + " " + fileType);
-                vertexAssets.put(name, Utils.loadResource(inputStream));
+                vertexShaderAssets.put(name, Utils.loadResource(inputStream));
                 break;
             case "fs":
                 System.out.println("AssetLoader: Loading Fragment Shader Asset: " + name + " " + fileType);
-                fragmentAssets.put(name,Utils.loadResource(inputStream));
+                fragmentShaderAssets.put(name,Utils.loadResource(inputStream));
                 break;
             case "configOptions":
                 System.out.println("AssetLoader: Loading Config Option Asset: " + name + " " + fileType);
@@ -168,12 +171,12 @@ public class AssetLoader {
 
     public static String getVertexAsset(String name)
     {
-        return vertexAssets.get(name);
+        return vertexShaderAssets.get(name);
     }
 
     public static String getFragmentAsset(String name)
     {
-        return fragmentAssets.get(name);
+        return fragmentShaderAssets.get(name);
     }
 
     public static HashMap<String,String> getConfigOptionAsset(String name)

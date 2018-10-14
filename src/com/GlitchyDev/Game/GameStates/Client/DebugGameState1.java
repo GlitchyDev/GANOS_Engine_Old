@@ -43,12 +43,12 @@ public class DebugGameState1 extends InputGameStateBase {
     public DebugGameState1(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase);
         init();
+
     }
 
     @Override
     public void init() {
         renderer = new Renderer();
-        renderer.init();
         camera = new Camera();
 
         Mesh mesh = AssetLoader.getMeshAsset("cube");
@@ -93,28 +93,32 @@ public class DebugGameState1 extends InputGameStateBase {
 
 
 
-        debugItem.setPosition(0,10,0);
+        debugItem.setPosition(0,0,0);
+
     }
 
     @Override
     public void render() {
 
 
-        if(Math.random() < 0.3) {
-            debugBuffer.bindToRender();
-            renderer.render(globalGameData.getGameWindow(), camera, gameItems, hudItems, spriteItems);
-            debugBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
-        }
-        renderer.render(globalGameData.getGameWindow(),camera,gameItems,hudItems,new SpriteItem[]{debugItem});
+        debugBuffer.bindToRender();
+        renderer.prepRender(globalGameData.getGameWindow());
+        renderer.render3DElements(globalGameData.getGameWindow(), "Default3D", camera, gameItems);
+        renderer.renderHUD(globalGameData.getGameWindow(), "Default2D", hudItems);
+        renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", spriteItems);
+        debugBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
+
+        renderer.prepRender(globalGameData.getGameWindow());
+        renderer.renderSprites(globalGameData.getGameWindow(),"Default2D",new SpriteItem[]{debugItem});
     }
 
     @Override
     public void logic() {
 
         double length = 5000;
-        camera.setRotation(0, (float) (50*Math.sin((Math.PI/(length/2)) * (System.currentTimeMillis()%length))),0);
+        //camera.setRotation(0, (float) (50*Math.sin((Math.PI/(length/2)) * (System.currentTimeMillis()%length))),0);
 
-        gameItems[0].setPosition((float) (4*Math.sin((Math.PI/(length/2)) * (System.currentTimeMillis()%length))), 0,-5);
+        //gameItems[0].setPosition((float) (4*Math.sin((Math.PI/(length/2)) * (System.currentTimeMillis()%length))), 0,-5);
 
 
         hudItems[0].setText("FPS: " + getCurrentFPS() + " Count " + getFPSCount() + " A " + (getRenderUtilization() + getLogicUtilization()));
@@ -191,6 +195,7 @@ public class DebugGameState1 extends InputGameStateBase {
         {
             gameSocket.disconnect(NetworkDisconnectType.WINDOW_CLOSED);
         }
+        renderer.cleanup();
 
     }
 }

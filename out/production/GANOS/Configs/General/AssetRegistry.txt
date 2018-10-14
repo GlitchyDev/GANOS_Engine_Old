@@ -1,9 +1,13 @@
 GameAssets\Configs\Server\ApprovedUsers.configList
 GameAssets\Mesh\Default\cube.obj
+GameAssets\Shaders\Default\Default2D.configList
 GameAssets\Shaders\Default\Default2D.fs
 GameAssets\Shaders\Default\Default2D.vs
+GameAssets\Shaders\Default\Default3D.configList
 GameAssets\Shaders\Default\Default3D.fs
 GameAssets\Shaders\Default\Default3D.vs
+GameAssets\Shaders\Shaders.configList
+GameAssets\Shaders\Special\Glitchy2D.configList
 GameAssets\Shaders\Special\Glitchy2D.fs
 GameAssets\Shaders\Special\Glitchy2D.vs
 GameAssets\Sounds\Debug\SoundDebug.ogg

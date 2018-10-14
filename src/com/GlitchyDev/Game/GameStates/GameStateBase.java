@@ -10,7 +10,7 @@ public abstract class GameStateBase {
         this.globalGameData = globalGameData;
     }
 
-    public abstract void init();
+    public abstract void init() throws Exception;
 
     public abstract void doRender();
 
