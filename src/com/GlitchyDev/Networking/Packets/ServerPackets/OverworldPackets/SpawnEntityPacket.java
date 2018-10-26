@@ -2,13 +2,14 @@ package com.GlitchyDev.Networking.Packets.ServerPackets.OverworldPackets;
 
 import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
-import com.GlitchyDev.World.Entities.EntityType;
 
 import java.util.UUID;
 
 /**
  * Packet Usage: Server Command: Spawn Target Entity by UUID. Spawnes an Entity at the selected Location  ( Entity may have existed Server side before spawn on Client )
  */
+
+/*
 public class SpawnEntityPacket extends Packet {
     private final PacketType packetType = PacketType.S_SPAWN_ENTITY;
 
@@ -41,3 +42,4 @@ public class SpawnEntityPacket extends Packet {
         return Integer.valueOf(data[4]);
     }
 }
+*/

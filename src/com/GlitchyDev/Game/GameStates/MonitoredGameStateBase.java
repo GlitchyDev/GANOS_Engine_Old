@@ -9,8 +9,8 @@ public abstract class MonitoredGameStateBase extends GameStateBase {
     protected double renderUtilization = 0.0;
     protected double logicUtilization = 0.0;
 
-    public MonitoredGameStateBase(GlobalGameData globalGameDataBase) {
-        super(globalGameDataBase);
+    public MonitoredGameStateBase(GlobalGameData globalGameDataBase, GameStateType gameStateType) {
+        super(globalGameDataBase, gameStateType);
     }
 
     // Abstract Functions

@@ -1,13 +1,17 @@
 package com.GlitchyDev.Game.GameStates;
 
+import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.Utility.GlobalGameData;
 
 public abstract class GameStateBase {
     protected GlobalGameData globalGameData;
-    protected GameStateType gameStateType;
+    protected final GameStateType gameStateType;
+    protected final Renderer renderer;
 
-    public GameStateBase(GlobalGameData globalGameData) {
+    public GameStateBase(GlobalGameData globalGameData, GameStateType gameStateType) {
         this.globalGameData = globalGameData;
+        this.gameStateType = gameStateType;
+        this.renderer = new Renderer();
     }
 
     public abstract void init() throws Exception;

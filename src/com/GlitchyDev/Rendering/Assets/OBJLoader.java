@@ -12,11 +12,12 @@ import java.util.List;
 
 public class OBJLoader {
 
+
     public static Mesh loadMesh(InputStream stream) {
         List<String> lines = null;
         try {
-            lines = readAllLines(stream);
-        } catch (IOException e) {
+            lines = Utils.readAllLines(stream);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -63,22 +64,8 @@ public class OBJLoader {
         return reorderLists(vertices, textures, normals, faces);
     }
 
-    public static List<String> readAllLines(InputStream stream) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
-            List<String> result = new ArrayList<>();
-            for (;;) {
-                String line = reader.readLine();
-                if (line == null)
-                    break;
-                result.add(line);
-            }
-            return result;
-        }
-    }
-
-
     private static Mesh reorderLists(List<Vector3f> posList, List<Vector2f> textCoordList,
-            List<Vector3f> normList, List<Face> facesList) {
+                                     List<Vector3f> normList, List<Face> facesList) {
 
         List<Integer> indices = new ArrayList();
         // Create position array in the order it has been declared
@@ -102,12 +89,13 @@ public class OBJLoader {
         }
         int[] indicesArr = new int[indices.size()];
         indicesArr = indices.stream().mapToInt((Integer v) -> v).toArray();
-        return new Mesh(posArr, textCoordArr, normArr, indicesArr);
+        Mesh mesh = new Mesh(posArr, textCoordArr, indicesArr);
+        return mesh;
     }
 
     private static void processFaceVertex(IdxGroup indices, List<Vector2f> textCoordList,
-            List<Vector3f> normList, List<Integer> indicesList,
-            float[] texCoordArr, float[] normArr) {
+                                          List<Vector3f> normList, List<Integer> indicesList,
+                                          float[] texCoordArr, float[] normArr) {
 
         // Set index for vertex coordinates
         int posIndex = indices.idxPos;

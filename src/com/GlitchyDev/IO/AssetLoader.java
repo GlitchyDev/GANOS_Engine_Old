@@ -10,10 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class AssetLoader {
-    private static HashMap<String,InputStream> totalAssets = new HashMap<>();
 
+    private static HashMap<String,String> allAssets = new HashMap<>();
     private static HashMap<String,Texture> textureAssets = new HashMap<>();
     private static HashMap<String,Mesh> meshAssets = new HashMap<>();
     private static HashMap<String,String> vertexShaderAssets = new HashMap<>();
@@ -48,6 +49,7 @@ public class AssetLoader {
         System.out.println("AssetLoader: Assets Created in " + (endTime - startTime)/1000.0 + "s");
 
 
+
     }
 
     private static void loadAsset(String fileName) throws Exception {
@@ -57,59 +59,34 @@ public class AssetLoader {
         String fullName = path.getFileName().toString();
         String fileType = fullName.split("\\.")[1];
         String name = fullName.replace("." + fileType,"");
-
-        InputStream inputStream = AssetLoader.class.getResourceAsStream(filePath);
-
+        allAssets.put(fullName,filePath);
+        System.out.println("AssetLoader: Loading Asset " + name + " of type " + fileType);
         switch(fileType)
         {
             case "obj":
-                System.out.println("AssetLoader: Loading Mesh Asset: " + name + " " + fileType);
-                meshAssets.put(name, OBJLoader.loadMesh(inputStream));
+                meshAssets.put(name,loadMesh(filePath));
                 break;
             case "png":
-                System.out.println("AssetLoader: Loading Texture Asset: " + name + " " + fileType);
-                textureAssets.put(name,new Texture(inputStream));
+                textureAssets.put(name,loadTexture(filePath));
                 break;
             case "wav":
-                // Load Sounds
-                break;
-            case "config":
-                System.out.println("AssetLoader: Loading Vertex Shader Asset: " + name + " " + fileType);
-                vertexShaderAssets.put(name, Utils.loadResource(inputStream));
+                //
                 break;
             case "vs":
-                System.out.println("AssetLoader: Loading Vertex Shader Asset: " + name + " " + fileType);
-                vertexShaderAssets.put(name, Utils.loadResource(inputStream));
+                vertexShaderAssets.put(name,loadShader(filePath));
                 break;
             case "fs":
-                System.out.println("AssetLoader: Loading Fragment Shader Asset: " + name + " " + fileType);
-                fragmentShaderAssets.put(name,Utils.loadResource(inputStream));
+                fragmentShaderAssets.put(name,loadShader(filePath));
                 break;
             case "configOptions":
-                System.out.println("AssetLoader: Loading Config Option Asset: " + name + " " + fileType);
-                BufferedReader configOptionReader = new BufferedReader(new InputStreamReader(inputStream));
-                HashMap<String,String> configMap = new HashMap<>();
-                while(configOptionReader.ready())
-                {
-                    String line = configOptionReader.readLine();
-                    String[] configList = line.trim().split(":");
-                    configMap.put(configList[0],configList[1]);
-                }
-                configOptionAssets.put(name,configMap);
+                configOptionAssets.put(name,loadConfigOptions(filePath));
                 break;
             case "configList":
-                System.out.println("AssetLoader: Loading Config List Asset: " + name + " " + fileType);
-                BufferedReader configListReader = new BufferedReader(new InputStreamReader(inputStream));
-                ArrayList<String> configList = new ArrayList<>();
-                while(configListReader.ready())
-                {
-                    configList.add(configListReader.readLine());
-                }
-                configListAssets.put(name,configList);
+                configListAssets.put(name,loadConfigList(filePath));
                 break;
         }
-        inputStream = AssetLoader.class.getResourceAsStream(filePath);
-        totalAssets.put(fullName,inputStream);
+
+
     }
 
 
@@ -154,9 +131,9 @@ public class AssetLoader {
         }
     }
 
-    public static InputStream getGeneralAsset(String name)
+    public static InputStream getInputStream(String fileName)
     {
-        return totalAssets.get(name);
+        return AssetLoader.class.getResourceAsStream(allAssets.get(fileName));
     }
 
     public static Texture getTextureAsset(String name)
@@ -189,4 +166,49 @@ public class AssetLoader {
         return configListAssets.get(name);
     }
 
+    public static Mesh loadMesh(String filePath)
+    {
+        return OBJLoader.loadMesh(AssetLoader.class.getResourceAsStream(filePath));
+    }
+    public static Mesh loadCacheMesh(String fileName)
+    {
+        return OBJLoader.loadMesh(AssetLoader.class.getResourceAsStream(allAssets.get(fileName)));
+    }
+    public static Texture loadTexture(String filePath)
+    {
+        return new Texture(AssetLoader.class.getResourceAsStream(filePath));
+    }
+    public static Texture loadSound(String filePath)
+    {
+        return null;
+    }
+    public static String loadShader(String filePath)
+    {
+        try {
+            return Utils.loadResource(AssetLoader.class.getResourceAsStream(filePath));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static HashMap<String,String> loadConfigOptions(String filePath) throws IOException {
+        BufferedReader configOptionReader = new BufferedReader(new InputStreamReader(AssetLoader.class.getResourceAsStream(filePath)));
+        HashMap<String,String> configMap = new HashMap<>();
+        while(configOptionReader.ready())
+        {
+            String line = configOptionReader.readLine();
+            String[] configList = line.trim().split(":");
+            configMap.put(configList[0],configList[1]);
+        }
+        return configMap;
+    }
+    public static ArrayList<String> loadConfigList(String filePath) throws IOException {
+        ArrayList<String> list = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(AssetLoader.class.getResourceAsStream(filePath)));
+        String line;
+        while ((line = br.readLine()) != null) {
+            list.add(line);
+        }
+        return list;
+    }
 }

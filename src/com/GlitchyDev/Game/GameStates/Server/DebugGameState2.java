@@ -1,4 +1,4 @@
-package com.GlitchyDev.Game.GameStates.Client;
+package com.GlitchyDev.Game.GameStates.Server;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Game.GameStates.InputGameStateBase;
@@ -24,44 +24,21 @@ import java.util.Iterator;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
 
 public class DebugGameState2 extends InputGameStateBase {
-    private GameStateType gameStateType = GameStateType.DEBUG_2;
     private ServerNetworkConnection serverNetworkConnection;
 
-    private Renderer renderer;
-    private Camera camera;
-    private GameItem[] gameItems;
     private TextItem[] hudItems;
     private SpriteItem[] spriteItems;
 
 
 
     public DebugGameState2(GlobalGameData globalGameDataBase) {
-        super(globalGameDataBase);
+        super(globalGameDataBase, GameStateType.DEBUG_2);
         init();
 
     }
 
     @Override
     public void init() {
-        renderer = new Renderer();
-        camera = new Camera();
-
-        Mesh mesh = AssetLoader.getMeshAsset("cube");
-        Texture texture = AssetLoader.getTextureAsset("grassblock");
-        mesh.setTexture(texture);
-
-        GameItem gameItem = new GameItem(mesh);
-        gameItem.setScale(0.5f);
-        gameItem.setPosition(0, 0, -2);
-
-        GameItem gameItem2 = new GameItem(mesh);
-        gameItem2.setScale(0.5f);
-        gameItem2.setPosition(0, 1, -2);
-
-
-        gameItems = new GameItem[]{gameItem,gameItem2};
-
-
         final Font FONT = new Font("Arial", Font.PLAIN, 20);
         final String CHARSET = "ISO-8859-1";
 
@@ -73,7 +50,7 @@ public class DebugGameState2 extends InputGameStateBase {
 
         spriteItems = new SpriteItem[1];
         for(int i = 0; i < spriteItems.length; i++) {
-            spriteItems[i] = new SpriteItem(AssetLoader.getTextureAsset("Tomo"));
+            spriteItems[i] = new SpriteItem(AssetLoader.getTextureAsset("Tomo"),true);
             spriteItems[i].setPosition(0, 0, (float) (0.000001 * i));
             spriteItems[i].setScale(1.0f);
         }
@@ -84,6 +61,8 @@ public class DebugGameState2 extends InputGameStateBase {
 
     @Override
     public void render() {
+        renderer.prepRender(globalGameData.getGameWindow());
+        renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
     }
 
     @Override
@@ -129,8 +108,8 @@ public class DebugGameState2 extends InputGameStateBase {
     @Override
     public void enterState(GameStateType previousGameState) {
         super.enterState(previousGameState);
-        globalGameData.getGameWindow().setCursor(AssetLoader.getGeneralAsset("Icon16x16.png"),0,0);
-        globalGameData.getGameWindow().setIcon(getWindowHandle(),AssetLoader.getGeneralAsset("Icon24x24.png"),AssetLoader.getGeneralAsset("Icon32x32.png"));
+        globalGameData.getGameWindow().setCursor(AssetLoader.getInputStream("Icon16x16.png"),0,0);
+        globalGameData.getGameWindow().setIcon(getWindowHandle(),AssetLoader.getInputStream("Icon24x24.png"),AssetLoader.getInputStream("Icon32x32.png"));
     }
 
     @Override

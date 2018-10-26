@@ -1,0 +1,59 @@
+package com.GlitchyDev.Rendering.Assets;
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class HudTexture {
+    protected final String fontName;
+    protected final Map<Character, CharInfo> charMap;
+    protected Texture texture;
+    protected int height;
+    protected int width;
+
+
+
+    public HudTexture(String fontName)
+    {
+        this.fontName = fontName;
+        charMap = new HashMap<>();
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public CharInfo getCharInfo(char c) {
+        return charMap.get(c);
+    }
+
+    protected abstract void buildTexture();
+
+    protected abstract String getAllAvailableChars(String charsetName);
+
+    public static class CharInfo {
+        private final int startX;
+        private final int width;
+
+        public CharInfo(int startX, int width) {
+            this.startX = startX;
+            this.width = width;
+        }
+
+        public int getStartX() {
+            return startX;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+    }
+}

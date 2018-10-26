@@ -28,13 +28,26 @@ public class Utils {
         return result;
     }
 
-    public static List<String> readAllLines(InputStream stream) throws Exception {
+
+    public static List<String> readAllLines(String fileName) throws Exception {
         List<String> list = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(Class.forName(Utils.class.getName()).getResourceAsStream(fileName)))) {
             String line;
             while ((line = br.readLine()) != null) {
                 list.add(line);
             }
+        }
+        return list;
+    }
+
+    public static List<String> readAllLines(InputStream stream) throws Exception {
+        List<String> list = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(stream))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                list.add(line);
+            }
+        }
         return list;
     }
 

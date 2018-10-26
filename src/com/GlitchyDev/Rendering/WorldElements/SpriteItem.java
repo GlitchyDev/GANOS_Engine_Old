@@ -12,39 +12,25 @@ import java.util.List;
 public class SpriteItem extends GameItem {
 
 
-    public SpriteItem(Texture spriteTexture) {
+    public SpriteItem(Texture spriteTexture, boolean loadedTexture) {
         super();
-        setMesh(buildMesh(spriteTexture,false));
+        setMesh(buildMesh(spriteTexture,loadedTexture));
     }
 
+    /**
+     * Use for loading Render Buffers as Textures
+     * @param renderBuffer
+     */
     public SpriteItem(RenderBuffer renderBuffer) {
         super();
-        setMesh(buildMesh(new Texture(renderBuffer),true));
+        setMesh(buildMesh(new Texture(renderBuffer),false));
     }
 
-    public List<Float> getReversedTextCoords()
-    {
-        List<Float> textCoords = new ArrayList();
-        textCoords.add(0.0f);
-        textCoords.add(1.0f);
 
-        textCoords.add(0.0f);
-        textCoords.add(0.0f);
-
-        textCoords.add(1.0f);
-        textCoords.add(0.0f);
-
-        textCoords.add(1.0f);
-        textCoords.add(1.0f);
-        return textCoords;
-
-    }
-
-    private Mesh buildMesh(Texture spriteTexture, boolean flippped) {
-        List<Float> positions = new ArrayList();
-        List<Float> textCoords = new ArrayList();
-        float[] normals = new float[0];
-        List<Integer> indices = new ArrayList();
+    private Mesh buildMesh(Texture spriteTexture, boolean loadedTexture) {
+        ArrayList<Float> positions = new ArrayList();
+        ArrayList<Float> textCoords = new ArrayList();
+        ArrayList<Integer> indices = new ArrayList();
 
 
 
@@ -54,7 +40,7 @@ public class SpriteItem extends GameItem {
         positions.add(0.0f); //y
         positions.add(0.0f); //z
         textCoords.add(0.0f);
-        textCoords.add(0.0f);
+        textCoords.add(1.0f);
         indices.add(0);
 
         // Left Bottom vertex
@@ -62,7 +48,7 @@ public class SpriteItem extends GameItem {
         positions.add((float) spriteTexture.getHeight()); //y
         positions.add(0.0f); //z
         textCoords.add(0.0f);
-        textCoords.add(1.0f);
+        textCoords.add(0.0f);
         indices.add(1);
 
         // Right Bottom vertex
@@ -70,7 +56,7 @@ public class SpriteItem extends GameItem {
         positions.add((float) spriteTexture.getHeight()); //y
         positions.add(0.0f); //z
         textCoords.add(1.0f);
-        textCoords.add(1.0f);
+        textCoords.add(0.0f);
         indices.add(2);
 
         // Right Top vertex
@@ -78,7 +64,7 @@ public class SpriteItem extends GameItem {
         positions.add(0.0f); //y
         positions.add(0.0f); //z
         textCoords.add(1.0f);
-        textCoords.add(0.0f);
+        textCoords.add(1.0f);
         indices.add(3);
 
         // Add indices por left top and bottom right vertices
@@ -87,13 +73,20 @@ public class SpriteItem extends GameItem {
 
 
         float[] posArr = Utils.listToArray(positions);
-        float[] textCoordsArr = Utils.listToArray(textCoords);
-        if(flippped)
+        if(loadedTexture)
         {
-            textCoordsArr = Utils.listToArray(getReversedTextCoords());
+            for(int i = 0; i < textCoords.size()/4; i++) {
+                float bufferX = textCoords.get(0 + i * 4);
+                float bufferY = textCoords.get(1 + i * 4);
+                textCoords.set(0 + i * 4,textCoords.get(2 + i * 4));
+                textCoords.set(1 + i * 4,textCoords.get(3 + i * 4));
+                textCoords.set(2 + i * 4,bufferX);
+                textCoords.set(3 + i * 4,bufferY);
+            }
         }
+        float[] textCoordsArr = Utils.listToArray(textCoords);
         int[] indicesArr = indices.stream().mapToInt(i->i).toArray();
-        Mesh mesh = new Mesh(posArr, textCoordsArr, normals, indicesArr);
+        Mesh mesh = new Mesh(posArr, textCoordsArr, indicesArr);
         try {
             mesh.setTexture(spriteTexture);
         } catch (Exception e) {

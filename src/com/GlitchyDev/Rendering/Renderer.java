@@ -11,22 +11,16 @@ import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;
 
+/**
+ * Used to render the scene in OpenGl
+ */
 public class Renderer {
 
-    /**
-     * Field of View in Radians
-     */
     private static final float FOV = (float) Math.toRadians(60.0f);
-
     private static final float Z_NEAR = 0.01f;
-
     private static final float Z_FAR = 1000.f;
 
     private final Transformation transformation = new Transformation();
-
-    private ShaderProgram environmentShaderProgram;
-
-    private ShaderProgram hudShaderProgram;
 
     private HashMap<String,ShaderProgram> loadedShaders = new HashMap<>();
 
@@ -41,6 +35,10 @@ public class Renderer {
         }
     }
 
+    /**
+     * A prep method that prepares the current rendering location for rendering
+     * @param window
+     */
     public void prepRender(GameWindow window)
     {
         clear();
@@ -132,11 +130,9 @@ public class Renderer {
     }
 
     public void cleanup() {
-        if (environmentShaderProgram != null) {
-            environmentShaderProgram.cleanup();
-        }
-        if (hudShaderProgram != null) {
-            hudShaderProgram.cleanup();
+        for(String shader :loadedShaders.keySet())
+        {
+            loadedShaders.get(shader).cleanup();
         }
     }
 }

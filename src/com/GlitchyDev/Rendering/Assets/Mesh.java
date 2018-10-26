@@ -29,7 +29,7 @@ public class Mesh {
 
     private Vector3f colour;
 
-    public Mesh(float[] positions, float[] textCoords, float[] normals, int[] indices) {
+    public Mesh(float[] positions, float[] textCoords, int[] indices) {
         FloatBuffer posBuffer = null;
         FloatBuffer textCoordsBuffer = null;
         FloatBuffer vecNormalsBuffer = null;
@@ -59,15 +59,6 @@ public class Mesh {
             glBindBuffer(GL_ARRAY_BUFFER, vboId);
             glBufferData(GL_ARRAY_BUFFER, textCoordsBuffer, GL_STATIC_DRAW);
             glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
-
-            // Vertex normals VBO
-            vboId = glGenBuffers();
-            vboIdList.add(vboId);
-            vecNormalsBuffer = MemoryUtil.memAllocFloat(normals.length);
-            vecNormalsBuffer.put(normals).flip();
-            glBindBuffer(GL_ARRAY_BUFFER, vboId);
-            glBufferData(GL_ARRAY_BUFFER, vecNormalsBuffer, GL_STATIC_DRAW);
-            glVertexAttribPointer(2, 3, GL_FLOAT, false, 0, 0);
 
             // Index VBO
             vboId = glGenBuffers();

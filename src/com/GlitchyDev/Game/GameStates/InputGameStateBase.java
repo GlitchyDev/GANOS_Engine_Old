@@ -9,8 +9,8 @@ public abstract class InputGameStateBase extends MonitoredGameStateBase {
     protected GameInputTimings gameInputTimings;
 
 
-    public InputGameStateBase(GlobalGameData globalGameDataBase) {
-        super(globalGameDataBase);
+    public InputGameStateBase(GlobalGameData globalGameDataBase, GameStateType gameStateType) {
+        super(globalGameDataBase, gameStateType);
         gameInput = new GameInput();
         gameInput.bind(getWindowHandle());
         gameInputTimings = new GameInputTimings(gameInput);

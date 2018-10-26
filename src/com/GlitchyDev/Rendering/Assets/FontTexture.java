@@ -3,56 +3,24 @@ package com.GlitchyDev.Rendering.Assets;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FontTexture {
+public class FontTexture extends HudTexture {
 
     private static final String IMAGE_FORMAT = "png";
-
     private final Font font;
 
-    private final String charSetName;
-
-    private final Map<Character, CharInfo> charMap;
-
-    private Texture texture;
-
-    private int height;
-
-    private int width;
-
     public FontTexture(Font font, String charSetName) {
+        super(charSetName);
         this.font = font;
-        this.charSetName = charSetName;
-        charMap = new HashMap<>();
-
         buildTexture();
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public Texture getTexture() {
-        return texture;
-    }
-
-    public CharInfo getCharInfo(char c) {
-        return charMap.get(c);
-    }
-
-    private String getAllAvailableChars(String charsetName) {
+    protected String getAllAvailableChars(String charsetName) {
         CharsetEncoder ce = Charset.forName(charsetName).newEncoder();
         StringBuilder result = new StringBuilder();
         for (char c = 0; c < Character.MAX_VALUE; c++) {
@@ -63,14 +31,14 @@ public class FontTexture {
         return result.toString();
     }
 
-    private void buildTexture() {
+    protected void buildTexture() {
         // Get the font metrics for each character for the selected font by using image
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2D = img.createGraphics();
         g2D.setFont(font);
         FontMetrics fontMetrics = g2D.getFontMetrics();
 
-        String allChars = getAllAvailableChars(charSetName);
+        String allChars = getAllAvailableChars(fontName);
         this.width = 0;
         this.height = 0;
         for (char c : allChars.toCharArray()) {
@@ -92,6 +60,7 @@ public class FontTexture {
         g2D.drawString(allChars, 0, fontMetrics.getAscent());
         g2D.dispose();
 
+
         // Dump image to a byte buffer
         InputStream is;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -106,23 +75,4 @@ public class FontTexture {
         texture = new Texture(is);
     }
 
-    public static class CharInfo {
-
-        private final int startX;
-
-        private final int width;
-
-        public CharInfo(int startX, int width) {
-            this.startX = startX;
-            this.width = width;
-        }
-
-        public int getStartX() {
-            return startX;
-        }
-
-        public int getWidth() {
-            return width;
-        }
-    }
 }
