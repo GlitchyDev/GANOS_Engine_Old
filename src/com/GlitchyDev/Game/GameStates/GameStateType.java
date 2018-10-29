@@ -8,4 +8,5 @@ public enum GameStateType {
     DEBUG_4,
     DEBUG_5,
     DEBUG_WORLD,
+    MAPBUILDER,
 }

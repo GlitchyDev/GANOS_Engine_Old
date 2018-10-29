@@ -1,47 +1,39 @@
 package com.GlitchyDev.Game.GameStates.Client;
 
+import com.GlitchyDev.Game.GameStates.Abstract.EnvironmentGameState;
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Game.GameStates.InputGameStateBase;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Networking.GameSocket;
-import com.GlitchyDev.Networking.Packets.ClientPackets.ClientIntroductionPacket;
-import com.GlitchyDev.Networking.Packets.General.DebugScrollPacket;
 import com.GlitchyDev.Networking.Packets.NetworkDisconnectType;
-import com.GlitchyDev.Networking.Packets.Packet;
-import com.GlitchyDev.Networking.Packets.PacketType;
 import com.GlitchyDev.Rendering.Assets.*;
 import com.GlitchyDev.Rendering.WorldElements.Camera;
 import com.GlitchyDev.Rendering.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.WorldElements.SpriteItem;
 import com.GlitchyDev.Rendering.WorldElements.TextItem;
-import com.GlitchyDev.Rendering.Renderer;
-import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.Utility.GlobalGameData;
 import org.joml.*;
 
 import java.awt.*;
-import java.io.IOException;
 import java.lang.Math;
-import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 
-public class DebugGameState1 extends InputGameStateBase {
+public class DebugGameState1 extends EnvironmentGameState {
     // required for each gamestate
     private Camera camera;
-    private GameItem[] gameItems;
-    private TextItem[] hudItems;
-    private SpriteItem[] spriteItems;
+    private ArrayList<GameItem> gameItems = new ArrayList<>();
+    private ArrayList<TextItem> hudItems = new ArrayList<>();
+    private ArrayList<SpriteItem> spriteItems = new ArrayList<>();
     private GameSocket gameSocket;
 
     private RenderBuffer debugBuffer;
     private SpriteItem debugItem;
 
-    private Mesh mesh1;
-    private Mesh mesh2;
+    private HashMap<String,Mesh> activeMeshes;
+
 
     public DebugGameState1(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.DEBUG_1);
@@ -54,39 +46,49 @@ public class DebugGameState1 extends InputGameStateBase {
     public void init() {
         camera = new Camera();
 
-        mesh1 = AssetLoader.getMeshAsset("untitled");
-        mesh2 = AssetLoader.loadCacheMesh("untitled.obj");
+        activeMeshes = new HashMap<>();
 
-        mesh1.setTexture(AssetLoader.getTextureAsset("grassblock"));
-        mesh2.setTexture(AssetLoader.getTextureAsset("testTexture"));
+        activeMeshes.put("Cube", AssetLoader.getMeshAsset("DefaultCube"));
+        activeMeshes.get("Cube").setTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"));
 
+        activeMeshes.put("Floor", AssetLoader.getMeshAsset("DefaultSquare"));
+        activeMeshes.get("Floor").setTexture(AssetLoader.getTextureAsset("Test_Floor"));
 
-
-        int width = 2;
-        int height = 2;
-        int length = 1;
-        gameItems = new GameItem[width * height * length];
+        activeMeshes.put("Wall", AssetLoader.getMeshAsset("flatWall1"));
+        activeMeshes.get("Wall").setTexture(AssetLoader.getTextureAsset("Test_Floor"));
 
 
-        int ii = 0;
+
+        int width = 10;
+        int height = 1;
+        int length = 10;
+
+
+
+
         for(int x = 0; x < width; x++)
         {
             for(int y = 0; y < height; y++)
             {
                 for(int z = 0; z < length; z++)
                 {
-                    GameItem gameItem;
-                    if(Math.random() > 0.5) {
-                        gameItem = new GameItem(mesh1);
+                    if(Math.random() > 0.8) {
+                        for(int i = 0; i < (int)(Math.random() * 3 +1); i++) {
+                            GameItem gameItem = new GameItem(activeMeshes.get("Cube"));
+                            gameItem.setPosition(x, y + 1 + i, z);
+                            gameItem.setScale(0.5f);
+                            gameItems.add(gameItem);
+                        }
                     }
                     else
                     {
-                        gameItem = new GameItem(mesh2);
+                        GameItem gameItem = new GameItem(activeMeshes.get("Floor"));
+                        gameItem.setPosition(x,y,z);
+
+                        gameItem.setScale(0.5f);
+                        gameItems.add(gameItem);
                     }
-                    gameItem.setScale(0.5f);
-                    gameItem.setPosition(x,y,z);
-                    gameItems[ii] = gameItem;
-                    ii++;
+
                 }
             }
         }
@@ -104,13 +106,15 @@ public class DebugGameState1 extends InputGameStateBase {
         TextItem item = new TextItem("",fontTexture);
         TextItem item2 = new TextItem("Robert_Louis_Hannah",customTexture);
         item2.setPosition(0,100,0);
-        hudItems = new TextItem[]{item,item2};
+        hudItems.add(item);
+        hudItems.add(item2);
 
-        spriteItems = new SpriteItem[1];
-        for(int i = 0; i < spriteItems.length; i++) {
-            spriteItems[i] = new SpriteItem(AssetLoader.getTextureAsset("Tomo"),true);
-            spriteItems[i].setPosition(0, 0, (float) (0.000001 * i));
-            spriteItems[i].setScale(1.0f);
+
+
+        for(int i = 0; i < spriteItems.size(); i++) {
+            spriteItems.add(new SpriteItem(AssetLoader.getTextureAsset("Tomo"),true));
+            spriteItems.get(i).setPosition(0, 0, (float) (0.000001 * i));
+            spriteItems.get(i).setScale(1.0f);
         }
 
 
@@ -151,8 +155,8 @@ public class DebugGameState1 extends InputGameStateBase {
     public void logic() {
 
 
-        hudItems[1].setText("FPS:_" + getCurrentFPS() + "_COUNT_" + getFPSCount() + "_A_" + (getRenderUtilization() + getLogicUtilization()));
-        hudItems[0].setText("" + camera.getRotation().y + " " + Math.sin(camera.getRotation().y/180*Math.PI));
+        hudItems.get(1).setText("FPS:_" + getCurrentFPS() + "_COUNT_" + getFPSCount() + "_A_" + (getRenderUtilization() + getLogicUtilization()));
+        hudItems.get(0).setText("" + camera.getRotation().y + " " + Math.sin(camera.getRotation().y/180*Math.PI));
 
 
         final double movementSpeed = 0.3;
@@ -209,87 +213,26 @@ public class DebugGameState1 extends InputGameStateBase {
         }
         camera.updateViewMatrix();
 
-        /*
-        GameItem gameItem1 = selectGameItem(gameItems,camera);
+
+        GameItem gameItem1 = selectGameItem3D(gameItems,camera);
         GameItem gameItem2 = selectGameItem2D(gameItems,globalGameData.getGameWindow(),new Vector2d(gameInput.getMouseX(),gameInput.getMouseY()),camera);
 
-        for(GameItem gameItem: gameItems)
-        {
-            gameItem.setMesh(mesh1);
-        }
         if(gameItem1 != null)
         {
-            gameItem1.setMesh(mesh2);
+            gameItem1.setMesh(activeMeshes.get("Wall"));
+            gameItem1.setRotation(0,90 * (int)(Math.random() * 4),0);
         }
         if(gameItem2 != null)
         {
-            gameItem2.setMesh(mesh2);
-        }
-        */
-
-
-    }
-
-
-
-    Vector3f dir = new Vector3f();
-    Vector3f max = new Vector3f();
-    Vector3f min = new Vector3f();
-    Vector2f nearFar = new Vector2f();
-    public GameItem selectGameItem(GameItem[] gameItems, Camera camera) {
-        dir = camera.getViewMatrix().positiveZ(dir).negate();
-        return selectGameItem(gameItems, camera.getPosition(), dir);
-    }
-
-    protected GameItem selectGameItem(GameItem[] gameItems, Vector3f center, Vector3f dir) {
-        GameItem selectedGameItem = null;
-        float closestDistance = Float.POSITIVE_INFINITY;
-
-        for (GameItem gameItem : gameItems) {
-            min.set(gameItem.getPosition());
-            max.set(gameItem.getPosition());
-            min.add(-gameItem.getScale(), -gameItem.getScale(), -gameItem.getScale());
-            max.add(gameItem.getScale(), gameItem.getScale(), gameItem.getScale());
-            if (Intersectionf.intersectRayAab(center, dir, min, max, nearFar) && nearFar.x < closestDistance) {
-                closestDistance = nearFar.x;
-                selectedGameItem = gameItem;
-            }
+            gameItem2.setMesh(activeMeshes.get("Cube"));
         }
 
-        return selectedGameItem;
+
+
     }
 
 
-    Matrix4f invProjectionMatrix = new Matrix4f();
-    Matrix4f invViewMatrix = new Matrix4f();
-    Vector3f mouseDir = new Vector3f();
-    Vector4f tmpVec = new Vector4f();
-    public GameItem selectGameItem2D(GameItem[] gameItems, GameWindow window, Vector2d mousePos, Camera camera) {
-        // Transform mouse coordinates into normalized spaze [-1, 1]
-        int wdwWitdh = window.getWidth();
-        int wdwHeight = window.getHeight();
 
-        float x = (float)(2 * mousePos.x) / (float)wdwWitdh - 1.0f;
-        float y = 1.0f - (float)(2 * mousePos.y) / (float)wdwHeight;
-        float z = -1.0f;
-
-        invProjectionMatrix.set(window.getProjectionMatrix());
-        invProjectionMatrix.invert();
-
-        tmpVec.set(x, y, z, 1.0f);
-        tmpVec.mul(invProjectionMatrix);
-        tmpVec.z = -1.0f;
-        tmpVec.w = 0.0f;
-
-        Matrix4f viewMatrix = camera.getViewMatrix();
-        invViewMatrix.set(viewMatrix);
-        invViewMatrix.invert();
-        tmpVec.mul(invViewMatrix);
-
-        mouseDir.set(tmpVec.x, tmpVec.y, tmpVec.z);
-
-        return selectGameItem(gameItems, camera.getPosition(), mouseDir);
-    }
     /*
     if (gameInput.getKeyValue(GLFW_KEY_ESCAPE) == 1) {
             globalGameData.getGameWindow().makeWindowClose();

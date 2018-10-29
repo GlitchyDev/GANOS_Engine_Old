@@ -24,19 +24,17 @@ public class GameInput {
     public void bind(long windowHandle) {
 
         glfwSetKeyCallback(windowHandle, (windowID, key, scancode, action, mods) -> {
-            keyMapping[key] = action;
-            if(!activeKeys.contains(key) && action == GLFW_PRESS)
-            {
-                activeKeys.add(key);
-            }
-            else
-            {
-                if(action == GLFW_RELEASE)
-                {
-                    activeKeys.remove(Integer.valueOf(key));
+            if(key >= 0 && key <= keyMapping.length) {
+                keyMapping[key] = action;
+                if (!activeKeys.contains(key) && action == GLFW_PRESS) {
+                    activeKeys.add(key);
+                } else {
+                    if (action == GLFW_RELEASE) {
+                        activeKeys.remove(Integer.valueOf(key));
+                    }
                 }
+                currentKeyModifier = mods;
             }
-            currentKeyModifier = mods;
         });
 
         glfwSetCursorPosCallback(windowHandle, (windowID, xpos, ypos) -> {

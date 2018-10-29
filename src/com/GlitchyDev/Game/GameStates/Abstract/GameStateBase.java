@@ -1,5 +1,6 @@
-package com.GlitchyDev.Game.GameStates;
+package com.GlitchyDev.Game.GameStates.Abstract;
 
+import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.Utility.GlobalGameData;
 

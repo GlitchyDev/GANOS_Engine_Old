@@ -2,6 +2,8 @@ package com.GlitchyDev.IO;
 
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.OBJLoader;
+import com.GlitchyDev.Rendering.Assets.Sounds.SoundBuffer;
+import com.GlitchyDev.Rendering.Assets.Sounds.SoundManager;
 import com.GlitchyDev.Rendering.Assets.Texture;
 import com.GlitchyDev.Rendering.Assets.Utils;
 
@@ -14,8 +16,10 @@ import java.util.List;
 
 public class AssetLoader {
 
+    private static SoundManager soundManager = new SoundManager();
     private static HashMap<String,String> allAssets = new HashMap<>();
     private static HashMap<String,Texture> textureAssets = new HashMap<>();
+    private static HashMap<String,SoundBuffer> soundAssets = new HashMap<>();
     private static HashMap<String,Mesh> meshAssets = new HashMap<>();
     private static HashMap<String,String> vertexShaderAssets = new HashMap<>();
     private static HashMap<String,String> fragmentShaderAssets = new HashMap<>();
@@ -27,8 +31,10 @@ public class AssetLoader {
 
 
 
+
     public static void loadAssets() throws Exception {
         System.out.println("AssetLoader: Loading Assets");
+        soundManager.init();
         long startTime = System.currentTimeMillis();
         detectIfJar();
         if(!isLoadedFromJar) {
@@ -69,8 +75,9 @@ public class AssetLoader {
             case "png":
                 textureAssets.put(name,loadTexture(filePath));
                 break;
-            case "wav":
-                //
+            case "ogg":
+                System.out.println(filePath);
+                soundAssets.put(name,loadSound(filePath));
                 break;
             case "vs":
                 vertexShaderAssets.put(name,loadShader(filePath));
@@ -141,6 +148,8 @@ public class AssetLoader {
         return textureAssets.get(name);
     }
 
+    public static SoundBuffer getSoundAsset(String name) { return soundAssets.get(name);}
+
     public static Mesh getMeshAsset(String name)
     {
         return meshAssets.get(name);
@@ -170,18 +179,27 @@ public class AssetLoader {
     {
         return OBJLoader.loadMesh(AssetLoader.class.getResourceAsStream(filePath));
     }
-    public static Mesh loadCacheMesh(String fileName)
+
+    public static Mesh loadCacheMesh(String filePath)
     {
-        return OBJLoader.loadMesh(AssetLoader.class.getResourceAsStream(allAssets.get(fileName)));
+        return OBJLoader.loadMesh(AssetLoader.class.getResourceAsStream(allAssets.get(filePath)));
     }
+
+    public static SoundBuffer loadSound(String filePath)
+    {
+        try {
+            return new SoundBuffer(AssetLoader.class.getResourceAsStream(filePath));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static Texture loadTexture(String filePath)
     {
         return new Texture(AssetLoader.class.getResourceAsStream(filePath));
     }
-    public static Texture loadSound(String filePath)
-    {
-        return null;
-    }
+
     public static String loadShader(String filePath)
     {
         try {
@@ -191,6 +209,7 @@ public class AssetLoader {
         }
         return null;
     }
+
     public static HashMap<String,String> loadConfigOptions(String filePath) throws IOException {
         BufferedReader configOptionReader = new BufferedReader(new InputStreamReader(AssetLoader.class.getResourceAsStream(filePath)));
         HashMap<String,String> configMap = new HashMap<>();
@@ -202,6 +221,7 @@ public class AssetLoader {
         }
         return configMap;
     }
+
     public static ArrayList<String> loadConfigList(String filePath) throws IOException {
         ArrayList<String> list = new ArrayList<>();
         BufferedReader br = new BufferedReader(new InputStreamReader(AssetLoader.class.getResourceAsStream(filePath)));

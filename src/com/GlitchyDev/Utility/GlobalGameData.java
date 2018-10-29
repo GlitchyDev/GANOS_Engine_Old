@@ -1,6 +1,6 @@
 package com.GlitchyDev.Utility;
 
-import com.GlitchyDev.Game.GameStates.GameStateBase;
+import com.GlitchyDev.Game.GameStates.Abstract.GameStateBase;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 
 import java.util.HashMap;

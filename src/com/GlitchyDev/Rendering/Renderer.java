@@ -8,6 +8,7 @@ import com.GlitchyDev.Utility.GameWindow;
 import org.joml.Matrix4f;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -53,7 +54,7 @@ public class Renderer {
     }
 
 
-    public void render3DElements(GameWindow window, String shaderName, Camera camera, GameItem[] gameItems)
+    public void render3DElements(GameWindow window, String shaderName, Camera camera, List<GameItem> gameItems)
     {
         ShaderProgram shader = loadedShaders.get(shaderName);
         shader.bind();
@@ -82,7 +83,7 @@ public class Renderer {
 
 
 
-    public void renderHUD(GameWindow window, String shaderName, TextItem[] hudItems)
+    public void renderHUD(GameWindow window, String shaderName, List<TextItem> hudItems)
     {
         ShaderProgram shader = loadedShaders.get(shaderName);
         shader.bind();
@@ -105,7 +106,7 @@ public class Renderer {
         shader.unbind();
     }
 
-    public void renderSprites(GameWindow window, String shaderName, SpriteItem[] spriteItems)
+    public void renderSprites(GameWindow window, String shaderName, List<SpriteItem> spriteItems)
     {
         ShaderProgram shader = loadedShaders.get(shaderName);
         shader.bind();
