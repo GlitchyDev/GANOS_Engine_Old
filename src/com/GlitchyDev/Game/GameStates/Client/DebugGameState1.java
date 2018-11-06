@@ -103,9 +103,9 @@ public class DebugGameState1 extends EnvironmentGameState {
 
         FontTexture fontTexture = new FontTexture(FONT,CHARSET);
         CustomFontTexture customTexture = new CustomFontTexture("DebugFont");
-        TextItem item = new TextItem("",fontTexture);
-        TextItem item2 = new TextItem("Robert_Louis_Hannah",customTexture);
-        item2.setPosition(0,100,0);
+        TextItem item = new TextItem("",customTexture);
+        TextItem item2 = new TextItem("",customTexture);
+        item2.setPosition(0,20,0);
         hudItems.add(item);
         hudItems.add(item2);
 
@@ -154,9 +154,8 @@ public class DebugGameState1 extends EnvironmentGameState {
     @Override
     public void logic() {
 
-
-        hudItems.get(1).setText("FPS:_" + getCurrentFPS() + "_COUNT_" + getFPSCount() + "_A_" + (getRenderUtilization() + getLogicUtilization()));
-        hudItems.get(0).setText("" + camera.getRotation().y + " " + Math.sin(camera.getRotation().y/180*Math.PI));
+        hudItems.get(0).setText("Render: " + getRenderUtilization() + " Logic: " + getLogicUtilization());
+        hudItems.get(1).setText("FPS:" + getCurrentFPS());
 
 
         final double movementSpeed = 0.3;

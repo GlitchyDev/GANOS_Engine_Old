@@ -42,11 +42,23 @@ public abstract class HudTexture {
     public static class CharInfo {
         private final int startX;
         private final int width;
+        private final int leftBufferWidth;
+        private final int rightBufferWidth;
 
         public CharInfo(int startX, int width) {
             this.startX = startX;
             this.width = width;
+            this.leftBufferWidth = 0;
+            this.rightBufferWidth = 0;
         }
+
+        public CharInfo(int startX, int width, int leftBufferWidth, int rightBufferWidth) {
+            this.startX = startX;
+            this.width = width;
+            this.leftBufferWidth = leftBufferWidth;
+            this.rightBufferWidth = rightBufferWidth;
+        }
+
 
         public int getStartX() {
             return startX;
@@ -55,5 +67,14 @@ public abstract class HudTexture {
         public int getWidth() {
             return width;
         }
+
+        public int getLeftBufferWidth(){
+            return leftBufferWidth;
+        }
+
+        public int getRightBufferWidth(){
+            return rightBufferWidth;
+        }
+
     }
 }

@@ -42,6 +42,7 @@ public class Texture {
             // Upload the texture data
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, decoder.getWidth(), decoder.getHeight(), 0,
                     GL_RGBA, GL_UNSIGNED_BYTE, buf);
+
             // Generate Mip Map
             glGenerateMipmap(GL_TEXTURE_2D);
         } catch (IOException e) {
@@ -54,6 +55,25 @@ public class Texture {
         this.width = renderBuffer.getWidth();
         this.height = renderBuffer.getHeight();
         this.id = renderBuffer.getTextureID();
+    }
+
+    public Texture(int id, int width, int height)
+    {
+        this.id = id;
+        this.width = width;
+        this.height = height;
+    }
+
+    public Texture getSubTexture(int x, int y, int width, int height)
+    {
+        int id = glGenTextures();
+        glBindTexture(GL_TEXTURE_2D, id);
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,0,0,50,50,0);
+        return new Texture(id, width, height);
+
     }
 
     //public void bind() {glBindTexture(GL_TEXTURE_2D, id);}

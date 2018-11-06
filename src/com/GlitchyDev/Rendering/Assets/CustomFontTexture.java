@@ -34,22 +34,28 @@ public class CustomFontTexture extends HudTexture {
 
     protected void buildTexture() {
         // Get the font metrics for each character for the selected font by using image
+        texture = AssetLoader.getTextureAsset(fontName);
 
-
+        // Possibly integrate into a array method
         String allChars = getAllAvailableChars(fontName);
         this.width = 0;
-        this.height = 0;
+        this.height = texture.getHeight();
         for (String s : allChars.split("@")) {
+            System.out.println(s);
             // Get the size for each character and update global image size
-            CharInfo charInfo = new CharInfo(width, 7);
-            for(char c: s.toCharArray()) {
+            String[] formatted = s.split("\\|");
+            int leftCharSpacing = Integer.valueOf(formatted[1]);
+            int charWidth = Integer.valueOf(formatted[2]);
+            int rightCharSpacing = Integer.valueOf(formatted[3]);
+
+            CharInfo charInfo = new CharInfo(width, charWidth, leftCharSpacing, rightCharSpacing);
+            for(char c: formatted[0].toCharArray()) {
                 charMap.put(c, charInfo);
             }
-            width += charInfo.getWidth() + 1;
-            height = 10;
+            width += charInfo.getWidth();
 
         }
-        texture = AssetLoader.getTextureAsset(fontName);
+
     }
 
 

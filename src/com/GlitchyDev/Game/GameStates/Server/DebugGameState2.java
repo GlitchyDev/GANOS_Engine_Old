@@ -55,7 +55,7 @@ public class DebugGameState2 extends InputGameStateBase {
     @Override
     public void windowClose() {
 
-        serverNetworkConnection.disableAcceptingClients();
+        //serverNetworkConnection.disableAcceptingClients();
 
     }
 }

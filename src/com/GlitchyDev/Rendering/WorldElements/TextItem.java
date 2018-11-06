@@ -18,6 +18,7 @@ public class TextItem extends GameItem {
     
     private String text;
 
+
     public TextItem(String text, HudTexture hudTexture) {
         super();
         this.text = text;
@@ -44,7 +45,7 @@ public class TextItem extends GameItem {
             // Build a character tile composed by two triangles
 
             // Left Top vertex
-            positions.add(startx); // x
+            positions.add(startx + charInfo.getLeftBufferWidth()); // x
             positions.add(0.0f); //y
             positions.add(ZPOS); //z
             textCoords.add( (float)charInfo.getStartX() / (float)hudTexture.getWidth());
@@ -52,7 +53,7 @@ public class TextItem extends GameItem {
             indices.add(i*VERTICES_PER_QUAD);
 
             // Left Bottom vertex
-            positions.add(startx); // x
+            positions.add(startx + charInfo.getLeftBufferWidth()); // x
             positions.add((float)hudTexture.getHeight()); //y
             positions.add(ZPOS); //z
             textCoords.add((float)charInfo.getStartX() / (float)hudTexture.getWidth());
@@ -60,7 +61,7 @@ public class TextItem extends GameItem {
             indices.add(i*VERTICES_PER_QUAD + 1);
 
             // Right Bottom vertex
-            positions.add(startx + charInfo.getWidth()); // x
+            positions.add(startx + charInfo.getWidth()  + charInfo.getLeftBufferWidth()); // x
             positions.add((float)hudTexture.getHeight()); //y
             positions.add(ZPOS); //z
             textCoords.add((float)(charInfo.getStartX() + charInfo.getWidth() )/ (float)hudTexture.getWidth());
@@ -68,7 +69,7 @@ public class TextItem extends GameItem {
             indices.add(i*VERTICES_PER_QUAD + 2);
 
             // Right Top vertex
-            positions.add(startx + charInfo.getWidth()); // x
+            positions.add(startx + charInfo.getWidth()  + charInfo.getLeftBufferWidth()); // x
             positions.add(0.0f); //y
             positions.add(ZPOS); //z
             textCoords.add((float)(charInfo.getStartX() + charInfo.getWidth() )/ (float)hudTexture.getWidth());
@@ -79,7 +80,9 @@ public class TextItem extends GameItem {
             indices.add(i*VERTICES_PER_QUAD);
             indices.add(i*VERTICES_PER_QUAD + 2);
 
-            startx += charInfo.getWidth();
+            System.out.println(characters[i] + " " + charInfo.getLeftBufferWidth() + " " + charInfo.getWidth() + " " + charInfo.getRightBufferWidth());
+
+            startx += charInfo.getWidth() + charInfo.getRightBufferWidth() + charInfo.getLeftBufferWidth();
         }
 
         float[] posArr = Utils.listToArray(positions);
@@ -99,5 +102,6 @@ public class TextItem extends GameItem {
         this.getMesh().deleteBuffers();
         this.setMesh(buildMesh());
     }
+
 
 }
