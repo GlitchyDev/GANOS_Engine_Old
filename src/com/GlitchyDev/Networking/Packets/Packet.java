@@ -1,5 +1,8 @@
 package com.GlitchyDev.Networking.Packets;
 
+/**
+ * A basic construct used to relay information between Client and Server through sockets
+ */
 public class Packet {
     protected PacketType packetType;
     final protected String[] data;

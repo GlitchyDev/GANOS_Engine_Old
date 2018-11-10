@@ -3,7 +3,9 @@ package com.GlitchyDev.Networking.Packets.ClientPackets;
 import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
 
-// Give SecretUUID || ( Username/Password)
+/**
+ * A Client packet designated to start a connection to a server
+ */
 public class ClientIntroductionPacket extends Packet {
     private final PacketType packetType = PacketType.C_INTRODUCTION;
 

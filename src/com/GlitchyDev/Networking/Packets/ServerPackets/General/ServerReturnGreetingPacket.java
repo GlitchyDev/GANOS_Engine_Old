@@ -3,7 +3,9 @@ package com.GlitchyDev.Networking.Packets.ServerPackets.General;
 import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
 
-// Send back SecretUUID
+/**
+ * A Server packet designated to reply to an introduction connection packet from a Client
+ */
 public class ServerReturnGreetingPacket extends Packet {
     private final PacketType packetType = PacketType.S_RETURN_GREETING;
 

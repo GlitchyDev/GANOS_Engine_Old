@@ -3,6 +3,9 @@ package com.GlitchyDev.Rendering.Assets.Sounds;
 import org.joml.Vector3f;
 import static org.lwjgl.openal.AL10.*;
 
+/**
+ * A potential modifier for receiving SoundSources in relative space
+ */
 public class SoundListener {
 
     public SoundListener() {

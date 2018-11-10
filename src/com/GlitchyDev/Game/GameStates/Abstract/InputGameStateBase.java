@@ -5,6 +5,9 @@ import com.GlitchyDev.GameInput.GameInput;
 import com.GlitchyDev.GameInput.GameInputTimings;
 import com.GlitchyDev.Utility.GlobalGameData;
 
+/**
+ * A rendering framework for GameStates that include Keyboard Inputs,
+ */
 public abstract class InputGameStateBase extends MonitoredGameStateBase {
     protected GameInput gameInput;
     protected GameInputTimings gameInputTimings;

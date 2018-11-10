@@ -13,18 +13,18 @@ import java.util.List;
 import static org.lwjgl.opengl.GL11.*;
 
 /**
- * Used to render the scene in OpenGl
+ * A rendering assistant for rendering GameItems in OpenGL using Shaders
  */
 public class Renderer {
-
     private static final float FOV = (float) Math.toRadians(60.0f);
     private static final float Z_NEAR = 0.01f;
     private static final float Z_FAR = 1000.f;
-
     private final Transformation transformation = new Transformation();
 
+    // All the currently Loaded Shaders
     private HashMap<String,ShaderProgram> loadedShaders = new HashMap<>();
 
+    // Initialize after AssetLoading
     public Renderer() {
         for(String shaderName: AssetLoader.getConfigListAsset("Shaders"))
         {
@@ -38,6 +38,7 @@ public class Renderer {
 
     /**
      * A prep method that prepares the current rendering location for rendering
+     * Use when switching between different Rendering Locations and at the beginning of each frame
      * @param window
      */
     public void prepRender(GameWindow window)
@@ -49,11 +50,21 @@ public class Renderer {
         }
     }
 
+    /**
+     * Clear the current Rendering Location
+     */
     public void clear() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
 
+    /**
+     * Renders the Specified GameItems to the Specified Camera using the Specified Shader
+     * @param window
+     * @param shaderName
+     * @param camera
+     * @param gameItems
+     */
     public void render3DElements(GameWindow window, String shaderName, Camera camera, List<GameItem> gameItems)
     {
         ShaderProgram shader = loadedShaders.get(shaderName);
@@ -81,8 +92,12 @@ public class Renderer {
     }
 
 
-
-
+    /**
+     * Renders the Specified HudItems using the Specified Shader
+     * @param window
+     * @param shaderName
+     * @param hudItems
+     */
     public void renderHUD(GameWindow window, String shaderName, List<TextItem> hudItems)
     {
         ShaderProgram shader = loadedShaders.get(shaderName);
@@ -106,6 +121,13 @@ public class Renderer {
         shader.unbind();
     }
 
+
+    /**
+     * Renders the Specified SpriteItems using the Specified Shader
+     * @param window
+     * @param shaderName
+     * @param spriteItems
+     */
     public void renderSprites(GameWindow window, String shaderName, List<SpriteItem> spriteItems)
     {
         ShaderProgram shader = loadedShaders.get(shaderName);

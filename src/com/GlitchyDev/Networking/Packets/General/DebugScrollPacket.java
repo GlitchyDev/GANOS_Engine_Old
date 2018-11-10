@@ -3,6 +3,9 @@ package com.GlitchyDev.Networking.Packets.General;
 import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
 
+/**
+ * Debug Packet
+ */
 public class DebugScrollPacket extends Packet {
     private final PacketType packetType = PacketType.A_DEBUGSCROLL;
 

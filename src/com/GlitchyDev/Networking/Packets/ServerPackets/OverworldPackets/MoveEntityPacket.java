@@ -8,6 +8,9 @@ import java.util.UUID;
 /**
  * Packet Usage: Server Command: Move Target Entity by UUID. Is an absolute location ( May upgrade to Long Measurements later
  */
+/**
+ * A Server packet designated to move an entity in Client View
+ */
 public class MoveEntityPacket extends Packet {
     private final PacketType packetType = PacketType.S_SPAWN_ENTITY;
 

@@ -19,6 +19,9 @@ import static org.lwjgl.openal.ALC10.*;
 import org.lwjgl.openal.ALCCapabilities;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+/**
+ * A manager of Sound related phenomena
+ */
 
 public class SoundManager {
 

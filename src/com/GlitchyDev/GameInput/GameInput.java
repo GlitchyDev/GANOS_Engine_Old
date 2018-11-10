@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import static org.lwjgl.glfw.GLFW.*;
 
+/**
+ * Game Input for Keyboard, mouse buttons, as well as Cursor positions, mouse scrolling, Dragged Files
+ */
 public class GameInput {
     private int[] keyMapping = new int[512];
     private ArrayList<Integer> activeKeys = new ArrayList<>();

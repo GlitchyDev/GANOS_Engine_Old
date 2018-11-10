@@ -20,7 +20,7 @@ import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class GameWindow {
-
+    // Displayed Title of Window
     private String title;
     private long windowHandle;
 
@@ -73,8 +73,6 @@ public class GameWindow {
         // Get the resolution of the primary monitor
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-        width = 500;
-        height = 500;
 
         System.out.println("WINDOW WIDTH " + width + " HEIGHT " + height);
 
@@ -119,6 +117,7 @@ public class GameWindow {
         // Support for transparencies
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        // Enable Culling of Double sided Triangles since we don't use em
         GL11.glEnable( GL11.GL_CULL_FACE );
 
 

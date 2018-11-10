@@ -4,6 +4,9 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A abstract class that facilitates the management of Font based Textures for use in a HudItem
+ */
 public abstract class HudTexture {
     protected final String fontName;
     protected final Map<Character, CharInfo> charMap;

@@ -5,6 +5,9 @@ import com.GlitchyDev.Game.GameStates.GameStateType;
 
 import java.util.HashMap;
 
+/**
+ * A collection and holder of all pertinent game information accessible by any internal components
+ */
 public class GlobalGameData {
     private GameWindow gameWindow;
     private HashMap<GameStateType,GameStateBase> loadedGameStates;

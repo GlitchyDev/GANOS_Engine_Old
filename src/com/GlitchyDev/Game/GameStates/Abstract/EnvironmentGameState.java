@@ -9,6 +9,11 @@ import org.joml.*;
 
 import java.util.List;
 
+/**
+ * A GameState that uses GameItems to construct an 3d or 2d Environment
+ *
+ * Methods identify selected Gameitems from the Center of a selected Camera or selected by the Cursor
+ */
 public abstract class EnvironmentGameState extends InputGameStateBase {
     private Vector3f dir = new Vector3f();
     private Vector3f max = new Vector3f();

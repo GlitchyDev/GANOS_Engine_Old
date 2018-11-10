@@ -3,6 +3,10 @@ package com.GlitchyDev.Rendering.Assets.Sounds;
 import org.joml.Vector3f;
 import static org.lwjgl.openal.AL10.*;
 
+
+/**
+ * A Construct for playing SoundBuffers for a user to recieve
+ */
 public class SoundSource {
 
     private final int sourceId;

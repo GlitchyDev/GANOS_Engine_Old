@@ -16,6 +16,9 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * A Connection Hub for a Server to manage its connections to each Client and their respective GameSocket
+ */
 public class ServerNetworkConnection {
     private ConcurrentHashMap<String,GameSocket> connectedClients;
     private Collection<String> connectedUsers;

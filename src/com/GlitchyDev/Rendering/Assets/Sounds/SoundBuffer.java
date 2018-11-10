@@ -14,6 +14,9 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import static org.lwjgl.system.MemoryUtil.*;
 
+/**
+ * A Sound File that can be played through a Source
+ */
 public class SoundBuffer {
 
     private final int bufferId;

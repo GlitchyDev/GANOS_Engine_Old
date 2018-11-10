@@ -3,6 +3,9 @@ package com.GlitchyDev.GameInput;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Takes the information gained from GameInput, and allows for timings to be associated with keys
+ */
 public class GameInputTimings {
     private final GameInput gameInput;
     private HashMap<Integer,Integer> activeKeyTime = new HashMap<>();

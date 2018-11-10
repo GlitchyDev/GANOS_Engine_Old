@@ -13,6 +13,11 @@ import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * A Basic Socket Connection, used for Either Client or Servers to facilitate sending and Recieving packets from the othe
+ *
+ * It supports putting recieved packets in a Threadsafe Arraylist for later processing, as well as sending packet objects
+ */
 public class GameSocket {
     private PacketReadThread packetReadThread;
 

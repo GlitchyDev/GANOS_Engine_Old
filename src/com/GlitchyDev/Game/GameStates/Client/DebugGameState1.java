@@ -20,7 +20,9 @@ import java.util.HashMap;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-
+/**
+ * A Debug Game State used currently to show Rendering Implementtion, Hud Text, and Controls
+ */
 public class DebugGameState1 extends EnvironmentGameState {
     // required for each gamestate
     private Camera camera;

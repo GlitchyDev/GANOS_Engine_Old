@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * An Static AssetLoader to draw Assets from inside the Jar, initialize and load them, and make them available for use
+ */
+// In the future, allow for the loading of specific assets to be done in order, rather than a load all
 public class AssetLoader {
 
     private static SoundManager soundManager = new SoundManager();

@@ -8,6 +8,9 @@ import com.GlitchyDev.Rendering.Assets.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Game Item Dedicated to displaying Text, in either the 2D or 3D fashion
+ */
 public class TextItem extends GameItem {
 
     private static final float ZPOS = 0.0f;
@@ -79,8 +82,6 @@ public class TextItem extends GameItem {
             // Add indices por left top and bottom right vertices
             indices.add(i*VERTICES_PER_QUAD);
             indices.add(i*VERTICES_PER_QUAD + 2);
-
-            System.out.println(characters[i] + " " + charInfo.getLeftBufferWidth() + " " + charInfo.getWidth() + " " + charInfo.getRightBufferWidth());
 
             startx += charInfo.getWidth() + charInfo.getRightBufferWidth() + charInfo.getLeftBufferWidth();
         }

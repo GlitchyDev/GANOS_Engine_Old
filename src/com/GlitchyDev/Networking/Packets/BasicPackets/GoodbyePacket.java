@@ -4,6 +4,9 @@ import com.GlitchyDev.Networking.Packets.NetworkDisconnectType;
 import com.GlitchyDev.Networking.Packets.Packet;
 import com.GlitchyDev.Networking.Packets.PacketType;
 
+/**
+ * A General packet designated to end a connection between Sockets
+ */
 public class GoodbyePacket extends Packet {
     private final PacketType packetType = PacketType.A_GOODBYE;
 

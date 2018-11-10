@@ -11,6 +11,7 @@ import java.nio.charset.CharsetEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class CustomFontTexture extends HudTexture {
 
 
@@ -41,7 +42,6 @@ public class CustomFontTexture extends HudTexture {
         this.width = 0;
         this.height = texture.getHeight();
         for (String s : allChars.split("@")) {
-            System.out.println(s);
             // Get the size for each character and update global image size
             String[] formatted = s.split("\\|");
             int leftCharSpacing = Integer.valueOf(formatted[1]);

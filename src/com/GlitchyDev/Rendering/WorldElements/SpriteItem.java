@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * A GameItem that loads a Texture for use as a 2D image
+ */
 public class SpriteItem extends GameItem {
 
 

@@ -7,6 +7,16 @@ import com.GlitchyDev.Rendering.Assets.Sounds.SoundManager;
 import com.GlitchyDev.Rendering.Assets.Sounds.SoundSource;
 import com.GlitchyDev.Utility.GlobalGameData;
 
+/**
+ * A gamestate designed to aid in Map Design
+ *
+ * Features should include
+ * - Creating Map Files
+ * - Loading Map Files
+ * - Editing Map Files
+ * - Saving Map Files
+ *
+ */
 public class MapBuilderGameState extends InputGameStateBase {
     private SoundSource debugSource;
 

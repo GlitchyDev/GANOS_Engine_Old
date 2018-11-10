@@ -9,13 +9,17 @@ import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.Utility.GlobalGameData;
 
+/**
+ * The Base Wrapper for the Game
+ */
 public class GANOSGame {
 
     protected GameWindow gameWindow;
     protected GlobalGameData globalGameData;
 
     public GANOSGame(String[] args) throws Exception {
-        gameWindow = new GameWindow(args[0] + "_GANOS",1000,1000,true);
+        // Add potential permanent declaration
+        gameWindow = new GameWindow(args[0] + "_GANOS",500,500,true);
         globalGameData = new GlobalGameData(gameWindow);
         gameWindow.init();
 
@@ -26,6 +30,10 @@ public class GANOSGame {
         run();
     }
 
+    /**
+     * Load and Register the starting Game State for the Game Args
+     * @param args
+     */
     public void initGameStates(String[] args)
     {
         if(args.length != 0) {
@@ -57,14 +65,12 @@ public class GANOSGame {
     {
         GameStateBase currentGameState;
         while(!globalGameData.getGameWindow().getWindowShouldClose()) {
-
             gameWindow.update();
 
             currentGameState = globalGameData.getCurrentGameState();
 
             currentGameState.doLogic();
             currentGameState.doRender();
-
 
             if(gameWindow.getWindowShouldClose())
             {
