@@ -1,7 +1,6 @@
-package com.GlitchyDev.Rendering.WorldElements;
+package com.GlitchyDev.Rendering.Assets.WorldElements;
 
-import com.GlitchyDev.Rendering.Assets.FontTexture;
-import com.GlitchyDev.Rendering.Assets.HudTexture;
+import com.GlitchyDev.Rendering.Assets.Fonts.HudTexture;
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.Utils;
 
@@ -26,7 +25,7 @@ public class TextItem extends GameItem {
         super();
         this.text = text;
         this.hudTexture = hudTexture;
-        setMesh(buildMesh());
+        getMeshes().add(buildMesh());
     }
     
     private Mesh buildMesh() {
@@ -43,7 +42,7 @@ public class TextItem extends GameItem {
             HudTexture.CharInfo charInfo = hudTexture.getCharInfo(characters[i]);
             if(charInfo == null)
             {
-                System.out.println("ERROR CHAR NOT FOUND " + characters[i]);
+                System.out.println("TEXTITEM: ERROR CHAR NOT FOUND " + characters[i]);
             }
             // Build a character tile composed by two triangles
 
@@ -100,8 +99,8 @@ public class TextItem extends GameItem {
     
     public void setText(String text) {
         this.text = text;
-        this.getMesh().deleteBuffers();
-        this.setMesh(buildMesh());
+        this.getMeshes().get(0).deleteBuffers();
+        this.getMeshes().set(0,buildMesh());
     }
 
 

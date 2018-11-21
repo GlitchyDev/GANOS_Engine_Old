@@ -1,6 +1,5 @@
 package com.GlitchyDev.Rendering.Assets;
 
-import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
@@ -14,10 +13,9 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL31C.glDrawElementsInstanced;
 
-public class Mesh {
-
-    private static final Vector3f DEFAULT_COLOUR = new Vector3f(1.0f, 1.0f, 1.0f);
+public class Mesh implements Cloneable {
 
     private final int vaoId;
 
@@ -27,15 +25,12 @@ public class Mesh {
 
     private Texture texture;
 
-    private Vector3f colour;
-
     public Mesh(float[] positions, float[] textCoords, int[] indices) {
         FloatBuffer posBuffer = null;
         FloatBuffer textCoordsBuffer = null;
         FloatBuffer vecNormalsBuffer = null;
         IntBuffer indicesBuffer = null;
         try {
-            colour = DEFAULT_COLOUR;
             vertexCount = indices.length;
             vboIdList = new ArrayList();
 
@@ -68,6 +63,7 @@ public class Mesh {
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboId);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesBuffer, GL_STATIC_DRAW);
 
+
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             glBindVertexArray(0);
         } finally {
@@ -86,8 +82,12 @@ public class Mesh {
         }
     }
 
-    public boolean isTextured() {
-        return this.texture != null;
+    public Mesh(int vaoId, List<Integer> vboIdList, int vertexCount, Texture texture)
+    {
+        this.vaoId = vaoId;
+        this.vboIdList = vboIdList;
+        this.vertexCount = vertexCount;
+        this.texture = texture;
     }
 
     public Texture getTexture() {
@@ -96,14 +96,6 @@ public class Mesh {
 
     public void setTexture(Texture texture) {
         this.texture = texture;
-    }
-
-    public void setColour(Vector3f colour) {
-        this.colour = colour;
-    }
-
-    public Vector3f getColour() {
-        return this.colour;
     }
 
     public int getVaoId() {
@@ -115,28 +107,40 @@ public class Mesh {
     }
 
     public void render() {
-        if (texture != null) {
-            // Activate firs texture bank
-            glActiveTexture(GL_TEXTURE0);
-            // Bind the texture
-            glBindTexture(GL_TEXTURE_2D, texture.getId());
-        }
+        preRender();
+
+        glDrawElements(GL_TRIANGLES, getVertexCount(), GL_UNSIGNED_INT, 0);
+
+        postRender();
+    }
+
+
+    public void preRender()
+    {
+        // Activate firs texture bank
+        // Bind the texture
 
         // Draw the mesh
         glBindVertexArray(getVaoId());
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
         glEnableVertexAttribArray(2);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture.getId());
 
-        glDrawElements(GL_TRIANGLES, getVertexCount(), GL_UNSIGNED_INT, 0);
+    }
 
+    public void postRender()
+    {
         // Restore state
+        glBindVertexArray(0);
+        glBindTexture(GL_TEXTURE_2D, 0);
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
         glDisableVertexAttribArray(2);
-        glBindVertexArray(0);
-        glBindTexture(GL_TEXTURE_2D, 0);
     }
+
+
 
     public void cleanUp() {
         glDisableVertexAttribArray(0);
@@ -169,5 +173,11 @@ public class Mesh {
         // Delete the VAO
         glBindVertexArray(0);
         glDeleteVertexArrays(vaoId);
+    }
+
+    @Override
+    public Mesh clone()
+    {
+        return new Mesh(vaoId, vboIdList, vertexCount, texture);
     }
 }

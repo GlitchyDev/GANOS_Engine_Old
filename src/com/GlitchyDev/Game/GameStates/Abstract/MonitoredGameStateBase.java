@@ -46,11 +46,6 @@ public abstract class MonitoredGameStateBase extends GameStateBase {
         logicUtilization = (100.0)/(1000000000.0/60.0) * (logicEnd-logicStart);
     }
 
-    @Override
-    public void enterState(GameStateType previousGameState) {
-        resetTimings();
-    }
-
     private void resetTimings()
     {
         lastFPSCount = System.currentTimeMillis();

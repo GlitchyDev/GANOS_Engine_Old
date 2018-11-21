@@ -3,8 +3,8 @@ package com.GlitchyDev.Game.GameStates.Server;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Game.GameStates.Abstract.InputGameStateBase;
 import com.GlitchyDev.Networking.ServerNetworkConnection;
-import com.GlitchyDev.Rendering.WorldElements.SpriteItem;
-import com.GlitchyDev.Rendering.WorldElements.TextItem;
+import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
+import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
 
 import java.util.ArrayList;
@@ -42,8 +42,6 @@ public class DebugGameState2 extends InputGameStateBase {
 
     @Override
     public void enterState(GameStateType previousGameState) {
-        super.enterState(previousGameState);
-
 
     }
 

@@ -6,19 +6,24 @@ import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Networking.GameSocket;
 import com.GlitchyDev.Networking.Packets.NetworkDisconnectType;
 import com.GlitchyDev.Rendering.Assets.*;
-import com.GlitchyDev.Rendering.WorldElements.Camera;
-import com.GlitchyDev.Rendering.WorldElements.GameItem;
-import com.GlitchyDev.Rendering.WorldElements.SpriteItem;
-import com.GlitchyDev.Rendering.WorldElements.TextItem;
+import com.GlitchyDev.Rendering.Assets.Fonts.CustomFontTexture;
+import com.GlitchyDev.Rendering.Assets.Fonts.FontTexture;
+import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
+import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
+import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
+import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
 import org.joml.*;
 
 import java.awt.*;
 import java.lang.Math;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.glFinish;
 
 /**
  * A Debug Game State used currently to show Rendering Implementtion, Hud Text, and Controls
@@ -61,11 +66,9 @@ public class DebugGameState1 extends EnvironmentGameState {
 
 
 
-        int width = 10;
+        int width = 100;
         int height = 1;
-        int length = 10;
-
-
+        int length = 100;
 
 
         for(int x = 0; x < width; x++)
@@ -74,23 +77,11 @@ public class DebugGameState1 extends EnvironmentGameState {
             {
                 for(int z = 0; z < length; z++)
                 {
-                    if(Math.random() > 0.8) {
-                        for(int i = 0; i < (int)(Math.random() * 3 +1); i++) {
-                            GameItem gameItem = new GameItem(activeMeshes.get("Cube"));
-                            gameItem.setPosition(x, y + 1 + i, z);
-                            gameItem.setScale(0.5f);
-                            gameItems.add(gameItem);
-                        }
-                    }
-                    else
-                    {
-                        GameItem gameItem = new GameItem(activeMeshes.get("Floor"));
-                        gameItem.setPosition(x,y,z);
+                    GameItem gameItem = new GameItem(activeMeshes.get("Floor"));
+                    gameItem.setPosition(x*2,y,z*2);
 
-                        gameItem.setScale(0.5f);
-                        gameItems.add(gameItem);
-                    }
-
+                    gameItem.setScale(1.0f);
+                    gameItems.add(gameItem);
                 }
             }
         }
@@ -112,12 +103,8 @@ public class DebugGameState1 extends EnvironmentGameState {
         hudItems.add(item2);
 
 
+        //spriteItems.add(new SpriteItem(AssetLoader.getTextureAsset("Tomo"),true));
 
-        for(int i = 0; i < spriteItems.size(); i++) {
-            spriteItems.add(new SpriteItem(AssetLoader.getTextureAsset("Tomo"),true));
-            spriteItems.get(i).setPosition(0, 0, (float) (0.000001 * i));
-            spriteItems.get(i).setScale(1.0f);
-        }
 
 
 
@@ -146,17 +133,20 @@ public class DebugGameState1 extends EnvironmentGameState {
 
 
         renderer.prepRender(globalGameData.getGameWindow());
-        renderer.render3DElements(globalGameData.getGameWindow(), "Default3D", camera, gameItems);
-        //renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", spriteItems);
+
+
+        renderer.render3DElements(globalGameData.getGameWindow(), "Default3D", camera,gameItems);
+        renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", spriteItems);
         renderer.renderHUD(globalGameData.getGameWindow(), "Default2D", hudItems);
-
-
+        glFinish();
     }
 
+
+    NumberFormat formatter = new DecimalFormat("#0.00");
     @Override
     public void logic() {
 
-        hudItems.get(0).setText("Render: " + getRenderUtilization() + " Logic: " + getLogicUtilization());
+        hudItems.get(0).setText("Render: " + formatter.format(getRenderUtilization()) + " Logic: " + formatter.format(getLogicUtilization()));
         hudItems.get(1).setText("FPS:" + getCurrentFPS());
 
 
@@ -218,6 +208,7 @@ public class DebugGameState1 extends EnvironmentGameState {
         GameItem gameItem1 = selectGameItem3D(gameItems,camera);
         GameItem gameItem2 = selectGameItem2D(gameItems,globalGameData.getGameWindow(),new Vector2d(gameInput.getMouseX(),gameInput.getMouseY()),camera);
 
+        /*
         if(gameItem1 != null)
         {
             gameItem1.setMesh(activeMeshes.get("Wall"));
@@ -227,6 +218,7 @@ public class DebugGameState1 extends EnvironmentGameState {
         {
             gameItem2.setMesh(activeMeshes.get("Cube"));
         }
+        */
 
 
 
@@ -292,7 +284,6 @@ public class DebugGameState1 extends EnvironmentGameState {
 
     @Override
     public void enterState(GameStateType previousGameState) {
-        super.enterState(previousGameState);
         globalGameData.getGameWindow().setCursor(AssetLoader.getInputStream("Icon16x16.png"),0,0);
         globalGameData.getGameWindow().setIcon(getWindowHandle(),AssetLoader.getInputStream("Icon16x16.png"),AssetLoader.getInputStream("Icon32x32.png"));
     }

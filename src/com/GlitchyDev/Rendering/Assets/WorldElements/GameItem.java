@@ -1,14 +1,16 @@
-package com.GlitchyDev.Rendering.WorldElements;
+package com.GlitchyDev.Rendering.Assets.WorldElements;
 
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import org.joml.Vector3f;
+
+import java.util.ArrayList;
 
 /**
  * A object that can be represented in game in 3D or 2D ( See SpriteItem or HudItem )
  */
 public class GameItem {
 
-    private Mesh mesh;
+    private ArrayList<Mesh> meshes;
     
     private final Vector3f position;
     
@@ -17,13 +19,15 @@ public class GameItem {
     private final Vector3f rotation;
 
     public GameItem(Mesh mesh) {
-        this.mesh = mesh;
+        meshes = new ArrayList<>();
+        meshes.add(mesh);
         position = new Vector3f(0, 0, 0);
         scale = 1;
         rotation = new Vector3f(0, 0, 0);
     }
 
     public GameItem() {
+        meshes = new ArrayList<>();
         position = new Vector3f(0, 0, 0);
         scale = 1;
         rotation = new Vector3f(0, 0, 0);
@@ -57,14 +61,11 @@ public class GameItem {
         this.rotation.z = z;
     }
     
-    public Mesh getMesh() {
-        return mesh;
+    public ArrayList<Mesh> getMeshes() {
+        return meshes;
     }
 
-    public void setMesh(Mesh mesh)
-    {
-        this.mesh = mesh;
+    public void setMeshes(ArrayList<Mesh> meshes) {
+        this.meshes = meshes;
     }
-
-
 }

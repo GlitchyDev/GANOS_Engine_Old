@@ -2,8 +2,8 @@ package com.GlitchyDev.Rendering;
 
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Rendering.Assets.Mesh;
-import com.GlitchyDev.Rendering.Assets.ShaderProgram;
-import com.GlitchyDev.Rendering.WorldElements.*;
+import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
+import com.GlitchyDev.Rendering.Assets.WorldElements.*;
 import com.GlitchyDev.Utility.GameWindow;
 import org.joml.Matrix4f;
 
@@ -65,8 +65,7 @@ public class Renderer {
      * @param camera
      * @param gameItems
      */
-    public void render3DElements(GameWindow window, String shaderName, Camera camera, List<GameItem> gameItems)
-    {
+    public void render3DElements(GameWindow window, String shaderName, Camera camera, List<GameItem> gameItems) {
         ShaderProgram shader = loadedShaders.get(shaderName);
         shader.bind();
 
@@ -79,13 +78,14 @@ public class Renderer {
 
         shader.setUniform("texture_sampler", 0);
         // Render each gameItem
-        for(GameItem gameItem : gameItems) {
-            Mesh mesh = gameItem.getMesh();
-            // Set model view matrix for this item
-            Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
-            shader.setUniform("modelViewMatrix", modelViewMatrix);
-            // Render the mesh for this game item
-            mesh.render();
+        for (GameItem gameItem : gameItems) {
+            for(Mesh mesh: gameItem.getMeshes()) {
+                // Set model view matrix for this item
+                Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
+                shader.setUniform("modelViewMatrix", modelViewMatrix);
+                // Render the mesh for this game item
+                mesh.render();
+            }
         }
 
         shader.unbind();
@@ -110,11 +110,12 @@ public class Renderer {
 
         for (GameItem gameItem : hudItems) {
 
-            Mesh mesh = gameItem.getMesh();
-            // Set ortohtaphic and model matrix for this HUD item
-            Matrix4f projModelMatrix = transformation.getOrtoProjModelMatrix(gameItem, ortho);
-            shader.setUniform("projModelMatrix", projModelMatrix);
-            mesh.render();
+            for(Mesh mesh: gameItem.getMeshes()) {
+                // Set ortohtaphic and model matrix for this HUD item
+                Matrix4f projModelMatrix = transformation.getOrtoProjModelMatrix(gameItem, ortho);
+                shader.setUniform("projModelMatrix", projModelMatrix);
+                mesh.render();
+            }
         }
 
 
@@ -140,11 +141,12 @@ public class Renderer {
 
         for (GameItem gameItem : spriteItems) {
 
-            Mesh mesh = gameItem.getMesh();
-            // Set ortohtaphic and model matrix for this HUD item
-            Matrix4f projModelMatrix = transformation.getOrtoProjModelMatrix(gameItem, ortho);
-            shader.setUniform("projModelMatrix", projModelMatrix);
-            mesh.render();
+            for(Mesh mesh: gameItem.getMeshes()) {
+                // Set ortohtaphic and model matrix for this HUD item
+                Matrix4f projModelMatrix = transformation.getOrtoProjModelMatrix(gameItem, ortho);
+                shader.setUniform("projModelMatrix", projModelMatrix);
+                mesh.render();
+            }
 
         }
 

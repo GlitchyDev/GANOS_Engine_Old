@@ -1,7 +1,6 @@
 package com.GlitchyDev.IO;
 
 import com.GlitchyDev.Rendering.Assets.Mesh;
-import com.GlitchyDev.Rendering.Assets.OBJLoader;
 import com.GlitchyDev.Rendering.Assets.Sounds.SoundBuffer;
 import com.GlitchyDev.Rendering.Assets.Sounds.SoundManager;
 import com.GlitchyDev.Rendering.Assets.Texture;
@@ -12,7 +11,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * An Static AssetLoader to draw Assets from inside the Jar, initialize and load them, and make them available for use
@@ -156,7 +154,7 @@ public class AssetLoader {
 
     public static Mesh getMeshAsset(String name)
     {
-        return meshAssets.get(name);
+        return meshAssets.get(name).clone();
     }
 
     public static String getVertexAsset(String name)
@@ -182,11 +180,6 @@ public class AssetLoader {
     public static Mesh loadMesh(String filePath)
     {
         return OBJLoader.loadMesh(AssetLoader.class.getResourceAsStream(filePath));
-    }
-
-    public static Mesh loadCacheMesh(String filePath)
-    {
-        return OBJLoader.loadMesh(AssetLoader.class.getResourceAsStream(allAssets.get(filePath)));
     }
 
     public static SoundBuffer loadSound(String filePath)

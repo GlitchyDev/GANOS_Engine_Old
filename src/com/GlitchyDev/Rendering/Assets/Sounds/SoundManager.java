@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.GlitchyDev.Rendering.WorldElements.Camera;
-import com.GlitchyDev.Rendering.WorldElements.Transformation;
+import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
+import com.GlitchyDev.Rendering.Assets.WorldElements.Transformation;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.openal.AL;

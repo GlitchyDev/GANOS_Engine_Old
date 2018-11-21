@@ -1,15 +1,7 @@
-package com.GlitchyDev.Rendering.Assets;
+package com.GlitchyDev.Rendering.Assets.Fonts;
 
 import com.GlitchyDev.IO.AssetLoader;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetEncoder;
-import java.util.HashMap;
-import java.util.Map;
+import com.GlitchyDev.Rendering.Assets.Texture;
 
 
 public class CustomFontTexture extends HudTexture {

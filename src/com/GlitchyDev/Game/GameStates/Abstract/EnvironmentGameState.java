@@ -1,8 +1,8 @@
 package com.GlitchyDev.Game.GameStates.Abstract;
 
 import com.GlitchyDev.Game.GameStates.GameStateType;
-import com.GlitchyDev.Rendering.WorldElements.Camera;
-import com.GlitchyDev.Rendering.WorldElements.GameItem;
+import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
+import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.Utility.GlobalGameData;
 import org.joml.*;

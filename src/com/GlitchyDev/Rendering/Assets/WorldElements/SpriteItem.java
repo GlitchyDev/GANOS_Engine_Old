@@ -1,4 +1,4 @@
-package com.GlitchyDev.Rendering.WorldElements;
+package com.GlitchyDev.Rendering.Assets.WorldElements;
 
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.RenderBuffer;
@@ -6,8 +6,6 @@ import com.GlitchyDev.Rendering.Assets.Texture;
 import com.GlitchyDev.Rendering.Assets.Utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * A GameItem that loads a Texture for use as a 2D image
@@ -17,7 +15,7 @@ public class SpriteItem extends GameItem {
 
     public SpriteItem(Texture spriteTexture, boolean loadedTexture) {
         super();
-        setMesh(buildMesh(spriteTexture,loadedTexture));
+        getMeshes().add(buildMesh(spriteTexture,loadedTexture));
     }
 
     /**
@@ -26,7 +24,7 @@ public class SpriteItem extends GameItem {
      */
     public SpriteItem(RenderBuffer renderBuffer) {
         super();
-        setMesh(buildMesh(new Texture(renderBuffer),false));
+        getMeshes().add(buildMesh(new Texture(renderBuffer),false));
     }
 
 

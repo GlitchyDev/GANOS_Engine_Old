@@ -1,4 +1,4 @@
-package com.GlitchyDev.Rendering.Assets;
+package com.GlitchyDev.Rendering.Assets.Shaders;
 
 import com.GlitchyDev.IO.AssetLoader;
 import org.joml.Matrix4f;
@@ -39,18 +39,11 @@ public class ShaderProgram {
         createFragmentShader(AssetLoader.getFragmentAsset(shader));
         createVertexShader(AssetLoader.getVertexAsset(shader));
         link();
-        for(String uniform: AssetLoader.getConfigListAsset(shader))
-        {
-            createUniform(uniform);
-        }
     }
 
 
-    public void createUniform(String uniformName) throws Exception {
+    public void createUniform(String uniformName) {
         int uniformLocation = glGetUniformLocation(programId, uniformName);
-        if (uniformLocation < 0) {
-            throw new Exception("Could not find uniform:" + uniformName);
-        }
         uniforms.put(uniformName, uniformLocation);
     }
 
@@ -59,15 +52,27 @@ public class ShaderProgram {
             // Dump the matrix into a float buffer
             FloatBuffer fb = stack.mallocFloat(16);
             value.get(fb);
+            if(!uniforms.containsKey(uniformName))
+            {
+                createUniform(uniformName);
+            }
             glUniformMatrix4fv(uniforms.get(uniformName), false, fb);
         }
     }
 
     public void setUniform(String uniformName, int value) {
+        if(!uniforms.containsKey(uniformName))
+        {
+            createUniform(uniformName);
+        }
         glUniform1i(uniforms.get(uniformName), value);
     }
 
     public void setUniform(String uniformName, Vector3f value) {
+        if(!uniforms.containsKey(uniformName))
+        {
+            createUniform(uniformName);
+        }
         glUniform3f(uniforms.get(uniformName), value.x, value.y, value.z);
     }
 

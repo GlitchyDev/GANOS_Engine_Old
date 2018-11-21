@@ -38,7 +38,8 @@ public class DebugGameState3 extends InputGameStateBase {
 
     @Override
     public void enterState(GameStateType previousGameState) {
-        super.enterState(previousGameState);
+
+
     }
 
     @Override
