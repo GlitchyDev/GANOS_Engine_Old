@@ -41,15 +41,7 @@ public class Camera {
     }
     
     public void movePosition(float offsetX, float offsetY, float offsetZ) {
-        if ( offsetZ != 0 ) {
-            position.x += (float)Math.sin(Math.toRadians(rotation.y)) * -1.0f * offsetZ;
-            position.z += (float)Math.cos(Math.toRadians(rotation.y)) * offsetZ;
-        }
-        if ( offsetX != 0) {
-            position.x += (float)Math.sin(Math.toRadians(rotation.y - 90)) * -1.0f * offsetX;
-            position.z += (float)Math.cos(Math.toRadians(rotation.y - 90)) * offsetX;
-        }
-        position.y += offsetY;
+        position.add(offsetX,offsetY,offsetZ);
     }
 
     public Vector3f getRotation() {
@@ -66,6 +58,31 @@ public class Camera {
         rotation.x += offsetX;
         rotation.y += offsetY;
         rotation.z += offsetZ;
+    }
+
+    public void moveForward(float movementAmount)
+    {
+        movePosition(movementAmount * (float)Math.sin(Math.toRadians(rotation.y)),0,-movementAmount * (float)Math.cos(Math.toRadians(rotation.y)));
+    }
+    public void moveBackwards(float movementAmount)
+    {
+        movePosition(-movementAmount * (float)Math.sin(Math.toRadians(rotation.y)),0,movementAmount * (float)Math.cos(Math.toRadians(rotation.y)));
+    }
+    public void moveLeft(float movementAmount)
+    {
+        movePosition(-movementAmount * (float)Math.sin(Math.toRadians(rotation.y + 90)),0,movementAmount * (float)Math.cos(Math.toRadians(rotation.y + 90)));
+    }
+    public void moveRight(float movementAmount)
+    {
+        movePosition(-movementAmount * (float)Math.sin(Math.toRadians(rotation.y - 90)),0,movementAmount * (float)Math.cos(Math.toRadians(rotation.y - 90)));
+    }
+    public void moveUp(float movementAmount)
+    {
+        movePosition(0,movementAmount,0);
+    }
+    public void moveDown(float movementAmount)
+    {
+        movePosition(0,-movementAmount,0);
     }
 
 }

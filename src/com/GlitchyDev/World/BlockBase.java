@@ -12,6 +12,7 @@ public abstract class BlockBase extends GameItem implements Serializable {
     public BlockBase(BlockType blockType, Location location) {
         this.blockType = blockType;
         this.location = location;
+        setPosition(location.getX() * 2, location.getY() * 2, location.getZ() * 2);
     }
 
     public abstract void buildMeshes();

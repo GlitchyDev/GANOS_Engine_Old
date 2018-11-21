@@ -12,12 +12,18 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
 import com.GlitchyDev.World.Location;
+import org.joml.Vector3f;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -36,6 +42,7 @@ public class MapBuilderGameState extends InputGameStateBase {
     private ArrayList<GameItem> gameItems = new ArrayList<>();
     private ArrayList<TextItem> hudItems = new ArrayList<>();
     private HashMap<String,Mesh> activeMeshes = new HashMap<>();
+    private PartialCubicBlock cursor;
 
     private XBox360Controller controller;
 
@@ -71,6 +78,14 @@ public class MapBuilderGameState extends InputGameStateBase {
         int length = 50;
 
 
+        Boolean[] t = new Boolean[]{true,true,true,true,true,true};
+        String[] tt = new String[]{"Icon16x16","Icon24x24","Icon32x32","Icon16x16","Icon24x24","Icon32x32"};
+        String[] ttt = new String[]{"Icon16x16","Icon16x16","Icon16x16","Icon16x16","Icon16x16","Icon16x16"};
+
+
+
+        cursor = new PartialCubicBlock(new Location(0,0,0),t,ttt,new ArrayList<>());
+
         for(int x = 0; x < width; x++)
         {
             for(int y = 0; y < height; y++)
@@ -85,13 +100,12 @@ public class MapBuilderGameState extends InputGameStateBase {
                 }
             }
         }
-        Boolean[] t = new Boolean[]{true,true,true,true,true,true};
-        String[] tt = new String[]{"Icon16x16","Icon24x24","Icon32x32","Icon16x16","Icon24x24","Icon32x32"};
+
 
         File file = new File("GameAssets/Configs/PartialCubicBlockDebug.configList");
         PartialCubicBlock c = null;
 
-        
+
         try {
             ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
             c = new PartialCubicBlock(new Location(0,0,0),stream);
@@ -159,71 +173,187 @@ public class MapBuilderGameState extends InputGameStateBase {
         logicCamera();
     }
 
+
+
+    boolean selectionMode = false;
+    Vector3f rotation = new Vector3f();
+    int selectionX = 0;
+    int selectionY = 0;
+    int selectionZ = 0;
+
+
     public void logicCamera()
     {
-        final double movementSpeed = 0.3;
+
+        final float movementSpeed = 0.3f;
         if(gameInput.getKeyValue(GLFW_KEY_W) != 0)
         {
-            camera.getPosition().x += movementSpeed * (float)Math.sin(Math.toRadians(camera.getRotation().y));
-            camera.getPosition().z -= movementSpeed * (float)Math.cos(Math.toRadians(camera.getRotation().y));
+            if(!selectionMode) {
+                camera.moveForward(movementSpeed);
+            }
+            else
+            {
+                // Move Selection
+                selectionX++;
+
+            }
         }
         if(gameInput.getKeyValue(GLFW_KEY_S) != 0)
         {
-            camera.getPosition().x -= movementSpeed * (float)Math.sin(Math.toRadians(camera.getRotation().y));
-            camera.getPosition().z += movementSpeed * (float)Math.cos(Math.toRadians(camera.getRotation().y));
-        }
+            if(!selectionMode) {
+                camera.moveBackwards(movementSpeed);
+            }
+            else
+            {
+                // Move Selection
+                selectionX--;
 
+            }
+        }
         if(gameInput.getKeyValue(GLFW_KEY_A) != 0)
         {
-            camera.getPosition().x -= movementSpeed * (float)Math.sin(Math.toRadians(camera.getRotation().y + 90));
-            camera.getPosition().z += movementSpeed * (float)Math.cos(Math.toRadians(camera.getRotation().y + 90));
+            if(!selectionMode) {
+                camera.moveLeft(movementSpeed);
+            }
+            else
+            {
+                // Move Selection
+                selectionZ++;
+
+            }
         }
         if(gameInput.getKeyValue(GLFW_KEY_D) != 0)
         {
-            camera.getPosition().x -= movementSpeed * (float)Math.sin(Math.toRadians(camera.getRotation().y - 90));
-            camera.getPosition().z += movementSpeed * (float)Math.cos(Math.toRadians(camera.getRotation().y - 90));
+            if(!selectionMode) {
+                camera.moveRight(movementSpeed);
+            }
+            else
+            {
+                // Move Selection
+                selectionZ--;
+
+            }
         }
 
 
-        final double rotationSpeed = 3.0;
+        if(gameInput.getKeyValue(GLFW_KEY_LEFT_SHIFT) != 0)
+        {
+            if(!selectionMode) {
+                camera.moveUp(movementSpeed);
+            }
+            else
+            {
+                // Move Selection
+                selectionY++;
+            }
+        }
+        if(gameInput.getKeyValue(GLFW_KEY_LEFT_CONTROL) != 0)
+        {
+            if(!selectionMode) {
+                camera.moveDown(movementSpeed);
+            }
+            else
+            {
+                // Move Selection
+                selectionY--;
+
+            }
+        }
+
         if(gameInput.getKeyValue(GLFW_KEY_RIGHT_SHIFT) != 0)
         {
-            camera.getPosition().y -= movementSpeed;
+            if(!selectionMode) {
+                camera.moveUp(movementSpeed);
+            }
+            else
+            {
+                // Zoom in
+            }
         }
-        if(gameInput.getKeyValue(GLFW_KEY_SPACE) != 0)
+        if(gameInput.getKeyValue(GLFW_KEY_RIGHT_CONTROL) != 0)
         {
-            camera.getPosition().y += movementSpeed;
+            if(!selectionMode) {
+                camera.moveDown(movementSpeed);
+            }
+            else
+            {
+                // Zoom out
+            }
         }
 
-
+        final float rotationSpeed = 3.0f;
         if(gameInput.getKeyValue(GLFW_KEY_LEFT) != 0)
         {
-            camera.getRotation().y -= rotationSpeed;
+            if(!selectionMode) {
+                camera.moveRotation(0, -rotationSpeed,0);
+            }
+            else
+            {
+                // Rotate Selection
+                rotation.add(0,-rotationSpeed,0);
+            }
         }
         if(gameInput.getKeyValue(GLFW_KEY_RIGHT) != 0)
         {
-            camera.getRotation().y += rotationSpeed;
+            if(!selectionMode) {
+                camera.moveRotation(0, rotationSpeed,0);
+            }
+            else
+            {
+                // Rotate Selection
+                rotation.add(0,rotationSpeed,0);
+
+            }
         }
 
         if(gameInput.getKeyValue(GLFW_KEY_UP) != 0)
         {
-            camera.getRotation().x -= rotationSpeed;
+            if(!selectionMode) {
+                camera.moveRotation(-rotationSpeed,0,0);
+            }
+            else
+            {
+                // Rotate Selection
+                rotation.add(-rotationSpeed,0,0);
+            }
         }
         if(gameInput.getKeyValue(GLFW_KEY_DOWN) != 0)
         {
-            camera.getRotation().x += rotationSpeed;
+            if(!selectionMode) {
+                camera.moveRotation(rotationSpeed,0,0);
+            }
+            else
+            {
+                // Rotate Selection
+                rotation.add(rotationSpeed,0,0);
+            }
         }
+
         camera.updateViewMatrix();
 
+        if(gameInput.getKeyValue(GLFW_KEY_L) == 2)
+        {
+            selectionMode = !selectionMode;
+        }
+
+
+        cursor.setPosition(selectionX,selectionY,selectionZ);
         // Can properly detect shit :D
 
     }
+
 
     @Override
     public void render() {
         renderer.prepRender(globalGameData.getGameWindow());
         renderer.render3DElements(globalGameData.getGameWindow(),"Default3D",camera,gameItems);
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
+        if(selectionMode)
+        {
+            ArrayList<GameItem> cc = new ArrayList<>();
+            cc.add(cursor);
+            renderer.render3DElements(globalGameData.getGameWindow(),"Cursor",camera,cc);
+        }
 
     }
 
@@ -242,5 +372,12 @@ public class MapBuilderGameState extends InputGameStateBase {
     public void windowClose() {
 
     }
+
+
+
+
+
+
+
 
 }

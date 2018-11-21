@@ -11,6 +11,8 @@ GameAssets\Mesh\Testing\DefaultCube.obj
 GameAssets\Mesh\Testing\DefaultSquare.obj
 GameAssets\Mesh\Testing\flatWall.obj
 GameAssets\Mesh\Testing\flatWall1.obj
+GameAssets\Shaders\Default\Cursor.fs
+GameAssets\Shaders\Default\Cursor.vs
 GameAssets\Shaders\Default\Default2D.fs
 GameAssets\Shaders\Default\Default2D.vs
 GameAssets\Shaders\Default\Default3D.fs
