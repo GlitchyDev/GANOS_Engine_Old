@@ -62,26 +62,32 @@ public class Camera {
 
     public void moveForward(float movementAmount)
     {
+        movementAmount = Math.abs(movementAmount);
         movePosition(movementAmount * (float)Math.sin(Math.toRadians(rotation.y)),0,-movementAmount * (float)Math.cos(Math.toRadians(rotation.y)));
     }
     public void moveBackwards(float movementAmount)
     {
+        movementAmount = Math.abs(movementAmount);
         movePosition(-movementAmount * (float)Math.sin(Math.toRadians(rotation.y)),0,movementAmount * (float)Math.cos(Math.toRadians(rotation.y)));
     }
     public void moveLeft(float movementAmount)
     {
+        movementAmount = Math.abs(movementAmount);
         movePosition(-movementAmount * (float)Math.sin(Math.toRadians(rotation.y + 90)),0,movementAmount * (float)Math.cos(Math.toRadians(rotation.y + 90)));
     }
     public void moveRight(float movementAmount)
     {
+        movementAmount = Math.abs(movementAmount);
         movePosition(-movementAmount * (float)Math.sin(Math.toRadians(rotation.y - 90)),0,movementAmount * (float)Math.cos(Math.toRadians(rotation.y - 90)));
     }
     public void moveUp(float movementAmount)
     {
+        movementAmount = Math.abs(movementAmount);
         movePosition(0,movementAmount,0);
     }
     public void moveDown(float movementAmount)
     {
+        movementAmount = Math.abs(movementAmount);
         movePosition(0,-movementAmount,0);
     }
 

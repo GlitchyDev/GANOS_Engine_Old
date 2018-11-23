@@ -85,6 +85,7 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
         cursor = new PartialCubicBlock(new Location(0,0,0),t,ttt,new ArrayList<>());
+        cursor.setScale(1.1f);
 
         for(int x = 0; x < width; x++)
         {
@@ -158,6 +159,8 @@ public class MapBuilderGameState extends InputGameStateBase {
             hudItems.get(8).setText("JoyStick Buttons " + controller.getLeftJoyStickButton() + " " + controller.getRightJoyStickButton());
             hudItems.get(9).setText("JoySticks " + controller.getLeftJoyStickX() + " " + controller.getLeftJoyStickY() + " " + controller.getRightJoyStickX() + " " + controller.getRightJoyStickY());
             hudItems.get(10).setText("Home Buttons " + controller.getLeftHomeButton() + " " + controller.getRightHomeButton());
+            hudItems.get(11).setText("Z: " + selectionMode);
+
         }
         else
         {
@@ -182,179 +185,147 @@ public class MapBuilderGameState extends InputGameStateBase {
     int selectionZ = 0;
 
 
+    private final float CAMERA_MOVEMENT_AMOUNT = 0.3f;
+    private final float CAMERA_ROTATION_AMOUNT = 3.0f;
+    private final float JOYSTICK_THRESHHOLD = 0.2f;
     public void logicCamera()
     {
+        if(controller.isCurrentlyActive()) {
+            if (controller.getToggleLeftHomeButton()) {
+                selectionMode = !selectionMode;
+            }
 
-        final float movementSpeed = 0.3f;
-        if(gameInput.getKeyValue(GLFW_KEY_W) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveForward(movementSpeed);
+            if(!selectionMode)
+            {
+                if(!controller.getLeftJoyStickButton())
+                {
+                    if(controller.getLeftJoyStickY() < -JOYSTICK_THRESHHOLD)
+                    {
+                        camera.moveForward(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+                    }
+                    if(controller.getLeftJoyStickY() > JOYSTICK_THRESHHOLD)
+                    {
+                        camera.moveBackwards(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+                    }
+                    if(controller.getLeftJoyStickX() > JOYSTICK_THRESHHOLD)
+                    {
+                        camera.moveRight(controller.getLeftJoyStickX() * CAMERA_MOVEMENT_AMOUNT);
+                    }
+                    if(controller.getLeftJoyStickX() < -JOYSTICK_THRESHHOLD)
+                    {
+                        camera.moveLeft(controller.getLeftJoyStickX() * CAMERA_MOVEMENT_AMOUNT);
+                    }
+                }
+                else
+                {
+                    if(controller.getLeftJoyStickY() > JOYSTICK_THRESHHOLD)
+                    {
+                        camera.moveDown(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+                    }
+                    if(controller.getLeftJoyStickY() < -JOYSTICK_THRESHHOLD)
+                    {
+                        camera.moveUp(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+                    }
+
+                }
+                /*
+                if(controller.getNorthButton())
+                {
+                    camera.moveForward(CAMERA_MOVEMENT_AMOUNT);
+                }
+                if(controller.getSouthButton())
+                {
+                    camera.moveBackwards(CAMERA_MOVEMENT_AMOUNT);
+                }
+                if(controller.getWestButton())
+                {
+                    camera.moveLeft(CAMERA_MOVEMENT_AMOUNT);
+                }
+                if(controller.getEastButton())
+                {
+                    camera.moveRight(CAMERA_MOVEMENT_AMOUNT);
+                }
+                if(controller.getRightBumperButton())
+                {
+                    camera.moveUp(CAMERA_MOVEMENT_AMOUNT);
+                }
+                if(controller.getRightTrigger() == 1.0f)
+                {
+                    camera.moveDown(CAMERA_MOVEMENT_AMOUNT);
+                }
+                */
+                if(controller.getRightJoyStickX() > JOYSTICK_THRESHHOLD || controller.getRightJoyStickX() < -JOYSTICK_THRESHHOLD)
+                {
+                    camera.moveRotation(0, controller.getRightJoyStickX() * CAMERA_ROTATION_AMOUNT,0);
+                }
+                if(controller.getRightJoyStickY() > JOYSTICK_THRESHHOLD || controller.getRightJoyStickY() < -JOYSTICK_THRESHHOLD)
+                {
+                    camera.moveRotation(controller.getRightJoyStickY() * CAMERA_ROTATION_AMOUNT,0,0);
+
+                }
+
             }
             else
             {
-                // Move Selection
-                selectionX++;
+                if(controller.getToggleNorthButton())
+                {
+                    selectionX++;
+                }
+                if(controller.getToggleSouthButton())
+                {
+                    selectionX--;
+                }
+                if(controller.getToggleWestButton())
+                {
+                    selectionZ++;
+                }
+                if(controller.getToggleEastButton())
+                {
+                    selectionZ--;
+                }
+                if(controller.getToggleRightBumperButton())
+                {
+                    selectionY++;
+                }
+                if(controller.getToggleRightTrigger())
+                {
+                    selectionY--;
+                }
 
+                /*
+                if(controller.getLeftJoyStickX() > 0.2 || controller.getLeftJoyStickX() < -0.2)
+                {
+                    camera.moveRotation(0, controller.getLeftJoyStickX() * CAMERA_ROTATION_AMOUNT,0);
+                }
+                if(controller.getLeftJoyStickY() > 0.2 || controller.getLeftJoyStickY() < -0.2)
+                {
+                    camera.moveRotation(controller.getLeftJoyStickY() * CAMERA_ROTATION_AMOUNT,0,0);
+
+                }
+                */
+                cursor.setPosition(selectionX*2,selectionY*2,selectionZ*2);
             }
+
+
+
         }
-        if(gameInput.getKeyValue(GLFW_KEY_S) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveBackwards(movementSpeed);
-            }
-            else
-            {
-                // Move Selection
-                selectionX--;
-
-            }
-        }
-        if(gameInput.getKeyValue(GLFW_KEY_A) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveLeft(movementSpeed);
-            }
-            else
-            {
-                // Move Selection
-                selectionZ++;
-
-            }
-        }
-        if(gameInput.getKeyValue(GLFW_KEY_D) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveRight(movementSpeed);
-            }
-            else
-            {
-                // Move Selection
-                selectionZ--;
-
-            }
-        }
-
-
-        if(gameInput.getKeyValue(GLFW_KEY_LEFT_SHIFT) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveUp(movementSpeed);
-            }
-            else
-            {
-                // Move Selection
-                selectionY++;
-            }
-        }
-        if(gameInput.getKeyValue(GLFW_KEY_LEFT_CONTROL) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveDown(movementSpeed);
-            }
-            else
-            {
-                // Move Selection
-                selectionY--;
-
-            }
-        }
-
-        if(gameInput.getKeyValue(GLFW_KEY_RIGHT_SHIFT) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveUp(movementSpeed);
-            }
-            else
-            {
-                // Zoom in
-            }
-        }
-        if(gameInput.getKeyValue(GLFW_KEY_RIGHT_CONTROL) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveDown(movementSpeed);
-            }
-            else
-            {
-                // Zoom out
-            }
-        }
-
-        final float rotationSpeed = 3.0f;
-        if(gameInput.getKeyValue(GLFW_KEY_LEFT) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveRotation(0, -rotationSpeed,0);
-            }
-            else
-            {
-                // Rotate Selection
-                rotation.add(0,-rotationSpeed,0);
-            }
-        }
-        if(gameInput.getKeyValue(GLFW_KEY_RIGHT) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveRotation(0, rotationSpeed,0);
-            }
-            else
-            {
-                // Rotate Selection
-                rotation.add(0,rotationSpeed,0);
-
-            }
-        }
-
-        if(gameInput.getKeyValue(GLFW_KEY_UP) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveRotation(-rotationSpeed,0,0);
-            }
-            else
-            {
-                // Rotate Selection
-                rotation.add(-rotationSpeed,0,0);
-            }
-        }
-        if(gameInput.getKeyValue(GLFW_KEY_DOWN) != 0)
-        {
-            if(!selectionMode) {
-                camera.moveRotation(rotationSpeed,0,0);
-            }
-            else
-            {
-                // Rotate Selection
-                rotation.add(rotationSpeed,0,0);
-            }
-        }
-
-        camera.updateViewMatrix();
-
-        if(gameInput.getKeyValue(GLFW_KEY_L) == 2)
-        {
-            selectionMode = !selectionMode;
-        }
-
-
-        cursor.setPosition(selectionX,selectionY,selectionZ);
-        // Can properly detect shit :D
 
     }
 
 
+    boolean toggle = false;
     @Override
     public void render() {
         renderer.prepRender(globalGameData.getGameWindow());
         renderer.render3DElements(globalGameData.getGameWindow(),"Default3D",camera,gameItems);
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
-        if(selectionMode)
+        if(selectionMode && toggle)
         {
             ArrayList<GameItem> cc = new ArrayList<>();
             cc.add(cursor);
             renderer.render3DElements(globalGameData.getGameWindow(),"Cursor",camera,cc);
         }
-
+        toggle = !toggle;
     }
 
 

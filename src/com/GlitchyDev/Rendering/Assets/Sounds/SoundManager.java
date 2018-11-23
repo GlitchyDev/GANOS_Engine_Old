@@ -53,6 +53,7 @@ public class SoundManager {
         if (context == NULL) {
             throw new IllegalStateException("Failed to create OpenAL context.");
         }
+
         alcMakeContextCurrent(context);
         AL.createCapabilities(deviceCaps);
     }
