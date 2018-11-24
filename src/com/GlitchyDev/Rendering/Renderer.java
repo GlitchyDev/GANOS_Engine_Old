@@ -1,6 +1,7 @@
 package com.GlitchyDev.Rendering;
 
 import com.GlitchyDev.IO.AssetLoader;
+import com.GlitchyDev.Rendering.Assets.InstancedMesh;
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
 import com.GlitchyDev.Rendering.Assets.WorldElements.*;
@@ -85,6 +86,61 @@ public class Renderer {
                 shader.setUniform("modelViewMatrix", modelViewMatrix);
                 // Render the mesh for this game item
                 mesh.render();
+            }
+        }
+
+        shader.unbind();
+    }
+
+    /**
+     * Renders the Specified GameItems to the Specified Camera using the Specified Shader
+     * @param window
+     * @param shaderName
+     * @param camera
+     * @param gameItems
+     */
+    public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<GameItem> gameItems) {
+        ShaderProgram shader = loadedShaders.get(shaderName);
+        shader.bind();
+
+        // Update projection Matrix
+        Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV, window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
+        shader.setUniform("projectionMatrix", projectionMatrix);
+
+        // Update view Matrix
+        Matrix4f viewMatrix = transformation.getViewMatrix(camera);
+
+        shader.setUniform("texture_sampler", 0);
+        // Render each gameItem
+
+        instancedMesh.renderListInstanced(gameItems, transformation, viewMatrix);
+
+        shader.unbind();
+    }
+
+    public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, List<GameItem> gameItems) {
+        ShaderProgram shader = loadedShaders.get(shaderName);
+        shader.bind();
+
+        // Update projection Matrix
+        Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV, window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
+        shader.setUniform("projectionMatrix", projectionMatrix);
+
+        // Update view Matrix
+        Matrix4f viewMatrix = transformation.getViewMatrix(camera);
+
+        shader.setUniform("texture_sampler", 0);
+        // Render each gameItem
+
+        for (GameItem gameItem : gameItems) {
+            for(Mesh mesh: gameItem.getMeshes()) {
+                // Set model view matrix for this item
+                Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
+                shader.setUniform("modelViewMatrix", modelViewMatrix);
+                // Render the mesh for this game item
+                mesh.preRender();
+                mesh.Irender(100);
+                mesh.postRender();
             }
         }
 

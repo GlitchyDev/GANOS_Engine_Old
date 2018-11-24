@@ -1,6 +1,7 @@
 package com.GlitchyDev.Rendering.Assets.WorldElements;
 
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class Transformation {
@@ -75,5 +76,40 @@ public class Transformation {
         orthoMatrixCurr.mul(modelMatrix);
         return orthoMatrixCurr;
     }
+
+    Matrix4f modelMatrix = new Matrix4f();
+    public Matrix4f buildModelMatrix(GameItem gameItem) {
+        Quaternionf QuatAroundX = new Quaternionf( 1.0f,0.0f,0.0f, gameItem.getPosition().x );
+        Quaternionf QuatAroundY = new Quaternionf( 0.0f,1.0f,0.0f, gameItem.getPosition().y );
+        Quaternionf QuatAroundZ = new Quaternionf( 0.0f,0.0f,1.0f, gameItem.getPosition().z );
+        Quaternionf rotation = new Quaternionf();
+        rotation.mul(QuatAroundX).mul(QuatAroundY).mul(QuatAroundZ);
+        return modelMatrix.translationRotateScale(
+                gameItem.getPosition().x, gameItem.getPosition().y, gameItem.getPosition().z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
+                gameItem.getScale(), gameItem.getScale(), gameItem.getScale());
+    }
+
+    public Matrix4f buildModelViewMatrix(GameItem gameItem, Matrix4f viewMatrix) {
+        return buildModelViewMatrix(buildModelMatrix(gameItem), viewMatrix);
+    }
+
+    public Matrix4f buildModelViewMatrix(Matrix4f modelMatrix, Matrix4f viewMatrix) {
+        return viewMatrix.mulAffine(modelMatrix, modelViewMatrix);
+    }
 }
+
+/*
+public Matrix4f buildModelMatrix(GameItem gameItem) {
+        Quaternionf QuatAroundX = new Quaternionf( 1.0f,0.0f,0.0f, gameItem.getPosition().x );
+        Quaternionf QuatAroundY = new Quaternionf( 1.0f,0.0f,0.0f, gameItem.getPosition().y );
+        Quaternionf QuatAroundZ = new Quaternionf( 1.0f,0.0f,0.0f, gameItem.getPosition().z );
+        Quaternionf rotation = new Quaternionf();
+        rotation.mul(QuatAroundX).mul(QuatAroundY).mul(QuatAroundZ);
+        return modelMatrix.translationRotateScale(
+                gameItem.getPosition().x, gameItem.getPosition().y, gameItem.getPosition().z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
+                gameItem.getScale(), gameItem.getScale(), gameItem.getScale());
+    }
+ */
 

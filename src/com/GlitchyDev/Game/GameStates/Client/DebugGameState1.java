@@ -202,7 +202,6 @@ public class DebugGameState1 extends EnvironmentGameState {
         {
             camera.getRotation().x += rotationSpeed;
         }
-        camera.updateViewMatrix();
 
 
         GameItem gameItem1 = selectGameItem3D(gameItems,camera);

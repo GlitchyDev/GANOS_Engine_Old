@@ -17,9 +17,9 @@ import static org.lwjgl.opengl.GL31C.glDrawElementsInstanced;
 
 public class Mesh implements Cloneable {
 
-    private final int vaoId;
+    protected final int vaoId;
 
-    private final List<Integer> vboIdList;
+    protected final List<Integer> vboIdList;
 
     private final int vertexCount;
 
@@ -90,6 +90,14 @@ public class Mesh implements Cloneable {
         this.texture = texture;
     }
 
+    public Mesh(Mesh mesh)
+    {
+        this.vaoId = mesh.getVaoId();
+        this.vboIdList = mesh.getVboIdList();
+        this.vertexCount = mesh.vertexCount;
+        this.texture = mesh.texture;
+    }
+
     public Texture getTexture() {
         return this.texture;
     }
@@ -114,6 +122,14 @@ public class Mesh implements Cloneable {
         postRender();
     }
 
+    public void Irender(int size) {
+        preRender();
+
+        glDrawElementsInstanced(GL_TRIANGLES, getVertexCount(), GL_UNSIGNED_INT, 0, size);
+
+        postRender();
+    }
+
 
     public void preRender()
     {
@@ -124,7 +140,6 @@ public class Mesh implements Cloneable {
         glBindVertexArray(getVaoId());
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
-        glEnableVertexAttribArray(2);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture.getId());
 
@@ -137,7 +152,6 @@ public class Mesh implements Cloneable {
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
-        glDisableVertexAttribArray(2);
     }
 
 
@@ -173,6 +187,10 @@ public class Mesh implements Cloneable {
         // Delete the VAO
         glBindVertexArray(0);
         glDeleteVertexArrays(vaoId);
+    }
+
+    public List<Integer> getVboIdList() {
+        return vboIdList;
     }
 
     @Override
