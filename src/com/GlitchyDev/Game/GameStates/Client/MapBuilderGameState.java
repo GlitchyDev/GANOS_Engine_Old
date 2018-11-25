@@ -13,7 +13,6 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
 import com.GlitchyDev.World.Location;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import java.io.File;
@@ -23,11 +22,7 @@ import java.io.ObjectInputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-
-import static org.lwjgl.glfw.GLFW.*;
 
 /**
  * A gamestate designed to aid in Map Design
@@ -315,7 +310,7 @@ public class MapBuilderGameState extends InputGameStateBase {
     public void render() {
         renderer.prepRender(globalGameData.getGameWindow());
         //renderer.render3DElements(globalGameData.getGameWindow(),"Default3D",camera,gameItems);
-        renderer.renderInstanced3DElements(globalGameData.getGameWindow(),"Instanced3D", camera, instancedGameItems);
+        renderer.renderInstanced3DElements(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, instancedGameItems);
         //renderer.renderInstanced3DElements(globalGameData.getGameWindow(),"Instanced3D", camera, instancedMesh, instancedGameItems);
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
         if((selectionMode || cursorEnabled) && toggle)

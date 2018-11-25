@@ -17,6 +17,8 @@ GameAssets\Shaders\Default\Default2D.fs
 GameAssets\Shaders\Default\Default2D.vs
 GameAssets\Shaders\Default\Default3D.fs
 GameAssets\Shaders\Default\Default3D.vs
+GameAssets\Shaders\Default\Instance3D.fs
+GameAssets\Shaders\Default\Instance3D.vs
 GameAssets\Shaders\Default\Instanced3D.fs
 GameAssets\Shaders\Default\Instanced3D.vs
 GameAssets\Shaders\Shaders.configList

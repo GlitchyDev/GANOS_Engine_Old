@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL31C.glDrawElementsInstanced;
 
 /**
  * A rendering assistant for rendering GameItems in OpenGL using Shaders
@@ -80,10 +81,10 @@ public class Renderer {
         shader.setUniform("texture_sampler", 0);
         // Render each gameItem
         for (GameItem gameItem : gameItems) {
+            Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
+            shader.setUniform("modelViewMatrix", modelViewMatrix);
             for(Mesh mesh: gameItem.getMeshes()) {
                 // Set model view matrix for this item
-                Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
-                shader.setUniform("modelViewMatrix", modelViewMatrix);
                 // Render the mesh for this game item
                 mesh.render();
             }
@@ -92,13 +93,25 @@ public class Renderer {
         shader.unbind();
     }
 
-    /**
-     * Renders the Specified GameItems to the Specified Camera using the Specified Shader
-     * @param window
-     * @param shaderName
-     * @param camera
-     * @param gameItems
-     */
+    public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<GameItem> gameItems) {
+        ShaderProgram shader = loadedShaders.get(shaderName);
+        shader.bind();
+
+        // Update projection Matrix
+        Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV, window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
+        shader.setUniform("projectionMatrix", projectionMatrix);
+
+        // Update view Matrix
+        Matrix4f viewMatrix = transformation.getViewMatrix(camera);
+
+        shader.setUniform("texture_sampler", 0);
+        // Render each gameItem
+        instancedMesh.renderInstanceList(gameItems,transformation,viewMatrix);
+
+        shader.unbind();
+    }
+
+    /*
     public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<GameItem> gameItems) {
         ShaderProgram shader = loadedShaders.get(shaderName);
         shader.bind();
@@ -113,39 +126,41 @@ public class Renderer {
         shader.setUniform("texture_sampler", 0);
         // Render each gameItem
 
-        instancedMesh.renderListInstanced(gameItems, transformation, viewMatrix);
-
-        shader.unbind();
-    }
-
-    public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, List<GameItem> gameItems) {
-        ShaderProgram shader = loadedShaders.get(shaderName);
-        shader.bind();
-
-        // Update projection Matrix
-        Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV, window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
-        shader.setUniform("projectionMatrix", projectionMatrix);
-
-        // Update view Matrix
-        Matrix4f viewMatrix = transformation.getViewMatrix(camera);
-
-        shader.setUniform("texture_sampler", 0);
-        // Render each gameItem
-
-        for (GameItem gameItem : gameItems) {
-            for(Mesh mesh: gameItem.getMeshes()) {
-                // Set model view matrix for this item
-                Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
-                shader.setUniform("modelViewMatrix", modelViewMatrix);
-                // Render the mesh for this game item
-                mesh.preRender();
-                mesh.Irender(100);
-                mesh.postRender();
+        instancedMesh.preRender();
+        int i = 0;
+        Matrix4f modelViewMatrix;
+        for(GameItem gameItem: gameItems)
+        {
+            switch(i)
+            {
+                case 0:
+                    modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
+                    shader.setUniform("modelViewMatrix0", modelViewMatrix);
+                    break;
+                case 1:
+                    modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
+                    shader.setUniform("modelViewMatrix1", modelViewMatrix);
+                    break;
+                case 2:
+                    modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
+                    shader.setUniform("modelViewMatrix2", modelViewMatrix);
+                    break;
+                case 3:
+                    modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
+                    shader.setUniform("modelViewMatrix3", modelViewMatrix);
+                    glDrawElementsInstanced(GL_TRIANGLES, instancedMesh.getVertexCount(), GL_UNSIGNED_INT, 0, 4);
+                    break;
             }
-        }
+            i++;
+            i %= 4;
 
+        }
+        instancedMesh.postRender();
         shader.unbind();
     }
+   */
+
+
 
 
     /**
