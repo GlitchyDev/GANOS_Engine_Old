@@ -87,9 +87,9 @@ public class MapBuilderGameState extends InputGameStateBase {
         cursor = new PartialCubicBlock(new Location(0,0,0),t,ttt,new ArrayList<>());
         cursor.setScale(1.1f);
 
-        int width = 50;
+        int width = 25;
         int height = 2;
-        int length = 50;
+        int length = 25;
 
 
         for(int x = 0; x < width; x++)
@@ -317,7 +317,7 @@ public class MapBuilderGameState extends InputGameStateBase {
         {
             ArrayList<GameItem> cc = new ArrayList<>();
             cc.add(cursor);
-            renderer.render3DElements(globalGameData.getGameWindow(),"Cursor",camera,cc);
+            //renderer.render3DElements(globalGameData.getGameWindow(),"Cursor",camera,cc);
         }
         toggle = !toggle;
     }

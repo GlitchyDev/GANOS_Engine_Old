@@ -90,7 +90,7 @@ public class Renderer {
             }
         }
 
-        shader.unbind();
+        //shader.unbind();
     }
 
     public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<GameItem> gameItems) {
@@ -108,7 +108,7 @@ public class Renderer {
         // Render each gameItem
         instancedMesh.renderInstanceList(gameItems,transformation,viewMatrix);
 
-        shader.unbind();
+        //shader.unbind();
     }
 
     /*

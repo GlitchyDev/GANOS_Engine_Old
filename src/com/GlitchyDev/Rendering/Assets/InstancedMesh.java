@@ -31,7 +31,7 @@ public class InstancedMesh extends Mesh {
 
     public InstancedMesh(Mesh mesh) {
         super(mesh);
-        instanceChunkSize = 1000;
+        instanceChunkSize = 25*25;
         buffer = BufferUtils.createFloatBuffer(16 * instanceChunkSize);
 
 
@@ -52,7 +52,7 @@ public class InstancedMesh extends Mesh {
 
     }
 
-    public void updateVBO(int vbo, float[] data, FloatBuffer buffer)
+    public void updateVBO(int vbo, FloatBuffer data, FloatBuffer buffer)
     {
         buffer.clear();
         buffer.put(data);
@@ -110,12 +110,13 @@ public class InstancedMesh extends Mesh {
     public void renderInstanceList(List<GameItem> gameItems, Transformation transformation, Matrix4f viewMatrix)
     {
         preRender();
-        float[] vboData = new float[instanceChunkSize * 16];
+        FloatBuffer vboData = BufferUtils.createFloatBuffer(instanceChunkSize * 16);
+        //float[] vboData = new float[instanceChunkSize * 16];
         int offset = 0;
         for(int i = 0; i < instanceChunkSize; i++)
         {
             Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItems.get(i), viewMatrix);
-            modelViewMatrix.get(vboData, offset * 16);
+            modelViewMatrix.get(offset * 16, vboData);
             offset++;
         }
         updateVBO(vboId, vboData, buffer);

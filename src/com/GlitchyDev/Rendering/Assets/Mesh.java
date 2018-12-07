@@ -150,10 +150,7 @@ public class Mesh implements Cloneable {
     public void postRender()
     {
         // Restore state
-        glBindVertexArray(0);
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glDisableVertexAttribArray(0);
-        glDisableVertexAttribArray(1);
+
     }
 
 

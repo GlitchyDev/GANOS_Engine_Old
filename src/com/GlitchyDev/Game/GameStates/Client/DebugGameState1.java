@@ -138,7 +138,6 @@ public class DebugGameState1 extends EnvironmentGameState {
         renderer.render3DElements(globalGameData.getGameWindow(), "Default3D", camera,gameItems);
         renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", spriteItems);
         renderer.renderHUD(globalGameData.getGameWindow(), "Default2D", hudItems);
-        glFinish();
     }
 
 
