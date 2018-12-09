@@ -2,6 +2,7 @@ package com.GlitchyDev.Rendering.Assets.Shaders;
 
 import com.GlitchyDev.IO.AssetLoader;
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryStack;
 
@@ -74,6 +75,14 @@ public class ShaderProgram {
             createUniform(uniformName);
         }
         glUniform3f(uniforms.get(uniformName), value.x, value.y, value.z);
+    }
+
+    public void setUniform(String uniformName, Vector2f value) {
+        if(!uniforms.containsKey(uniformName))
+        {
+            createUniform(uniformName);
+        }
+        glUniform2f(uniforms.get(uniformName), value.x, value.y);
     }
 
     public void createVertexShader(String shaderCode) throws Exception {

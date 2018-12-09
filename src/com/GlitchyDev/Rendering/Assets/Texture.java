@@ -2,12 +2,17 @@ package com.GlitchyDev.Rendering.Assets;
 
 import de.matthiasmann.twl.utils.PNGDecoder;
 import de.matthiasmann.twl.utils.PNGDecoder.Format;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+import org.lwjgl.opengl.GL14;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_TEXTURE_MAX_LEVEL;
+import static org.lwjgl.opengl.GL14.GL_GENERATE_MIPMAP;
 import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 
 public class Texture {
@@ -38,13 +43,19 @@ public class Texture {
 
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 2);
+            glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
 
             // Upload the texture data
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, decoder.getWidth(), decoder.getHeight(), 0,
                     GL_RGBA, GL_UNSIGNED_BYTE, buf);
 
             // Generate Mip Map
-            glGenerateMipmap(GL_TEXTURE_2D);
+            //glGenerateMipmap(GL_TEXTURE_2D);
+
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,6 +75,12 @@ public class Texture {
         this.height = height;
     }
 
+    public Texture(Texture texture)
+    {
+        this.id = texture.getId();
+        this.width = texture.getWidth();
+        this.height = texture.getHeight();
+    }
     public Texture getSubTexture(int x, int y, int width, int height)
     {
         int id = glGenTextures();

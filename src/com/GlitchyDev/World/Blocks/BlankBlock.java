@@ -16,10 +16,6 @@ public class BlankBlock extends BlockBase implements Serializable {
         super(blockType, location);
     }
 
-    @Override
-    public void buildMeshes() {
-
-    }
 
 
     private void readObject(ObjectInputStream aInputStream) throws ClassNotFoundException, IOException

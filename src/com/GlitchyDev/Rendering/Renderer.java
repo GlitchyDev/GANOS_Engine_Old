@@ -6,7 +6,9 @@ import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
 import com.GlitchyDev.Rendering.Assets.WorldElements.*;
 import com.GlitchyDev.Utility.GameWindow;
+import com.GlitchyDev.World.Blocks.PartialCubicBlock;
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,7 @@ public class Renderer {
     private static final float Z_NEAR = 0.01f;
     private static final float Z_FAR = 1000.f;
     private final Transformation transformation = new Transformation();
+    private String previousShader = "";
 
     // All the currently Loaded Shaders
     private HashMap<String,ShaderProgram> loadedShaders = new HashMap<>();
@@ -69,7 +72,9 @@ public class Renderer {
      */
     public void render3DElements(GameWindow window, String shaderName, Camera camera, List<GameItem> gameItems) {
         ShaderProgram shader = loadedShaders.get(shaderName);
-        shader.bind();
+        if(!previousShader.equals(shaderName)) {
+            shader.bind();
+        }
 
         // Update projection Matrix
         Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV, window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
@@ -95,7 +100,9 @@ public class Renderer {
 
     public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<GameItem> gameItems) {
         ShaderProgram shader = loadedShaders.get(shaderName);
-        shader.bind();
+        if(!previousShader.equals(shaderName)) {
+            shader.bind();
+        }
 
         // Update projection Matrix
         Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV, window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
@@ -106,11 +113,33 @@ public class Renderer {
 
         shader.setUniform("texture_sampler", 0);
         // Render each gameItem
-        instancedMesh.renderInstanceList(gameItems,transformation,viewMatrix);
+        instancedMesh.renderMeshInstanceList(gameItems,transformation,viewMatrix);
 
         //shader.unbind();
     }
 
+
+    public void renderInstancedPartialCubic(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<PartialCubicBlock> blocks) {
+        ShaderProgram shader = loadedShaders.get(shaderName);
+        if(!previousShader.equals(shaderName)) {
+            shader.bind();
+        }
+
+        // Update projection Matrix
+        Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV, window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
+        shader.setUniform("projectionMatrix", projectionMatrix);
+
+        // Update view Matrix
+        Matrix4f viewMatrix = transformation.getViewMatrix(camera);
+
+        shader.setUniform("texture_sampler", 0);
+
+        shader.setUniform("textureGridSize",new Vector2f(instancedMesh.getInstancedGridTexture().getTextureGridWidth(),instancedMesh.getInstancedGridTexture().getTextureGridHeight()));
+        // Render each gameItem
+        instancedMesh.renderPartialCubicBlocksInstanceList(blocks,transformation,viewMatrix);
+
+        //shader.unbind();
+    }
     /*
     public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<GameItem> gameItems) {
         ShaderProgram shader = loadedShaders.get(shaderName);
@@ -172,7 +201,9 @@ public class Renderer {
     public void renderHUD(GameWindow window, String shaderName, List<TextItem> hudItems)
     {
         ShaderProgram shader = loadedShaders.get(shaderName);
-        shader.bind();
+        if(!previousShader.equals(shaderName)) {
+            shader.bind();
+        }
 
         Matrix4f ortho = transformation.getOrthoProjectionMatrix(0, window.getWidth(), window.getHeight(), 0);
 
@@ -203,7 +234,9 @@ public class Renderer {
     public void renderSprites(GameWindow window, String shaderName, List<SpriteItem> spriteItems)
     {
         ShaderProgram shader = loadedShaders.get(shaderName);
-        shader.bind();
+        if(!previousShader.equals(shaderName)) {
+            shader.bind();
+        }
 
         Matrix4f ortho = transformation.getOrthoProjectionMatrix(0, window.getWidth(), window.getHeight(), 0);
 

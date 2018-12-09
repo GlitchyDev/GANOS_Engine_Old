@@ -1,17 +1,18 @@
 package com.GlitchyDev.Rendering.Assets;
 
-import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.Transformation;
+import com.GlitchyDev.World.Blocks.PartialCubicBlock;
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
-import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.opengl.ARBVertexArrayObject.glBindVertexArray;
@@ -19,35 +20,50 @@ import static org.lwjgl.opengl.GL11C.GL_FLOAT;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL15C.GL_ARRAY_BUFFER;
 import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL20C.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL31C.glDrawElementsInstanced;
 import static org.lwjgl.opengl.GL33C.glVertexAttribDivisor;
 
 public class InstancedMesh extends Mesh {
-    private final int instanceChunkSize;
+    private InstancedGridTexture instancedGridTexture;
+    private final int width = 100;
+    private final int instanceChunkSize =  width*width;
 
-    private final int vboId;
-    private FloatBuffer buffer;
+    private final int matrixVboId;
+    private FloatBuffer matrixBuffer;
+    private FloatBuffer matrixVboData;
 
-    public InstancedMesh(Mesh mesh) {
+    private final int textureVboId;
+    private FloatBuffer textureBuffer;
+    private FloatBuffer textureVboData;
+
+    public InstancedMesh(Mesh mesh, InstancedGridTexture instancedGridTexture) {
         super(mesh);
-        instanceChunkSize = 25*25;
-        buffer = BufferUtils.createFloatBuffer(16 * instanceChunkSize);
+
+        this.instancedGridTexture = instancedGridTexture;
 
 
-        // Stride Data per Model
-        // Offset ( How many bytes in, will the data be found ) ( 64 bytes? )
-        vboId = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER, vboId);
+
+        matrixBuffer = BufferUtils.createFloatBuffer(16 * instanceChunkSize);
+        matrixVboId = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, matrixVboId);
         glBufferData(GL_ARRAY_BUFFER, 16 * 4 * instanceChunkSize, GL_STREAM_DRAW);
-        vboIdList.add(vboId);
+        vboIdList.add(matrixVboId);
         glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 
-        addInstancedAttribute(getVaoId(), vboId, 2, 4, 16, 0);
-        addInstancedAttribute(getVaoId(), vboId, 3, 4, 16, 4);
-        addInstancedAttribute(getVaoId(), vboId, 4, 4, 16, 8);
-        addInstancedAttribute(getVaoId(), vboId, 5, 4, 16, 12);
-        //glBindAttribLocation(program.getProgramId(), 2,"modelViewMatrix");
+        addInstancedAttribute(getVaoId(), matrixVboId, 2, 4, 16, 0);
+        addInstancedAttribute(getVaoId(), matrixVboId, 3, 4, 16, 4);
+        addInstancedAttribute(getVaoId(), matrixVboId, 4, 4, 16, 8);
+        addInstancedAttribute(getVaoId(), matrixVboId, 5, 4, 16, 12);
+
+
+        textureBuffer = BufferUtils.createFloatBuffer((2 * 6) * instanceChunkSize);
+        textureVboId = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, textureVboId);
+        glBufferData(GL_ARRAY_BUFFER, (2 * 6) * 4 * instanceChunkSize, GL_STREAM_DRAW);
+        vboIdList.add(textureVboId);
+        glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+        addInstancedAttribute(getVaoId(), textureVboId, 6, 2, 2, 0);
+
 
 
     }
@@ -58,7 +74,8 @@ public class InstancedMesh extends Mesh {
         buffer.put(data);
         buffer.flip();
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        glBufferData(GL_ARRAY_BUFFER, buffer.capacity() * 4, GL_STREAM_DRAW);
+        //glBufferData(GL_ARRAY_BUFFER, matrixBuffer.capacity() * 4, GL_STREAM_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, buffer.capacity() * 4, GL_DYNAMIC_DRAW);
         glBufferSubData(GL_ARRAY_BUFFER, 0, buffer);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
@@ -78,8 +95,9 @@ public class InstancedMesh extends Mesh {
         GL20.glEnableVertexAttribArray(3);
         GL20.glEnableVertexAttribArray(4);
         GL20.glEnableVertexAttribArray(5);
+        GL20.glEnableVertexAttribArray(6);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, getTexture().getId());
+        glBindTexture(GL_TEXTURE_2D, instancedGridTexture.getId());
 
     }
 
@@ -94,6 +112,7 @@ public class InstancedMesh extends Mesh {
         glDisableVertexAttribArray(3);
         glDisableVertexAttribArray(4);
         glDisableVertexAttribArray(5);
+        glDisableVertexAttribArray(6);
         GL30.glBindVertexArray(0);
     }
 
@@ -107,28 +126,132 @@ public class InstancedMesh extends Mesh {
         glBindVertexArray(0);
     }
 
-    public void renderInstanceList(List<GameItem> gameItems, Transformation transformation, Matrix4f viewMatrix)
+
+    public void renderMeshInstanceList(List<GameItem> gameItems, Transformation transformation, Matrix4f viewMatrix)
     {
         preRender();
-        FloatBuffer vboData = BufferUtils.createFloatBuffer(instanceChunkSize * 16);
-        //float[] vboData = new float[instanceChunkSize * 16];
+        int length = gameItems.size();
+        for (int i = 0; i < length; i += instanceChunkSize) {
+            //System.out.println(i);
+            int end = Math.min(length, i + instanceChunkSize);
+            renderMeshInstanced(gameItems.subList(i, end),  transformation, viewMatrix, end-i);
+        }
+
+    }
+
+    public void renderMeshInstanced(List<GameItem> gameItems, Transformation transformation, Matrix4f viewMatrix, int size)
+    {
+        matrixVboData = BufferUtils.createFloatBuffer(size * 16);
         int offset = 0;
-        for(int i = 0; i < instanceChunkSize; i++)
+        for(int i = 0; i < size; i++)
         {
             Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItems.get(i), viewMatrix);
-            modelViewMatrix.get(offset * 16, vboData);
+            modelViewMatrix.get(offset * 16, matrixVboData);
             offset++;
         }
-        updateVBO(vboId, vboData, buffer);
-        glDrawElementsInstanced(GL_TRIANGLES, getVertexCount(), GL_UNSIGNED_INT, 0, instanceChunkSize);
-        postRender();
-
+        updateVBO(matrixVboId, matrixVboData, matrixBuffer);
+        glDrawElementsInstanced(GL_TRIANGLES, getVertexCount(), GL_UNSIGNED_INT, 0, size);
     }
 
 
 
+    public void renderPartialCubicBlocksInstanceList(List<PartialCubicBlock> blocks, Transformation transformation, Matrix4f viewMatrix)
+    {
+        preRender();
+
+        // Redo begining to get all view matrixes
+
+        // Collect all the rotations from each block
+
+        ArrayList<Matrix4f> modelViewMatrixes = new ArrayList<>();
+        ArrayList<Vector2f> textureCords = new ArrayList<>();
+
+        boolean[] faces;
+        Vector3f rotation;
+        for(PartialCubicBlock block: blocks)
+        {
+            int validStates = 0;
+            faces = block.getFaceStates();
+            for(int i = 0; i < 6; i++)
+            {
+                if(faces[i])
+                {
+                    switch(i)
+                    {
+                        case 0:
+                            rotation = new Vector3f(block.getRotation());
+                            rotation.add(0,0,0);
+                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix));
+                            break;
+                        case 1:
+                            rotation = new Vector3f(block.getRotation());
+                            rotation.add(180,0,0);
+                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix));
+                            break;
 
 
 
+                        case 2:
 
+                            rotation = new Vector3f(block.getRotation());
+                            rotation.add(0, 0,90);
+                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix));
+                            break;
+                        case 3:
+                            rotation = new Vector3f(block.getRotation());
+                            rotation.add(90,-90,0);
+                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix));
+                            break;
+                        case 4:
+                            rotation = new Vector3f(block.getRotation());
+                            rotation.add(180, 0,270);
+                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix));
+                            break;
+                        case 5:
+                            rotation = new Vector3f(block.getRotation());
+                            rotation.add(90, -90,180);
+                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix));
+                            break;
+                    }
+
+                    int num = block.getAssignedTextures()[validStates];
+                    int x = num % instancedGridTexture.getTextureGridWidth();
+                    int y = num / instancedGridTexture.getTextureGridWidth();
+
+                    textureCords.add(new Vector2f(x,y));
+                    validStates++;
+                }
+            }
+
+        }
+
+        int length = modelViewMatrixes.size();
+        for (int i = 0; i < length; i += instanceChunkSize) {
+            //System.out.println(i);
+            int end = Math.min(length, i + instanceChunkSize);
+            renderPartialCubicBlocksInstanced(modelViewMatrixes.subList(i, end), textureCords.subList(i, end), viewMatrix, end-i);
+        }
+
+    }
+
+    public void renderPartialCubicBlocksInstanced(List<Matrix4f> blocks, List<Vector2f> textureCords, Matrix4f viewMatrix, int size)
+    {
+        matrixVboData = BufferUtils.createFloatBuffer(size * 16);
+        textureVboData = BufferUtils.createFloatBuffer(size * 2);
+        int offset = 0;
+        for(int i = 0; i < size; i++)
+        {
+            blocks.get(i).get(offset * 16, matrixVboData);
+            textureCords.get(i).get(offset * 2, textureVboData);
+            offset++;
+        }
+        updateVBO(matrixVboId, matrixVboData, matrixBuffer);
+        updateVBO(textureVboId, textureVboData, textureBuffer);
+        glDrawElementsInstanced(GL_TRIANGLES, getVertexCount(), GL_UNSIGNED_INT, 0, size);
+    }
+
+
+    public InstancedGridTexture getInstancedGridTexture() {
+        return instancedGridTexture;
+    }
 }

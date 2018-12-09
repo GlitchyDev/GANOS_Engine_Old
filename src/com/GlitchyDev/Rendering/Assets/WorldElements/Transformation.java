@@ -64,6 +64,16 @@ public class Transformation {
         return viewCurr.mul(modelViewMatrix);
     }
 
+    public Matrix4f getModelViewMatrix(Vector3f position, Vector3f rotation, float scale, Matrix4f viewMatrix) {
+        modelViewMatrix.identity().translate(position).
+                rotateX((float) Math.toRadians(-rotation.x)).
+                rotateY((float) Math.toRadians(-rotation.y)).
+                rotateZ((float) Math.toRadians(-rotation.z)).
+                scale(scale);
+        Matrix4f viewCurr = new Matrix4f(viewMatrix);
+        return viewCurr.mul(modelViewMatrix);
+    }
+
     public Matrix4f getOrtoProjModelMatrix(GameItem gameItem, Matrix4f orthoMatrix) {
         Vector3f rotation = gameItem.getRotation();
         Matrix4f modelMatrix = new Matrix4f();
