@@ -6,20 +6,15 @@ import org.joml.Vector3f;
 
 public class Transformation {
 
-    private final Matrix4f projectionMatrix;
+    private Matrix4f projectionMatrix = new Matrix4f();
 
-    private final Matrix4f modelViewMatrix;
+    private Matrix4f modelViewMatrix = new Matrix4f();
 
-    private final Matrix4f viewMatrix;
+    private Matrix4f viewMatrix = new Matrix4f();
 
-    private final Matrix4f orthoMatrix;
+    private Matrix4f orthoMatrix = new Matrix4f();
 
-    public Transformation() {
-        projectionMatrix = new Matrix4f();
-        modelViewMatrix = new Matrix4f();
-        viewMatrix = new Matrix4f();
-        orthoMatrix = new Matrix4f();
-    }
+
 
     public final Matrix4f getProjectionMatrix(float fov, float width, float height, float zNear, float zFar) {
         float aspectRatio = width / height;
@@ -28,22 +23,19 @@ public class Transformation {
         return projectionMatrix;
     }
 
+    private Vector3f cameraPos;
+    Vector3f rotation3f;
     public Matrix4f getViewMatrix(Camera camera) {
-        Vector3f cameraPos = camera.getPosition();
-        Vector3f rotation = camera.getRotation();
+        cameraPos = camera.getPosition();
+        rotation3f = camera.getRotation();
 
-        viewMatrix.identity();
-        // First do the rotation so camera rotates over its position
-        viewMatrix.rotate((float) Math.toRadians(rotation.x), new Vector3f(1, 0, 0)).rotate((float) Math.toRadians(rotation.y), new Vector3f(0, 1, 0));
-        // Then do the translation
-        viewMatrix.translate(-cameraPos.x, -cameraPos.y, -cameraPos.z);
-        return viewMatrix;
+        return viewMatrix.identity()
+                .rotate((float) Math.toRadians(rotation3f.x), new Vector3f(1, 0, 0)).rotate((float) Math.toRadians(rotation3f.y), new Vector3f(0, 1, 0))
+                .translate(-cameraPos.x, -cameraPos.y, -cameraPos.z);
     }
 
     public final Matrix4f getOrthoProjectionMatrix(float left, float right, float bottom, float top) {
-        orthoMatrix.identity();
-        orthoMatrix.setOrtho2D(left, right, bottom, top);
-        return orthoMatrix;
+        return orthoMatrix.identity().setOrtho2D(left, right, bottom, top);
     }
 
     public static Matrix4f updateGenericViewMatrix(Vector3f position, Vector3f rotation, Matrix4f matrix) {
@@ -54,49 +46,46 @@ public class Transformation {
     }
 
     public Matrix4f getModelViewMatrix(GameItem gameItem, Matrix4f viewMatrix) {
-        Vector3f rotation = gameItem.getRotation();
-        modelViewMatrix.identity().translate(gameItem.getPosition()).
-                rotateX((float) Math.toRadians(-rotation.x)).
-                rotateY((float) Math.toRadians(-rotation.y)).
-                rotateZ((float) Math.toRadians(-rotation.z)).
-                scale(gameItem.getScale());
-        Matrix4f viewCurr = new Matrix4f(viewMatrix);
-        return viewCurr.mul(modelViewMatrix);
+        rotation3f = gameItem.getRotation();
+        return new Matrix4f(viewMatrix).mul( modelViewMatrix.identity().translate(gameItem.getPosition()).
+                rotateX((float) Math.toRadians(-rotation3f.x)).
+                rotateY((float) Math.toRadians(-rotation3f.y)).
+                rotateZ((float) Math.toRadians(-rotation3f.z)).
+                scale(gameItem.getScale()));
     }
 
     public Matrix4f getModelViewMatrix(Vector3f position, Vector3f rotation, float scale, Matrix4f viewMatrix) {
-        modelViewMatrix.identity().translate(position).
+        return new Matrix4f(viewMatrix).mul(modelViewMatrix.identity().translate(position).
                 rotateX((float) Math.toRadians(-rotation.x)).
                 rotateY((float) Math.toRadians(-rotation.y)).
                 rotateZ((float) Math.toRadians(-rotation.z)).
-                scale(scale);
-        Matrix4f viewCurr = new Matrix4f(viewMatrix);
-        return viewCurr.mul(modelViewMatrix);
+                scale(scale));
     }
 
+    private Matrix4f orthoMatrixCurr;
     public Matrix4f getOrtoProjModelMatrix(GameItem gameItem, Matrix4f orthoMatrix) {
-        Vector3f rotation = gameItem.getRotation();
-        Matrix4f modelMatrix = new Matrix4f();
-        modelMatrix.identity().translate(gameItem.getPosition()).
-                rotateX((float) Math.toRadians(-rotation.x)).
-                rotateY((float) Math.toRadians(-rotation.y)).
-                rotateZ((float) Math.toRadians(-rotation.z)).
-                scale(gameItem.getScale());
-        Matrix4f orthoMatrixCurr = new Matrix4f(orthoMatrix);
-        orthoMatrixCurr.mul(modelMatrix);
-        return orthoMatrixCurr;
+        rotation3f = gameItem.getRotation();
+        orthoMatrixCurr = new Matrix4f(orthoMatrix);
+        return orthoMatrixCurr.mul(modelMatrix.identity().translate(gameItem.getPosition()).
+                rotateX((float) Math.toRadians(-rotation3f.x)).
+                rotateY((float) Math.toRadians(-rotation3f.y)).
+                rotateZ((float) Math.toRadians(-rotation3f.z)).
+                scale(gameItem.getScale()));
     }
 
     Matrix4f modelMatrix = new Matrix4f();
+    Quaternionf QuatAroundX = new Quaternionf();
+    Quaternionf QuatAroundY = new Quaternionf();
+    Quaternionf QuatAroundZ = new Quaternionf();
+    Quaternionf rotationQ = new Quaternionf();
     public Matrix4f buildModelMatrix(GameItem gameItem) {
-        Quaternionf QuatAroundX = new Quaternionf( 1.0f,0.0f,0.0f, gameItem.getPosition().x );
-        Quaternionf QuatAroundY = new Quaternionf( 0.0f,1.0f,0.0f, gameItem.getPosition().y );
-        Quaternionf QuatAroundZ = new Quaternionf( 0.0f,0.0f,1.0f, gameItem.getPosition().z );
-        Quaternionf rotation = new Quaternionf();
-        rotation.mul(QuatAroundX).mul(QuatAroundY).mul(QuatAroundZ);
+        QuatAroundX.identity().add(1.0f,0.0f,0.0f, gameItem.getPosition().x );
+        QuatAroundY.identity().add( 0.0f,1.0f,0.0f, gameItem.getPosition().y );
+        QuatAroundZ.identity().add( 0.0f,0.0f,1.0f, gameItem.getPosition().z );
+        rotationQ.identity().mul(QuatAroundX).mul(QuatAroundY).mul(QuatAroundZ);
         return modelMatrix.translationRotateScale(
                 gameItem.getPosition().x, gameItem.getPosition().y, gameItem.getPosition().z,
-                rotation.x, rotation.y, rotation.z, rotation.w,
+                rotationQ.x, rotationQ.y, rotationQ.z, rotationQ.w,
                 gameItem.getScale(), gameItem.getScale(), gameItem.getScale());
     }
 

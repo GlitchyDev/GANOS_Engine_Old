@@ -66,6 +66,7 @@ public class GameWindow {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        glfwWindowHint(GLFW_DOUBLEBUFFER, GL_TRUE);
 
         //glfwWindowHint(GLFW_AUTO_ICONIFY, GL_FALSE);
 
@@ -113,6 +114,10 @@ public class GameWindow {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glEnable(GL_DEPTH_TEST);
         //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+
+        //glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+
+
 
         // Support for transparencies
         glEnable(GL_BLEND);

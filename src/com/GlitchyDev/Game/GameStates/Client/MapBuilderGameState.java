@@ -4,10 +4,8 @@ import com.GlitchyDev.Game.GameStates.Abstract.InputGameStateBase;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.GameInput.XBox360Controller;
 import com.GlitchyDev.IO.AssetLoader;
+import com.GlitchyDev.Rendering.Assets.*;
 import com.GlitchyDev.Rendering.Assets.Fonts.CustomFontTexture;
-import com.GlitchyDev.Rendering.Assets.InstancedGridTexture;
-import com.GlitchyDev.Rendering.Assets.InstancedMesh;
-import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
@@ -25,6 +23,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glFinish;
+
 /**
  * A gamestate designed to aid in Map Design
  *
@@ -37,7 +38,10 @@ import java.util.HashMap;
  */
 public class MapBuilderGameState extends InputGameStateBase {
     private Camera camera;
-    //private ArrayList<GameItem> gameItems = new ArrayList<>();
+    private Camera camera2;
+    private Texture renderTexture;
+    private RenderBuffer renderBuffer;
+    private ArrayList<GameItem> gameItems = new ArrayList<>();
     //private ArrayList<GameItem> instancedGameItems = new ArrayList<>();
     private ArrayList<PartialCubicBlock> cubicBlocks = new ArrayList<>();
     private ArrayList<TextItem> hudItems = new ArrayList<>();
@@ -59,11 +63,35 @@ public class MapBuilderGameState extends InputGameStateBase {
         camera.setPosition(0,12,0);
         camera.setRotation(0,-222, 0);
 
-        activeMeshes.put("Floor", AssetLoader.getMeshAsset("CubicMesh1"));
-        activeMeshes.get("Floor").setTexture(AssetLoader.getTextureAsset("Test_Floor"));
+        camera2 = new Camera();
+        camera2.setPosition(0,12,0);
+        camera2.setRotation(0,-222, 0);
 
-        activeMeshes.put("Wall", AssetLoader.getMeshAsset("flatWall1"));
-        activeMeshes.get("Wall").setTexture(AssetLoader.getTextureAsset("Test_Floor"));
+        renderBuffer = new RenderBuffer(500,500);
+        renderTexture = new Texture(renderBuffer);
+
+
+
+
+
+        activeMeshes.put("Floor", AssetLoader.getMeshAsset("CubicMesh1"));
+        activeMeshes.get("Floor").setTexture(renderTexture);
+
+        activeMeshes.put("Sky", AssetLoader.getMeshAsset("skyblock"));
+        activeMeshes.get("Sky").setTexture(AssetLoader.getTextureAsset("DefaultTexture"));
+
+        gameItems.add(new GameItem(activeMeshes.get("Floor")));
+        gameItems.get(0).setPosition(0,10,10);
+        gameItems.get(0).setRotation(0,0,0);
+        gameItems.get(0).setScale(1);
+
+        /*
+        gameItems.add(new GameItem(activeMeshes.get("Sky")));
+        gameItems.get(1).setPosition(59.25f,-30,59.25f);
+        gameItems.get(1).setRotation(0,0,0);
+        gameItems.get(1).setScale(60);
+        */                
+
 
         CustomFontTexture customTexture = new CustomFontTexture("DebugFont");
         //instancedMesh = new InstancedMesh(activeMeshes.get("Floor"));
@@ -81,8 +109,6 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
         boolean[] t = new boolean[]{true,true,true,true,true,true};
-        String[] tt = new String[]{"Icon16x16","Icon24x24","Icon32x32","Icon16x16","Icon24x24","Icon32x32"};
-
         int[] ttt = new int[]{0,1,2,3,4,5};
 
         InstancedGridTexture instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),2,3);
@@ -91,9 +117,9 @@ public class MapBuilderGameState extends InputGameStateBase {
         cursor = new PartialCubicBlock(new Location(0,0,0),instancedGridTexture,"UVMapCubeTexture",t,ttt,new ArrayList<>());
         cursor.setScale(1.1f);
 
-        int width = 50;
+        int width = 60;
         int height = 1;
-        int length = 50;
+        int length = 60;
 
 
 
@@ -306,6 +332,13 @@ public class MapBuilderGameState extends InputGameStateBase {
             camera.moveRotation(controller.getRightJoyStickY() * CAMERA_ROTATION_AMOUNT,0,0);
 
         }
+
+        if(controller.getToggleEastButton())
+        {
+            Camera temp = camera;
+            camera = camera2;
+            camera2 = temp;
+        }
     }
 
     public void cursorMovement()
@@ -344,18 +377,24 @@ public class MapBuilderGameState extends InputGameStateBase {
     @Override
     public void render() {
         renderer.prepRender(globalGameData.getGameWindow());
-        //renderer.render3DElements(globalGameData.getGameWindow(),"Default3D",camera,gameItems);
-        //renderer.renderInstanced3DElements(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, instancedGameItems);
+
+        renderBuffer.bindToRender();
+        renderer.clear();
+        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, cubicBlocks);
+        renderBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
+
+
+        renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
         renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, cubicBlocks);
-        //renderer.renderInstanced3DElements(globalGameData.getGameWindow(),"Instanced3D", camera, instancedMesh, instancedGameItems);
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
         if((selectionMode || cursorEnabled) && toggle)
         {
-            ArrayList<GameItem> cc = new ArrayList<>();
+            ArrayList<PartialCubicBlock> cc = new ArrayList<>();
             cc.add(cursor);
-            renderer.render3DElements(globalGameData.getGameWindow(),"Cursor",camera,cc);
+            renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, cc);
         }
         toggle = !toggle;
+        glFinish();
     }
 
 

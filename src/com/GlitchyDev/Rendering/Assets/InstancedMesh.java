@@ -64,7 +64,8 @@ public class InstancedMesh extends Mesh {
         glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
         addInstancedAttribute(getVaoId(), textureVboId, 6, 2, 2, 0);
 
-
+        matrixVboData = BufferUtils.createFloatBuffer(instanceChunkSize * 16);
+        textureVboData = BufferUtils.createFloatBuffer(instanceChunkSize * 2);
 
     }
 
@@ -154,20 +155,22 @@ public class InstancedMesh extends Mesh {
     }
 
 
-
+    private ArrayList<Matrix4f> modelViewMatrixes;
+    private ArrayList<Vector2f> textureCords;
+    boolean[] faces;
+    Vector3f rotation;
     public void renderPartialCubicBlocksInstanceList(List<PartialCubicBlock> blocks, Transformation transformation, Matrix4f viewMatrix)
     {
         preRender();
+
 
         // Redo begining to get all view matrixes
 
         // Collect all the rotations from each block
 
-        ArrayList<Matrix4f> modelViewMatrixes = new ArrayList<>();
-        ArrayList<Vector2f> textureCords = new ArrayList<>();
+        modelViewMatrixes = new ArrayList<>();
+        textureCords = new ArrayList<>();
 
-        boolean[] faces;
-        Vector3f rotation;
         for(PartialCubicBlock block: blocks)
         {
             int validStates = 0;
@@ -209,7 +212,7 @@ public class InstancedMesh extends Mesh {
                             break;
                         case 5:
                             rotation = new Vector3f(block.getRotation());
-                            rotation.add(90, -90,180);
+                            rotation.add(90, -270,180);
                             modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix));
                             break;
                     }
@@ -236,8 +239,9 @@ public class InstancedMesh extends Mesh {
 
     public void renderPartialCubicBlocksInstanced(List<Matrix4f> blocks, List<Vector2f> textureCords, Matrix4f viewMatrix, int size)
     {
-        matrixVboData = BufferUtils.createFloatBuffer(size * 16);
-        textureVboData = BufferUtils.createFloatBuffer(size * 2);
+        matrixVboData.clear();
+        textureVboData.clear();
+
         int offset = 0;
         for(int i = 0; i < size; i++)
         {

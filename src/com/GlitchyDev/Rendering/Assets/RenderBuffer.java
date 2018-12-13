@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL14;
 
 import static org.lwjgl.opengl.EXTFramebufferObject.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 
 public class RenderBuffer {
     private final int framebufferID;
@@ -40,9 +41,12 @@ public class RenderBuffer {
 
     public void bindToRender()
     {
+
         glViewport (0, 0, width, height);                                    // set The Current Viewport to the fbo size
         glBindTexture(GL_TEXTURE_2D, 0);                                // unlink textures because if we dont it all is gonna fail
         glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebufferID);        // switch to rendering on our FBO
+
+
     }
 
     public void unbindToRender(int width, int height)
