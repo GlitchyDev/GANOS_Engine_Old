@@ -1,8 +1,8 @@
 package com.GlitchyDev.Rendering.Assets.WorldElements;
 
-import org.joml.Matrix4f;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
+import org.joml.*;
+
+import java.lang.Math;
 
 public class Transformation {
 
@@ -44,6 +44,13 @@ public class Transformation {
                 .rotateY((float)Math.toRadians(rotation.y))
                 .translate(-position.x, -position.y, -position.z);
     }
+    public static Matrix4f updateGenericViewMatrix(Vector3i position, Vector3f rotation, Matrix4f matrix) {
+        // First do the rotation so camera rotates over its position
+        return matrix.rotationX((float)Math.toRadians(rotation.x))
+                .rotateY((float)Math.toRadians(rotation.y))
+                .translate(-position.x, -position.y, -position.z);
+    }
+
 
     public Matrix4f getModelViewMatrix(GameItem gameItem, Matrix4f viewMatrix) {
         rotation3f = gameItem.getRotation();
@@ -62,6 +69,17 @@ public class Transformation {
                 scale(scale));
     }
 
+    private Vector3f convertVector = new Vector3f();
+    public Matrix4f getModelViewMatrix(Vector3i position, Vector3f rotation, float scale, Matrix4f viewMatrix) {
+        convertVector = new Vector3f(position);
+        return new Matrix4f(viewMatrix).mul(modelViewMatrix.identity().translate(convertVector).
+                rotateX((float) Math.toRadians(-rotation.x)).
+                rotateY((float) Math.toRadians(-rotation.y)).
+                rotateZ((float) Math.toRadians(-rotation.z)).
+                scale(scale));
+    }
+
+
     private Matrix4f orthoMatrixCurr;
     public Matrix4f getOrtoProjModelMatrix(GameItem gameItem, Matrix4f orthoMatrix) {
         rotation3f = gameItem.getRotation();
@@ -71,6 +89,22 @@ public class Transformation {
                 rotateY((float) Math.toRadians(-rotation3f.y)).
                 rotateZ((float) Math.toRadians(-rotation3f.z)).
                 scale(gameItem.getScale()));
+    }
+    public Matrix4f getOrtoProjModelMatrix(Vector3f position, Vector3f rotation, float scale, Matrix4f orthoMatrix) {
+        orthoMatrixCurr = new Matrix4f(orthoMatrix);
+        return orthoMatrixCurr.mul(modelMatrix.identity().translate(position).
+                rotateX((float) Math.toRadians(-rotation.x)).
+                rotateY((float) Math.toRadians(-rotation.y)).
+                rotateZ((float) Math.toRadians(-rotation.z)).
+                scale(scale));
+    }
+    public Matrix4f getOrtoProjModelMatrix(Vector3i position, Vector3f rotation, float scale, Matrix4f orthoMatrix) {
+        orthoMatrixCurr = new Matrix4f(orthoMatrix);
+        return orthoMatrixCurr.mul(modelMatrix.identity().translate(position.x,position.y,position.z).
+                rotateX((float) Math.toRadians(-rotation.x)).
+                rotateY((float) Math.toRadians(-rotation.y)).
+                rotateZ((float) Math.toRadians(-rotation.z)).
+                scale(scale));
     }
 
     Matrix4f modelMatrix = new Matrix4f();
@@ -87,6 +121,14 @@ public class Transformation {
                 gameItem.getPosition().x, gameItem.getPosition().y, gameItem.getPosition().z,
                 rotationQ.x, rotationQ.y, rotationQ.z, rotationQ.w,
                 gameItem.getScale(), gameItem.getScale(), gameItem.getScale());
+    }
+
+
+    public Matrix4f buildModelMatrix(Vector3i position, Quaternionf rotation, float scale) {
+        return modelMatrix.translationRotateScale(
+                position.x, position.y, position.z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
+                scale, scale, scale);
     }
 
     public Matrix4f buildModelViewMatrix(GameItem gameItem, Matrix4f viewMatrix) {

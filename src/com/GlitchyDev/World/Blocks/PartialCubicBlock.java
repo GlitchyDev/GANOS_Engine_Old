@@ -5,6 +5,8 @@ import com.GlitchyDev.Rendering.Assets.InstancedGridTexture;
 import com.GlitchyDev.World.BlockBase;
 import com.GlitchyDev.World.BlockType;
 import com.GlitchyDev.World.Location;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,36 +16,40 @@ public class PartialCubicBlock extends BlockBase {
     private String textureName;
     private boolean[] faceStates;
     private int[] assignedTextures;
-    private ArrayList<String> modifiers;
+    //private ArrayList<String> modifiers;
 
 
 
-    public PartialCubicBlock(Location location, ObjectInputStream aInputStream) throws IOException {
-        super(BlockType.PARTIAL_CUBIC_BLOCK, location);
+    public PartialCubicBlock(Location location, Vector3f rotation, ObjectInputStream aInputStream) throws IOException {
+        super(BlockType.PARTIAL_CUBIC_BLOCK, location, rotation);
         readObject(aInputStream);
-        updateLocation();
+
     }
 
-    public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture, String textureName, boolean[] faceStates, int[] assignedTextures, ArrayList<String> modifiers)
+    public PartialCubicBlock(Location location, Vector3f rotation, InstancedGridTexture instancedGridTexture, String textureName, boolean[] faceStates, int[] assignedTextures)
     {
-        super(BlockType.PARTIAL_CUBIC_BLOCK, location);
+        super(BlockType.PARTIAL_CUBIC_BLOCK, location, rotation);
         this.instancedGridTexture = instancedGridTexture;
         this.textureName = textureName;
         this.faceStates = faceStates;
         this.assignedTextures = assignedTextures;
-        this.modifiers = modifiers;
-        updateLocation();
+        //this.modifiers = modifiers;
     }
 
-    public void updateLocation()
+    public PartialCubicBlock(Location location, Vector3f rotation, InstancedGridTexture instancedGridTexture, String textureName, boolean[] faceStates, int[] assignedTextures, ArrayList<String> modifiers)
     {
-        setPosition(location.getX() * 2, location.getY() * 2, location.getZ() * 2);
+        super(BlockType.PARTIAL_CUBIC_BLOCK, location, rotation);
+        this.instancedGridTexture = instancedGridTexture;
+        this.textureName = textureName;
+        this.faceStates = faceStates;
+        this.assignedTextures = assignedTextures;
+        //this.modifiers = modifiers;
     }
 
 
-    public void save()
+
+    public void save(File file)
     {
-        File file = new File("GameAssets/Configs/PartialCubicBlockDebug.configList");
         try {
             ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(file));
             writeObject(stream);
@@ -87,12 +93,15 @@ public class PartialCubicBlock extends BlockBase {
             assignedTextures[i] = aInputStream.readInt();
         }
         // Required Since we can't determine the # of regiment modifiers
+
+        /*
         int numModifiers = aInputStream.readInt();
         this.modifiers = new ArrayList<>();
         for(int i = 0; i < numModifiers; i++)
         {
             modifiers.add(aInputStream.readUTF());
         }
+        */
     }
 
     public void writeObject(ObjectOutputStream aOutputStream) throws IOException
@@ -113,11 +122,14 @@ public class PartialCubicBlock extends BlockBase {
         {
             aOutputStream.writeInt(assignedTextures[i]);
         }
+
+        /*
         aOutputStream.writeInt(this.modifiers.size());
         for(String modifier: modifiers)
         {
             aOutputStream.writeUTF(modifier);
         }
+        */
     }
 
 
@@ -137,6 +149,7 @@ public class PartialCubicBlock extends BlockBase {
         this.assignedTextures = assignedTextures;
     }
 
+    /*
     public ArrayList<String> getModifiers() {
         return modifiers;
     }
@@ -144,4 +157,5 @@ public class PartialCubicBlock extends BlockBase {
     public void setModifiers(ArrayList<String> modifiers) {
         this.modifiers = modifiers;
     }
+    */
 }

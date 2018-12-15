@@ -1,68 +1,76 @@
 package com.GlitchyDev.World;
 
+import org.joml.Vector3i;
+
 import java.io.Serializable;
 
 public class Location implements Serializable {
-    private int x;
-    private int y;
-    private int z;
-    private World world;
+    private Vector3i position;
+    //private World world;
 
-    public Location(int x, int y, int z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+
     public Location()
     {
-        this.x = 0;
-        this.y = 0;
-        this.z = 0;
+        position = new Vector3i();
     }
+    public Location(int x, int y, int z)
+    {
+        position = new Vector3i(x,y,z);
+    }
+    public Location(Vector3i position)
+    {
+        this.position = position;
+    }
+    public Location(Location location)
+    {
+        position = new Vector3i(location.getPosition());
+    }
+
 
     public Location getOffsetLocation(int x, int y, int z)
     {
-        return new Location(this.x + x, this.y + y, this.z + z);
+
+        return new Location(new Vector3i(position).add(x,y,z));
     }
 
     public void addOffset(int x, int y, int z)
     {
-        this.x += x;
-        this.y += y;
-        this.z += z;
+        position.add(x,y,z);
     }
 
-    public void setZ(int z) {
-        this.z = z;
-    }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 
     public void setX(int x) {
-        this.x = x;
+        this.position.x = x;
     }
 
-    public void setWorld(World world) {
-        this.world = world;
-    }
+    public void setY(int y) { this.position.y = y; }
+
+    public void setZ(int z) { this.position.z = z; }
+
+    //public void setWorld(World world) { this.world = world; }
 
 
-    public int getZ() {
-        return z;
+    public int getX() {
+        return position.x;
     }
 
     public int getY() {
-        return y;
+        return position.y;
     }
 
-    public int getX() {
-        return x;
+    public int getZ() {
+        return position.z;
     }
 
-    public World getWorld() {
-        return world;
+
+    public Vector3i getPosition(){
+        return position;
     }
+
+    public Vector3i getNormalizedPosition() {
+        return position.mul(2);
+    }
+
+    //public World getWorld() {return world;}
 }

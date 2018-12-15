@@ -12,19 +12,13 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
 import com.GlitchyDev.World.Location;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glFinish;
 
 /**
  * A gamestate designed to aid in Map Design
@@ -50,7 +44,7 @@ public class MapBuilderGameState extends InputGameStateBase {
 
     private XBox360Controller controller;
     private InstancedMesh instancedMesh;
-
+    private InstancedGridTexture instancedGridTexture;
 
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.MAPBUILDER);
@@ -94,7 +88,7 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
         CustomFontTexture customTexture = new CustomFontTexture("DebugFont");
-        //instancedMesh = new InstancedMesh(activeMeshes.get("Floor"));
+        //instancedMesh = new PartialCubicBlockRenderHelper(activeMeshes.get("Floor"));
 
         final int NUM_TEX_ITEMS = 15;
         for(int i = 0; i < NUM_TEX_ITEMS; i++)
@@ -111,10 +105,10 @@ public class MapBuilderGameState extends InputGameStateBase {
         boolean[] t = new boolean[]{true,true,true,true,true,true};
         int[] ttt = new int[]{0,1,2,3,4,5};
 
-        InstancedGridTexture instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),2,3);
-        instancedMesh = new InstancedMesh(AssetLoader.getMeshAsset("CubicMesh1"), instancedGridTexture);
+        instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),2,3);
+        instancedMesh = new InstancedMesh(AssetLoader.getMeshAsset("CubicMesh1"), 100000);
 
-        cursor = new PartialCubicBlock(new Location(0,0,0),instancedGridTexture,"UVMapCubeTexture",t,ttt,new ArrayList<>());
+        cursor = new PartialCubicBlock(new Location(0,0,0), new Vector3f(), instancedGridTexture,"UVMapCubeTexture",t,ttt,new ArrayList<>());
         cursor.setScale(1.1f);
 
         int width = 60;
@@ -165,7 +159,7 @@ public class MapBuilderGameState extends InputGameStateBase {
                     {
                         a[b] = textureCode.get(b);
                     }
-                    PartialCubicBlock b = new PartialCubicBlock(location,instancedGridTexture,"UVMapCubeTexture",faceStates,a,new ArrayList<>());
+                    PartialCubicBlock b = new PartialCubicBlock(location, new Vector3f(), instancedGridTexture,"UVMapCubeTexture",faceStates,a,new ArrayList<>());
                     cubicBlocks.add(b);
                 }
             }
@@ -235,7 +229,7 @@ public class MapBuilderGameState extends InputGameStateBase {
             hudItems.get(8).setText("JoyStick Buttons " + controller.getLeftJoyStickButton() + " " + controller.getRightJoyStickButton());
             hudItems.get(9).setText("JoySticks " + controller.getLeftJoyStickX() + " " + controller.getLeftJoyStickY() + " " + controller.getRightJoyStickX() + " " + controller.getRightJoyStickY());
             hudItems.get(10).setText("Home Buttons " + controller.getLeftHomeButton() + " " + controller.getRightHomeButton());
-            hudItems.get(11).setText("Editor Mode: " + selectionMode);
+            //hudItems.get(11).setText("Editor Mode: " + selectionMode);
 
         }
         else
@@ -248,13 +242,15 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
 
+        cameraControlsLogic();
+        editControlsLogic();
 
-        logicCamera();
+        //logicCamera();
     }
 
-    int x = 0;
 
 
+    /*
     boolean selectionMode = false;
     boolean cursorEnabled = false;
     int selectionX = 0;
@@ -262,9 +258,6 @@ public class MapBuilderGameState extends InputGameStateBase {
     int selectionZ = 0;
 
 
-    private final float CAMERA_MOVEMENT_AMOUNT = 0.3f;
-    private final float CAMERA_ROTATION_AMOUNT = 3.0f;
-    private final float JOYSTICK_THRESHHOLD = 0.2f;
     public void logicCamera()
     {
         if(controller.isCurrentlyActive()) {
@@ -276,7 +269,7 @@ public class MapBuilderGameState extends InputGameStateBase {
                 cursorEnabled = !cursorEnabled;
             }
 
-            cameraMovement();
+            cameraControlsLogic();
 
             if(selectionMode)
             {
@@ -287,9 +280,26 @@ public class MapBuilderGameState extends InputGameStateBase {
         }
 
     }
+    */
 
 
-    public void cameraMovement()
+    /**
+     * Movement for Camera
+     *
+     * Left Joystick
+     * - Button + Vertical Direction: Y axis
+     * - Horizontal Direction: Relative Left and Right
+     * - Vertical Direction: Relative Forward and Backwards
+     *
+     * Right JoyStick
+     * - Button: Switch Camera
+     * - Horizontal Direction: Pan Camera Left/Right
+     * - Vertical Direction: Pan Camera Up/Down
+     */
+    private final float CAMERA_MOVEMENT_AMOUNT = 0.3f;
+    private final float CAMERA_ROTATION_AMOUNT = 3.0f;
+    private final float JOYSTICK_THRESHHOLD = 0.2f;
+    public void cameraControlsLogic()
     {
         if(!controller.getLeftJoyStickButton())
         {
@@ -333,7 +343,7 @@ public class MapBuilderGameState extends InputGameStateBase {
 
         }
 
-        if(controller.getToggleEastButton())
+        if(controller.getToggleRightJoyStickButton())
         {
             Camera temp = camera;
             camera = camera2;
@@ -341,34 +351,82 @@ public class MapBuilderGameState extends InputGameStateBase {
         }
     }
 
+    public enum EditState {
+        MOVE_CURSOR, // Move Cursor, Delete whole Tiles
+        EDIT_MODEL, // Select Models, Bind, Select Orientation
+        EDIT_TEXTURE, // Select Texture Sheet, Bind Textures
+        ;
+        public EditState toggleState()
+        {
+            switch(this)
+            {
+                case MOVE_CURSOR:
+                    return EDIT_MODEL;
+                case EDIT_MODEL:
+                    return EDIT_TEXTURE;
+                case EDIT_TEXTURE:
+                    return MOVE_CURSOR;
+            }
+            return MOVE_CURSOR;
+        }
+    }
+
+    private EditState currentEditState = EditState.MOVE_CURSOR;
+    private boolean doShowCursor = true;
+    public void editControlsLogic()
+    {
+        if(controller.getToggleRightHomeButton())
+        {
+            currentEditState = currentEditState.toggleState();
+        }
+        if(controller.getToggleLeftHomeButton())
+        {
+            doShowCursor = !doShowCursor;
+        }
+        switch(currentEditState)
+        {
+
+            case MOVE_CURSOR:
+                //moveCursorControlsLogic();
+                break;
+            case EDIT_MODEL:
+                //editModelControlsLogic();
+                break;
+            case EDIT_TEXTURE:
+                //editTextureControlsLogic();
+                break;
+        }
+    }
+
     public void cursorMovement()
     {
         if(controller.getToggleNorthButton())
         {
-            selectionX++;
+            //selectionX++;
         }
         if(controller.getToggleSouthButton())
         {
-            selectionX--;
+            //selectionX--;
         }
         if(controller.getToggleWestButton())
         {
-            selectionZ++;
+            //selectionZ++;
         }
         if(controller.getToggleEastButton())
         {
-            selectionZ--;
+            //selectionZ--;
         }
         if(controller.getToggleRightBumperButton())
         {
-            selectionY++;
+            //selectionY++;
         }
         if(controller.getToggleRightTrigger())
         {
-            selectionY--;
+            //selectionY--;
         }
-        cursor.setPosition(selectionX*2,selectionY*2,selectionZ*2);
+        //cursor.setPosition(selectionX*2,selectionY*2,selectionZ*2);
     }
+
 
 
 
@@ -380,21 +438,22 @@ public class MapBuilderGameState extends InputGameStateBase {
 
         renderBuffer.bindToRender();
         renderer.clear();
-        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, cubicBlocks);
+        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, instancedGridTexture, cubicBlocks);
         renderBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
 
 
         renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
-        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, cubicBlocks);
+        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, instancedGridTexture, cubicBlocks);
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
+        /*
         if((selectionMode || cursorEnabled) && toggle)
         {
             ArrayList<PartialCubicBlock> cc = new ArrayList<>();
             cc.add(cursor);
             renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, cc);
         }
+        */
         toggle = !toggle;
-        glFinish();
     }
 
 

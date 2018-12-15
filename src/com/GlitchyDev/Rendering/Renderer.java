@@ -1,6 +1,7 @@
 package com.GlitchyDev.Rendering;
 
 import com.GlitchyDev.IO.AssetLoader;
+import com.GlitchyDev.Rendering.Assets.InstancedGridTexture;
 import com.GlitchyDev.Rendering.Assets.InstancedMesh;
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
@@ -119,7 +120,7 @@ public class Renderer {
     }
 
 
-    public void renderInstancedPartialCubic(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<PartialCubicBlock> blocks) {
+    public void renderInstancedPartialCubic(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, InstancedGridTexture instancedGridTexture, List<PartialCubicBlock> blocks) {
         ShaderProgram shader = loadedShaders.get(shaderName);
         if(!previousShader.equals(shaderName)) {
             shader.bind();
@@ -134,14 +135,14 @@ public class Renderer {
 
         shader.setUniform("texture_sampler", 0);
 
-        shader.setUniform("textureGridSize",new Vector2f(instancedMesh.getInstancedGridTexture().getTextureGridWidth(),instancedMesh.getInstancedGridTexture().getTextureGridHeight()));
+        shader.setUniform("textureGridSize",new Vector2f(instancedGridTexture.getTextureGridWidth(),instancedGridTexture.getTextureGridHeight()));
         // Render each gameItem
-        instancedMesh.renderPartialCubicBlocksInstanceList(blocks,transformation,viewMatrix);
+        instancedMesh.renderPartialCubicBlocksInstanceList(blocks,instancedGridTexture,transformation,viewMatrix);
 
         //shader.unbind();
     }
     /*
-    public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, List<GameItem> gameItems) {
+    public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, PartialCubicBlockRenderHelper instancedMesh, List<GameItem> gameItems) {
         ShaderProgram shader = loadedShaders.get(shaderName);
         shader.bind();
 
