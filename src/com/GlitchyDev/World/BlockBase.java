@@ -45,11 +45,6 @@ public abstract class BlockBase {
         return location.getPosition();
     }
 
-    public Vector3i getNormalizedPosition(){
-        return new Vector3i(location.getPosition()).mul(2);
-    }
-
-
     // *****
 
     public void setRotation(Vector3f rotation)

@@ -4,6 +4,7 @@ import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Rendering.Assets.InstancedGridTexture;
 import com.GlitchyDev.Rendering.Assets.InstancedMesh;
 import com.GlitchyDev.Rendering.Assets.Mesh;
+import com.GlitchyDev.Rendering.Assets.PartialCubicInstanceMesh;
 import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
 import com.GlitchyDev.Rendering.Assets.WorldElements.*;
 import com.GlitchyDev.Utility.GameWindow;
@@ -120,7 +121,7 @@ public class Renderer {
     }
 
 
-    public void renderInstancedPartialCubic(GameWindow window, String shaderName, Camera camera, InstancedMesh instancedMesh, InstancedGridTexture instancedGridTexture, List<PartialCubicBlock> blocks) {
+    public void renderInstancedPartialCubic(GameWindow window, String shaderName, Camera camera, PartialCubicInstanceMesh instancedMesh, List<PartialCubicBlock> blocks) {
         ShaderProgram shader = loadedShaders.get(shaderName);
         if(!previousShader.equals(shaderName)) {
             shader.bind();
@@ -135,9 +136,9 @@ public class Renderer {
 
         shader.setUniform("texture_sampler", 0);
 
-        shader.setUniform("textureGridSize",new Vector2f(instancedGridTexture.getTextureGridWidth(),instancedGridTexture.getTextureGridHeight()));
+        shader.setUniform("textureGridSize",new Vector2f(instancedMesh.getInstancedGridTexture().getTextureGridWidth(),instancedMesh.getInstancedGridTexture().getTextureGridHeight()));
         // Render each gameItem
-        instancedMesh.renderPartialCubicBlocksInstanceList(blocks,instancedGridTexture,transformation,viewMatrix);
+        instancedMesh.renderPartialCubicBlocksInstanceList(blocks,transformation,viewMatrix);
 
         //shader.unbind();
     }

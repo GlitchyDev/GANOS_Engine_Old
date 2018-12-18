@@ -19,18 +19,21 @@ public class Transformation {
     public final Matrix4f getProjectionMatrix(float fov, float width, float height, float zNear, float zFar) {
         float aspectRatio = width / height;
         projectionMatrix.identity();
-        projectionMatrix.perspective(fov, aspectRatio, zNear, zFar);
+        projectionMatrix.setPerspective(fov, aspectRatio, zNear, zFar);
         return projectionMatrix;
     }
 
     private Vector3f cameraPos;
     Vector3f rotation3f;
+    final Vector3f orientation1 = new Vector3f(1, 0, 0);
+    final Vector3f orientation2 = new Vector3f(0, 1, 0);
+
     public Matrix4f getViewMatrix(Camera camera) {
         cameraPos = camera.getPosition();
         rotation3f = camera.getRotation();
 
         return viewMatrix.identity()
-                .rotate((float) Math.toRadians(rotation3f.x), new Vector3f(1, 0, 0)).rotate((float) Math.toRadians(rotation3f.y), new Vector3f(0, 1, 0))
+                .rotate((float) Math.toRadians(rotation3f.x), orientation1).rotate((float) Math.toRadians(rotation3f.y), orientation2)
                 .translate(-cameraPos.x, -cameraPos.y, -cameraPos.z);
     }
 
@@ -61,6 +64,15 @@ public class Transformation {
                 scale(gameItem.getScale()));
     }
 
+    public Matrix4f getModelViewMatrix(GameItem gameItem, Matrix4f viewMatrix, int normalizeMultiplier) {
+        rotation3f = gameItem.getRotation().mul(normalizeMultiplier);
+        return new Matrix4f(viewMatrix).mul( modelViewMatrix.identity().translate(gameItem.getPosition()).
+                rotateX((float) Math.toRadians(-rotation3f.x)).
+                rotateY((float) Math.toRadians(-rotation3f.y)).
+                rotateZ((float) Math.toRadians(-rotation3f.z)).
+                scale(gameItem.getScale()));
+    }
+
     public Matrix4f getModelViewMatrix(Vector3f position, Vector3f rotation, float scale, Matrix4f viewMatrix) {
         return new Matrix4f(viewMatrix).mul(modelViewMatrix.identity().translate(position).
                 rotateX((float) Math.toRadians(-rotation.x)).
@@ -73,6 +85,15 @@ public class Transformation {
     public Matrix4f getModelViewMatrix(Vector3i position, Vector3f rotation, float scale, Matrix4f viewMatrix) {
         convertVector = new Vector3f(position);
         return new Matrix4f(viewMatrix).mul(modelViewMatrix.identity().translate(convertVector).
+                rotateX((float) Math.toRadians(-rotation.x)).
+                rotateY((float) Math.toRadians(-rotation.y)).
+                rotateZ((float) Math.toRadians(-rotation.z)).
+                scale(scale));
+    }
+
+    public Matrix4f getModelViewMatrix(Vector3i position, Vector3f rotation, float scale, Matrix4f viewMatrix, int normalizeMultiplier) {
+        convertVector = new Vector3f(position).mul(normalizeMultiplier);
+        return new Matrix4f(viewMatrix).mul(modelViewMatrix.identity().translate(new Vector3f(position).mul(normalizeMultiplier)).
                 rotateX((float) Math.toRadians(-rotation.x)).
                 rotateY((float) Math.toRadians(-rotation.y)).
                 rotateZ((float) Math.toRadians(-rotation.z)).

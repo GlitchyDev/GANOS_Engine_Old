@@ -68,9 +68,7 @@ public class Location implements Serializable {
         return position;
     }
 
-    public Vector3i getNormalizedPosition() {
-        return position.mul(2);
-    }
+
 
     //public World getWorld() {return world;}
 }

@@ -43,7 +43,7 @@ public class MapBuilderGameState extends InputGameStateBase {
     private PartialCubicBlock cursor;
 
     private XBox360Controller controller;
-    private InstancedMesh instancedMesh;
+    private PartialCubicInstanceMesh instancedMesh;
     private InstancedGridTexture instancedGridTexture;
 
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
@@ -106,7 +106,7 @@ public class MapBuilderGameState extends InputGameStateBase {
         int[] ttt = new int[]{0,1,2,3,4,5};
 
         instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),2,3);
-        instancedMesh = new InstancedMesh(AssetLoader.getMeshAsset("CubicMesh1"), 100000);
+        instancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),60*60, instancedGridTexture);
 
         cursor = new PartialCubicBlock(new Location(0,0,0), new Vector3f(), instancedGridTexture,"UVMapCubeTexture",t,ttt,new ArrayList<>());
         cursor.setScale(1.1f);
@@ -242,8 +242,10 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
 
-        cameraControlsLogic();
-        editControlsLogic();
+        if(controller.isCurrentlyActive()) {
+            cameraControlsLogic();
+            editControlsLogic();
+        }
 
         //logicCamera();
     }
@@ -438,12 +440,12 @@ public class MapBuilderGameState extends InputGameStateBase {
 
         renderBuffer.bindToRender();
         renderer.clear();
-        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, instancedGridTexture, cubicBlocks);
+        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, cubicBlocks);
         renderBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
 
 
         renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
-        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, instancedGridTexture, cubicBlocks);
+        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, cubicBlocks);
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
         /*
         if((selectionMode || cursorEnabled) && toggle)

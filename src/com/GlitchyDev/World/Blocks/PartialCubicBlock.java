@@ -12,17 +12,21 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class PartialCubicBlock extends BlockBase {
+    // Assigned Pool Grid Texture
     private InstancedGridTexture instancedGridTexture;
+    // Use as an internal identifier of textures for saving
     private String textureName;
+    // Be 6 sized,
     private boolean[] faceStates;
+    // -1 for non texture
     private int[] assignedTextures;
     //private ArrayList<String> modifiers;
 
 
 
-    public PartialCubicBlock(Location location, Vector3f rotation, ObjectInputStream aInputStream) throws IOException {
-        super(BlockType.PARTIAL_CUBIC_BLOCK, location, rotation);
-        readObject(aInputStream);
+    public PartialCubicBlock(Location location, ObjectInputStream aInputStream) throws IOException {
+        super(BlockType.PARTIAL_CUBIC_BLOCK, location, new Vector3f());
+        //readObject(aInputStream);
 
     }
 
@@ -47,6 +51,7 @@ public class PartialCubicBlock extends BlockBase {
     }
 
 
+    /** Undo once proper stuff has been made
 
     public void save(File file)
     {
@@ -94,14 +99,6 @@ public class PartialCubicBlock extends BlockBase {
         }
         // Required Since we can't determine the # of regiment modifiers
 
-        /*
-        int numModifiers = aInputStream.readInt();
-        this.modifiers = new ArrayList<>();
-        for(int i = 0; i < numModifiers; i++)
-        {
-            modifiers.add(aInputStream.readUTF());
-        }
-        */
     }
 
     public void writeObject(ObjectOutputStream aOutputStream) throws IOException
@@ -123,14 +120,9 @@ public class PartialCubicBlock extends BlockBase {
             aOutputStream.writeInt(assignedTextures[i]);
         }
 
-        /*
-        aOutputStream.writeInt(this.modifiers.size());
-        for(String modifier: modifiers)
-        {
-            aOutputStream.writeUTF(modifier);
-        }
-        */
     }
+
+    **/
 
 
     public boolean[] getFaceStates() {
