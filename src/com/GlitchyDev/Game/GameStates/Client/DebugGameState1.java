@@ -283,7 +283,7 @@ public class DebugGameState1 extends EnvironmentGameState {
     @Override
     public void enterState(GameStateType previousGameState) {
         globalGameData.getGameWindow().setCursor(AssetLoader.getInputStream("Icon16x16.png"),0,0);
-        globalGameData.getGameWindow().setIcon(getWindowHandle(),AssetLoader.getInputStream("Icon16x16.png"),AssetLoader.getInputStream("Icon32x32.png"));
+        globalGameData.getGameWindow().setIcon(AssetLoader.getInputStream("Icon16x16.png"),AssetLoader.getInputStream("Icon32x32.png"));
     }
 
     @Override

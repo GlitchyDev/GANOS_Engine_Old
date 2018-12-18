@@ -121,6 +121,7 @@ public class InstancedMesh extends Mesh {
             int end = Math.min(length, i + instanceChunkSize);
             renderMeshInstanced(gameItems.subList(i, end),  transformation, viewMatrix, end-i);
         }
+        postRender();
 
     }
 

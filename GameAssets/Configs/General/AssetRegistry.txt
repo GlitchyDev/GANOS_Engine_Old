@@ -39,6 +39,7 @@ GameAssets\Textures\Icon\invert_grassblock.png
 GameAssets\Textures\Icon\Text_Cursor.png
 GameAssets\Textures\Icon\Text_Cursor_E.png
 GameAssets\Textures\Icon\Tomo.png
+GameAssets\Textures\Testing\EditCursor.png
 GameAssets\Textures\Testing\grassblock.png
 GameAssets\Textures\Testing\Test_Floor.png
 GameAssets\Textures\Testing\Test_Floor_1.png

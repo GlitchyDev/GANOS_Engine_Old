@@ -39,12 +39,13 @@ public class MapBuilderGameState extends InputGameStateBase {
     //private ArrayList<GameItem> instancedGameItems = new ArrayList<>();
     private ArrayList<PartialCubicBlock> cubicBlocks = new ArrayList<>();
     private ArrayList<TextItem> hudItems = new ArrayList<>();
-    private HashMap<String,Mesh> activeMeshes = new HashMap<>();
+    //private HashMap<String,Mesh> activeMeshes = new HashMap<>();
     private PartialCubicBlock cursor;
 
     private XBox360Controller controller;
     private PartialCubicInstanceMesh instancedMesh;
     private InstancedGridTexture instancedGridTexture;
+    private PartialCubicInstanceMesh cursorInstancedMesh;
 
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.MAPBUILDER);
@@ -54,41 +55,29 @@ public class MapBuilderGameState extends InputGameStateBase {
     @Override
     public void init() {
         camera = new Camera();
-        camera.setPosition(0,12,0);
-        camera.setRotation(0,-222, 0);
+        camera.setPosition(0,10,10);
+        camera.setRotation(45,0, 0);
 
         camera2 = new Camera();
-        camera2.setPosition(0,12,0);
-        camera2.setRotation(0,-222, 0);
+        camera2.setPosition(-5,10,-5);
+        camera2.setRotation(30,135, 0);
 
         renderBuffer = new RenderBuffer(500,500);
         renderTexture = new Texture(renderBuffer);
 
 
 
+        Mesh instanceMesh = AssetLoader.getMeshAsset("CubicMesh1");
+        instanceMesh.setTexture(renderTexture);
 
-
-        activeMeshes.put("Floor", AssetLoader.getMeshAsset("CubicMesh1"));
-        activeMeshes.get("Floor").setTexture(renderTexture);
-
-        activeMeshes.put("Sky", AssetLoader.getMeshAsset("skyblock"));
-        activeMeshes.get("Sky").setTexture(AssetLoader.getTextureAsset("DefaultTexture"));
-
-        gameItems.add(new GameItem(activeMeshes.get("Floor")));
-        gameItems.get(0).setPosition(0,10,10);
+        gameItems.add(new GameItem(instanceMesh));
+        gameItems.get(0).setPosition(0,1,2);
         gameItems.get(0).setRotation(0,0,0);
         gameItems.get(0).setScale(1);
 
-        /*
-        gameItems.add(new GameItem(activeMeshes.get("Sky")));
-        gameItems.get(1).setPosition(59.25f,-30,59.25f);
-        gameItems.get(1).setRotation(0,0,0);
-        gameItems.get(1).setScale(60);
-        */                
 
 
         CustomFontTexture customTexture = new CustomFontTexture("DebugFont");
-        //instancedMesh = new PartialCubicBlockRenderHelper(activeMeshes.get("Floor"));
 
         final int NUM_TEX_ITEMS = 15;
         for(int i = 0; i < NUM_TEX_ITEMS; i++)
@@ -105,10 +94,12 @@ public class MapBuilderGameState extends InputGameStateBase {
         boolean[] t = new boolean[]{true,true,true,true,true,true};
         int[] ttt = new int[]{0,1,2,3,4,5};
 
+        InstancedGridTexture cursorGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("EditCursor"),2,3);
         instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),2,3);
-        instancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),60*60, instancedGridTexture);
+        cursorInstancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),60*60, cursorGridTexture);
+        instancedMesh = new PartialCubicInstanceMesh(AssetLoader.loadMesh("/Mesh/PartialCubicBlock/CubicMesh1.obj"),60*60, instancedGridTexture);
 
-        cursor = new PartialCubicBlock(new Location(0,0,0), new Vector3f(), instancedGridTexture,"UVMapCubeTexture",t,ttt,new ArrayList<>());
+        cursor = new PartialCubicBlock(new Location(0,0,0), new Vector3f(), cursorGridTexture,"Cursor",t,ttt,new ArrayList<>());
         cursor.setScale(1.1f);
 
         int width = 60;
@@ -137,21 +128,25 @@ public class MapBuilderGameState extends InputGameStateBase {
                                 faceStates[1] = true;
                                 break;
                             case 2:
-                                faceStates[2] = x==(width-1);
+                                faceStates[2] = z==0;
                                 break;
                             case 3:
-                                faceStates[3] = z==0;
+                                faceStates[3] = x==(width-1);
                                 break;
                             case 4:
-                                faceStates[4] = x==0;
+                                faceStates[4] = z==(length-1);
                                 break;
                             case 5:
-                                faceStates[5] = z==(length-1);
+                                faceStates[5] = x==0;
                                 break;
                         }
                         if(faceStates[i])
                         {
                             textureCode.add(i);
+                        }
+                        else
+                        {
+                            textureCode.add(0);
                         }
                     }
                     int[] a = new int[textureCode.size()];
@@ -215,7 +210,7 @@ public class MapBuilderGameState extends InputGameStateBase {
         controller.tick();
         hudItems.get(0).setText("Render: " + formatter.format(getRenderUtilization()) + " Logic: " + formatter.format(getLogicUtilization()));
         hudItems.get(1).setText("FPS:" + getCurrentFPS());
-        hudItems.get(2).setText("Pos:" + formatter.format(camera.getPosition().x) + "," + formatter.format(camera.getPosition().y) + "," + formatter.format(camera.getPosition().z)+ " Rot:" + camera.getRotation().x + "," + camera.getRotation().y + "," + camera.getRotation().x);
+        hudItems.get(2).setText("Pos:" + formatter.format(camera.getPosition().x) + "," + formatter.format(camera.getPosition().y) + "," + formatter.format(camera.getPosition().z)+ " Rot:" + formatter.format(camera.getRotation().x) + "," + formatter.format(camera.getRotation().y) + "," + formatter.format(camera.getRotation().z));
 
 
 
@@ -224,12 +219,13 @@ public class MapBuilderGameState extends InputGameStateBase {
             hudItems.get(3).setText("Controller Name " + controller.getName() + " Num_" + controller.getControllerID());
             hudItems.get(4).setText("Direction Pad " + controller.getDirectionPad());
             hudItems.get(5).setText("Directional Buttons " + controller.getNorthButton() + " " + controller.getEastButton() + " " + controller.getSouthButton() + " " + controller.getWestButton());
-            hudItems.get(6).setText("Trigger Buttons " + controller.getLeftTrigger() + " " + controller.getRightTrigger());
+            hudItems.get(6).setText("Trigger Buttons " + formatter.format(controller.getLeftTrigger()) + " " + formatter.format(controller.getRightTrigger()));
             hudItems.get(7).setText("Bumper Buttons " + controller.getLeftBumperButton() + " " + controller.getRightBumperButton());
             hudItems.get(8).setText("JoyStick Buttons " + controller.getLeftJoyStickButton() + " " + controller.getRightJoyStickButton());
-            hudItems.get(9).setText("JoySticks " + controller.getLeftJoyStickX() + " " + controller.getLeftJoyStickY() + " " + controller.getRightJoyStickX() + " " + controller.getRightJoyStickY());
+            hudItems.get(9).setText("JoySticks " + formatter.format(controller.getLeftJoyStickX()) + " " + formatter.format(controller.getLeftJoyStickY()) + " " + formatter.format(controller.getRightJoyStickX()) + " " + formatter.format(controller.getRightJoyStickY()));
             hudItems.get(10).setText("Home Buttons " + controller.getLeftHomeButton() + " " + controller.getRightHomeButton());
-            //hudItems.get(11).setText("Editor Mode: " + selectionMode);
+            hudItems.get(11).setText("Editor Mode: " + currentEditState);
+            hudItems.get(12).setText("Cursor Location: X:" + cursorX + " Y:" + cursorY + " Z:" + cursorZ);
 
         }
         else
@@ -389,7 +385,7 @@ public class MapBuilderGameState extends InputGameStateBase {
         {
 
             case MOVE_CURSOR:
-                //moveCursorControlsLogic();
+                moveCursorControlsLogic();
                 break;
             case EDIT_MODEL:
                 //editModelControlsLogic();
@@ -400,40 +396,42 @@ public class MapBuilderGameState extends InputGameStateBase {
         }
     }
 
-    public void cursorMovement()
+    private int cursorX = 0;
+    private int cursorY = 0;
+    private int cursorZ = 0;
+    public void moveCursorControlsLogic()
     {
         if(controller.getToggleNorthButton())
         {
-            //selectionX++;
+            cursorZ--;
         }
         if(controller.getToggleSouthButton())
         {
-            //selectionX--;
+            cursorZ++;
         }
         if(controller.getToggleWestButton())
         {
-            //selectionZ++;
+            cursorX--;
         }
         if(controller.getToggleEastButton())
         {
-            //selectionZ--;
+            cursorX++;
         }
         if(controller.getToggleRightBumperButton())
         {
-            //selectionY++;
+            cursorY++;
         }
         if(controller.getToggleRightTrigger())
         {
-            //selectionY--;
+            cursorY--;
         }
-        //cursor.setPosition(selectionX*2,selectionY*2,selectionZ*2);
+        cursor.getLocation().setPosition(cursorX, cursorY, cursorZ);
     }
 
 
 
 
 
-    boolean toggle = false;
     @Override
     public void render() {
         renderer.prepRender(globalGameData.getGameWindow());
@@ -447,21 +445,20 @@ public class MapBuilderGameState extends InputGameStateBase {
         renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
         renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, cubicBlocks);
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
-        /*
-        if((selectionMode || cursorEnabled) && toggle)
+
+        if((currentEditState == EditState.MOVE_CURSOR || doShowCursor))
         {
             ArrayList<PartialCubicBlock> cc = new ArrayList<>();
             cc.add(cursor);
-            renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, cc);
+            renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, cursorInstancedMesh, cc);
         }
-        */
-        toggle = !toggle;
+
     }
 
 
     @Override
     public void enterState(GameStateType previousGameState) {
-
+        globalGameData.getGameWindow().setIcon(AssetLoader.getInputStream("Icon16x16.png"), AssetLoader.getInputStream("Icon24x24.png"));
     }
 
     @Override

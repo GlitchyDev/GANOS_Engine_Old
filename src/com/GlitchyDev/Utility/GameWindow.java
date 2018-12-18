@@ -104,7 +104,6 @@ public class GameWindow {
         glfwMakeContextCurrent(windowHandle);
 
         if (isVSync()) {
-            // Enable v-sync
             glfwSwapInterval(1);
         }
 
@@ -113,11 +112,8 @@ public class GameWindow {
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glEnable(GL_DEPTH_TEST);
+        // Use to polygons
         //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-
-        //glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
-
-
 
         // Support for transparencies
         glEnable(GL_BLEND);
@@ -200,7 +196,7 @@ public class GameWindow {
         glfwSetCursor(getWindowHandle(), glfwCreateStandardCursor(glfwCursor));
     }
 
-    public void setIcon(long window, InputStream icon1, InputStream icon2) {
+    public void setIcon(InputStream icon1, InputStream icon2) {
 
         BufferedImage img = null;
         BufferedImage img2 = null;
@@ -222,7 +218,7 @@ public class GameWindow {
         images.put(0, image);
         images.put(1, image2);
 
-        glfwSetWindowIcon(window, images);
+        glfwSetWindowIcon(windowHandle, images);
 
 
         images.free();

@@ -48,6 +48,11 @@ public class Location implements Serializable {
 
     public void setZ(int z) { this.position.z = z; }
 
+    public void setPosition(int x, int y, int z)
+    {
+        position.set(x,y,z);
+    }
+
     //public void setWorld(World world) { this.world = world; }
 
 

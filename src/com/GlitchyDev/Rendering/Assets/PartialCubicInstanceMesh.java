@@ -88,27 +88,33 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
                     switch(i)
                     {
                         case 0:
+                            // 0
+                            rotation.add(0,90,0);
                             modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                         case 1:
-                            rotation.add(180,0,0);
+                            // 1
+                            rotation.add(180,90,0);
                             modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
-
                         case 2:
-                            rotation.add(0, 0,90);
-                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
-                            break;
-                        case 3:
+                            // 2*
                             rotation.add(90,-90,0);
                             modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
+                        case 3:
+                            // 3*
+                            rotation.add(0, 0,90);
+                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
+                            break;
                         case 4:
-                            rotation.add(180, 0,270);
+                            // 4*
+                            rotation.add(90, -270,180);
                             modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                         case 5:
-                            rotation.add(90, -270,180);
+                            // 5*
+                            rotation.add(180, 0,270);
                             modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                     }
