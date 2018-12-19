@@ -39,10 +39,8 @@ public class World {
     private final ChunkCord chunkCord = new ChunkCord(0,0);
     public void setBlock(Location location, BlockBase block)
     {
-        System.out.print(location.getX() + " " + location.getY() + " " + location.getZ());
         int chunkX = getChunkNumfromCordNum(location.getX());
         int chunkZ = getChunkNumfromCordNum(location.getZ());
-        System.out.println(" " + chunkX + " " + chunkZ + " ");
         chunkCord.setX(chunkX);
         chunkCord.setZ(chunkZ);
         if(!doesChunkExist(chunkCord))
@@ -57,7 +55,6 @@ public class World {
     {
         int chunkX = getChunkNumfromCordNum(location.getX());
         int chunkZ = getChunkNumfromCordNum(location.getZ());
-        System.out.println(" " + chunkX + " " + chunkZ + " ");
         chunkCord.setX(chunkX);
         chunkCord.setZ(chunkZ);
         if(!doesChunkExist(chunkCord))

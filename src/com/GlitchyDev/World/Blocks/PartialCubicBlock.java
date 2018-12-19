@@ -50,6 +50,15 @@ public class PartialCubicBlock extends BlockBase {
         //this.modifiers = modifiers;
     }
 
+    public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture, String textureName)
+    {
+        super(BlockType.PARTIAL_CUBIC_BLOCK, location);
+        this.instancedGridTexture = instancedGridTexture;
+        this.textureName = textureName;
+        this.faceStates = new boolean[6];
+        this.assignedTextures = new int[6];
+    }
+
 
     /** Undo once proper stuff has been made
 

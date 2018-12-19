@@ -96,15 +96,17 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
 
-        boolean[] t = new boolean[]{true,true,true,true,true,true};
-        int[] ttt = new int[]{0,1,2,3,4,5};
+        boolean[] defaultOrientation = new boolean[]{true,true,true,true,true,true};
+        int[] defaultTextureMapping = new int[]{0,1,2,3,4,5};
 
-        InstancedGridTexture cursorGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("EditCursor"),2,3);
+        InstancedGridTexture cursorGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("EditCursor"),2,2);
         instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),2,3);
         cursorInstancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),60*60, cursorGridTexture);
         instancedMesh = new PartialCubicInstanceMesh(AssetLoader.loadMesh("/Mesh/PartialCubicBlock/CubicMesh1.obj"),60*60, instancedGridTexture);
 
-        cursor = new PartialCubicBlock(new Location(0,0,0), cursorGridTexture,"Cursor",t,ttt);
+
+        int[] zeroTextureMap = new int[]{0,0,0,0,0,0};
+        cursor = new PartialCubicBlock(new Location(0,0,0), cursorGridTexture,"Cursor",defaultOrientation,zeroTextureMap);
         cursor.setScale(1.4f);
 
         int width = 60;
@@ -385,27 +387,37 @@ public class MapBuilderGameState extends InputGameStateBase {
         if(controller.getToggleRightHomeButton())
         {
             currentEditState = currentEditState.toggleState();
+
+
             switch(currentEditState)
             {
 
                 case MOVE_CURSOR:
-                    cursor.setTopFaceState(true);
-                    cursor.setBottomFaceState(true);
-                    cursor.setNorthFaceState(true);
-                    cursor.setEastFaceState(true);
-                    cursor.setSouthFaceState(true);
-                    cursor.setWestFaceState(true);
+                    cursor.setTopTexture(0);
+                    cursor.setBottomTexture(0);
+                    cursor.setNorthTexture(0);
+                    cursor.setEastTexture(0);
+                    cursor.setSouthTexture(0);
+                    cursor.setWestTexture(0);
                     break;
                 case EDIT_MODEL:
+                    cursor.setTopTexture(2);
+                    cursor.setBottomTexture(2);
+                    cursor.setNorthTexture(2);
+                    cursor.setEastTexture(2);
+                    cursor.setSouthTexture(2);
+                    cursor.setWestTexture(2);
+                    break;
                 case EDIT_TEXTURE:
-                    cursor.setTopFaceState(false);
-                    cursor.setBottomFaceState(false);
-                    cursor.setNorthFaceState(false);
-                    cursor.setEastFaceState(false);
-                    cursor.setSouthFaceState(false);
-                    cursor.setWestFaceState(false);
+                    cursor.setTopTexture(3);
+                    cursor.setBottomTexture(3);
+                    cursor.setNorthTexture(3);
+                    cursor.setEastTexture(3);
+                    cursor.setSouthTexture(3);
+                    cursor.setWestTexture(3);
                     break;
             }
+
         }
         switch(currentEditState)
         {
@@ -470,20 +482,20 @@ public class MapBuilderGameState extends InputGameStateBase {
 
     public void editModelControlsLogic()
     {
-        cursor.setTopFaceState(controller.getRightBumperButton());
-        cursor.setBottomFaceState(controller.getRightTrigger() >= 0.95);
-        cursor.setNorthFaceState(controller.getNorthButton());
-        cursor.setEastFaceState(controller.getEastButton());
-        cursor.setSouthFaceState(controller.getSouthButton());
-        cursor.setWestFaceState(controller.getWestButton());
+        cursor.setTopTexture(controller.getRightBumperButton() ? 2 : 1);
+        cursor.setBottomTexture(controller.getRightTrigger() >= 0.95 ? 2 : 1);
+        cursor.setNorthTexture(controller.getNorthButton() ? 2 : 1);
+        cursor.setEastTexture(controller.getEastButton() ? 2 : 1);
+        cursor.setSouthTexture(controller.getSouthButton() ? 2 : 1);
+        cursor.setWestTexture(controller.getWestButton() ? 2 : 1);
 
 
         if(controller.getToggleLeftTrigger()) {
 
             int index = 0;
-            for(boolean state: cursor.getFaceStates())
+            for(int texture: cursor.getAssignedTextures())
             {
-                if(state)
+                if(texture == 2)
                 {
                     BlockBase block = world.getBlock(new Location(cursorX, cursorY, cursorZ));
                     if(block != null && block instanceof PartialCubicBlock)
