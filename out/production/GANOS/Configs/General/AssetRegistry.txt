@@ -48,6 +48,5 @@ GameAssets\Textures\Testing\Test_Floor_3.png
 GameAssets\Textures\Testing\Test_Floor_4.png
 GameAssets\Textures\Testing\Test_Floor_5.png
 GameAssets\Textures\Testing\UVMapCubeTexture.png
-GameAssets\Textures\Testing\UVMapSquareTexture.png
 GameAssets\Textures\UI\DebugFont.png
 GameAssets\Textures\UI\DebugFontConfig.configList

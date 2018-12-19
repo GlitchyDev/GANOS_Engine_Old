@@ -18,6 +18,9 @@ public class BlankBlock extends BlockBase implements Serializable {
         super(BlockType.NONE, location, rotation);
     }
 
+    public BlankBlock(Location location) {
+        super(BlockType.NONE, location);
+    }
 
 
     private void readObject(ObjectInputStream aInputStream) throws ClassNotFoundException, IOException

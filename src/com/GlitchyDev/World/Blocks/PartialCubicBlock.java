@@ -25,7 +25,7 @@ public class PartialCubicBlock extends BlockBase {
 
 
     public PartialCubicBlock(Location location, ObjectInputStream aInputStream) throws IOException {
-        super(BlockType.PARTIAL_CUBIC_BLOCK, location, new Vector3f());
+        super(BlockType.PARTIAL_CUBIC_BLOCK, location);
         //readObject(aInputStream);
 
     }
@@ -40,9 +40,9 @@ public class PartialCubicBlock extends BlockBase {
         //this.modifiers = modifiers;
     }
 
-    public PartialCubicBlock(Location location, Vector3f rotation, InstancedGridTexture instancedGridTexture, String textureName, boolean[] faceStates, int[] assignedTextures, ArrayList<String> modifiers)
+    public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture, String textureName, boolean[] faceStates, int[] assignedTextures)
     {
-        super(BlockType.PARTIAL_CUBIC_BLOCK, location, rotation);
+        super(BlockType.PARTIAL_CUBIC_BLOCK, location);
         this.instancedGridTexture = instancedGridTexture;
         this.textureName = textureName;
         this.faceStates = faceStates;
@@ -137,10 +137,59 @@ public class PartialCubicBlock extends BlockBase {
         this.faceStates = faceStates;
     }
 
+    public void setTopFaceState(boolean state)
+    {
+        faceStates[0] = state;
+    }
+    public void setBottomFaceState(boolean state)
+    {
+        faceStates[1] = state;
+    }
+    public void setNorthFaceState(boolean state)
+    {
+        faceStates[2] = state;
+    }
+    public void setEastFaceState(boolean state)
+    {
+        faceStates[3] = state;
+    }
+    public void setSouthFaceState(boolean state)
+    {
+        faceStates[4] = state;
+    }
+    public void setWestFaceState(boolean state)
+    {
+        faceStates[5] = state;
+    }
+
     public void setAssignedTextures(int[] assignedTextures) {
         this.assignedTextures = assignedTextures;
     }
 
+    public void setTopTexture(int texture)
+    {
+        assignedTextures[0] = texture;
+    }
+    public void setBottomTexture(int texture)
+    {
+        assignedTextures[1] = texture;
+    }
+    public void setNorthTexture(int texture)
+    {
+        assignedTextures[2] = texture;
+    }
+    public void setEastTexture(int texture)
+    {
+        assignedTextures[3] = texture;
+    }
+    public void setSouthTexture(int texture)
+    {
+        assignedTextures[4] = texture;
+    }
+    public void setWestTexture(int texture)
+    {
+        assignedTextures[5] = texture;
+    }
     /*
     public ArrayList<String> getModifiers() {
         return modifiers;

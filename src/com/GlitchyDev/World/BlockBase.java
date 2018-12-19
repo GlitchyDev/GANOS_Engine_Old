@@ -21,6 +21,12 @@ public abstract class BlockBase {
         this.rotation = rotation;
         this.scale = 1.0f;
     }
+    public BlockBase(BlockType blockType, Location location) {
+        this.blockType = blockType;
+        this.location = location;
+        this.rotation = new Vector3f();
+        this.scale = 1.0f;
+    }
 
 
     public BlockType getBlockType() {

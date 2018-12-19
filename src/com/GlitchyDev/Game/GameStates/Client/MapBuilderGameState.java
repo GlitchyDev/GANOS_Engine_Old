@@ -10,8 +10,11 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
+import com.GlitchyDev.World.BlockBase;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
+import com.GlitchyDev.World.Chunk;
 import com.GlitchyDev.World.Location;
+import com.GlitchyDev.World.World;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -37,7 +40,6 @@ public class MapBuilderGameState extends InputGameStateBase {
     private RenderBuffer renderBuffer;
     private ArrayList<GameItem> gameItems = new ArrayList<>();
     //private ArrayList<GameItem> instancedGameItems = new ArrayList<>();
-    private ArrayList<PartialCubicBlock> cubicBlocks = new ArrayList<>();
     private ArrayList<TextItem> hudItems = new ArrayList<>();
     //private HashMap<String,Mesh> activeMeshes = new HashMap<>();
     private PartialCubicBlock cursor;
@@ -46,6 +48,9 @@ public class MapBuilderGameState extends InputGameStateBase {
     private PartialCubicInstanceMesh instancedMesh;
     private InstancedGridTexture instancedGridTexture;
     private PartialCubicInstanceMesh cursorInstancedMesh;
+
+    //private World world;
+    private World world;
 
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.MAPBUILDER);
@@ -99,15 +104,19 @@ public class MapBuilderGameState extends InputGameStateBase {
         cursorInstancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),60*60, cursorGridTexture);
         instancedMesh = new PartialCubicInstanceMesh(AssetLoader.loadMesh("/Mesh/PartialCubicBlock/CubicMesh1.obj"),60*60, instancedGridTexture);
 
-        cursor = new PartialCubicBlock(new Location(0,0,0), new Vector3f(), cursorGridTexture,"Cursor",t,ttt,new ArrayList<>());
-        cursor.setScale(1.1f);
+        cursor = new PartialCubicBlock(new Location(0,0,0), cursorGridTexture,"Cursor",t,ttt);
+        cursor.setScale(1.4f);
 
         int width = 60;
         int height = 1;
         int length = 60;
 
+       // world = new World("DebugWorld");
 
 
+
+        world = new World("DebugWorld");
+        ArrayList<Integer> textureCode = new ArrayList<>();
         for(int x = 0; x < width; x++)
         {
             for(int y = 0; y < height; y++)
@@ -116,7 +125,7 @@ public class MapBuilderGameState extends InputGameStateBase {
                 {
                     Location location = new Location(x,y,z);
                     boolean[] faceStates = new boolean[6];
-                    ArrayList<Integer> textureCode = new ArrayList<>();
+                    textureCode.clear();
                     for(int i = 0; i < 6; i++)
                     {
                         switch(i)
@@ -154,8 +163,9 @@ public class MapBuilderGameState extends InputGameStateBase {
                     {
                         a[b] = textureCode.get(b);
                     }
-                    PartialCubicBlock b = new PartialCubicBlock(location, new Vector3f(), instancedGridTexture,"UVMapCubeTexture",faceStates,a,new ArrayList<>());
-                    cubicBlocks.add(b);
+                    PartialCubicBlock b = new PartialCubicBlock(location, instancedGridTexture,"UVMapCubeTexture",faceStates,a);
+                    world.setBlock(location,b);
+
                 }
             }
         }
@@ -370,16 +380,32 @@ public class MapBuilderGameState extends InputGameStateBase {
     }
 
     private EditState currentEditState = EditState.MOVE_CURSOR;
-    private boolean doShowCursor = true;
     public void editControlsLogic()
     {
         if(controller.getToggleRightHomeButton())
         {
             currentEditState = currentEditState.toggleState();
-        }
-        if(controller.getToggleLeftHomeButton())
-        {
-            doShowCursor = !doShowCursor;
+            switch(currentEditState)
+            {
+
+                case MOVE_CURSOR:
+                    cursor.setTopFaceState(true);
+                    cursor.setBottomFaceState(true);
+                    cursor.setNorthFaceState(true);
+                    cursor.setEastFaceState(true);
+                    cursor.setSouthFaceState(true);
+                    cursor.setWestFaceState(true);
+                    break;
+                case EDIT_MODEL:
+                case EDIT_TEXTURE:
+                    cursor.setTopFaceState(false);
+                    cursor.setBottomFaceState(false);
+                    cursor.setNorthFaceState(false);
+                    cursor.setEastFaceState(false);
+                    cursor.setSouthFaceState(false);
+                    cursor.setWestFaceState(false);
+                    break;
+            }
         }
         switch(currentEditState)
         {
@@ -388,7 +414,7 @@ public class MapBuilderGameState extends InputGameStateBase {
                 moveCursorControlsLogic();
                 break;
             case EDIT_MODEL:
-                //editModelControlsLogic();
+                editModelControlsLogic();
                 break;
             case EDIT_TEXTURE:
                 //editTextureControlsLogic();
@@ -426,8 +452,50 @@ public class MapBuilderGameState extends InputGameStateBase {
             cursorY--;
         }
         cursor.getLocation().setPosition(cursorX, cursorY, cursorZ);
+
+        if(controller.getToggleLeftTrigger())
+        {
+            BlockBase block = world.getBlock(new Location(cursorX, cursorY, cursorZ));
+            if(block != null)
+            {
+                world.setBlock(new Location(cursorX, cursorY, cursorZ),null);
+            }
+            else
+            {
+                // Create new Partial Block with Default Args
+            }
+        }
     }
 
+
+    public void editModelControlsLogic()
+    {
+        cursor.setTopFaceState(controller.getRightBumperButton());
+        cursor.setBottomFaceState(controller.getRightTrigger() >= 0.95);
+        cursor.setNorthFaceState(controller.getNorthButton());
+        cursor.setEastFaceState(controller.getEastButton());
+        cursor.setSouthFaceState(controller.getSouthButton());
+        cursor.setWestFaceState(controller.getWestButton());
+
+
+        if(controller.getToggleLeftTrigger()) {
+
+            int index = 0;
+            for(boolean state: cursor.getFaceStates())
+            {
+                if(state)
+                {
+                    BlockBase block = world.getBlock(new Location(cursorX, cursorY, cursorZ));
+                    if(block != null && block instanceof PartialCubicBlock)
+                    {
+                        ((PartialCubicBlock) block).getFaceStates()[index] = !((PartialCubicBlock) block).getFaceStates()[index];
+                    }
+                }
+                index++;
+            }
+        }
+
+    }
 
 
 
@@ -438,20 +506,18 @@ public class MapBuilderGameState extends InputGameStateBase {
 
         renderBuffer.bindToRender();
         renderer.clear();
-        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, cubicBlocks);
+        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, world.getChunks().values());
         renderBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
 
 
         renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
-        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, cubicBlocks);
+        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks().values());
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
 
-        if((currentEditState == EditState.MOVE_CURSOR || doShowCursor))
-        {
-            ArrayList<PartialCubicBlock> cc = new ArrayList<>();
-            cc.add(cursor);
-            renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, cursorInstancedMesh, cc);
-        }
+        ArrayList<PartialCubicBlock> cc = new ArrayList<>();
+        cc.add(cursor);
+        renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, cursorInstancedMesh, cc);
+
 
     }
 

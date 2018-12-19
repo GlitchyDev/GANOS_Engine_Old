@@ -1,7 +1,9 @@
 package com.GlitchyDev.Rendering.Assets;
 
 import com.GlitchyDev.Rendering.Assets.WorldElements.Transformation;
+import com.GlitchyDev.World.BlockBase;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
+import com.GlitchyDev.World.Chunk;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -12,6 +14,7 @@ import org.lwjgl.opengl.GL30;
 
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL15.*;
@@ -61,11 +64,11 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
         glDisableVertexAttribArray(6);
     }
 
-    private ArrayList<Matrix4f> modelViewMatrixes;
-    private ArrayList<Vector2f> textureCords;
+    private ArrayList<Matrix4f> modelViewMatrixes = new ArrayList<>();
+    private ArrayList<Vector2f> textureCords = new ArrayList<>();
     boolean[] faces;
     Vector3f rotation;
-    public void renderPartialCubicBlocksInstanceList(List<PartialCubicBlock> blocks, Transformation transformation, Matrix4f viewMatrix)
+    public void renderPartialCubicBlocksInstanced(List<PartialCubicBlock> blocks, Transformation transformation, Matrix4f viewMatrix)
     {
         preRender();
 
@@ -74,8 +77,8 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
 
         // Collect all the rotations from each block
 
-        modelViewMatrixes = new ArrayList<>();
-        textureCords = new ArrayList<>();
+        modelViewMatrixes.clear();
+        textureCords.clear();
 
         for(PartialCubicBlock block: blocks)
         {
@@ -126,19 +129,96 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
                     textureCords.add(new Vector2f(x,y));
                 }
             }
-
         }
+        int length = modelViewMatrixes.size();
+        for (int i = 0; i < length; i += instanceChunkSize) {
+            //System.out.println(i);
+            int end = Math.min(length, i + instanceChunkSize);
+            renderPartialCubicBlocksInstanced(modelViewMatrixes.subList(i, end), textureCords.subList(i, end), end-i);
+        }
+    }
+
+    public void renderPartialCubicBlocksInstancedChunk(Collection<Chunk> chunks, Transformation transformation, Matrix4f viewMatrix)
+    {
+        preRender();
+
+
+        // Redo begining to get all view matrixes
+
+        // Collect all the rotations from each block
+
+        modelViewMatrixes.clear();
+        textureCords.clear();
+
+        for(Chunk chunk: chunks)
+        {
+            for(BlockBase[][] blockSelection: chunk.getBlocks())
+            {
+                for(BlockBase[] blockLine: blockSelection) {
+                    for(BlockBase block: blockLine)
+                    {
+                        if(block != null && block instanceof PartialCubicBlock) {
+                            faces = ((PartialCubicBlock) block).getFaceStates();
+                            for (int i = 0; i < 6; i++) {
+                                if (faces[i]) {
+                                    rotation = new Vector3f(block.getRotation());
+                                    switch (i) {
+                                        case 0:
+                                            // 0
+                                            rotation.add(0, 90, 0);
+                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                            break;
+                                        case 1:
+                                            // 1
+                                            rotation.add(180, 90, 0);
+                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                            break;
+                                        case 2:
+                                            // 2*
+                                            rotation.add(90, -90, 0);
+                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                            break;
+                                        case 3:
+                                            // 3*
+                                            rotation.add(0, 0, 90);
+                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                            break;
+                                        case 4:
+                                            // 4*
+                                            rotation.add(90, -270, 180);
+                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                            break;
+                                        case 5:
+                                            // 5*
+                                            rotation.add(180, 0, 270);
+                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                            break;
+                                    }
+
+                                    int num = ((PartialCubicBlock) block).getAssignedTextures()[i];
+                                    int x = num % instancedGridTexture.getTextureGridWidth();
+                                    int y = num / instancedGridTexture.getTextureGridWidth();
+
+                                    textureCords.add(new Vector2f(x, y));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
 
         int length = modelViewMatrixes.size();
         for (int i = 0; i < length; i += instanceChunkSize) {
             //System.out.println(i);
             int end = Math.min(length, i + instanceChunkSize);
-            renderPartialCubicBlocksInstanced(modelViewMatrixes.subList(i, end), textureCords.subList(i, end), viewMatrix, end-i);
+            renderPartialCubicBlocksInstanced(modelViewMatrixes.subList(i, end), textureCords.subList(i, end), end-i);
         }
-
     }
 
-    public void renderPartialCubicBlocksInstanced(List<Matrix4f> blocks, List<Vector2f> textureCords, Matrix4f viewMatrix, int size)
+
+    private void renderPartialCubicBlocksInstanced(List<Matrix4f> blocks, List<Vector2f> textureCords, int size)
     {
         matrixVboData.clear();
         textureVboData.clear();

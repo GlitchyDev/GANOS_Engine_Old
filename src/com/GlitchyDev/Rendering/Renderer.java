@@ -8,10 +8,13 @@ import com.GlitchyDev.Rendering.Assets.PartialCubicInstanceMesh;
 import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
 import com.GlitchyDev.Rendering.Assets.WorldElements.*;
 import com.GlitchyDev.Utility.GameWindow;
+import com.GlitchyDev.World.BlockBase;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
+import com.GlitchyDev.World.Chunk;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -138,14 +141,16 @@ public class Renderer {
 
         shader.setUniform("textureGridSize",new Vector2f(instancedMesh.getInstancedGridTexture().getTextureGridWidth(),instancedMesh.getInstancedGridTexture().getTextureGridHeight()));
         // Render each gameItem
-        instancedMesh.renderPartialCubicBlocksInstanceList(blocks,transformation,viewMatrix);
+        instancedMesh.renderPartialCubicBlocksInstanced(blocks,transformation,viewMatrix);
 
         //shader.unbind();
     }
-    /*
-    public void renderInstanced3DElements(GameWindow window, String shaderName, Camera camera, PartialCubicBlockRenderHelper instancedMesh, List<GameItem> gameItems) {
+
+    public void renderInstancedPartialCubicChunk(GameWindow window, String shaderName, Camera camera, PartialCubicInstanceMesh instancedMesh, Collection<Chunk> chunks) {
         ShaderProgram shader = loadedShaders.get(shaderName);
-        shader.bind();
+        if(!previousShader.equals(shaderName)) {
+            shader.bind();
+        }
 
         // Update projection Matrix
         Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV, window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
@@ -155,41 +160,14 @@ public class Renderer {
         Matrix4f viewMatrix = transformation.getViewMatrix(camera);
 
         shader.setUniform("texture_sampler", 0);
+
+        shader.setUniform("textureGridSize",new Vector2f(instancedMesh.getInstancedGridTexture().getTextureGridWidth(),instancedMesh.getInstancedGridTexture().getTextureGridHeight()));
         // Render each gameItem
+        instancedMesh.renderPartialCubicBlocksInstancedChunk(chunks,transformation,viewMatrix);
 
-        instancedMesh.preRender();
-        int i = 0;
-        Matrix4f modelViewMatrix;
-        for(GameItem gameItem: gameItems)
-        {
-            switch(i)
-            {
-                case 0:
-                    modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
-                    shader.setUniform("modelViewMatrix0", modelViewMatrix);
-                    break;
-                case 1:
-                    modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
-                    shader.setUniform("modelViewMatrix1", modelViewMatrix);
-                    break;
-                case 2:
-                    modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
-                    shader.setUniform("modelViewMatrix2", modelViewMatrix);
-                    break;
-                case 3:
-                    modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
-                    shader.setUniform("modelViewMatrix3", modelViewMatrix);
-                    glDrawElementsInstanced(GL_TRIANGLES, instancedMesh.getVertexCount(), GL_UNSIGNED_INT, 0, 4);
-                    break;
-            }
-            i++;
-            i %= 4;
-
-        }
-        instancedMesh.postRender();
-        shader.unbind();
+        //shader.unbind();
     }
-   */
+
 
 
 
