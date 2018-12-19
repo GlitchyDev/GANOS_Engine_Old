@@ -28,6 +28,8 @@ public abstract class BlockBase {
         this.scale = 1.0f;
     }
 
+    public abstract boolean isUseless();
+
 
     public BlockType getBlockType() {
         return blockType;

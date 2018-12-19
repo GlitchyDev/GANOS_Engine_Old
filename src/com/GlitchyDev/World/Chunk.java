@@ -7,29 +7,21 @@ import java.util.ArrayList;
 
 public class Chunk {
     // Store Y X Z so slices can be taken out
-    private final BlockBase[][][] blocks;
+    private BlockBase[][][] blocks;
+    private int chunkHeight;
     private final ChunkCord chunkCord;
 
     public Chunk(ChunkCord chunkCord)
     {
         blocks = new BlockBase[World.STANDARD_CHUNK_HEIGHT][World.STANDARD_CHUNK_SIDE_LENGTH][World.STANDARD_CHUNK_SIDE_LENGTH];
-        for(int y = 0; y < World.STANDARD_CHUNK_HEIGHT; y++)
-        {
-            for(int x = 0; x < World.STANDARD_CHUNK_SIDE_LENGTH; x++)
-            {
-                for(int z = 0; z < World.STANDARD_CHUNK_SIDE_LENGTH; z++)
-                {
-                    setBlock(x,y,z,new BlankBlock(new Location(x + World.getPosNumFromChunkNum(chunkCord.getX()),y,z + World.getPosNumFromChunkNum(chunkCord.getZ()))));
-                }
-            }
-        }
-
+        chunkHeight = World.STANDARD_CHUNK_HEIGHT;
         this.chunkCord = chunkCord;
     }
 
     public Chunk(ChunkCord chunkCord, int height)
     {
         blocks = new BlockBase[height][World.STANDARD_CHUNK_SIDE_LENGTH][World.STANDARD_CHUNK_SIDE_LENGTH];
+        chunkHeight = height;
         this.chunkCord = chunkCord;
     }
 
@@ -43,6 +35,22 @@ public class Chunk {
 
     public BlockBase getBlock(int relativeX, int relativeY, int relativeZ)
     {
+        if(relativeY >= chunkHeight)
+        {
+            chunkHeight = relativeY+1;
+            BlockBase[][][] blocksAdjustedHeight = new BlockBase[chunkHeight][blocks[0].length][blocks[0][0].length];
+            int index = 0;
+            for(BlockBase[][] area: blocks)
+            {
+                blocksAdjustedHeight[index] = area;
+                index++;
+            }
+            blocks = blocksAdjustedHeight;
+        }
+        if(relativeY < 0)
+        {
+            return null;
+        }
         return blocks[relativeY][relativeX][relativeZ];
     }
 

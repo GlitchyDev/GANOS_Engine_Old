@@ -4,6 +4,7 @@ import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Rendering.Assets.InstancedGridTexture;
 import com.GlitchyDev.World.BlockBase;
 import com.GlitchyDev.World.BlockType;
+import com.GlitchyDev.World.Direction;
 import com.GlitchyDev.World.Location;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -56,6 +57,11 @@ public class PartialCubicBlock extends BlockBase {
         this.instancedGridTexture = instancedGridTexture;
         this.textureName = textureName;
         this.faceStates = new boolean[6];
+
+        for(int index = 0; index < 6; index++)
+        {
+            faceStates[index] = true;
+        }
         this.assignedTextures = new int[6];
     }
 
@@ -142,15 +148,25 @@ public class PartialCubicBlock extends BlockBase {
         return assignedTextures;
     }
 
+    /**
+     * Return true if this Block contributes nothing to the current world
+     * @return
+     */
+    public boolean isUseless()
+    {
+        return (!(getAboveFaceState() ||  getBelowFaceState() || getNorthFaceState() || getEastFaceState() || getSouthFaceState() || getWestFaceState()));
+    }
+
+    // Face States
     public void setFaceStates(boolean[] faceStates) {
         this.faceStates = faceStates;
     }
 
-    public void setTopFaceState(boolean state)
+    public void setAboveFaceState(boolean state)
     {
         faceStates[0] = state;
     }
-    public void setBottomFaceState(boolean state)
+    public void setBelowFaceState(boolean state)
     {
         faceStates[1] = state;
     }
@@ -171,15 +187,87 @@ public class PartialCubicBlock extends BlockBase {
         faceStates[5] = state;
     }
 
+    public void setDirectionFaceState(Direction direction, boolean state)
+    {
+        switch(direction)
+        {
+            case ABOVE:
+               setAboveFaceState(state);
+                break;
+            case BELOW:
+                setBelowFaceState(state);
+                break;
+            case NORTH:
+                setNorthFaceState(state);
+                break;
+            case EAST:
+                setEastFaceState(state);
+                break;
+            case SOUTH:
+                setSouthFaceState(state);
+                break;
+            case WEST:
+                setWestFaceState(state);
+                break;
+        }
+    }
+
+    // Get Face States
+    public boolean getAboveFaceState()
+    {
+        return faceStates[0];
+    }
+    public boolean getBelowFaceState()
+    {
+        return faceStates[1];
+    }
+    public boolean getNorthFaceState()
+    {
+        return faceStates[2];
+    }
+    public boolean getEastFaceState()
+    {
+        return faceStates[3];
+    }
+    public boolean getSouthFaceState()
+    {
+        return faceStates[4];
+    }
+    public boolean getWestFaceState()
+    {
+        return faceStates[5];
+    }
+
+    public boolean getDirectionFaceState(Direction direction)
+    {
+        switch(direction)
+        {
+            case ABOVE:
+                return getAboveFaceState();
+            case BELOW:
+                return getBelowFaceState();
+            case NORTH:
+                return getNorthFaceState();
+            case EAST:
+                return getEastFaceState();
+            case SOUTH:
+                return getSouthFaceState();
+            case WEST:
+                return getWestFaceState();
+            default:
+                return getAboveFaceState();
+        }
+    }
+
     public void setAssignedTextures(int[] assignedTextures) {
         this.assignedTextures = assignedTextures;
     }
 
-    public void setTopTexture(int texture)
+    public void setAboveTexture(int texture)
     {
         assignedTextures[0] = texture;
     }
-    public void setBottomTexture(int texture)
+    public void setBelowTexture(int texture)
     {
         assignedTextures[1] = texture;
     }
@@ -199,6 +287,78 @@ public class PartialCubicBlock extends BlockBase {
     {
         assignedTextures[5] = texture;
     }
+
+    public void setDirectionTexture(Direction direction, int texture)
+    {
+        switch(direction)
+        {
+            case ABOVE:
+                setAboveTexture(texture);
+                break;
+            case BELOW:
+                setBelowTexture(texture);
+                break;
+            case NORTH:
+                setNorthTexture(texture);
+                break;
+            case EAST:
+                setEastTexture(texture);
+                break;
+            case SOUTH:
+                setSouthTexture(texture);
+                break;
+            case WEST:
+                setWestTexture(texture);
+                break;
+        }
+    }
+
+    public int getAboveTexture()
+    {
+        return assignedTextures[0];
+    }
+    public int getBelowTexture()
+    {
+        return assignedTextures[1];
+    }
+    public int getNorthTexture()
+    {
+        return assignedTextures[2];
+    }
+    public int getEastTexture()
+    {
+        return assignedTextures[3];
+    }
+    public int getSouthTexture()
+    {
+        return assignedTextures[4];
+    }
+    public int getWestTexture()
+    {
+        return assignedTextures[5];
+    }
+
+    public int getDirectionTexture(Direction direction)
+    {
+        switch(direction)
+        {
+            case ABOVE:
+                return getAboveTexture();
+            case BELOW:
+                return getBelowTexture();
+            case NORTH:
+                return getNorthTexture();
+            case EAST:
+                return getEastTexture();
+            case SOUTH:
+                return getSouthTexture();
+            case WEST:
+                return getWestTexture();
+            default:
+                return getAboveTexture();
+        }
+    }
+
     /*
     public ArrayList<String> getModifiers() {
         return modifiers;

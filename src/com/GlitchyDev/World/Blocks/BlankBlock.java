@@ -22,6 +22,10 @@ public class BlankBlock extends BlockBase implements Serializable {
         super(BlockType.NONE, location);
     }
 
+    @Override
+    public boolean isUseless() {
+        return false;
+    }
 
     private void readObject(ObjectInputStream aInputStream) throws ClassNotFoundException, IOException
     {
@@ -33,4 +37,6 @@ public class BlankBlock extends BlockBase implements Serializable {
         // Write Valid Block Bit
         aOutputStream.writeBoolean(false);
     }
+
+
 }

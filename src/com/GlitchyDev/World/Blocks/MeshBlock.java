@@ -15,6 +15,12 @@ public class MeshBlock extends BlockBase {
         this.mesh = mesh;
     }
 
+    @Override
+    public boolean isUseless() {
+        return true;
+    }
+
+
     public Mesh getMesh() {
         return mesh;
     }

@@ -10,11 +10,8 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
-import com.GlitchyDev.World.BlockBase;
+import com.GlitchyDev.World.*;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
-import com.GlitchyDev.World.Chunk;
-import com.GlitchyDev.World.Location;
-import com.GlitchyDev.World.World;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -99,7 +96,7 @@ public class MapBuilderGameState extends InputGameStateBase {
         boolean[] defaultOrientation = new boolean[]{true,true,true,true,true,true};
         int[] defaultTextureMapping = new int[]{0,1,2,3,4,5};
 
-        InstancedGridTexture cursorGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("EditCursor"),2,2);
+        InstancedGridTexture cursorGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("EditCursor"),2,3);
         instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),2,3);
         cursorInstancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),60*60, cursorGridTexture);
         instancedMesh = new PartialCubicInstanceMesh(AssetLoader.loadMesh("/Mesh/PartialCubicBlock/CubicMesh1.obj"),60*60, instancedGridTexture);
@@ -128,37 +125,10 @@ public class MapBuilderGameState extends InputGameStateBase {
                     Location location = new Location(x,y,z);
                     boolean[] faceStates = new boolean[6];
                     textureCode.clear();
+                    faceStates[0] = true;
                     for(int i = 0; i < 6; i++)
                     {
-                        switch(i)
-                        {
-                            case 0:
-                                faceStates[0] = true;
-                                break;
-                            case 1:
-                                faceStates[1] = true;
-                                break;
-                            case 2:
-                                faceStates[2] = z==0;
-                                break;
-                            case 3:
-                                faceStates[3] = x==(width-1);
-                                break;
-                            case 4:
-                                faceStates[4] = z==(length-1);
-                                break;
-                            case 5:
-                                faceStates[5] = x==0;
-                                break;
-                        }
-                        if(faceStates[i])
-                        {
-                            textureCode.add(i);
-                        }
-                        else
-                        {
-                            textureCode.add(0);
-                        }
+                        textureCode.add(i);
                     }
                     int[] a = new int[textureCode.size()];
                     for(int b = 0; b < a.length; b++)
@@ -236,8 +206,8 @@ public class MapBuilderGameState extends InputGameStateBase {
             hudItems.get(8).setText("JoyStick Buttons " + controller.getLeftJoyStickButton() + " " + controller.getRightJoyStickButton());
             hudItems.get(9).setText("JoySticks " + formatter.format(controller.getLeftJoyStickX()) + " " + formatter.format(controller.getLeftJoyStickY()) + " " + formatter.format(controller.getRightJoyStickX()) + " " + formatter.format(controller.getRightJoyStickY()));
             hudItems.get(10).setText("Home Buttons " + controller.getLeftHomeButton() + " " + controller.getRightHomeButton());
-            hudItems.get(11).setText("Editor Mode: " + currentEditState);
-            hudItems.get(12).setText("Cursor Location: X:" + cursorX + " Y:" + cursorY + " Z:" + cursorZ);
+            hudItems.get(11).setText("Editor Mode: " + currentEditState + " EnableWallMode: " + enableWallMode);
+            hudItems.get(12).setText("Cursor Location: X:" + cursorLocation.getX() + " Y:" + cursorLocation.getY() + " Z:" + cursorLocation.getZ());
 
         }
         else
@@ -393,28 +363,22 @@ public class MapBuilderGameState extends InputGameStateBase {
             {
 
                 case MOVE_CURSOR:
-                    cursor.setTopTexture(0);
-                    cursor.setBottomTexture(0);
-                    cursor.setNorthTexture(0);
-                    cursor.setEastTexture(0);
-                    cursor.setSouthTexture(0);
-                    cursor.setWestTexture(0);
+                    for(Direction direction: Direction.values())
+                    {
+                        cursor.setDirectionTexture(direction,0);
+                    }
                     break;
                 case EDIT_MODEL:
-                    cursor.setTopTexture(2);
-                    cursor.setBottomTexture(2);
-                    cursor.setNorthTexture(2);
-                    cursor.setEastTexture(2);
-                    cursor.setSouthTexture(2);
-                    cursor.setWestTexture(2);
+                    for(Direction direction: Direction.values())
+                    {
+                        cursor.setDirectionTexture(direction,2);
+                    }
                     break;
                 case EDIT_TEXTURE:
-                    cursor.setTopTexture(3);
-                    cursor.setBottomTexture(3);
-                    cursor.setNorthTexture(3);
-                    cursor.setEastTexture(3);
-                    cursor.setSouthTexture(3);
-                    cursor.setWestTexture(3);
+                    for(Direction direction: Direction.values())
+                    {
+                        cursor.setDirectionTexture(direction,4);
+                    }
                     break;
             }
 
@@ -434,56 +398,96 @@ public class MapBuilderGameState extends InputGameStateBase {
         }
     }
 
-    private int cursorX = 0;
-    private int cursorY = 0;
-    private int cursorZ = 0;
-    public void moveCursorControlsLogic()
-    {
-        if(controller.getToggleNorthButton())
-        {
-            cursorZ--;
+    private Location cursorLocation = new Location(0,0,0);
+    private boolean enableWallMode = true;
+    public void moveCursorControlsLogic() {
+        if (controller.getToggleNorthButton()) {
+            cursorLocation.addOffset(0,0,-1);
         }
-        if(controller.getToggleSouthButton())
-        {
-            cursorZ++;
+        if (controller.getToggleSouthButton()) {
+            cursorLocation.addOffset(0,0,1);
         }
-        if(controller.getToggleWestButton())
-        {
-            cursorX--;
+        if (controller.getToggleWestButton()) {
+            cursorLocation.addOffset(-1,0,0);
         }
-        if(controller.getToggleEastButton())
-        {
-            cursorX++;
+        if (controller.getToggleEastButton()) {
+            cursorLocation.addOffset(1,0,0);
         }
-        if(controller.getToggleRightBumperButton())
-        {
-            cursorY++;
+        if (controller.getToggleRightBumperButton()) {
+            cursorLocation.addOffset(0,1,0);
         }
-        if(controller.getToggleRightTrigger())
-        {
-            cursorY--;
+        if (controller.getToggleRightTrigger()) {
+            if(cursorLocation.getY() != 0) {
+                cursorLocation.addOffset(0, -1, 0);
+            }
         }
-        cursor.getLocation().setPosition(cursorX, cursorY, cursorZ);
+        cursor.setLocation(cursorLocation);
 
-        if(controller.getToggleLeftTrigger())
-        {
-            BlockBase block = world.getBlock(new Location(cursorX, cursorY, cursorZ));
-            if(block != null)
-            {
-                world.setBlock(new Location(cursorX, cursorY, cursorZ),null);
-            }
-            else
-            {
-                // Create new Partial Block with Default Args
+        if (controller.getToggleLeftTrigger()) {
+            BlockBase blockAtCursorLocation = world.getBlock(cursor.getLocation());
+            Location cursorLocationClone = cursorLocation.clone();
+            if (blockAtCursorLocation != null) {
+                world.setBlock(cursorLocationClone, null);
+            } else {
+                if(enableWallMode) {
+                    PartialCubicBlock partialCubicBlock = new PartialCubicBlock(cursorLocationClone, instancedGridTexture, "DebugTexture");
+                    for(Direction direction: Direction.values()) {
+                        partialCubicBlock.setDirectionFaceState(direction,true);
+                    }
+                    world.setBlock(cursorLocationClone, partialCubicBlock);
+                    for(Direction direction: Direction.values())
+                    {
+                        Location offsetLocation = cursorLocationClone.getDirectionLocation(direction);
+                        BlockBase wall = world.getBlock(offsetLocation);
+                        if(wall != null && wall instanceof PartialCubicBlock)
+                        {
+                            if(((PartialCubicBlock) wall).getDirectionFaceState(direction.reverse()))
+                            {
+                                ((PartialCubicBlock) wall).setDirectionFaceState(direction.reverse(),false);
+                                ((PartialCubicBlock)world.getBlock(cursorLocation)).setDirectionFaceState(direction,false);
+
+                                if(wall.isUseless())
+                                {
+                                    world.setBlock(offsetLocation,null);
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    world.setBlock(cursor.getLocation().clone(), new PartialCubicBlock(cursor.getLocation().clone(), instancedGridTexture, "DebugTexture"));
+                }
             }
         }
+
+        if (controller.getToggleLeftHomeButton())
+        {
+            enableWallMode = !enableWallMode;
+        }
+
+        if(world.getBlock(cursorLocation) != null) {
+            for(Direction direction: Direction.values())
+            {
+                cursor.setDirectionTexture(direction,0);
+            }
+        }
+        else {
+            for(Direction direction: Direction.values())
+            {
+                cursor.setDirectionTexture(direction,1);
+            }
+        }
+
+        /*
+            Use DirectionPad to change models
+         */
     }
 
 
     public void editModelControlsLogic()
     {
-        cursor.setTopTexture(controller.getRightBumperButton() ? 2 : 1);
-        cursor.setBottomTexture(controller.getRightTrigger() >= 0.95 ? 2 : 1);
+        cursor.setAboveTexture(controller.getRightBumperButton() ? 2 : 1);
+        cursor.setBelowTexture(controller.getRightTrigger() >= 0.95 ? 2 : 1);
         cursor.setNorthTexture(controller.getNorthButton() ? 2 : 1);
         cursor.setEastTexture(controller.getEastButton() ? 2 : 1);
         cursor.setSouthTexture(controller.getSouthButton() ? 2 : 1);
@@ -497,7 +501,7 @@ public class MapBuilderGameState extends InputGameStateBase {
             {
                 if(texture == 2)
                 {
-                    BlockBase block = world.getBlock(new Location(cursorX, cursorY, cursorZ));
+                    BlockBase block = world.getBlock(cursorLocation);
                     if(block != null && block instanceof PartialCubicBlock)
                     {
                         ((PartialCubicBlock) block).getFaceStates()[index] = !((PartialCubicBlock) block).getFaceStates()[index];
