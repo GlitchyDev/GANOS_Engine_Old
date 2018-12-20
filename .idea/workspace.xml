@@ -10,9 +10,23 @@
     <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/InstancedMesh.java" line="144" />
     <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java" line="132" />
     <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Chunk.java" line="13" />
+    <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Renderer.java" line="192" />
+    <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/World/World.java" line="72" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e9bc26f-019e-4c83-8913-d8041e6027fb" name="Default" comment="" />
+    <list default="true" id="3e9bc26f-019e-4c83-8913-d8041e6027fb" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/PartialCubicInstanceMesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/PartialCubicInstanceMesh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/GameItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/GameItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/SpriteItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/SpriteItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/TextItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/TextItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Chunk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/World.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,27 +36,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/BlockType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="447" selection-start-line="447" selection-end-line="447" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/PartialCubicInstanceMesh.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Mesh.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="197" selection-start-line="197" selection-end-line="197" />
-              <folding>
-                <element signature="e#10635#10636#0" expanded="true" />
-                <element signature="e#10678#10679#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="527">
+              <caret line="45" column="49" lean-forward="true" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -99,9 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/GameAssets/Mesh/PartialCubicBlock/CubicMesh5.obj" />
-        <option value="$PROJECT_DIR$/GameAssets/Mesh/PartialCubicBlock/CubicMesh6.obj" />
-        <option value="$PROJECT_DIR$/GameAssets/Shaders/Default/Cursor2D.vs" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Default/Cursor2D.fs" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Default/Cursor.vs" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Default/Cursor.fs" />
@@ -109,10 +113,8 @@
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/GameInput/GameController.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/IO/OBJLoader.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Sounds/SoundManager.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Camera.java" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Default/Instanced3D.fs" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Default/Instanced3D.vs" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Mesh.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/RenderingHelper/PartialCubicBlockInstanceHelper.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Texture.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java" />
@@ -125,7 +127,6 @@
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Default/Default3D.fs" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Shaders.configList" />
         <option value="$PROJECT_DIR$/GameAssets/Mesh/Testing/skyblock.obj" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/BlockType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/EnvironmentGameState.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Fonts/InstancedMesh.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Fonts/PartialCubicBlockRenderHelper.java" />
@@ -139,17 +140,23 @@
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/DebugGameState1.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Game/GANOSGame.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/ChunkCord.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Renderer.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/PartialCubicInstanceMesh.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/World.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Direction.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Chunk.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Location.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/BlockBase.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/BlankBlock.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/MeshBlock.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/PartialCubicBlock.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/GameItem.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Renderer.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/SpriteItem.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/World.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Chunk.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Mesh.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/TextItem.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Location.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/PartialCubicInstanceMesh.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Camera.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/BlockType.java" />
       </list>
     </option>
   </component>
@@ -159,9 +166,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-5" />
-    <option name="width" value="1362" />
+    <option name="width" value="1925" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -172,8 +179,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,59 +194,6 @@
             <path>
               <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
               <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Mesh" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Mesh" type="462c0819:PsiDirectoryNode" />
-              <item name="PartialCubicBlock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Shaders" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Shaders" type="462c0819:PsiDirectoryNode" />
-              <item name="Default" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Textures" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Textures" type="462c0819:PsiDirectoryNode" />
-              <item name="Debug" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Textures" type="462c0819:PsiDirectoryNode" />
-              <item name="Icon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="GameAssets" type="462c0819:PsiDirectoryNode" />
-              <item name="Textures" type="462c0819:PsiDirectoryNode" />
-              <item name="Testing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -249,13 +201,6 @@
               <item name="GANOS" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
-              <item name="DebugMain" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
@@ -271,15 +216,6 @@
               <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
               <item name="Game" type="462c0819:PsiDirectoryNode" />
               <item name="GameStates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
-              <item name="Game" type="462c0819:PsiDirectoryNode" />
-              <item name="GameStates" type="462c0819:PsiDirectoryNode" />
-              <item name="Abstract" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
@@ -326,15 +262,6 @@
               <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
               <item name="Rendering" type="462c0819:PsiDirectoryNode" />
               <item name="Assets" type="462c0819:PsiDirectoryNode" />
-              <item name="Fonts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GANOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GANOS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GlitchyDev" type="462c0819:PsiDirectoryNode" />
-              <item name="Rendering" type="462c0819:PsiDirectoryNode" />
-              <item name="Assets" type="462c0819:PsiDirectoryNode" />
               <item name="WorldElements" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -363,6 +290,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -370,10 +299,10 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="s&#9;FILE&#9;file://C:/Users/Rober/Desktop/control/Java Projects/GANOS/src/com/GlitchyDev/Game/GameStates/Client/DebugGameState1.java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545250015440" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545277302616" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ITSE_GameProject" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.16894531" />
     <property name="project.structure.side.proportion" value="0.11764706" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -491,10 +420,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="0" width="1362" height="1047" extended-state="0" />
+    <frame x="-5" y="0" width="1925" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19738863" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15817694" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -525,57 +454,10 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hs_err_pid12076.log" />
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Shaders/ShaderProgram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="82" column="31" lean-forward="true" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
-          <folding>
-            <element signature="e#4109#4110#0" expanded="true" />
-            <element signature="e#4141#4142#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/InputGameStateBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Default/Default2D.vs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Default/Default2D.fs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Default/Default3D.vs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Default/Default3D.fs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="78" selection-start-line="10" selection-start-column="78" selection-end-line="10" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/RenderBuffer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="28" column="113" selection-start-line="28" selection-start-column="113" selection-end-line="28" selection-end-column="113" />
         </state>
       </provider>
     </entry>
@@ -592,60 +474,8 @@
     <entry file="file://$PROJECT_DIR$/GameAssets/Textures/Debug/Standing_Mirror.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/GameItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-          <folding>
-            <element signature="e#832#833#0" expanded="true" />
-            <element signature="e#863#864#0" expanded="true" />
-            <element signature="e#1495#1496#0" expanded="true" />
-            <element signature="e#1531#1532#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-428">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="e#571#572#0" expanded="true" />
-            <element signature="e#602#603#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
-            <element signature="e#674#675#0" expanded="true" />
-            <element signature="e#1026#1027#0" expanded="true" />
-            <element signature="e#1079#1080#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Region.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/BlockType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Fonts/PartialCubicBlockRenderHelper.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Mesh.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Transformation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="35" column="133" selection-start-line="35" selection-start-column="133" selection-end-line="35" selection-end-column="133" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameAssets/Shaders/Shaders.configList">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -660,16 +490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Mesh.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2285">
-          <caret line="145" selection-start-line="145" selection-end-line="145" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameAssets/Textures/Testing/UVMapSquareTexture.png" />
     <entry file="file://$PROJECT_DIR$/GameAssets/Textures/Icon/Cursor.png">
       <provider selected="true" editor-type-id="images" />
@@ -678,20 +498,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Texture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/InstancedGridTexture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -739,51 +545,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/GameWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/MonitoredGameStateBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="197" lean-forward="true" selection-start-line="197" selection-end-line="197" />
+        <state relative-caret-position="205">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/InstancedMesh.java">
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GANOSGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="845">
-          <caret line="123" column="21" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
+        <state relative-caret-position="718">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameAssets/Textures/Testing/EditCursor.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Fonts/HudTexture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="524" column="136" selection-start-line="524" selection-start-column="136" selection-end-line="524" selection-end-column="136" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameInput/XBox360Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="265" column="11" selection-start-line="265" selection-start-column="11" selection-end-line="265" selection-end-column="11" />
-          <folding>
-            <element signature="e#935#936#0" expanded="true" />
-            <element signature="e#980#981#0" expanded="true" />
-            <element signature="e#6007#6008#0" expanded="true" />
-            <element signature="e#6052#6053#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/World.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="443">
+          <caret line="103" column="20" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2829#2830#0" expanded="true" />
-            <element signature="e#2858#2859#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Location.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Direction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/ChunkCord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="510">
           <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="19" />
           <folding>
             <element signature="e#402#403#0" expanded="true" />
@@ -800,63 +625,102 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Chunk.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1945#1946#0" expanded="true" />
-            <element signature="e#2016#2017#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Direction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Location.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="97" column="37" lean-forward="true" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="37" />
+        <state relative-caret-position="35">
+          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/MonitoredGameStateBase.java">
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/BlockBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="-102">
+          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GANOSGame.java">
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/PartialCubicBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="-4504">
+          <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4855#4856#0" expanded="true" />
+            <element signature="e#4894#4895#0" expanded="true" />
+            <element signature="e#5272#5273#0" expanded="true" />
+            <element signature="e#5316#5317#0" expanded="true" />
+            <element signature="e#5372#5373#0" expanded="true" />
+            <element signature="e#5409#5410#0" expanded="true" />
+            <element signature="e#5464#5465#0" expanded="true" />
+            <element signature="e#5501#5502#0" expanded="true" />
+            <element signature="e#5556#5557#0" expanded="true" />
+            <element signature="e#5593#5594#0" expanded="true" />
+            <element signature="e#5647#5648#0" expanded="true" />
+            <element signature="e#5684#5685#0" expanded="true" />
+            <element signature="e#5739#5740#0" expanded="true" />
+            <element signature="e#5776#5777#0" expanded="true" />
+            <element signature="e#5830#5831#0" expanded="true" />
+            <element signature="e#5867#5868#0" expanded="true" />
+            <element signature="e#6598#6599#0" expanded="true" />
+            <element signature="e#6634#6635#0" expanded="true" />
+            <element signature="e#6679#6680#0" expanded="true" />
+            <element signature="e#6715#6716#0" expanded="true" />
+            <element signature="e#6760#6761#0" expanded="true" />
+            <element signature="e#6796#6797#0" expanded="true" />
+            <element signature="e#6840#6841#0" expanded="true" />
+            <element signature="e#6876#6877#0" expanded="true" />
+            <element signature="e#6921#6922#0" expanded="true" />
+            <element signature="e#6957#6958#0" expanded="true" />
+            <element signature="e#7001#7002#0" expanded="true" />
+            <element signature="e#7037#7038#0" expanded="true" />
+            <element signature="e#7690#7691#0" expanded="true" />
+            <element signature="e#7746#7747#0" expanded="true" />
+            <element signature="e#7798#7799#0" expanded="true" />
+            <element signature="e#7843#7844#0" expanded="true" />
+            <element signature="e#7894#7895#0" expanded="true" />
+            <element signature="e#7939#7940#0" expanded="true" />
+            <element signature="e#7990#7991#0" expanded="true" />
+            <element signature="e#8035#8036#0" expanded="true" />
+            <element signature="e#8085#8086#0" expanded="true" />
+            <element signature="e#8130#8131#0" expanded="true" />
+            <element signature="e#8181#8182#0" expanded="true" />
+            <element signature="e#8226#8227#0" expanded="true" />
+            <element signature="e#8276#8277#0" expanded="true" />
+            <element signature="e#8321#8322#0" expanded="true" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9062#9063#0" expanded="true" />
+            <element signature="e#9101#9102#0" expanded="true" />
+            <element signature="e#9143#9144#0" expanded="true" />
+            <element signature="e#9182#9183#0" expanded="true" />
+            <element signature="e#9224#9225#0" expanded="true" />
+            <element signature="e#9262#9263#0" expanded="true" />
+            <element signature="e#9304#9305#0" expanded="true" />
+            <element signature="e#9343#9344#0" expanded="true" />
+            <element signature="e#9385#9386#0" expanded="true" />
+            <element signature="e#9423#9424#0" expanded="true" />
+            <element signature="e#9465#9466#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/MeshBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="306">
           <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#580#581#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/BlankBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="24" selection-start-line="24" selection-end-line="27" selection-end-column="5" />
+        <state relative-caret-position="208">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#494#495#0" expanded="true" />
@@ -867,68 +731,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/BlockBase.java">
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/GlobalGameData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="100">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/PartialCubicBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="156" column="154" selection-start-line="156" selection-start-column="154" selection-end-line="156" selection-end-column="154" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4855#4856#0" expanded="true" />
-            <element signature="e#4894#4895#0" expanded="true" />
-            <element signature="e#5316#5317#0" expanded="true" />
-            <element signature="e#5409#5410#0" expanded="true" />
-            <element signature="e#5501#5502#0" expanded="true" />
-            <element signature="e#5593#5594#0" expanded="true" />
-            <element signature="e#5684#5685#0" expanded="true" />
-            <element signature="e#5776#5777#0" expanded="true" />
-            <element signature="e#5867#5868#0" expanded="true" />
-            <element signature="e#6634#6635#0" expanded="true" />
-            <element signature="e#6715#6716#0" expanded="true" />
-            <element signature="e#6796#6797#0" expanded="true" />
-            <element signature="e#6876#6877#0" expanded="true" />
-            <element signature="e#6957#6958#0" expanded="true" />
-            <element signature="e#7037#7038#0" expanded="true" />
-            <element signature="e#7746#7747#0" expanded="true" />
-            <element signature="e#7843#7844#0" expanded="true" />
-            <element signature="e#7939#7940#0" expanded="true" />
-            <element signature="e#8035#8036#0" expanded="true" />
-            <element signature="e#8130#8131#0" expanded="true" />
-            <element signature="e#8226#8227#0" expanded="true" />
-            <element signature="e#8321#8322#0" expanded="true" />
-            <element signature="e#9062#9063#0" expanded="true" />
-            <element signature="e#9143#9144#0" expanded="true" />
-            <element signature="e#9224#9225#0" expanded="true" />
-            <element signature="e#9304#9305#0" expanded="true" />
-            <element signature="e#9385#9386#0" expanded="true" />
-            <element signature="e#9465#9466#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameAssets/Textures/Testing/EditCursor.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Renderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="165" selection-start-line="165" selection-end-line="165" />
+        <state relative-caret-position="3349">
+          <caret line="218" column="47" selection-start-line="218" selection-start-column="47" selection-end-line="218" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Texture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-900">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/RenderBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="28" column="113" selection-start-line="28" selection-start-column="113" selection-end-line="28" selection-end-column="113" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/PartialCubicInstanceMesh.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="197" selection-start-line="197" selection-end-line="197" />
+        <state relative-caret-position="3145">
+          <caret line="221" column="9" lean-forward="true" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="9" />
           <folding>
             <element signature="e#10635#10636#0" expanded="true" />
             <element signature="e#10678#10679#0" expanded="true" />
@@ -936,13 +777,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java">
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Mesh.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="447" selection-start-line="447" selection-end-line="447" />
+        <state relative-caret-position="253">
+          <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/InstancedMesh.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="123" column="21" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Transformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1923">
+          <caret line="35" column="133" selection-start-line="35" selection-start-column="133" selection-end-line="35" selection-end-column="133" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/TextItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/SpriteItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding>
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+            <element signature="e#641#642#0" expanded="true" />
+            <element signature="e#674#675#0" expanded="true" />
+            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#1079#1080#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/GameItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/InstancedGridTexture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Utility/GameWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391">
+          <caret line="197" lean-forward="true" selection-start-line="197" selection-end-line="197" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/DebugMain/ClientMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/GameInput/XBox360Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2941">
+          <caret line="265" column="11" selection-start-line="265" selection-start-column="11" selection-end-line="265" selection-end-column="11" />
+          <folding>
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="e#6007#6008#0" expanded="true" />
+            <element signature="e#6052#6053#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/BlockType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Mesh.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="45" column="49" lean-forward="true" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1005,6 +950,7 @@
             <option name="proportions">
               <list>
                 <option value="0.11764706" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -1024,7 +970,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>JOML</last-edited>
+          <last-edited>LWJGL</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

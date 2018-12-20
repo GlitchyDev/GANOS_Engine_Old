@@ -30,10 +30,6 @@ public class Camera {
         return viewMatrix;
     }
 
-    public Matrix4f updateViewMatrix() {
-        return Transformation.updateGenericViewMatrix(position, rotation, viewMatrix);
-    }
-
     public void setPosition(float x, float y, float z) {
         position.x = x;
         position.y = y;

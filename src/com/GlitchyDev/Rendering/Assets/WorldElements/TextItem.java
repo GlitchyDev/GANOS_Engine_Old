@@ -22,12 +22,12 @@ public class TextItem extends GameItem {
 
 
     public TextItem(String text, HudTexture hudTexture) {
-        super();
+        super(null);
         this.text = text;
         this.hudTexture = hudTexture;
-        getMeshes().add(buildMesh());
+        setMesh(buildMesh());
     }
-    
+
     private Mesh buildMesh() {
 
 
@@ -99,8 +99,8 @@ public class TextItem extends GameItem {
     
     public void setText(String text) {
         this.text = text;
-        this.getMeshes().get(0).deleteBuffers();
-        this.getMeshes().set(0,buildMesh());
+        getMesh().deleteBuffers();
+        setMesh(buildMesh());
     }
 
 

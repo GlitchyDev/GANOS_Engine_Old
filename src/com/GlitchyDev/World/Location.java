@@ -28,10 +28,10 @@ public class Location implements Serializable {
     }
 
 
-    Location offsetCopy;
+
     public Location getOffsetLocation(int x, int y, int z) {
 
-        offsetCopy = this.clone();
+        Location offsetCopy = this.clone();
         offsetCopy.addOffset(x, y, z);
         return offsetCopy;
     }

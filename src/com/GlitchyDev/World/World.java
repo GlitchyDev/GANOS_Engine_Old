@@ -3,6 +3,7 @@ package com.GlitchyDev.World;
 import com.GlitchyDev.World.Blocks.BlankBlock;
 import org.joml.Vector3f;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 public class World {
@@ -37,10 +38,12 @@ public class World {
     }
 
     private final ChunkCord chunkCord = new ChunkCord(0,0);
+    private int chunkX;
+    int chunkZ;
     public void setBlock(Location location, BlockBase block)
     {
-        int chunkX = getChunkNumfromCordNum(location.getX());
-        int chunkZ = getChunkNumfromCordNum(location.getZ());
+        chunkX = getChunkNumfromCordNum(location.getX());
+        chunkZ = getChunkNumfromCordNum(location.getZ());
         chunkCord.setX(chunkX);
         chunkCord.setZ(chunkZ);
         if(!doesChunkExist(chunkCord))
@@ -53,8 +56,8 @@ public class World {
 
     public BlockBase getBlock(Location location)
     {
-        int chunkX = getChunkNumfromCordNum(location.getX());
-        int chunkZ = getChunkNumfromCordNum(location.getZ());
+        chunkX = getChunkNumfromCordNum(location.getX());
+        chunkZ = getChunkNumfromCordNum(location.getZ());
         chunkCord.setX(chunkX);
         chunkCord.setZ(chunkZ);
         if(!doesChunkExist(chunkCord))
@@ -64,9 +67,10 @@ public class World {
         return getChunk(chunkCord).getBlock(Math.abs(location.getX() - getPosNumFromChunkNum(chunkX)), location.getY(), Math.abs(location.getZ() - getPosNumFromChunkNum(chunkZ)));
     }
 
-    public static int getChunkNumfromCordNum(int z)
+    private boolean isNeg;
+    private int getChunkNumfromCordNum(int z)
     {
-        boolean isNeg = z < 0;
+        isNeg = z < 0;
         if((z / World.STANDARD_CHUNK_SIDE_LENGTH == 0))
         {
             return (isNeg ? -1 : 0);
@@ -78,7 +82,7 @@ public class World {
 
     }
 
-    public static int getPosNumFromChunkNum(int z)
+    private int getPosNumFromChunkNum(int z)
     {
         if(z == 0)
         {
@@ -97,7 +101,7 @@ public class World {
         }
     }
 
-    public HashMap<String, Chunk> getChunks() {
-        return chunks;
+    public Collection<Chunk> getChunks() {
+        return chunks.values();
     }
 }

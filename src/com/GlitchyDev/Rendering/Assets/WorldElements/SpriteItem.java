@@ -14,8 +14,8 @@ public class SpriteItem extends GameItem {
 
 
     public SpriteItem(Texture spriteTexture, boolean loadedTexture) {
-        super();
-        getMeshes().add(buildMesh(spriteTexture,loadedTexture));
+        super(null);
+        setMesh(buildMesh(spriteTexture,loadedTexture));
     }
 
     /**
@@ -23,8 +23,8 @@ public class SpriteItem extends GameItem {
      * @param renderBuffer
      */
     public SpriteItem(RenderBuffer renderBuffer) {
-        super();
-        getMeshes().add(buildMesh(new Texture(renderBuffer),false));
+        super(null);
+        setMesh(buildMesh(new Texture(renderBuffer),false));
     }
 
 

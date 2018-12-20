@@ -72,9 +72,6 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
     {
         preRender();
 
-
-        // Redo begining to get all view matrixes
-
         // Collect all the rotations from each block
 
         modelViewMatrixes.clear();
@@ -141,9 +138,6 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
     public void renderPartialCubicBlocksInstancedChunk(Collection<Chunk> chunks, Transformation transformation, Matrix4f viewMatrix)
     {
         preRender();
-
-
-        // Redo begining to get all view matrixes
 
         // Collect all the rotations from each block
 

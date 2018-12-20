@@ -39,11 +39,9 @@ public class Chunk {
         {
             chunkHeight = relativeY+1;
             BlockBase[][][] blocksAdjustedHeight = new BlockBase[chunkHeight][blocks[0].length][blocks[0][0].length];
-            int index = 0;
-            for(BlockBase[][] area: blocks)
+            for(int index = 0; index < blocks.length; index++)
             {
-                blocksAdjustedHeight[index] = area;
-                index++;
+                blocksAdjustedHeight[index] = blocks[index];
             }
             blocks = blocksAdjustedHeight;
         }

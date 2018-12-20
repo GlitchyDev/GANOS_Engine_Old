@@ -522,12 +522,12 @@ public class MapBuilderGameState extends InputGameStateBase {
 
         renderBuffer.bindToRender();
         renderer.clear();
-        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, world.getChunks().values());
+        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, world.getChunks());
         renderBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
 
 
         renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
-        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks().values());
+        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks());
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
 
         ArrayList<PartialCubicBlock> cc = new ArrayList<>();

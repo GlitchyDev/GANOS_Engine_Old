@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class GameItem {
 
-    private ArrayList<Mesh> meshes;
+    private Mesh mesh;
     
     private final Vector3f position;
     
@@ -19,15 +19,7 @@ public class GameItem {
     private final Vector3f rotation;
 
     public GameItem(Mesh mesh) {
-        meshes = new ArrayList<>();
-        meshes.add(mesh);
-        position = new Vector3f(0, 0, 0);
-        scale = 1;
-        rotation = new Vector3f(0, 0, 0);
-    }
-
-    public GameItem() {
-        meshes = new ArrayList<>();
+        this.mesh = mesh;
         position = new Vector3f(0, 0, 0);
         scale = 1;
         rotation = new Vector3f(0, 0, 0);
@@ -61,11 +53,11 @@ public class GameItem {
         this.rotation.z = z;
     }
     
-    public ArrayList<Mesh> getMeshes() {
-        return meshes;
+    public Mesh getMesh() {
+        return mesh;
     }
 
-    public void setMeshes(ArrayList<Mesh> meshes) {
-        this.meshes = meshes;
+    public void setMesh(Mesh mesh) {
+        this.mesh = mesh;
     }
 }
