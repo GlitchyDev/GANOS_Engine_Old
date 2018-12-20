@@ -550,7 +550,7 @@ public class MapBuilderGameState extends InputGameStateBase {
 
     @Override
     public void windowClose() {
-
+        System.out.println("ASSHOLE!");
     }
 
 
