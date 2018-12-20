@@ -83,7 +83,6 @@ public class Mesh implements Cloneable {
                 MemoryUtil.memFree(indicesBuffer);
             }
         }
-
     }
 
     public Mesh(int vaoId, List<Integer> vboIdList, int vertexCount, Texture texture)
