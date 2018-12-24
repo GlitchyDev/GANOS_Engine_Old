@@ -18,15 +18,11 @@ public class SpriteItem extends GameItem {
         setMesh(buildMesh(spriteTexture,loadedTexture));
     }
 
-    /**
-     * Use for loading Render Buffers as Textures
-     * @param renderBuffer
-     */
-    public SpriteItem(RenderBuffer renderBuffer) {
-        super(null);
-        setMesh(buildMesh(new Texture(renderBuffer),false));
-    }
 
+    private void setSprite(Texture spriteTexture, boolean loadedTexture) {
+        getMesh().cleanUp();
+        setMesh(buildMesh(spriteTexture,loadedTexture));
+    }
 
     private Mesh buildMesh(Texture spriteTexture, boolean loadedTexture) {
         ArrayList<Float> positions = new ArrayList();

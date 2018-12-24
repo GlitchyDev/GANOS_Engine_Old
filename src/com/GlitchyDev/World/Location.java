@@ -127,4 +127,9 @@ public class Location implements Serializable {
         }
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "l@" + getX() + "," + getY() + "," + getZ();
+    }
 }

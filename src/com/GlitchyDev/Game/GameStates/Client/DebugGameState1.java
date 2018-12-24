@@ -36,8 +36,6 @@ public class DebugGameState1 extends EnvironmentGameState {
     private ArrayList<SpriteItem> spriteItems = new ArrayList<>();
     private GameSocket gameSocket;
 
-    private RenderBuffer debugBuffer;
-    private SpriteItem debugItem;
 
     private HashMap<String,Mesh> activeMeshes;
 
@@ -107,13 +105,6 @@ public class DebugGameState1 extends EnvironmentGameState {
 
 
 
-
-        debugBuffer = new RenderBuffer(500,500);
-        debugItem = new SpriteItem(debugBuffer);
-
-
-
-        debugItem.setPosition(0,0,0);
 
     }
 
@@ -203,8 +194,8 @@ public class DebugGameState1 extends EnvironmentGameState {
         }
 
 
-        GameItem gameItem1 = selectGameItem3D(gameItems,camera);
-        GameItem gameItem2 = selectGameItem2D(gameItems,globalGameData.getGameWindow(),new Vector2d(gameInput.getMouseX(),gameInput.getMouseY()),camera);
+        //GameItem gameItem1 = selectGameItem3D(gameItems,camera);
+        //GameItem gameItem2 = selectGameItem2D(gameItems,globalGameData.getGameWindow(),new Vector2d(gameInput.getMouseX(),gameInput.getMouseY()),camera);
 
         /*
         if(gameItem1 != null)

@@ -15,8 +15,6 @@ import java.util.ArrayList;
 public class PartialCubicBlock extends BlockBase {
     // Assigned Pool Grid Texture
     private InstancedGridTexture instancedGridTexture;
-    // Use as an internal identifier of textures for saving
-    private String textureName;
     // Be 6 sized,
     private boolean[] faceStates;
     // -1 for non texture
@@ -31,31 +29,28 @@ public class PartialCubicBlock extends BlockBase {
 
     }
 
-    public PartialCubicBlock(Location location, Vector3f rotation, InstancedGridTexture instancedGridTexture, String textureName, boolean[] faceStates, int[] assignedTextures)
+    public PartialCubicBlock(Location location, Vector3f rotation, InstancedGridTexture instancedGridTexture, boolean[] faceStates, int[] assignedTextures)
     {
         super(BlockType.PARTIAL_CUBIC_BLOCK, location, rotation);
         this.instancedGridTexture = instancedGridTexture;
-        this.textureName = textureName;
         this.faceStates = faceStates;
         this.assignedTextures = assignedTextures;
         //this.modifiers = modifiers;
     }
 
-    public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture, String textureName, boolean[] faceStates, int[] assignedTextures)
+    public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture, boolean[] faceStates, int[] assignedTextures)
     {
         super(BlockType.PARTIAL_CUBIC_BLOCK, location);
         this.instancedGridTexture = instancedGridTexture;
-        this.textureName = textureName;
         this.faceStates = faceStates;
         this.assignedTextures = assignedTextures;
         //this.modifiers = modifiers;
     }
 
-    public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture, String textureName)
+    public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture)
     {
         super(BlockType.PARTIAL_CUBIC_BLOCK, location);
         this.instancedGridTexture = instancedGridTexture;
-        this.textureName = textureName;
         this.faceStates = new boolean[6];
 
         for(int index = 0; index < 6; index++)

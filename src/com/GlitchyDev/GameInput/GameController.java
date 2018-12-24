@@ -1,39 +1,160 @@
 package com.GlitchyDev.GameInput;
 
+import com.GlitchyDev.IO.AssetLoader;
+import com.GlitchyDev.Rendering.Assets.Texture;
+import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
+import com.GlitchyDev.Rendering.Renderer;
+import com.GlitchyDev.Utility.GameWindow;
+import com.GlitchyDev.World.Direction;
+
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public abstract class GameController {
+    // For Input
     protected final int controllerID;
-    protected boolean currentlyActive = false;
     protected String name;
-
-
     protected ByteBuffer[] buttons =  new ByteBuffer[2];
     protected FloatBuffer[] axes = new FloatBuffer[2];
-
+    protected boolean currentlyActive = false;
     protected boolean previousCurrentlyActive = false;
-    public GameController(int controllerID)
-    {
+    // For Visualization
+    private HashMap<String, SpriteItem> buttonSprites = new HashMap<>();
 
+
+
+    private final int SCALING = 3;
+    private final int CONTROLLER_WIDTH = 55;
+    private final int OFFSET_X = 0;
+    public GameController(int controllerID) {
         this.controllerID = controllerID;
 
+        int controllerOffset = OFFSET_X + CONTROLLER_WIDTH * controllerID * SCALING;
+        buttonSprites.put("ControllerBase",new SpriteItem(AssetLoader.getTextureAsset("ControllerBase"),true));
+        buttonSprites.get("ControllerBase").setPosition(controllerOffset,7*SCALING,0.1f);
+        buttonSprites.get("ControllerBase").setScale(SCALING);
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("LeftBumper"+i,new SpriteItem(AssetLoader.getTextureAsset("LeftBumper"+i),true));
+            buttonSprites.get("LeftBumper"+i).setPosition(controllerOffset + 4 * SCALING, 5 * SCALING,0.2f);
+            buttonSprites.get("LeftBumper"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("RightBumper"+i,new SpriteItem(AssetLoader.getTextureAsset("RightBumper"+i),true));
+            buttonSprites.get("RightBumper"+i).setPosition(controllerOffset + 39 * SCALING, 5 * SCALING,0.2f);
+            buttonSprites.get("RightBumper"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("LeftJoyStickButton"+i,new SpriteItem(AssetLoader.getTextureAsset("Button"+i),true));
+            buttonSprites.get("LeftJoyStickButton"+i).setPosition(controllerOffset + 9 * SCALING, 13 * SCALING,0.3f);
+            buttonSprites.get("LeftJoyStickButton"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("RightJoyStickButton"+i,new SpriteItem(AssetLoader.getTextureAsset("Button"+i),true));
+            buttonSprites.get("RightJoyStickButton"+i).setPosition(controllerOffset + 32 * SCALING, 22 * SCALING,0.3f);
+            buttonSprites.get("RightJoyStickButton"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 6; i++) {
+            int offset = (i<3) ? i : 3;
+            buttonSprites.put("LeftTrigger"+i,new SpriteItem(AssetLoader.getTextureAsset("Trigger"+i),true));
+            buttonSprites.get("LeftTrigger"+i).setPosition(controllerOffset + 9 * SCALING, offset * SCALING,0.2f);
+            buttonSprites.get("LeftTrigger"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 6; i++) {
+            int offset = (i<3) ? i : 3;
+            buttonSprites.put("RightTrigger"+i,new SpriteItem(AssetLoader.getTextureAsset("Trigger"+i),true));
+            buttonSprites.get("RightTrigger"+i).setPosition(controllerOffset + 43 * SCALING, offset * SCALING,0.2f);
+            buttonSprites.get("RightTrigger"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("LeftHome"+i,new SpriteItem(AssetLoader.getTextureAsset("SideHome"+i),true));
+            buttonSprites.get("LeftHome"+i).setPosition(controllerOffset + 20 * SCALING, 12 * SCALING,0.2f);
+            buttonSprites.get("LeftHome"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("Home"+i,new SpriteItem(AssetLoader.getTextureAsset("Home"+i),true));
+            buttonSprites.get("Home"+i).setPosition(controllerOffset + 26 * SCALING, 11 * SCALING,0.2f);
+            buttonSprites.get("Home"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("RightHome"+i,new SpriteItem(AssetLoader.getTextureAsset("SideHome"+i),true));
+            buttonSprites.get("RightHome"+i).setPosition(controllerOffset + 33 * SCALING, 12 * SCALING,0.2f);
+            buttonSprites.get("RightHome"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("NorthButton"+i,new SpriteItem(AssetLoader.getTextureAsset("Button"+i),true));
+            buttonSprites.get("NorthButton"+i).setPosition(controllerOffset + 43 * SCALING, 10 * SCALING,0.2f);
+            buttonSprites.get("NorthButton"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("EastButton"+i,new SpriteItem(AssetLoader.getTextureAsset("Button"+i),true));
+            buttonSprites.get("EastButton"+i).setPosition(controllerOffset + 46 * SCALING, 13 * SCALING,0.2f);
+            buttonSprites.get("EastButton"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("SouthButton"+i,new SpriteItem(AssetLoader.getTextureAsset("Button"+i),true));
+            buttonSprites.get("SouthButton"+i).setPosition(controllerOffset + 43 * SCALING, 16 * SCALING,0.2f);
+            buttonSprites.get("SouthButton"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("WestButton"+i,new SpriteItem(AssetLoader.getTextureAsset("Button"+i),true));
+            buttonSprites.get("WestButton"+i).setPosition(controllerOffset + 40 * SCALING, 13 * SCALING,0.2f);
+            buttonSprites.get("WestButton"+i).setScale(SCALING);
+        }
+
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("NorthVertical"+i,new SpriteItem(AssetLoader.getTextureAsset("Vertical"+i),true));
+            buttonSprites.get("NorthVertical"+i).setPosition(controllerOffset + 21 * SCALING, 20 * SCALING,0.2f);
+            buttonSprites.get("NorthVertical"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("SouthVertical"+i,new SpriteItem(AssetLoader.getTextureAsset("Vertical"+i),true));
+            buttonSprites.get("SouthVertical"+i).setPosition(controllerOffset + 21 * SCALING, 24 * SCALING,0.2f);
+            buttonSprites.get("SouthVertical"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("EastHorizontal"+i,new SpriteItem(AssetLoader.getTextureAsset("Horizontal"+i),true));
+            buttonSprites.get("EastHorizontal"+i).setPosition(controllerOffset + 22 * SCALING, 23 * SCALING,0.2f);
+            buttonSprites.get("EastHorizontal"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("WestHorizontal"+i,new SpriteItem(AssetLoader.getTextureAsset("Horizontal"+i),true));
+            buttonSprites.get("WestHorizontal"+i).setPosition(controllerOffset + 18 * SCALING, 23 * SCALING,0.2f);
+            buttonSprites.get("WestHorizontal"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("NorthEast"+i,new SpriteItem(AssetLoader.getTextureAsset("NorthEast"+i),true));
+            buttonSprites.get("NorthEast"+i).setPosition(controllerOffset + 23 * SCALING, 20 * SCALING,0.2f);
+            buttonSprites.get("NorthEast"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("SouthEast"+i,new SpriteItem(AssetLoader.getTextureAsset("SouthEast"+i),true));
+            buttonSprites.get("SouthEast"+i).setPosition(controllerOffset + 23 * SCALING, 25 * SCALING,0.2f);
+            buttonSprites.get("SouthEast"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("NorthWest"+i,new SpriteItem(AssetLoader.getTextureAsset("NorthWest"+i),true));
+            buttonSprites.get("NorthWest"+i).setPosition(controllerOffset + 18 * SCALING, 20 * SCALING,0.2f);
+            buttonSprites.get("NorthWest"+i).setScale(SCALING);
+        }
+        for(int i = 0; i < 3; i++) {
+            buttonSprites.put("SouthWest"+i,new SpriteItem(AssetLoader.getTextureAsset("SouthWest"+i),true));
+            buttonSprites.get("SouthWest"+i).setPosition(controllerOffset + 18 * SCALING, 25 * SCALING,0.2f);
+            buttonSprites.get("SouthWest"+i).setScale(SCALING);
+        }
     }
 
 
     public void tick()
     {
-        if(previousCurrentlyActive)
-        {
-            previousCurrentlyActive = currentlyActive;
+        previousCurrentlyActive = currentlyActive;
+        if(previousCurrentlyActive) {
             buttons[1] = clone(buttons[0]);
             axes[1] = clone(axes[0]);
         }
-
-        previousCurrentlyActive = currentlyActive;
         currentlyActive = glfwJoystickPresent(controllerID);
         if(currentlyActive) {
             buttons[0] = glfwGetJoystickButtons(controllerID);
@@ -42,6 +163,75 @@ public abstract class GameController {
         }
 
 
+    }
+
+    public void render(Renderer renderer, GameWindow gameWindow, String shader)
+    {
+        ArrayList<SpriteItem> items = new ArrayList<>();
+
+        items.add(buttonSprites.get("ControllerBase"));
+        // Bumper
+        int leftBumperId = getLeftBumperButton() ? (getToggleLeftBumperButton() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("LeftBumper" + leftBumperId));
+        int rightBumperId = getRightBumperButton() ? (getToggleRightBumperButton() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("RightBumper" + rightBumperId));
+        //JoyStick
+        int offsetLeftX = (int) (getLeftJoyStickX()/0.35);
+        int offsetLeftY = (int) (getLeftJoyStickY()/0.35);
+        int leftJoyStickId = getLeftJoyStickButton() ? (getToggleLeftJoyStickButton() ? 1 : 2) : 0;
+        buttonSprites.get("LeftJoyStickButton" + leftJoyStickId).setPosition(OFFSET_X + (9 + offsetLeftX )* SCALING, (13+ offsetLeftY ) * SCALING,0.3f);
+        items.add(buttonSprites.get("LeftJoyStickButton" + leftJoyStickId));
+        int offsetRightX = (int) (getRightJoyStickX()/0.35);
+        int offsetRightY = (int) (getRightJoyStickY()/0.35);
+        int rightJoyStickId = getRightJoyStickButton() ? (getToggleRightJoyStickButton() ? 1 : 2) : 0;
+        buttonSprites.get("RightJoyStickButton" + rightJoyStickId).setPosition(OFFSET_X + (32 + offsetRightX )* SCALING, (22 + offsetRightY ) * SCALING,0.3f);
+        items.add(buttonSprites.get("RightJoyStickButton" + rightJoyStickId));
+        // Trigger
+        int leftTriggerId = (getLeftTrigger() > -0.50) ? ((getLeftTrigger() > 0) ? ((getLeftTrigger() > 0.50) ? ((getLeftTrigger() >= 0.94) ? (getToggleLeftTrigger() ? 4 : 5): 3) : 2) : 1) : 0;
+        items.add(buttonSprites.get("LeftTrigger" + leftTriggerId));
+        int rightTriggerId = (getRightTrigger() > -0.50) ? ((getRightTrigger() > 0) ? ((getRightTrigger() > 0.50) ? ((getRightTrigger() >= 0.94) ? (getToggleRightTrigger() ? 4 : 5): 3) : 2) : 1) : 0;
+        items.add(buttonSprites.get("RightTrigger" + rightTriggerId));
+        // Home
+        int leftHomeId = getLeftHomeButton() ? (getToggleLeftHomeButton() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("LeftHome" + leftHomeId));
+        int homeId = isCurrentlyActive() ? (getToggleCurrentlyActive() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("Home" + homeId));
+        int rightHomeId = getRightHomeButton() ? (getToggleRightHomeButton() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("RightHome" + rightHomeId));
+        // Buttons
+        int northButtonId = getNorthButton() ? (getToggleNorthButton() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("NorthButton" + northButtonId));
+        int eastButtonId = getEastButton() ? (getToggleEastButton() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("EastButton" + eastButtonId));
+        int southButtonId = getSouthButton() ? (getToggleSouthButton() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("SouthButton" + southButtonId));
+        int westButtonId = getWestButton() ? (getToggleWestButton() ? 1 : 2) : 0;
+        items.add(buttonSprites.get("WestButton" + westButtonId));
+        // DirectionPad
+        int northDirectionId = getDirectionPad() == ControllerDirectionPad.NORTH ? (getToggleDirectionPad() == ControllerDirectionPad.NORTH ? 1 : 2) : 0;
+        items.add(buttonSprites.get("NorthVertical" + northDirectionId));
+        int southDirectionId = getDirectionPad() == ControllerDirectionPad.SOUTH ? (getToggleDirectionPad() == ControllerDirectionPad.SOUTH ? 1 : 2) : 0;
+        items.add(buttonSprites.get("SouthVertical" + southDirectionId));
+        int eastDirectionId = getDirectionPad() == ControllerDirectionPad.EAST ? (getToggleDirectionPad() == ControllerDirectionPad.EAST ? 1 : 2) : 0;
+        items.add(buttonSprites.get("EastHorizontal" + eastDirectionId));
+        int westDirectionId = getDirectionPad() == ControllerDirectionPad.WEST ? (getToggleDirectionPad() == ControllerDirectionPad.WEST ? 1 : 2) : 0;
+        items.add(buttonSprites.get("WestHorizontal" + westDirectionId));
+        int northEastDirectionId = getDirectionPad() == ControllerDirectionPad.NORTH_EAST ? (getToggleDirectionPad() == ControllerDirectionPad.NORTH_EAST ? 1 : 2) : 0;
+        items.add(buttonSprites.get("NorthEast" + northEastDirectionId));
+        int northWestDirectionId = getDirectionPad() == ControllerDirectionPad.NORTH_WEST ? (getToggleDirectionPad() == ControllerDirectionPad.NORTH_WEST ? 1 : 2) : 0;
+        items.add(buttonSprites.get("NorthWest" + northWestDirectionId));
+        int southEastDirectionId = getDirectionPad() == ControllerDirectionPad.SOUTH_EAST ? (getToggleDirectionPad() == ControllerDirectionPad.SOUTH_EAST ? 1 : 2) : 0;
+        items.add(buttonSprites.get("SouthEast" + southEastDirectionId));
+        int southWestDirectionId = getDirectionPad() == ControllerDirectionPad.SOUTH_WEST ? (getToggleDirectionPad() == ControllerDirectionPad.SOUTH_WEST ? 1 : 2) : 0;
+        items.add(buttonSprites.get("SouthWest" + southWestDirectionId));
+
+
+
+
+
+
+
+        renderer.renderSprites(gameWindow,shader,items);
     }
 
     private ByteBuffer clone(ByteBuffer original) {
@@ -112,6 +302,10 @@ public abstract class GameController {
 
     public abstract boolean getToggleLeftTrigger();
     public abstract boolean getToggleRightTrigger();
+
+    public abstract boolean getToggleCurrentlyActive();
+
+
 
 
 

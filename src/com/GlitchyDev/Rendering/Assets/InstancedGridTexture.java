@@ -5,9 +5,11 @@ import java.io.InputStream;
 public class InstancedGridTexture extends Texture {
     private final int texWidth;
     private final int texHeight;
+    private final String name;
 
-    public InstancedGridTexture(Texture texture, int texWidth, int texHeight) {
+    public InstancedGridTexture(Texture texture, String name, int texWidth, int texHeight) {
         super(texture);
+        this.name = name;
         this.texWidth = texWidth;
         this.texHeight = texHeight;
     }

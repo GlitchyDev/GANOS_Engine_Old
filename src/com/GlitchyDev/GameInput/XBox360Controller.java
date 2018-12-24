@@ -1,8 +1,23 @@
 package com.GlitchyDev.GameInput;
 
 public class XBox360Controller extends GameController {
+    private boolean previousLeftTriggerToggleState = false;
+    private boolean currentLeftTriggerToggleState = false;
+    private boolean previousRightTriggerToggleState = false;
+    private boolean currentRightTriggerToggleState = false;
+
     public XBox360Controller(int controllerID) {
         super(controllerID);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        previousLeftTriggerToggleState = currentLeftTriggerToggleState;
+        currentLeftTriggerToggleState = getLeftTrigger() >= 0.95f;
+
+        previousRightTriggerToggleState = currentRightTriggerToggleState;
+        currentRightTriggerToggleState = getRightTrigger() >= 0.95f;
     }
 
     public boolean getSouthButton()
@@ -170,36 +185,21 @@ public class XBox360Controller extends GameController {
     }
 
 
-    private boolean previousLeftToggleState = false;
-    private boolean currentLeftToggleState = false;
+
     @Override
     public boolean getToggleLeftTrigger() {
-        previousLeftToggleState = currentLeftToggleState;
-        if(getLeftTrigger() == 1.0f)
-        {
-            currentLeftToggleState = true;
-        }
-        if(getLeftTrigger() == -1.0f)
-        {
-            currentLeftToggleState = false;
-        }
-        return (currentLeftToggleState && !previousLeftToggleState);
+        return (currentLeftTriggerToggleState && !previousLeftTriggerToggleState);
     }
 
-    private boolean previousRightToggleState = false;
-    private boolean currentRightToggleState = false;
     @Override
     public boolean getToggleRightTrigger() {
-        previousRightToggleState = currentRightToggleState;
-        if(getRightTrigger() == 1.0f)
-        {
-            currentRightToggleState = true;
-        }
-        if(getRightTrigger() == -1.0f)
-        {
-            currentRightToggleState = false;
-        }
-        return currentRightToggleState && !previousRightToggleState;
+        return (currentRightTriggerToggleState && !previousRightTriggerToggleState);
+
+    }
+
+    @Override
+    public boolean getToggleCurrentlyActive() {
+        return (currentlyActive && !previousCurrentlyActive);
     }
 
 
