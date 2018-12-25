@@ -142,7 +142,7 @@ public class Renderer {
         //shader.unbind();
     }
 
-    public void renderInstancedPartialCubicChunk(GameWindow window, String shaderName, Camera camera, PartialCubicInstanceMesh instancedMesh, Collection<Chunk> chunks) {
+    public void renderInstancedPartialCubicChunk(GameWindow window, String shaderName, Camera camera, PartialCubicInstanceMesh instancedMesh, Collection<Chunk> chunks, boolean useFrustumCullingFilter) {
         ShaderProgram shader = loadedShaders.get(shaderName);
         if(!previousShader.equals(shaderName)) {
             shader.bind();
@@ -159,7 +159,7 @@ public class Renderer {
 
         shader.setUniform("textureGridSize",new Vector2f(instancedMesh.getInstancedGridTexture().getTextureGridWidth(),instancedMesh.getInstancedGridTexture().getTextureGridHeight()));
         // Render each gameItem
-        instancedMesh.renderPartialCubicBlocksInstancedChunk(chunks,transformation,viewMatrix);
+        instancedMesh.renderPartialCubicBlocksInstancedChunk(chunks,transformation,viewMatrix, useFrustumCullingFilter);
 
         //shader.unbind();
     }
@@ -228,9 +228,18 @@ public class Renderer {
     }
 
     public void cleanup() {
-        for(String shader :loadedShaders.keySet())
-        {
+        for(String shader :loadedShaders.keySet()) {
             loadedShaders.get(shader).cleanup();
         }
+    }
+
+    public Transformation getTransformation()
+    {
+        return transformation;
+    }
+
+    public void updateFrustumCullingFilter(GameWindow gameWindow, Camera camera, Collection<Chunk> chunks) {
+        FrustumCullingFilter.updateFrustum(transformation.getProjectionMatrix(FOV, gameWindow.getWidth(), gameWindow.getHeight(), Z_NEAR, Z_FAR),transformation.getViewMatrix(camera));
+        FrustumCullingFilter.filter(chunks);
     }
 }

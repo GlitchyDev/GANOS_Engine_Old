@@ -77,16 +77,12 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
         modelViewMatrixes.clear();
         textureCords.clear();
 
-        for(PartialCubicBlock block: blocks)
-        {
+        for(PartialCubicBlock block: blocks) {
             faces = block.getFaceStates();
-            for(int i = 0; i < 6; i++)
-            {
-                if(faces[i])
-                {
+            for(int i = 0; i < 6; i++) {
+                if(faces[i]) {
                     rotation = new Vector3f(block.getRotation());
-                    switch(i)
-                    {
+                    switch(i) {
                         case 0:
                             // 0
                             rotation.add(0,90,0);
@@ -135,7 +131,7 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
         }
     }
 
-    public void renderPartialCubicBlocksInstancedChunk(Collection<Chunk> chunks, Transformation transformation, Matrix4f viewMatrix)
+    public void renderPartialCubicBlocksInstancedChunk(Collection<Chunk> chunks, Transformation transformation, Matrix4f viewMatrix, boolean useFrustumCullingFilter)
     {
         preRender();
 
@@ -144,14 +140,11 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
         modelViewMatrixes.clear();
         textureCords.clear();
 
-        for(Chunk chunk: chunks)
-        {
-            for(BlockBase[][] blockSelection: chunk.getBlocks())
-            {
+        for(Chunk chunk: chunks) {
+            for(BlockBase[][] blockSelection: chunk.getBlocks()) {
                 for(BlockBase[] blockLine: blockSelection) {
-                    for(BlockBase block: blockLine)
-                    {
-                        if(block != null && block instanceof PartialCubicBlock) {
+                    for(BlockBase block: blockLine) {
+                        if(block != null && block instanceof PartialCubicBlock && (!useFrustumCullingFilter || block.isInsideFrustum())) {
                             faces = ((PartialCubicBlock) block).getFaceStates();
                             for (int i = 0; i < 6; i++) {
                                 if (faces[i]) {
@@ -218,8 +211,7 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
         textureVboData.clear();
 
         int offset = 0;
-        for(int i = 0; i < size; i++)
-        {
+        for(int i = 0; i < size; i++) {
             blocks.get(i).get(offset * 16, matrixVboData);
             textureCords.get(i).get(offset * 2, textureVboData);
             offset++;

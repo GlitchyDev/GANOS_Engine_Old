@@ -10,6 +10,7 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
+import com.GlitchyDev.Rendering.FrustumCullingFilter;
 import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.*;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
@@ -141,48 +142,10 @@ public class MapBuilderGameState extends InputGameStateBase {
                 }
             }
         }
-        /*
-        for(int x = 0; x < width; x++)
-        {
-            for(int y = 0; y < height; y++)
-            {
-                for(int z = 0; z < length; z++)
-                {
-                    GameItem gameItem = new GameItem(instancedMesh);
-                    gameItem.setPosition(x*2,y*2,z*2);
-                    gameItem.setScale(1.0f);
-                    instancedGameItems.add(gameItem);
-                }
-            }
-        }
-        */
-
-
-        //File file = new File("GameAssets/Configs/PartialCubicBlockDebug.configList");
-
-
-        //c = new PartialCubicBlock(new Location(0,0,0),t,tt,new ArrayList<>());
-        //c.save();
-        /*
-        gameItems.set(0,c);
-        Mesh m = AssetLoader.getMeshAsset("DefaultCube");
-        m.setTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"));
-        gameItems.set(1,new GameItem(m));
-        gameItems.get(1).setPosition(0,0,2);
-        */
-
-        /*
-               File file = new File("GameAssets/Configs/PartialCubicBlockDebug.configList");
-        try {
-            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(file));
-            c.writeObject(stream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         */
-
 
         controller = new XBox360Controller(0);
+
+
     }
 
 
@@ -431,12 +394,14 @@ public class MapBuilderGameState extends InputGameStateBase {
 
         renderBuffer.bindToRender();
         renderer.clear();
-        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, world.getChunks());
+        renderer.updateFrustumCullingFilter(globalGameData.getGameWindow(),camera2,world.getChunks());
+        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera2, instancedMesh, world.getChunks(), true);
         renderBuffer.unbindToRender(globalGameData.getGameWindow().getWidth(),globalGameData.getGameWindow().getHeight());
 
 
+        renderer.updateFrustumCullingFilter(globalGameData.getGameWindow(),camera,world.getChunks());
         renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
-        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks());
+        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks(), true);
         if(currentEditState == EditState.EDIT_TEXTURE) {
             renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", spriteItems);
         }

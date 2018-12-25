@@ -16,12 +16,12 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public abstract class GameController {
     // For Input
-    protected final int controllerID;
-    protected String name;
-    protected ByteBuffer[] buttons =  new ByteBuffer[2];
-    protected FloatBuffer[] axes = new FloatBuffer[2];
-    protected boolean currentlyActive = false;
-    protected boolean previousCurrentlyActive = false;
+    private final int controllerID;
+    private String name;
+    ByteBuffer[] buttons =  new ByteBuffer[2];
+    FloatBuffer[] axes = new FloatBuffer[2];
+    boolean currentlyActive = false;
+    boolean previousCurrentlyActive = false;
     // For Visualization
     private HashMap<String, SpriteItem> buttonSprites = new HashMap<>();
 
@@ -30,6 +30,7 @@ public abstract class GameController {
     private final int SCALING = 3;
     private final int CONTROLLER_WIDTH = 55;
     private final int OFFSET_X = 0;
+
     public GameController(int controllerID) {
         this.controllerID = controllerID;
 

@@ -13,10 +13,11 @@ public class GameItem {
     private Mesh mesh;
     
     private final Vector3f position;
-    
     private float scale;
-
     private final Vector3f rotation;
+
+    private boolean isDisableFrustumCulling = false;
+    private boolean insideFrustum = false;
 
     public GameItem(Mesh mesh) {
         this.mesh = mesh;
@@ -59,5 +60,17 @@ public class GameItem {
 
     public void setMesh(Mesh mesh) {
         this.mesh = mesh;
+    }
+
+    public boolean isDisableFrustumCulling() {
+        return isDisableFrustumCulling;
+    }
+
+    public void setInsideFrustum(boolean insideFrustum) {
+        this.insideFrustum = insideFrustum;
+    }
+
+    public boolean isInsideFrustum() {
+        return insideFrustum;
     }
 }

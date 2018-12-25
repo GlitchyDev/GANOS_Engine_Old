@@ -5,28 +5,14 @@
       <element id="module-output" name="GANOS" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/PNGDecoder.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/JOML/joml-1.9.11.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/JOML/joml-1.9.11-javadoc.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/JOML/joml-1.9.11-sources.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-stb.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-glfw.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-assimp.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-openal.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-opengl.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-javadoc.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-sources.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-stb-javadoc.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-stb-sources.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-glfw-javadoc.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-glfw-sources.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-natives-linux.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-natives-macos.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-assimp-javadoc.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-assimp-sources.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-openal-javadoc.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-openal-sources.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-opengl-javadoc.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-opengl-sources.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-natives-windows.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-stb-natives-linux.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Libraries/LWJGL/lwjgl-stb-natives-macos.jar" path-in-jar="/" />

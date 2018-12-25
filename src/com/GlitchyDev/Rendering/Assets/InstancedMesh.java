@@ -60,10 +60,9 @@ public class InstancedMesh extends Mesh {
         buffer.put(data);
         buffer.flip();
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        //glBufferData(GL_ARRAY_BUFFER, matrixBuffer.capacity() * 4, GL_STREAM_DRAW);
         glBufferData(GL_ARRAY_BUFFER, buffer.capacity() * 4, GL_DYNAMIC_DRAW);
         glBufferSubData(GL_ARRAY_BUFFER, 0, buffer);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        //glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 
 
@@ -108,7 +107,7 @@ public class InstancedMesh extends Mesh {
         glVertexAttribPointer(attribute,dataSize, GL_FLOAT, false, instancedDataLength * 4, offset * 4);
         glVertexAttribDivisor(attribute,1);
         glBindBuffer(GL_ARRAY_BUFFER,0);
-        glBindVertexArray(0);
+        //glBindVertexArray(0);
     }
 
 

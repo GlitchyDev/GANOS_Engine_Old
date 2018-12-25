@@ -14,6 +14,8 @@ public abstract class BlockBase {
     protected float scale;
     // DO NOT serialize, as it is relative to the position of its accompanying region
     protected Location location;
+    private boolean isDisableFrustumCulling = false;
+    private boolean insideFrustum = false;
 
     public BlockBase(BlockType blockType, Location location, Vector3f rotation) {
         this.blockType = blockType;
@@ -66,6 +68,18 @@ public abstract class BlockBase {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public boolean isDisableFrustumCulling() {
+        return isDisableFrustumCulling;
+    }
+
+    public void setInsideFrustum(boolean insideFrustum) {
+        this.insideFrustum = insideFrustum;
+    }
+
+    public boolean isInsideFrustum() {
+        return insideFrustum;
     }
 
 
