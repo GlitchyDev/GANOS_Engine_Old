@@ -41,6 +41,8 @@ GameAssets\Textures\Icon\Text_Cursor.png
 GameAssets\Textures\Icon\Text_Cursor_E.png
 GameAssets\Textures\Icon\Tomo.png
 GameAssets\Textures\InstanceGridTextures\EditCursor.png
+GameAssets\Textures\InstanceGridTextures\SchoolTiles.png
+GameAssets\Textures\InstanceGridTextures\TestDice.png
 GameAssets\Textures\InstanceGridTextures\UVMapCubeTexture.png
 GameAssets\Textures\Testing\grassblock.png
 GameAssets\Textures\Testing\Test_Floor.png

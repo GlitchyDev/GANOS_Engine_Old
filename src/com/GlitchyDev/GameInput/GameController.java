@@ -6,6 +6,7 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
 import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.World.Direction;
+import org.lwjgl.BufferUtils;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -146,11 +147,18 @@ public abstract class GameController {
             buttonSprites.get("SouthWest"+i).setPosition(controllerOffset + 18 * SCALING, 25 * SCALING,0.2f);
             buttonSprites.get("SouthWest"+i).setScale(SCALING);
         }
+
+        buttons[0] = BufferUtils.createByteBuffer(14);
+        buttons[1] = BufferUtils.createByteBuffer(14);
+        axes[0] = BufferUtils.createFloatBuffer(6);
+        axes[1] = BufferUtils.createFloatBuffer(6);
+
+        // 14
+        // 4
     }
 
 
-    public void tick()
-    {
+    public void tick() {
         previousCurrentlyActive = currentlyActive;
         if(previousCurrentlyActive) {
             buttons[1] = clone(buttons[0]);

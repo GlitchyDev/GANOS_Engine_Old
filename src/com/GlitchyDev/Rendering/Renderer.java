@@ -157,9 +157,9 @@ public class Renderer {
 
         shader.setUniform("texture_sampler", 0);
 
-        shader.setUniform("textureGridSize",new Vector2f(instancedMesh.getInstancedGridTexture().getTextureGridWidth(),instancedMesh.getInstancedGridTexture().getTextureGridHeight()));
+       // shader.setUniform("textureGridSize",new Vector2f(instancedMesh.getInstancedGridTexture().getTextureGridWidth(),instancedMesh.getInstancedGridTexture().getTextureGridHeight()));
         // Render each gameItem
-        instancedMesh.renderPartialCubicBlocksInstancedChunk(chunks,transformation,viewMatrix, useFrustumCullingFilter);
+        instancedMesh.renderPartialCubicBlocksInstancedChunkTextures(shader,chunks,transformation,viewMatrix, useFrustumCullingFilter);
 
         //shader.unbind();
     }

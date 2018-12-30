@@ -20,108 +20,83 @@ public class XBox360Controller extends GameController {
         currentRightTriggerToggleState = getRightTrigger() >= 0.95f;
     }
 
-    public boolean getSouthButton()
-    {
+    public boolean getSouthButton() {
         return buttons[0].get(0) == 1;
     }
-    public boolean getEastButton()
-    {
+    public boolean getEastButton() {
         return buttons[0].get(1) == 1;
     }
-    public boolean getWestButton()
-    {
+    public boolean getWestButton() {
         return buttons[0].get(2) == 1;
     }
-    public boolean getNorthButton()
-    {
+    public boolean getNorthButton() {
         return buttons[0].get(3) == 1;
     }
-    public boolean getLeftBumperButton()
-    {
+    public boolean getLeftBumperButton() {
         return buttons[0].get(4) == 1;
     }
-    public boolean getRightBumperButton()
-    {
+    public boolean getRightBumperButton() {
         return buttons[0].get(5) == 1;
     }
-    public boolean getLeftHomeButton()
-    {
+    public boolean getLeftHomeButton() {
         return buttons[0].get(6) == 1;
     }
-    public boolean getRightHomeButton()
-    {
+    public boolean getRightHomeButton() {
         return buttons[0].get(7) == 1;
     }
-    public boolean getLeftJoyStickButton()
-    {
+    public boolean getLeftJoyStickButton() {
         return buttons[0].get(8) == 1;
     }
-    public boolean getRightJoyStickButton()
-    {
+    public boolean getRightJoyStickButton() {
         return buttons[0].get(9) == 1;
     }
 
-    public ControllerDirectionPad getDirectionPad()
-    {
-        if(buttons[0].get(10) == 1)
-        {
-            if(buttons[0].get(11) == 1)
-            {
+    public ControllerDirectionPad getDirectionPad() {
+        if(buttons[0].get(10) == 1) {
+            if(buttons[0].get(11) == 1) {
                 return ControllerDirectionPad.NORTH_EAST;
             }
-            if(buttons[0].get(13) == 1)
-            {
+            if(buttons[0].get(13) == 1) {
                 return ControllerDirectionPad.NORTH_WEST;
             }
             return ControllerDirectionPad.NORTH;
         }
-        if(buttons[0].get(12) == 1)
-        {
-            if(buttons[0].get(11) == 1)
-            {
+        if(buttons[0].get(12) == 1) {
+            if(buttons[0].get(11) == 1) {
                 return ControllerDirectionPad.SOUTH_EAST;
             }
-            if(buttons[0].get(13) == 1)
-            {
+            if(buttons[0].get(13) == 1) {
                 return ControllerDirectionPad.SOUTH_WEST;
             }
             return ControllerDirectionPad.SOUTH;
         }
-        if(buttons[0].get(11) == 1)
-        {
+        if(buttons[0].get(11) == 1) {
             return ControllerDirectionPad.EAST;
         }
-        if(buttons[0].get(13) == 1)
-        {
+        if(buttons[0].get(13) == 1) {
             return ControllerDirectionPad.WEST;
         }
         return ControllerDirectionPad.NONE;
     }
 
-    public float getLeftJoyStickX()
-    {
+    public float getLeftJoyStickX() {
         return axes[0].get(0);
     }
-    public float getLeftJoyStickY()
-    {
+    public float getLeftJoyStickY() {
         return axes[0].get(1);
     }
 
-    public float getRightJoyStickX()
-    {
+    public float getRightJoyStickX() {
         return axes[0].get(2);
     }
-    public float getRightJoyStickY()
-    {
+    public float getRightJoyStickY() {
         return axes[0].get(3);
     }
 
-    public float getLeftTrigger()
-    {
+    public float getLeftTrigger() {
         return axes[0].get(4);
     }
-    public float getRightTrigger()
-    {
+    public float getRightTrigger() {
         return axes[0].get(5);
     }
 
@@ -177,8 +152,7 @@ public class XBox360Controller extends GameController {
 
     @Override
     public ControllerDirectionPad getToggleDirectionPad() {
-        if(getPreviousDirectionPad() == ControllerDirectionPad.NONE && getDirectionPad() != ControllerDirectionPad.NONE)
-        {
+        if(getPreviousDirectionPad() == ControllerDirectionPad.NONE && getDirectionPad() != ControllerDirectionPad.NONE) {
             return getDirectionPad();
         }
         return ControllerDirectionPad.NONE;
@@ -205,108 +179,83 @@ public class XBox360Controller extends GameController {
 
     // Previous
 
-    public boolean getPreviousSouthButton()
-    {
+    public boolean getPreviousSouthButton() {
         return buttons[1].get(0) == 1;
     }
-    public boolean getPreviousEastButton()
-    {
+    public boolean getPreviousEastButton() {
         return buttons[1].get(1) == 1;
     }
-    public boolean getPreviousWestButton()
-    {
+    public boolean getPreviousWestButton() {
         return buttons[1].get(2) == 1;
     }
-    public boolean getPreviousNorthButton()
-    {
+    public boolean getPreviousNorthButton() {
         return buttons[1].get(3) == 1;
     }
-    public boolean getPreviousLeftBumperButton()
-    {
+    public boolean getPreviousLeftBumperButton() {
         return buttons[1].get(4) == 1;
     }
-    public boolean getPreviousRightBumperButton()
-    {
+    public boolean getPreviousRightBumperButton() {
         return buttons[1].get(5) == 1;
     }
-    public boolean getPreviousLeftHomeButton()
-    {
+    public boolean getPreviousLeftHomeButton() {
         return buttons[1].get(6) == 1;
     }
-    public boolean getPreviousRightHomeButton()
-    {
+    public boolean getPreviousRightHomeButton() {
         return buttons[1].get(7) == 1;
     }
-    public boolean getPreviousLeftJoyStickButton()
-    {
+    public boolean getPreviousLeftJoyStickButton() {
         return buttons[1].get(8) == 1;
     }
-    public boolean getPreviousRightJoyStickButton()
-    {
+    public boolean getPreviousRightJoyStickButton() {
         return buttons[1].get(9) == 1;
     }
 
-    public ControllerDirectionPad getPreviousDirectionPad()
-    {
-        if(buttons[1].get(10) == 1)
-        {
-            if(buttons[1].get(11) == 1)
-            {
+    public ControllerDirectionPad getPreviousDirectionPad() {
+        if(buttons[1].get(10) == 1) {
+            if(buttons[1].get(11) == 1) {
                 return ControllerDirectionPad.NORTH_EAST;
             }
-            if(buttons[1].get(13) == 1)
-            {
+            if(buttons[1].get(13) == 1) {
                 return ControllerDirectionPad.NORTH_WEST;
             }
             return ControllerDirectionPad.NORTH;
         }
-        if(buttons[1].get(12) == 1)
-        {
-            if(buttons[1].get(11) == 1)
-            {
+        if(buttons[1].get(12) == 1) {
+            if(buttons[1].get(11) == 1) {
                 return ControllerDirectionPad.SOUTH_EAST;
             }
-            if(buttons[1].get(13) == 1)
-            {
+            if(buttons[1].get(13) == 1) {
                 return ControllerDirectionPad.SOUTH_WEST;
             }
             return ControllerDirectionPad.SOUTH;
         }
-        if(buttons[1].get(11) == 1)
-        {
+        if(buttons[1].get(11) == 1) {
             return ControllerDirectionPad.EAST;
         }
-        if(buttons[1].get(13) == 1)
-        {
+        if(buttons[1].get(13) == 1) {
             return ControllerDirectionPad.WEST;
         }
         return ControllerDirectionPad.NONE;
     }
 
-    public float getPreviousLeftJoyStickX()
-    {
+    public float getPreviousLeftJoyStickX() {
         return axes[1].get(0);
     }
-    public float getPreviousLeftJoyStickY()
-    {
+    public float getPreviousLeftJoyStickY() {
         return axes[1].get(1);
     }
 
-    public float getPreviousRightJoyStickX()
-    {
+    public float getPreviousRightJoyStickX() {
         return axes[1].get(2);
     }
-    public float getPreviousRightJoyStickY()
-    {
+    public float getPreviousRightJoyStickY() {
         return axes[1].get(3);
     }
 
-    public float getPreviousLeftTrigger()
-    {
+    public float getPreviousLeftTrigger() {
         return axes[1].get(4);
     }
-    public float getPreviousRightTrigger()
-    {
+    public float getPreviousRightTrigger() {
         return axes[1].get(5);
     }
 }

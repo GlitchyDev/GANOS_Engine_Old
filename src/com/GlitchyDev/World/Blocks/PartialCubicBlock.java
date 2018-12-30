@@ -354,6 +354,14 @@ public class PartialCubicBlock extends BlockBase {
         }
     }
 
+    public InstancedGridTexture getInstancedGridTexture() {
+        return instancedGridTexture;
+    }
+
+    public void setInstancedGridTexture(InstancedGridTexture instancedGridTexture) {
+        this.instancedGridTexture = instancedGridTexture;
+    }
+
     /*
     public ArrayList<String> getModifiers() {
         return modifiers;

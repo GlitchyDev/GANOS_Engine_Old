@@ -45,7 +45,7 @@ public class FrustumCullingFilter {
                 for(BlockBase[] blockLine: blockSelection) {
                     for(BlockBase block: blockLine) {
                         if (block != null && !block.isDisableFrustumCulling()) {
-                            boundingRadius = block.getScale() * 1.5f;
+                            boundingRadius = block.getScale() * 1.80f;
                             pos = block.getPosition();
                             block.setInsideFrustum(insideFrustum(pos.x * 2, pos.y * 2, pos.z * 2, boundingRadius));
                         }

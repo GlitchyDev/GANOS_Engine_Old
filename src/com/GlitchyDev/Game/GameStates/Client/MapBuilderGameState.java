@@ -2,6 +2,7 @@ package com.GlitchyDev.Game.GameStates.Client;
 
 import com.GlitchyDev.Game.GameStates.Abstract.InputGameStateBase;
 import com.GlitchyDev.Game.GameStates.GameStateType;
+import com.GlitchyDev.GameInput.ControllerDirectionPad;
 import com.GlitchyDev.GameInput.XBox360Controller;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Rendering.Assets.*;
@@ -10,7 +11,6 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
-import com.GlitchyDev.Rendering.FrustumCullingFilter;
 import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.*;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
@@ -44,7 +44,6 @@ public class MapBuilderGameState extends InputGameStateBase {
     private InstancedGridTexture instancedGridTexture;
     private PartialCubicInstanceMesh cursorInstancedMesh;
 
-    //private World world;
     private World world;
 
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
@@ -91,20 +90,25 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
         boolean[] defaultOrientation = new boolean[]{true,true,true,true,true,true};
-        int[] defaultTextureMapping = new int[]{0,1,2,3,4,5};
+        //int[] defaultTextureMapping = new int[]{0,1,2,3,4,5};
 
         InstancedGridTexture cursorGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("EditCursor"),"EditCursor",2,3);
         instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),"UVMapCubeTexture",2,3);
-        cursorInstancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),60*60, cursorGridTexture);
+        cursorInstancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),3600, cursorGridTexture);
         instancedMesh = new PartialCubicInstanceMesh(AssetLoader.loadMesh("/Mesh/PartialCubicBlock/CubicMesh1.obj"),60*60, instancedGridTexture);
 
 
-        SpriteItem spriteItem1 = new SpriteItem(AssetLoader.getTextureAsset("UVMapCubeTexture"),true);
-        spriteItem1.setScale(5);
-        spriteItem1.setPosition(3*5,130 + 3*5,0);
-        SpriteItem spriteItem2 = new SpriteItem(AssetLoader.getTextureAsset("TextureCursor"),true);
-        spriteItem2.setScale(5);
-        spriteItem2.setPosition(0,130,1);
+
+        availableInstanceTextures.add(instancedGridTexture);
+        availableInstanceTextures.add(new InstancedGridTexture(AssetLoader.getTextureAsset("TestDice"),"TestDice",6,7));
+        availableInstanceTextures.add(new InstancedGridTexture(AssetLoader.getTextureAsset("SchoolTiles"),"SchoolTiles",2,4));
+
+        SpriteItem spriteItem1 = new SpriteItem(availableInstanceTextures.get(0),true);
+        spriteItem1.setScale(TEXTURE_SCALING);
+        spriteItem1.setPosition(XOFFSET,YOFFSET,0);
+        SpriteItem spriteItem2 = new SpriteItem(AssetLoader.getTextureAsset("Cursor"), availableInstanceTextures.get(0).getCubeSideLength() ,availableInstanceTextures.get(0).getCubeSideLength(), true);
+        spriteItem2.setScale(TEXTURE_SCALING);
+        spriteItem2.setPosition(XOFFSET,YOFFSET,1);
         spriteItems.add(spriteItem1);
         spriteItems.add(spriteItem2);
 
@@ -146,10 +150,14 @@ public class MapBuilderGameState extends InputGameStateBase {
         controller = new XBox360Controller(0);
 
 
+
+
     }
 
 
-    NumberFormat formatter = new DecimalFormat("#0.00");
+
+
+    private final NumberFormat formatter = new DecimalFormat("#0.00");
     @Override
     public void logic() {
         controller.tick();
@@ -158,6 +166,13 @@ public class MapBuilderGameState extends InputGameStateBase {
         hudItems.get(4).setText("Pos:" + formatter.format(camera.getPosition().x) + "," + formatter.format(camera.getPosition().y) + "," + formatter.format(camera.getPosition().z)+ " Rot:" + formatter.format(camera.getRotation().x) + "," + formatter.format(camera.getRotation().y) + "," + formatter.format(camera.getRotation().z));
         hudItems.get(5).setText("Editor Mode: " + currentEditState + " EnableWallMode: " + enableWallMode);
         hudItems.get(6).setText("Cursor Location: " + cursorLocation.getX() + " Y:" + cursorLocation.getY() + " Z:" + cursorLocation.getZ());
+        hudItems.get(6).setText("Blocks Rendered: " + instancedMesh.getBlocksRendered() + " Blocks Ignored: " + instancedMesh.getBlocksIgnored());
+        if(currentEditState == EditState.EDIT_TEXTURE) {
+            hudItems.get(7).setText("TexturePackID: " + selectedTexturePackId + " TextureID: " + selectedTextureId + " Cursor " + textureCursorX + "," + textureCursorY);
+        }
+        else {
+            hudItems.get(7).setText("");
+        }
 
 
         if(controller.isCurrentlyActive()) {
@@ -185,39 +200,41 @@ public class MapBuilderGameState extends InputGameStateBase {
      * - Horizontal Direction: Pan Camera Left/Right
      * - Vertical Direction: Pan Camera Up/Down
      */
-    private final float CAMERA_MOVEMENT_AMOUNT = 0.3f;
-    private final float CAMERA_ROTATION_AMOUNT = 3.0f;
-    private final float JOYSTICK_THRESHHOLD = 0.2f;
-    public void cameraControlsLogic() {
+
+    private void cameraControlsLogic() {
+        final float CAMERA_MOVEMENT_AMOUNT = 0.3f;
+        final float CAMERA_ROTATION_AMOUNT = 3.0f;
+        final float JOYSTICK_THRESHOLD = 0.2f;
+
         if(!controller.getLeftJoyStickButton()) {
-            if(controller.getLeftJoyStickY() < -JOYSTICK_THRESHHOLD) {
+            if(controller.getLeftJoyStickY() < -JOYSTICK_THRESHOLD) {
                 camera.moveForward(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
             }
-            if(controller.getLeftJoyStickY() > JOYSTICK_THRESHHOLD) {
+            if(controller.getLeftJoyStickY() > JOYSTICK_THRESHOLD) {
                 camera.moveBackwards(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
             }
-            if(controller.getLeftJoyStickX() > JOYSTICK_THRESHHOLD) {
+            if(controller.getLeftJoyStickX() > JOYSTICK_THRESHOLD) {
                 camera.moveRight(controller.getLeftJoyStickX() * CAMERA_MOVEMENT_AMOUNT);
             }
-            if(controller.getLeftJoyStickX() < -JOYSTICK_THRESHHOLD) {
+            if(controller.getLeftJoyStickX() < -JOYSTICK_THRESHOLD) {
                 camera.moveLeft(controller.getLeftJoyStickX() * CAMERA_MOVEMENT_AMOUNT);
             }
         }
         else
         {
-            if(controller.getLeftJoyStickY() > JOYSTICK_THRESHHOLD) {
+            if(controller.getLeftJoyStickY() > JOYSTICK_THRESHOLD) {
                 camera.moveDown(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
             }
-            if(controller.getLeftJoyStickY() < -JOYSTICK_THRESHHOLD) {
+            if(controller.getLeftJoyStickY() < -JOYSTICK_THRESHOLD) {
                 camera.moveUp(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
             }
 
         }
 
-        if(controller.getRightJoyStickX() > JOYSTICK_THRESHHOLD || controller.getRightJoyStickX() < -JOYSTICK_THRESHHOLD) {
+        if(controller.getRightJoyStickX() > JOYSTICK_THRESHOLD || controller.getRightJoyStickX() < -JOYSTICK_THRESHOLD) {
             camera.moveRotation(0, controller.getRightJoyStickX() * CAMERA_ROTATION_AMOUNT,0);
         }
-        if(controller.getRightJoyStickY() > JOYSTICK_THRESHHOLD || controller.getRightJoyStickY() < -JOYSTICK_THRESHHOLD) {
+        if(controller.getRightJoyStickY() > JOYSTICK_THRESHOLD || controller.getRightJoyStickY() < -JOYSTICK_THRESHOLD) {
             camera.moveRotation(controller.getRightJoyStickY() * CAMERA_ROTATION_AMOUNT,0,0);
 
         }
@@ -245,7 +262,7 @@ public class MapBuilderGameState extends InputGameStateBase {
     }
 
     private EditState currentEditState = EditState.MOVE_CURSOR;
-    public void editControlsLogic()
+    private void editControlsLogic()
     {
         if(controller.getToggleRightHomeButton()) {
             currentEditState = currentEditState.toggleState();
@@ -280,7 +297,7 @@ public class MapBuilderGameState extends InputGameStateBase {
 
     private Location cursorLocation = new Location(0,0,0);
     private boolean enableWallMode = true;
-    public void moveCursorControlsLogic() {
+    private void moveCursorControlsLogic() {
         if (controller.getToggleNorthButton()) {
             cursorLocation.addOffset(0,0,-1);
         }
@@ -319,7 +336,7 @@ public class MapBuilderGameState extends InputGameStateBase {
                     for(Direction direction: Direction.values()) {
                         Location offsetLocation = cursorLocationClone.getDirectionLocation(direction);
                         BlockBase wall = world.getBlock(offsetLocation);
-                        if(wall != null && wall instanceof PartialCubicBlock) {
+                        if(wall instanceof PartialCubicBlock) {
                             if((partialCubicBlock).getDirectionFaceState(direction)) {
 
                                 ((PartialCubicBlock) wall).setDirectionFaceState(direction.reverse(),false);
@@ -359,8 +376,13 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
     // Edit texture and model
-    private ArrayList<InstancedGridTexture> avalibleTextures = new ArrayList<>();
-    public void editTextureControlsLogic() {
+    private ArrayList<InstancedGridTexture> availableInstanceTextures = new ArrayList<>();
+    private int selectedTexturePackId = 0;
+    private int selectedTextureId = 0;
+    private int textureCursorX = 0;
+    private int textureCursorY = 0;
+
+    private void editTextureControlsLogic() {
         cursor.setAboveTexture(controller.getRightBumperButton() ? 3 : 2);
         cursor.setBelowTexture(controller.getRightTrigger() >= 0.95 ? 3 : 2);
         cursor.setNorthTexture(controller.getNorthButton() ? 3 : 2);
@@ -373,18 +395,130 @@ public class MapBuilderGameState extends InputGameStateBase {
             int index = 0;
             for(int texture: cursor.getAssignedTextures()) {
                 if(texture == 3) {
-                    if(block != null && block instanceof PartialCubicBlock) {
+                    if(block instanceof PartialCubicBlock) {
                         ((PartialCubicBlock) block).getFaceStates()[index] = !((PartialCubicBlock) block).getFaceStates()[index];
                     }
                 }
                 index++;
             }
-            if(block.isUseless()) {
+            if(block != null && block.isUseless()) {
                 world.setBlock(cursorLocation,null);
+            }
+        }
+
+        if(controller.getToggleDirectionPad() != ControllerDirectionPad.NONE) {
+            switch(controller.getDirectionPad()) {
+                case NORTH:
+                    selectedTextureId = (selectedTextureId == 0) ? (availableInstanceTextures.get(selectedTexturePackId).getTextureGridWidth() * availableInstanceTextures.get(selectedTexturePackId).getTextureGridHeight())-1 : selectedTextureId-1;
+                    textureCursorX = selectedTextureId % availableInstanceTextures.get(selectedTexturePackId).getTextureGridWidth();
+                    textureCursorY = selectedTextureId / availableInstanceTextures.get(selectedTexturePackId).getTextureGridWidth();
+                    setCursorPosition(textureCursorX,textureCursorY);
+                    break;
+                case EAST:
+                    selectedTexturePackId= (selectedTexturePackId == availableInstanceTextures.size()-1) ? 0 : selectedTexturePackId+1;
+                    loadTexturePack();
+                    selectedTextureId = 0;
+                    break;
+                case SOUTH:
+                    selectedTextureId = (selectedTextureId >= (availableInstanceTextures.get(selectedTexturePackId).getTextureGridWidth() * availableInstanceTextures.get(selectedTexturePackId).getTextureGridHeight())-1) ? 0 : selectedTextureId+1;
+                    textureCursorX = selectedTextureId % availableInstanceTextures.get(selectedTexturePackId).getTextureGridWidth();
+                    textureCursorY = selectedTextureId / availableInstanceTextures.get(selectedTexturePackId).getTextureGridWidth();
+                    setCursorPosition(textureCursorX,textureCursorY);
+                    break;
+                case WEST:
+                    selectedTexturePackId = (selectedTexturePackId == 0) ? availableInstanceTextures.size()-1 : selectedTexturePackId-1;
+                    loadTexturePack();
+                    selectedTextureId = 0;
+                    break;
+            }
+        }
+
+        if(controller.getToggleLeftBumperButton()) {
+            if (world.getBlock(cursorLocation) instanceof PartialCubicBlock) {
+                PartialCubicBlock block = (PartialCubicBlock) world.getBlock(cursorLocation);
+                InstancedGridTexture blockTexture = block.getInstancedGridTexture();
+
+                if (controller.getNorthButton()) {
+                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                        for(Direction direction: Direction.values()) {
+                            block.setDirectionTexture(direction,0);
+                        }
+                    }
+                    block.setDirectionTexture(Direction.NORTH,selectedTextureId);
+                }
+                if (controller.getSouthButton()) {
+                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                        for(Direction direction: Direction.values()) {
+                            block.setDirectionTexture(direction,0);
+                        }
+                    }
+                    block.setDirectionTexture(Direction.SOUTH,selectedTextureId);
+                }
+                if (controller.getEastButton()) {
+                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                        for(Direction direction: Direction.values()) {
+                            block.setDirectionTexture(direction,0);
+                        }
+                    }
+                    block.setDirectionTexture(Direction.EAST,selectedTextureId);
+                }
+                if (controller.getWestButton()) {
+                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                        for(Direction direction: Direction.values()) {
+                            block.setDirectionTexture(direction,0);
+                        }
+                    }
+                    block.setDirectionTexture(Direction.WEST,selectedTextureId);
+                }
+                if (controller.getRightBumperButton()) {
+                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                        for(Direction direction: Direction.values()) {
+                            block.setDirectionTexture(direction,0);
+                        }
+                    }
+                    block.setDirectionTexture(Direction.ABOVE,selectedTextureId);
+                }
+                if (controller.getRightTrigger() >= 0.95) {
+                    if(cursorLocation.getY() != 0) {
+                        if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                            block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                            for(Direction direction: Direction.values()) {
+                                block.setDirectionTexture(direction,0);
+                            }
+                        }
+                        block.setDirectionTexture(Direction.BELOW,selectedTextureId);
+                    }
+                }
             }
         }
     }
 
+
+    private final int TEXTURE_SCALING = 4;
+    private final int XOFFSET = 0;
+    private final int YOFFSET = 130;
+    private void loadTexturePack() {
+        spriteItems.get(0).setSprite(availableInstanceTextures.get(selectedTexturePackId),true);
+        spriteItems.get(1).setSprite(AssetLoader.getTextureAsset("Cursor"), availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() ,availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength(), true);
+        textureCursorX = 0;
+        textureCursorY = 0;
+        setCursorPosition(0,0);
+    }
+
+    private void setCursorPosition(int x, int y) {
+        spriteItems.get(0).setPosition(XOFFSET,YOFFSET,0);
+        spriteItems.get(1).setPosition(XOFFSET + availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() * x * TEXTURE_SCALING,YOFFSET + availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() * y * TEXTURE_SCALING,1);
+    }
+      /*
+       int num = ((PartialCubicBlock) block).getAssignedTextures()[i];
+       int x = num % instancedGridTexture.getTextureGridWidth();
+       int y = num / instancedGridTexture.getTextureGridWidth();
+     */
 
 
 
@@ -415,7 +549,6 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
     }
-
 
     @Override
     public void enterState(GameStateType previousGameState) {

@@ -164,11 +164,6 @@ public class Mesh implements Cloneable {
             glDeleteBuffers(vboId);
         }
 
-        // Delete the texture
-        if (texture != null) {
-            texture.cleanup();
-        }
-
         // Delete the VAO
         glBindVertexArray(0);
         glDeleteVertexArrays(vaoId);

@@ -1,5 +1,6 @@
 package com.GlitchyDev.Rendering.Assets;
 
+import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
 import com.GlitchyDev.Rendering.Assets.WorldElements.Transformation;
 import com.GlitchyDev.World.BlockBase;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
@@ -15,12 +16,12 @@ import org.lwjgl.opengl.GL30;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL15C.GL_ARRAY_BUFFER;
 import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL31C.glDrawElementsInstanced;
 
 public class PartialCubicInstanceMesh extends InstancedMesh {
@@ -64,7 +65,7 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
         glDisableVertexAttribArray(6);
     }
 
-    private ArrayList<Matrix4f> modelViewMatrixes = new ArrayList<>();
+    private ArrayList<Matrix4f> modelViewMatrices = new ArrayList<>();
     private ArrayList<Vector2f> textureCords = new ArrayList<>();
     boolean[] faces;
     Vector3f rotation;
@@ -74,7 +75,7 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
 
         // Collect all the rotations from each block
 
-        modelViewMatrixes.clear();
+        modelViewMatrices.clear();
         textureCords.clear();
 
         for(PartialCubicBlock block: blocks) {
@@ -86,32 +87,32 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
                         case 0:
                             // 0
                             rotation.add(0,90,0);
-                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
+                            modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                         case 1:
                             // 1
                             rotation.add(180,90,0);
-                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
+                            modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                         case 2:
                             // 2*
                             rotation.add(90,-90,0);
-                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
+                            modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                         case 3:
                             // 3*
                             rotation.add(0, 0,90);
-                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
+                            modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                         case 4:
                             // 4*
                             rotation.add(90, -270,180);
-                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
+                            modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                         case 5:
                             // 5*
                             rotation.add(180, 0,270);
-                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
+                            modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix,2));
                             break;
                     }
 
@@ -123,71 +124,85 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
                 }
             }
         }
-        int length = modelViewMatrixes.size();
+        int length = modelViewMatrices.size();
         for (int i = 0; i < length; i += instanceChunkSize) {
-            //System.out.println(i);
             int end = Math.min(length, i + instanceChunkSize);
-            renderPartialCubicBlocksInstanced(modelViewMatrixes.subList(i, end), textureCords.subList(i, end), end-i);
+            renderPartialCubicBlocksInstanced(modelViewMatrices.subList(i, end), textureCords.subList(i, end), end-i);
         }
     }
 
+
+    int blocksRendered = 0;
+    int blocksIgnored = 0;
     public void renderPartialCubicBlocksInstancedChunk(Collection<Chunk> chunks, Transformation transformation, Matrix4f viewMatrix, boolean useFrustumCullingFilter)
     {
         preRender();
 
         // Collect all the rotations from each block
 
-        modelViewMatrixes.clear();
+        modelViewMatrices.clear();
         textureCords.clear();
+        blocksRendered = 0;
+        blocksIgnored = 0;
+
+
 
         for(Chunk chunk: chunks) {
             for(BlockBase[][] blockSelection: chunk.getBlocks()) {
                 for(BlockBase[] blockLine: blockSelection) {
                     for(BlockBase block: blockLine) {
-                        if(block != null && block instanceof PartialCubicBlock && (!useFrustumCullingFilter || block.isInsideFrustum())) {
-                            faces = ((PartialCubicBlock) block).getFaceStates();
-                            for (int i = 0; i < 6; i++) {
-                                if (faces[i]) {
-                                    rotation = new Vector3f(block.getRotation());
-                                    switch (i) {
-                                        case 0:
-                                            // 0
-                                            rotation.add(0, 90, 0);
-                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
-                                            break;
-                                        case 1:
-                                            // 1
-                                            rotation.add(180, 90, 0);
-                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
-                                            break;
-                                        case 2:
-                                            // 2*
-                                            rotation.add(90, -90, 0);
-                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
-                                            break;
-                                        case 3:
-                                            // 3*
-                                            rotation.add(0, 0, 90);
-                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
-                                            break;
-                                        case 4:
-                                            // 4*
-                                            rotation.add(90, -270, 180);
-                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
-                                            break;
-                                        case 5:
-                                            // 5*
-                                            rotation.add(180, 0, 270);
-                                            modelViewMatrixes.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
-                                            break;
+                        if(block != null && block instanceof PartialCubicBlock) {
+                            if(!useFrustumCullingFilter || block.isInsideFrustum()) {
+                                // ****************************
+                                blocksRendered++;
+                                faces = ((PartialCubicBlock) block).getFaceStates();
+                                for (int i = 0; i < 6; i++) {
+                                    if (faces[i]) {
+                                        rotation = new Vector3f(block.getRotation());
+                                        switch (i) {
+                                            case 0:
+                                                // 0 Top
+                                                rotation.add(0, 90, 0);
+                                                modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                                break;
+                                            case 1:
+                                                // 1 Bottom
+                                                rotation.add(180, 90, 0);
+                                                modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                                break;
+                                            case 2:
+                                                // 2 North
+                                                rotation.add(90, -90, 0);
+                                                modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                                break;
+                                            case 3:
+                                                // 3 East
+                                                rotation.add(0, 0, 90);
+                                                modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                                break;
+                                            case 4:
+                                                // 4 South
+                                                rotation.add(90, -270, 180);
+                                                modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                                break;
+                                            case 5:
+                                                // 5 West
+                                                rotation.add(180, 0, 270);
+                                                modelViewMatrices.add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                                break;
+                                        }
+                                        int num = ((PartialCubicBlock) block).getAssignedTextures()[i];
+                                        int x = num % instancedGridTexture.getTextureGridWidth();
+                                        int y = num / instancedGridTexture.getTextureGridWidth();
+
+                                        textureCords.add(new Vector2f(x, y));
                                     }
-
-                                    int num = ((PartialCubicBlock) block).getAssignedTextures()[i];
-                                    int x = num % instancedGridTexture.getTextureGridWidth();
-                                    int y = num / instancedGridTexture.getTextureGridWidth();
-
-                                    textureCords.add(new Vector2f(x, y));
                                 }
+
+
+                            }
+                            else {
+                                blocksIgnored++;
                             }
                         }
                     }
@@ -196,14 +211,126 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
         }
 
 
-        int length = modelViewMatrixes.size();
+        int length = modelViewMatrices.size();
         for (int i = 0; i < length; i += instanceChunkSize) {
-            //System.out.println(i);
             int end = Math.min(length, i + instanceChunkSize);
-            renderPartialCubicBlocksInstanced(modelViewMatrixes.subList(i, end), textureCords.subList(i, end), end-i);
+            renderPartialCubicBlocksInstanced(modelViewMatrices.subList(i, end), textureCords.subList(i, end), end-i);
         }
     }
 
+
+
+    public void renderPartialCubicBlocksInstancedChunkTextures(ShaderProgram shader, Collection<Chunk> chunks, Transformation transformation, Matrix4f viewMatrix, boolean useFrustumCullingFilter)
+    {
+        preRender();
+
+        // Collect all the rotations from each block
+
+        blocksRendered = 0;
+        blocksIgnored = 0;
+
+
+        HashMap<InstancedGridTexture,ArrayList<Matrix4f>> textureGroupingModels = new HashMap<>();
+        HashMap<InstancedGridTexture,ArrayList<Vector2f>> textureGroupingTextures = new HashMap<>();
+
+
+        for(Chunk chunk: chunks) {
+            for(BlockBase[][] blockSelection: chunk.getBlocks()) {
+                for(BlockBase[] blockLine: blockSelection) {
+                    for(BlockBase block: blockLine) {
+                        if(block != null && block instanceof PartialCubicBlock) {
+                            if(!useFrustumCullingFilter || block.isInsideFrustum()) {
+
+                                PartialCubicBlock partialCubicBlock = (PartialCubicBlock) block;
+                                // ****************************
+                                blocksRendered++;
+                                faces = ((PartialCubicBlock) block).getFaceStates();
+                                for (int i = 0; i < 6; i++) {
+                                    if (faces[i]) {
+                                        rotation = new Vector3f(block.getRotation());
+                                        switch (i) {
+                                            case 0:
+                                                // 0 Top
+                                                rotation.add(0, 90, 0);
+                                                if(!textureGroupingModels.containsKey(partialCubicBlock.getInstancedGridTexture())) {
+                                                    textureGroupingModels.put(partialCubicBlock.getInstancedGridTexture(),new ArrayList<>());
+                                                }
+                                                textureGroupingModels.get(partialCubicBlock.getInstancedGridTexture()).add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));
+                                                break;
+                                            case 1:
+                                                // 1 Bottom
+                                                rotation.add(180, 90, 0);
+                                                if(!textureGroupingModels.containsKey(partialCubicBlock.getInstancedGridTexture())) {
+                                                    textureGroupingModels.put(partialCubicBlock.getInstancedGridTexture(),new ArrayList<>());
+                                                }
+                                                textureGroupingModels.get(partialCubicBlock.getInstancedGridTexture()).add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));                                                break;
+                                            case 2:
+                                                // 2 North
+                                                rotation.add(90, -90, 0);
+                                                if(!textureGroupingModels.containsKey(partialCubicBlock.getInstancedGridTexture())) {
+                                                    textureGroupingModels.put(partialCubicBlock.getInstancedGridTexture(),new ArrayList<>());
+                                                }
+                                                textureGroupingModels.get(partialCubicBlock.getInstancedGridTexture()).add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));                                                break;
+                                            case 3:
+                                                // 3 East
+                                                rotation.add(0, 0, 90);
+                                                if(!textureGroupingModels.containsKey(partialCubicBlock.getInstancedGridTexture())) {
+                                                    textureGroupingModels.put(partialCubicBlock.getInstancedGridTexture(),new ArrayList<>());
+                                                }
+                                                textureGroupingModels.get(partialCubicBlock.getInstancedGridTexture()).add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));                                                break;
+                                            case 4:
+                                                // 4 South
+                                                rotation.add(90, -270, 180);
+                                                if(!textureGroupingModels.containsKey(partialCubicBlock.getInstancedGridTexture())) {
+                                                    textureGroupingModels.put(partialCubicBlock.getInstancedGridTexture(),new ArrayList<>());
+                                                }
+                                                textureGroupingModels.get(partialCubicBlock.getInstancedGridTexture()).add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));                                                break;
+                                            case 5:
+                                                // 5 West
+                                                rotation.add(180, 0, 270);
+                                                if(!textureGroupingModels.containsKey(partialCubicBlock.getInstancedGridTexture())) {
+                                                    textureGroupingModels.put(partialCubicBlock.getInstancedGridTexture(),new ArrayList<>());
+                                                }
+                                                textureGroupingModels.get(partialCubicBlock.getInstancedGridTexture()).add(transformation.getModelViewMatrix(block.getPosition(), rotation, block.getScale(), viewMatrix, 2));                                                break;
+                                        }
+                                        int num = ((PartialCubicBlock) block).getAssignedTextures()[i];
+                                        int x = num % partialCubicBlock.getInstancedGridTexture().getTextureGridWidth();
+                                        int y = num / partialCubicBlock.getInstancedGridTexture().getTextureGridWidth();
+
+                                        if(!textureGroupingTextures.containsKey(partialCubicBlock.getInstancedGridTexture())) {
+                                            textureGroupingTextures.put(partialCubicBlock.getInstancedGridTexture(), new ArrayList<>());
+                                        }
+                                        textureGroupingTextures.get(partialCubicBlock.getInstancedGridTexture()).add(new Vector2f(x, y));
+                                    }
+                                }
+
+
+                            }
+                            else {
+                                blocksIgnored++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        for(InstancedGridTexture instanceGridTexture: textureGroupingModels.keySet()) {
+            glBindTexture(GL_TEXTURE_2D, instanceGridTexture.getId());
+
+            shader.setUniform("textureGridSize",new Vector2f(instanceGridTexture.getTextureGridWidth(),instanceGridTexture.getTextureGridHeight()));
+
+            ArrayList<Matrix4f> models = textureGroupingModels.get(instanceGridTexture);
+            ArrayList<Vector2f> textures = textureGroupingTextures.get(instanceGridTexture);
+
+            int length = models.size();
+            for (int i = 0; i < length; i += instanceChunkSize) {
+                int end = Math.min(length, i + instanceChunkSize);
+                renderPartialCubicBlocksInstanced(models.subList(i, end), textures.subList(i, end), end-i);
+            }
+        }
+    }
 
     private void renderPartialCubicBlocksInstanced(List<Matrix4f> blocks, List<Vector2f> textureCords, int size)
     {
@@ -224,5 +351,13 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
 
     public InstancedGridTexture getInstancedGridTexture() {
         return instancedGridTexture;
+    }
+
+    public int getBlocksIgnored() {
+        return blocksIgnored;
+    }
+
+    public int getBlocksRendered() {
+        return blocksRendered;
     }
 }

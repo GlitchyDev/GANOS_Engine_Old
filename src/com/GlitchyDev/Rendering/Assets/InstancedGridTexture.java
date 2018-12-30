@@ -32,4 +32,8 @@ public class InstancedGridTexture extends Texture {
     public float getTexturePortionHeight() {
         return 1.0f/super.getHeight();
     }
+
+    public int getCubeSideLength() {
+        return getWidth()/texWidth;
+    }
 }
