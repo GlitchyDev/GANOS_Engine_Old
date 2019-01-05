@@ -153,7 +153,6 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
                     for(BlockBase block: blockLine) {
                         if(block != null && block instanceof PartialCubicBlock) {
                             if(!useFrustumCullingFilter || block.isInsideFrustum()) {
-                                // ****************************
                                 blocksRendered++;
                                 faces = ((PartialCubicBlock) block).getFaceStates();
                                 for (int i = 0; i < 6; i++) {

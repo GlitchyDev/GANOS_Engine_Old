@@ -1,5 +1,6 @@
 package com.GlitchyDev.IO;
 
+import com.GlitchyDev.Rendering.Assets.InstancedGridTexture;
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.Sounds.SoundBuffer;
 import com.GlitchyDev.Rendering.Assets.Sounds.SoundManager;
@@ -21,6 +22,7 @@ public class AssetLoader {
     private static SoundManager soundManager = new SoundManager();
     private static HashMap<String,String> allAssets = new HashMap<>();
     private static HashMap<String,Texture> textureAssets = new HashMap<>();
+    private static HashMap<String, InstancedGridTexture> instancedGridTextures = new HashMap<>();
     private static HashMap<String,SoundBuffer> soundAssets = new HashMap<>();
     private static HashMap<String,Mesh> meshAssets = new HashMap<>();
     private static HashMap<String,String> vertexShaderAssets = new HashMap<>();
@@ -150,11 +152,20 @@ public class AssetLoader {
         return textureAssets.get(name);
     }
 
+
     public static SoundBuffer getSoundAsset(String name) { return soundAssets.get(name);}
 
     public static Mesh getMeshAsset(String name)
     {
         return meshAssets.get(name).clone();
+    }
+
+    public static void registerInstanceGridTexture(Texture texture, String name, int width, int length) {
+        instancedGridTextures.put(name,new InstancedGridTexture(texture,name,width,length));
+    }
+
+    public static InstancedGridTexture getInstanceGridTexture(String name) {
+        return instancedGridTextures.get(name);
     }
 
     public static String getVertexAsset(String name)

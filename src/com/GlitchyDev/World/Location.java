@@ -6,25 +6,32 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Location implements Serializable {
+public class Location {
     private Vector3i position;
-    //private World world;
+    private World world;
 
 
-    public Location() {
+    public Location(World world) {
+
         position = new Vector3i();
+        this.world = world;
     }
 
-    public Location(int x, int y, int z) {
+    public Location(int x, int y, int z, World world) {
+
         position = new Vector3i(x, y, z);
+        this.world = world;
     }
 
-    public Location(Vector3i position) {
+    public Location(Vector3i position, World world) {
         this.position = position;
+        this.world = world;
     }
 
-    public Location(Location location) {
+    public Location(Location location)
+    {
         position = new Vector3i(location.getPosition());
+        this.world = location.getWorld();
     }
 
 
@@ -57,7 +64,7 @@ public class Location implements Serializable {
         position.set(x, y, z);
     }
 
-    //public void setWorld(World world) { this.world = world; }
+    public void setWorld(World world) { this.world = world; }
 
 
     public int getX() {
@@ -71,6 +78,9 @@ public class Location implements Serializable {
     public int getZ() {
         return position.z;
     }
+
+    public World getWorld() {return world;}
+
 
 
     public Vector3i getPosition() {
@@ -106,7 +116,7 @@ public class Location implements Serializable {
     {
         return new Location(this);
     }
-    //public World getWorld() {return world;}
+
 
     public Location getDirectionLocation(Direction direction)
     {

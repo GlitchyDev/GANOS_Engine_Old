@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BlankBlock extends BlockBase implements Serializable {
+public class BlankBlock extends BlockBase {
 
     public BlankBlock(Location location, Vector3f rotation) {
         super(BlockType.NONE, location, rotation);
@@ -27,16 +27,6 @@ public class BlankBlock extends BlockBase implements Serializable {
         return false;
     }
 
-    private void readObject(ObjectInputStream aInputStream) throws ClassNotFoundException, IOException
-    {
-
-    }
-
-    private void writeObject(ObjectOutputStream aOutputStream) throws IOException
-    {
-        // Write Valid Block Bit
-        aOutputStream.writeBoolean(false);
-    }
 
 
 }

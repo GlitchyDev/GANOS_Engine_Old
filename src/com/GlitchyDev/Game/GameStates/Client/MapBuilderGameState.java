@@ -15,6 +15,7 @@ import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.*;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
 
+import java.io.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -45,6 +46,16 @@ public class MapBuilderGameState extends InputGameStateBase {
     private PartialCubicInstanceMesh cursorInstancedMesh;
 
     private World world;
+
+    private final int TEXTURE_SCALING = 1;
+    private final int XOFFSET = 0;
+    private final int YOFFSET = 130;
+
+    private ArrayList<InstancedGridTexture> availableInstanceTextures = new ArrayList<>();
+    private int selectedTexturePackId = 0;
+    private int selectedTextureId = 0;
+    private int textureCursorX = 0;
+    private int textureCursorY = 0;
 
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.MAPBUILDER);
@@ -92,16 +103,31 @@ public class MapBuilderGameState extends InputGameStateBase {
         boolean[] defaultOrientation = new boolean[]{true,true,true,true,true,true};
         //int[] defaultTextureMapping = new int[]{0,1,2,3,4,5};
 
-        InstancedGridTexture cursorGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("EditCursor"),"EditCursor",2,3);
-        instancedGridTexture = new InstancedGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),"UVMapCubeTexture",2,3);
+
+        // REGISTER THESE GOD DAMN GRID TEXTURES AS ASSETS
+        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("EditCursor"),"EditCursor",2,3);
+        InstancedGridTexture cursorGridTexture = AssetLoader.getInstanceGridTexture("EditCursor");
+
+        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),"UVMapCubeTexture",2,3);
+        instancedGridTexture = AssetLoader.getInstanceGridTexture("UVMapCubeTexture");
+
         cursorInstancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),3600, cursorGridTexture);
         instancedMesh = new PartialCubicInstanceMesh(AssetLoader.loadMesh("/Mesh/PartialCubicBlock/CubicMesh1.obj"),60*60, instancedGridTexture);
 
 
 
         availableInstanceTextures.add(instancedGridTexture);
-        availableInstanceTextures.add(new InstancedGridTexture(AssetLoader.getTextureAsset("TestDice"),"TestDice",6,7));
-        availableInstanceTextures.add(new InstancedGridTexture(AssetLoader.getTextureAsset("SchoolTiles"),"SchoolTiles",2,4));
+
+        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("TestDice"),"TestDice",6,7);
+        availableInstanceTextures.add(AssetLoader.getInstanceGridTexture("TestDice"));
+
+        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("SchoolTiles"),"SchoolTiles",2,4);
+        availableInstanceTextures.add(AssetLoader.getInstanceGridTexture("SchoolTiles"));
+
+        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("School_Tiles"),"School_Tiles",7,6);
+        availableInstanceTextures.add(AssetLoader.getInstanceGridTexture("School_Tiles"));
+
+
 
         SpriteItem spriteItem1 = new SpriteItem(availableInstanceTextures.get(0),true);
         spriteItem1.setScale(TEXTURE_SCALING);
@@ -113,7 +139,7 @@ public class MapBuilderGameState extends InputGameStateBase {
         spriteItems.add(spriteItem2);
 
         int[] zeroTextureMap = new int[]{0,0,0,0,0,0};
-        cursor = new PartialCubicBlock(new Location(0,0,0), cursorGridTexture,defaultOrientation,zeroTextureMap);
+        cursor = new PartialCubicBlock(new Location(0,0,0,world), cursorGridTexture,defaultOrientation,zeroTextureMap);
         cursor.setScale(1.4f);
 
         int width = 60;
@@ -129,7 +155,7 @@ public class MapBuilderGameState extends InputGameStateBase {
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
                 for(int z = 0; z < length; z++) {
-                    Location location = new Location(x,y,z);
+                    Location location = new Location(x,y,z,world);
                     boolean[] faceStates = new boolean[6];
                     textureCode.clear();
                     faceStates[0] = true;
@@ -150,6 +176,32 @@ public class MapBuilderGameState extends InputGameStateBase {
         controller = new XBox360Controller(0);
 
 
+        /*
+        BlockType[] cache = BlockType.values();
+        for(int i = 0; i < cache.length; i++) {
+            byte b = (byte) i;
+            System.out.println(cache[b]);
+        }
+
+
+        byte b = (byte) 0b00000011;
+
+        for(int count = 0; count <= 256; count++) {
+            System.out.print(b + " : ");
+            for (int i = 0; i < 8; i++) {
+                System.out.print((b >> (i - 1)) & 1);
+            }
+            System.out.println();
+            b--;
+        }
+
+
+        Byte obama = -127;
+        for (int i = 0; i < 8; i++) {
+            System.out.print((obama >> (i - 1)) & 1);
+        }
+        System.out.println();
+        */
 
 
     }
@@ -178,6 +230,33 @@ public class MapBuilderGameState extends InputGameStateBase {
         if(controller.isCurrentlyActive()) {
             cameraControlsLogic();
             editControlsLogic();
+        }
+
+
+        if(controller.getLeftHomeButton()) {
+            if(controller.getToggleLeftBumperButton()) {
+                System.out.println("WRITING TO FILE");
+                File file = new File("C:/Users/Robert/Desktop/TestWorld_0_0.wcnk");
+                try {
+                    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+                    Chunk chunk = world.getChunk(new ChunkCord(0, 0));
+                    chunk.writeObject(oos);
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(controller.getToggleRightBumperButton()) {
+                System.out.println("READING FROM FILE");
+                File file = new File("C:/Users/Robert/Desktop/TestWorld_0_0.wcnk");
+                try {
+                    ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+                    Chunk chunk = world.getChunk(new ChunkCord(0, 0));
+                    chunk.readObject(in, new Location(world));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         //logicCamera();
@@ -295,7 +374,9 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
 
-    private Location cursorLocation = new Location(0,0,0);
+    // BLECK!
+
+    private Location cursorLocation = new Location(0,0,0,null);
     private boolean enableWallMode = true;
     private void moveCursorControlsLogic() {
         if (controller.getToggleNorthButton()) {
@@ -350,14 +431,14 @@ public class MapBuilderGameState extends InputGameStateBase {
                     }
                 }
                 else {
-                    world.setBlock(cursor.getLocation().clone(), new PartialCubicBlock(cursor.getLocation().clone(), instancedGridTexture));
+                    world.setBlock(cursorLocationClone, new PartialCubicBlock(cursorLocationClone, instancedGridTexture));
                 }
             }
         }
-        if (controller.getToggleLeftHomeButton()) {
+        if (controller.getToggleLeftBumperButton()) {
             enableWallMode = !enableWallMode;
         }
-        if(world.getBlock(cursorLocation) != null) {
+        if(world.getBlock(cursorLocation) instanceof PartialCubicBlock) {
             for(Direction direction: Direction.values()) {
                 cursor.setDirectionTexture(direction,0);
             }
@@ -375,12 +456,7 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
 
-    // Edit texture and model
-    private ArrayList<InstancedGridTexture> availableInstanceTextures = new ArrayList<>();
-    private int selectedTexturePackId = 0;
-    private int selectedTextureId = 0;
-    private int textureCursorX = 0;
-    private int textureCursorY = 0;
+
 
     private void editTextureControlsLogic() {
         cursor.setAboveTexture(controller.getRightBumperButton() ? 3 : 2);
@@ -499,9 +575,7 @@ public class MapBuilderGameState extends InputGameStateBase {
     }
 
 
-    private final int TEXTURE_SCALING = 4;
-    private final int XOFFSET = 0;
-    private final int YOFFSET = 130;
+
     private void loadTexturePack() {
         spriteItems.get(0).setSprite(availableInstanceTextures.get(selectedTexturePackId),true);
         spriteItems.get(1).setSprite(AssetLoader.getTextureAsset("Cursor"), availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() ,availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength(), true);

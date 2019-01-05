@@ -36,4 +36,8 @@ public class InstancedGridTexture extends Texture {
     public int getCubeSideLength() {
         return getWidth()/texWidth;
     }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -23,12 +23,23 @@ public class PartialCubicBlock extends BlockBase {
 
 
 
-    public PartialCubicBlock(Location location, ObjectInputStream aInputStream) throws IOException {
+    public PartialCubicBlock(Location location) {
         super(BlockType.PARTIAL_CUBIC_BLOCK, location);
+
+        rotation = new Vector3f();
+
+        this.faceStates = new boolean[6];
+        for(int index = 0; index < 6; index++)
+        {
+            faceStates[index] = true;
+        }
+        this.assignedTextures = new int[6];
         //readObject(aInputStream);
 
     }
 
+
+    // Unused?
     public PartialCubicBlock(Location location, Vector3f rotation, InstancedGridTexture instancedGridTexture, boolean[] faceStates, int[] assignedTextures)
     {
         super(BlockType.PARTIAL_CUBIC_BLOCK, location, rotation);
@@ -41,16 +52,20 @@ public class PartialCubicBlock extends BlockBase {
     public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture, boolean[] faceStates, int[] assignedTextures)
     {
         super(BlockType.PARTIAL_CUBIC_BLOCK, location);
+        rotation = new Vector3f();
         this.instancedGridTexture = instancedGridTexture;
         this.faceStates = faceStates;
         this.assignedTextures = assignedTextures;
         //this.modifiers = modifiers;
     }
 
+    // More Likely to be used
     public PartialCubicBlock(Location location, InstancedGridTexture instancedGridTexture)
     {
         super(BlockType.PARTIAL_CUBIC_BLOCK, location);
         this.instancedGridTexture = instancedGridTexture;
+
+        rotation = new Vector3f();
         this.faceStates = new boolean[6];
 
         for(int index = 0; index < 6; index++)

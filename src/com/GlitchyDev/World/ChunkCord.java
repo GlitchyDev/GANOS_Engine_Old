@@ -4,7 +4,7 @@ public class ChunkCord {
     private int x;
     private int z;
 
-    ChunkCord(int x, int z)
+    public ChunkCord(int x, int z)
     {
         this.x = x;
         this.z = z;
