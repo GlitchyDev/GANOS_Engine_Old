@@ -7,6 +7,9 @@ import com.GlitchyDev.World.Location;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
+/**
+ * A block with a specified mesh
+ */
 public class MeshBlock extends BlockBase {
     private Mesh mesh;
 

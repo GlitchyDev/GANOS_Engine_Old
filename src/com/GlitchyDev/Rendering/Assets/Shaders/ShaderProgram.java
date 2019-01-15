@@ -12,6 +12,10 @@ import java.util.Map;
 
 import static org.lwjgl.opengl.GL20.*;
 
+
+/**
+ * The operands of a Shader, a vertex and fragment shader holder
+ */
 public class ShaderProgram {
 
     private final int programId;

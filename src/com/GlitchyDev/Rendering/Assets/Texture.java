@@ -63,6 +63,28 @@ public class Texture {
         }
     }
 
+    public Texture(ByteBuffer buffer, int width, int height) {
+        // Load Texture file
+
+        // Create a new OpenGL texture
+        id = glGenTextures();
+        // Bind the texture
+        glBindTexture(GL_TEXTURE_2D, id);
+
+        // Tell OpenGL how to unpack the RGBA bytes. Each component is 1 byte size
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 2);
+        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+
+        // Upload the texture data
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0,
+                GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+
+    }
+
     public Texture(RenderBuffer renderBuffer) {
         this.width = renderBuffer.getWidth();
         this.height = renderBuffer.getHeight();

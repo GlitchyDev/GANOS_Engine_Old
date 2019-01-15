@@ -6,6 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+/**
+ * A Position within a world, each block and entity requires one to operate
+ */
 public class Location {
     private Vector3i position;
     private World world;

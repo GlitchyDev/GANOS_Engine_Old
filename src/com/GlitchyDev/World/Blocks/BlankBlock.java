@@ -12,6 +12,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * A unit representation of air, however since air is currently left NULL on arrays, such use is currently not required
+ */
 public class BlankBlock extends BlockBase {
 
     public BlankBlock(Location location, Vector3f rotation) {

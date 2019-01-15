@@ -1,6 +1,7 @@
 package com.GlitchyDev.Rendering.Assets;
 
 import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
+import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.Transformation;
 import com.GlitchyDev.World.BlockBase;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
@@ -222,6 +223,7 @@ public class PartialCubicInstanceMesh extends InstancedMesh {
     public void renderPartialCubicBlocksInstancedChunkTextures(ShaderProgram shader, Collection<Chunk> chunks, Transformation transformation, Matrix4f viewMatrix, boolean useFrustumCullingFilter)
     {
         preRender();
+
 
         // Collect all the rotations from each block
 

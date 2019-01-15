@@ -7,6 +7,12 @@ import org.joml.Vector3i;
 
 import java.io.Serializable;
 
+/**
+ * A Block, the basic building units of the world map. Blocks should contain and run its own logic for
+ * - Rendering
+ * - Ticking
+ * - Pathfinding ( Like a portal block should provide pathfinding AI the connection detail to its other side
+ */
 public abstract class BlockBase {
     protected final BlockType blockType;
     // Serialize only as

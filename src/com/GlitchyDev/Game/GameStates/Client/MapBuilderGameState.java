@@ -21,7 +21,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 /**
- * A gamestate designed to aid in Map Design
+ * A gamestate designed to be the main form of building Map files in the game, as well as debugging functions
+ *
+ * Potentially, one should be able to use this gamestate to edit a live game owo
  *
  * Features should include
  * - Creating Map Files
@@ -29,28 +31,41 @@ import java.util.ArrayList;
  * - Editing Map Files
  * - Saving Map Files
  *
+ * Wanted Features:
+ * - Make Selection of block faces based on rotation, no more guessing owo
+ *
  */
 public class MapBuilderGameState extends InputGameStateBase {
+    // Show off the camera switching feature
     private Camera camera;
     private Camera camera2;
+    // Used to render Camera 2 to texture for viewing ( Camera screens, mirrors, ect )
     private Texture renderTexture;
     private RenderBuffer renderBuffer;
+    // Game Items held
     private ArrayList<GameItem> gameItems = new ArrayList<>();
     private ArrayList<TextItem> hudItems = new ArrayList<>();
     private ArrayList<SpriteItem> spriteItems = new ArrayList<>();
     private PartialCubicBlock cursor;
 
+    // Init'd controller 1
     private XBox360Controller controller;
+    // Mesh for PartialCubicBlocks
     private PartialCubicInstanceMesh instancedMesh;
+    // Default Texture
     private InstancedGridTexture instancedGridTexture;
+    // Same????
     private PartialCubicInstanceMesh cursorInstancedMesh;
 
+    // Loaded World
     private World world;
 
+    // Configs of textures for texture selection menu
     private final int TEXTURE_SCALING = 1;
     private final int XOFFSET = 0;
     private final int YOFFSET = 130;
 
+    // Loaded Texture Selections
     private ArrayList<InstancedGridTexture> availableInstanceTextures = new ArrayList<>();
     private int selectedTexturePackId = 0;
     private int selectedTextureId = 0;
@@ -81,9 +96,24 @@ public class MapBuilderGameState extends InputGameStateBase {
         instanceMesh.setTexture(renderTexture);
 
         gameItems.add(new GameItem(instanceMesh));
-        gameItems.get(0).setPosition(0,1,2);
+        gameItems.get(0).setPosition(0,0,0);
         gameItems.get(0).setRotation(0,0,0);
         gameItems.get(0).setScale(1);
+
+        gameItems.add(new GameItem(instanceMesh));
+        gameItems.get(1).setPosition(0,0,0);
+        gameItems.get(1).setRotation(0,0,0);
+        gameItems.get(1).setScale(1.0f);
+
+        gameItems.add(new GameItem(instanceMesh));
+        gameItems.get(2).setPosition(0,0,0);
+        gameItems.get(2).setRotation(0,0,90);
+        gameItems.get(2).setScale(1.0f);
+
+        gameItems.add(new GameItem(instanceMesh));
+        gameItems.get(3).setPosition(0,0,0);
+        gameItems.get(3).setRotation(0,0,180);
+        gameItems.get(3).setScale(1.0f);
 
 
 
@@ -95,6 +125,7 @@ public class MapBuilderGameState extends InputGameStateBase {
             item.setPosition(55*3,i*12,0);
             hudItems.add(item);
         }
+
 
 
 
@@ -135,8 +166,14 @@ public class MapBuilderGameState extends InputGameStateBase {
         SpriteItem spriteItem2 = new SpriteItem(AssetLoader.getTextureAsset("Cursor"), availableInstanceTextures.get(0).getCubeSideLength() ,availableInstanceTextures.get(0).getCubeSideLength(), true);
         spriteItem2.setScale(TEXTURE_SCALING);
         spriteItem2.setPosition(XOFFSET,YOFFSET,1);
+
+        SpriteItem spriteItem3 = new SpriteItem(AssetLoader.getTextureAsset("Selector"),true);
+        spriteItem3.setScale(1);
+        spriteItem3.setPosition(globalGameData.getGameWindow().getWidth()/2 - 25, globalGameData.getGameWindow().getHeight()/2 - 25,1);
+
         spriteItems.add(spriteItem1);
         spriteItems.add(spriteItem2);
+        spriteItems.add(spriteItem3);
 
         int[] zeroTextureMap = new int[]{0,0,0,0,0,0};
         cursor = new PartialCubicBlock(new Location(0,0,0,world), cursorGridTexture,defaultOrientation,zeroTextureMap);
@@ -176,35 +213,10 @@ public class MapBuilderGameState extends InputGameStateBase {
         controller = new XBox360Controller(0);
 
 
-        /*
-        BlockType[] cache = BlockType.values();
-        for(int i = 0; i < cache.length; i++) {
-            byte b = (byte) i;
-            System.out.println(cache[b]);
-        }
-
-
-        byte b = (byte) 0b00000011;
-
-        for(int count = 0; count <= 256; count++) {
-            System.out.print(b + " : ");
-            for (int i = 0; i < 8; i++) {
-                System.out.print((b >> (i - 1)) & 1);
-            }
-            System.out.println();
-            b--;
-        }
-
-
-        Byte obama = -127;
-        for (int i = 0; i < 8; i++) {
-            System.out.print((obama >> (i - 1)) & 1);
-        }
-        System.out.println();
-        */
-
 
     }
+
+
 
 
 
@@ -258,6 +270,7 @@ public class MapBuilderGameState extends InputGameStateBase {
                 }
             }
         }
+
 
         //logicCamera();
     }
@@ -623,6 +636,7 @@ public class MapBuilderGameState extends InputGameStateBase {
 
 
     }
+
 
     @Override
     public void enterState(GameStateType previousGameState) {

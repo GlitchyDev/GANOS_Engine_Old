@@ -11,6 +11,10 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+/**
+ * The default storage container of blocks, entities, ect, stored in world. A
+ */
 public class Chunk implements Serializable {
     // Store Y X Z so slices can be taken out
     private BlockBase[][][] blocks;
@@ -158,9 +162,21 @@ public class Chunk implements Serializable {
                         oos.write(partialCubicBlockByte);
 
 
+                        int id = 0;
+                        for(String textureName: AssetLoader.getConfigListAsset("InstanceTextureRegistry")) {
+                            if(textureName.equals(((PartialCubicBlock) blockBase).getInstancedGridTexture().getName())) {
+                                break;
+                            }
+                            id++;
+                        }
+                        //int correction = (z<0) ? (127 + (129 + z)) : z;
+                        oos.writeByte(id);
+
+
                         // Replace with byte texture ID later
-                        String textureName = ((PartialCubicBlock) blockBase).getInstancedGridTexture().getName();
-                        oos.writeUTF(textureName);
+                        //String textureName = ((PartialCubicBlock) blockBase).getInstancedGridTexture().getName();
+                        //oos.writeUTF(textureName);
+
 
 
                         for(Direction direction: Direction.values()) {
@@ -243,11 +259,13 @@ public class Chunk implements Serializable {
                     }
                     // First Byte Complete
 
-                    String textureName = in.readUTF();
+                    byte textureId = in.readByte();
+                    int correctedId = (textureId<0) ? (127 + (129 + textureId)) : textureId;
+
+                    String textureName = AssetLoader.getConfigListAsset("InstanceTextureRegistry").get(correctedId);
                     System.out.println(i + " " + textureName);
                     block.setInstancedGridTexture(AssetLoader.getInstanceGridTexture(textureName));
 
-                    // Read Texture ID
 
                     // Load Texture data for sides
                     for (int a = 0; a < totalValid; a++) {
@@ -297,7 +315,7 @@ public class Chunk implements Serializable {
         }
 
         setBlocks(loadedBlocks);
-        chunkHeight = loadedBlocks.length;
+        this.chunkHeight = loadedBlocks.length;
 
         //username = decrypt((String)in.readObject());
 

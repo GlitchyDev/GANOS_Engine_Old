@@ -6,9 +6,7 @@ import org.joml.Vector3f;
 public class Camera {
 
     private final Vector3f position;
-    
     private final Vector3f rotation;
-
     private Matrix4f viewMatrix;
     
     public Camera() {
@@ -28,6 +26,7 @@ public class Camera {
 
     public Matrix4f getViewMatrix() {
         return viewMatrix;
+
     }
 
     public void setPosition(float x, float y, float z) {

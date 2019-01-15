@@ -6,6 +6,11 @@ import org.joml.Vector3f;
 import java.util.Collection;
 import java.util.HashMap;
 
+
+/**
+ * A dimension that can be observed, made up of Chunks, Entities, ect. Multiple worlds can exist at once, and Entities can move and interact between them
+ * A World can tick all active structures within it
+ */
 public class World {
     private final String worldName;
     private HashMap<String,Chunk> chunks;

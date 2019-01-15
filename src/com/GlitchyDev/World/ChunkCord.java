@@ -1,5 +1,9 @@
 package com.GlitchyDev.World;
 
+
+/**
+ * A wrapper for a Chunks Location
+ */
 public class ChunkCord {
     private int x;
     private int z;
