@@ -100,13 +100,15 @@ public abstract class EnvironmentGameState extends InputGameStateBase {
         float closestDistance = Float.POSITIVE_INFINITY;
 
         for (BlockBase block : blocks) {
-            min.set(block.getLocation().getPosition());
-            max.set(block.getLocation().getPosition());
-            min.add(-block.getScale(), -block.getScale(), -block.getScale());
-            max.add(block.getScale(), block.getScale(), block.getScale());
-            if (Intersectionf.intersectRayAab(center, dir, min, max, nearFar) && nearFar.x < closestDistance) {
-                closestDistance = nearFar.x;
-                selectedBlock = block;
+            if (block != null) {
+                min.set(block.getLocation().getPosition());
+                max.set(block.getLocation().getPosition());
+                min.add(-block.getScale(), -block.getScale(), -block.getScale());
+                max.add(block.getScale(), block.getScale(), block.getScale());
+                if (Intersectionf.intersectRayAab(center, dir, min, max, nearFar) && nearFar.x < closestDistance) {
+                    closestDistance = nearFar.x;
+                    selectedBlock = block;
+                }
             }
         }
 

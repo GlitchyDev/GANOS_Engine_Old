@@ -1,5 +1,6 @@
 package com.GlitchyDev.Game.GameStates.Client;
 
+import com.GlitchyDev.Game.GameStates.Abstract.EnvironmentGameState;
 import com.GlitchyDev.Game.GameStates.Abstract.InputGameStateBase;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.GameInput.ControllerDirectionPad;
@@ -7,6 +8,7 @@ import com.GlitchyDev.GameInput.XBox360Controller;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Rendering.Assets.*;
 import com.GlitchyDev.Rendering.Assets.Fonts.CustomFontTexture;
+import com.GlitchyDev.Rendering.Assets.Sounds.SoundSource;
 import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
@@ -19,6 +21,8 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 /**
  * A gamestate designed to be the main form of building Map files in the game, as well as debugging functions
@@ -35,7 +39,7 @@ import java.util.ArrayList;
  * - Make Selection of block faces based on rotation, no more guessing owo
  *
  */
-public class MapBuilderGameState extends InputGameStateBase {
+public class MapBuilderGameState extends EnvironmentGameState {
     // Show off the camera switching feature
     private Camera camera;
     private Camera camera2;
@@ -52,9 +56,7 @@ public class MapBuilderGameState extends InputGameStateBase {
     private XBox360Controller controller;
     // Mesh for PartialCubicBlocks
     private PartialCubicInstanceMesh instancedMesh;
-    // Default Texture
     private InstancedGridTexture instancedGridTexture;
-    // Same????
     private PartialCubicInstanceMesh cursorInstancedMesh;
 
     // Loaded World
@@ -71,6 +73,8 @@ public class MapBuilderGameState extends InputGameStateBase {
     private int selectedTextureId = 0;
     private int textureCursorX = 0;
     private int textureCursorY = 0;
+
+    private SoundSource backgroundMusic;
 
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.MAPBUILDER);
@@ -213,6 +217,10 @@ public class MapBuilderGameState extends InputGameStateBase {
         controller = new XBox360Controller(0);
 
 
+        backgroundMusic = new SoundSource(true,true);
+
+
+
 
     }
 
@@ -239,8 +247,8 @@ public class MapBuilderGameState extends InputGameStateBase {
         }
 
 
+        cameraControlsLogic();
         if(controller.isCurrentlyActive()) {
-            cameraControlsLogic();
             editControlsLogic();
         }
 
@@ -272,6 +280,32 @@ public class MapBuilderGameState extends InputGameStateBase {
         }
 
 
+
+        ArrayList<BlockBase> aaa = new ArrayList<>();
+        BlockBase blocks[][][] = world.getChunk(new ChunkCord(0,0)).getBlocks();
+
+
+        ArrayList<GameItem> aaa2 = new ArrayList<>();
+        for(BlockBase[][] b : blocks) {
+            for(BlockBase[] bb : b) {
+                for(BlockBase bbb : bb) {
+                    aaa.add(bbb);
+                    if(bbb != null) {
+                        GameItem temp = new GameItem(null);
+                        temp.setPosition(bbb.getPosition().x, bbb.getPosition().y, bbb.getPosition().z);
+                        temp.setScale(2);
+                        aaa2.add(temp);
+                        System.out.println("Pos " + bbb.getPosition().x + " " + bbb.getPosition().y + " " + bbb.getPosition().z);
+                    }
+                }
+            }
+        }
+
+        GameItem b = selectGameItem3D(aaa2,camera);
+        if(b != null) {
+            System.out.println("Woo");
+        }
+
         //logicCamera();
     }
 
@@ -298,43 +332,95 @@ public class MapBuilderGameState extends InputGameStateBase {
         final float CAMERA_ROTATION_AMOUNT = 3.0f;
         final float JOYSTICK_THRESHOLD = 0.2f;
 
-        if(!controller.getLeftJoyStickButton()) {
-            if(controller.getLeftJoyStickY() < -JOYSTICK_THRESHOLD) {
-                camera.moveForward(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
-            }
-            if(controller.getLeftJoyStickY() > JOYSTICK_THRESHOLD) {
-                camera.moveBackwards(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
-            }
-            if(controller.getLeftJoyStickX() > JOYSTICK_THRESHOLD) {
-                camera.moveRight(controller.getLeftJoyStickX() * CAMERA_MOVEMENT_AMOUNT);
-            }
-            if(controller.getLeftJoyStickX() < -JOYSTICK_THRESHOLD) {
-                camera.moveLeft(controller.getLeftJoyStickX() * CAMERA_MOVEMENT_AMOUNT);
-            }
-        }
-        else
-        {
-            if(controller.getLeftJoyStickY() > JOYSTICK_THRESHOLD) {
-                camera.moveDown(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
-            }
-            if(controller.getLeftJoyStickY() < -JOYSTICK_THRESHOLD) {
-                camera.moveUp(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+        if(controller.isCurrentlyActive()) {
+            if (!controller.getLeftJoyStickButton()) {
+                if (controller.getLeftJoyStickY() < -JOYSTICK_THRESHOLD) {
+                    camera.moveForward(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+                }
+                if (controller.getLeftJoyStickY() > JOYSTICK_THRESHOLD) {
+                    camera.moveBackwards(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+                }
+                if (controller.getLeftJoyStickX() > JOYSTICK_THRESHOLD) {
+                    camera.moveRight(controller.getLeftJoyStickX() * CAMERA_MOVEMENT_AMOUNT);
+                }
+                if (controller.getLeftJoyStickX() < -JOYSTICK_THRESHOLD) {
+                    camera.moveLeft(controller.getLeftJoyStickX() * CAMERA_MOVEMENT_AMOUNT);
+                }
+            } else {
+                if (controller.getLeftJoyStickY() > JOYSTICK_THRESHOLD) {
+                    camera.moveDown(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+                }
+                if (controller.getLeftJoyStickY() < -JOYSTICK_THRESHOLD) {
+                    camera.moveUp(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
+                }
+
             }
 
-        }
+            if (controller.getRightJoyStickX() > JOYSTICK_THRESHOLD || controller.getRightJoyStickX() < -JOYSTICK_THRESHOLD) {
+                camera.moveRotation(0, controller.getRightJoyStickX() * CAMERA_ROTATION_AMOUNT, 0);
+            }
+            if (controller.getRightJoyStickY() > JOYSTICK_THRESHOLD || controller.getRightJoyStickY() < -JOYSTICK_THRESHOLD) {
+                camera.moveRotation(controller.getRightJoyStickY() * CAMERA_ROTATION_AMOUNT, 0, 0);
 
-        if(controller.getRightJoyStickX() > JOYSTICK_THRESHOLD || controller.getRightJoyStickX() < -JOYSTICK_THRESHOLD) {
-            camera.moveRotation(0, controller.getRightJoyStickX() * CAMERA_ROTATION_AMOUNT,0);
-        }
-        if(controller.getRightJoyStickY() > JOYSTICK_THRESHOLD || controller.getRightJoyStickY() < -JOYSTICK_THRESHOLD) {
-            camera.moveRotation(controller.getRightJoyStickY() * CAMERA_ROTATION_AMOUNT,0,0);
+            }
 
-        }
+            if (controller.getToggleRightJoyStickButton()) {
+                Camera temp = camera;
+                camera = camera2;
+                camera2 = temp;
+            }
+        } else {
+            if (gameInput.getKeyValue(GLFW_KEY_SPACE) >= 1) {
+                camera.moveUp(1);
+            }
+            if (gameInput.getKeyValue(GLFW_KEY_LEFT_SHIFT) >= 1) {
+                camera.moveDown(1);
+            }
 
-        if(controller.getToggleRightJoyStickButton()) {
-            Camera temp = camera;
-            camera = camera2;
-            camera2 = temp;
+            if (gameInput.getKeyValue(GLFW_KEY_UP) >= 1) {
+                camera.moveForward(1);
+            }
+            if (gameInput.getKeyValue(GLFW_KEY_DOWN) >= 1) {
+                camera.moveBackwards(1);
+            }
+            if (gameInput.getKeyValue(GLFW_KEY_LEFT) >= 1) {
+                camera.moveLeft(1);
+            }
+            if (gameInput.getKeyValue(GLFW_KEY_RIGHT) >= 1) {
+                camera.moveRight(1);
+            }
+
+
+            if (gameInput.getKeyValue(GLFW_KEY_W) >= 1) {
+                camera.moveRotation(-1,0,0);
+            }
+            if (gameInput.getKeyValue(GLFW_KEY_S) >= 1) {
+                camera.moveRotation(1,0,0);
+            }
+            if (gameInput.getKeyValue(GLFW_KEY_D) >= 1) {
+                camera.moveRotation(0,1,0);
+            }
+            if (gameInput.getKeyValue(GLFW_KEY_A) >= 1) {
+                camera.moveRotation(0,-1,0);
+            }
+
+
+
+
+
+            if (controller.getRightJoyStickX() > JOYSTICK_THRESHOLD || controller.getRightJoyStickX() < -JOYSTICK_THRESHOLD) {
+                camera.moveRotation(0, controller.getRightJoyStickX() * CAMERA_ROTATION_AMOUNT, 0);
+            }
+            if (controller.getRightJoyStickY() > JOYSTICK_THRESHOLD || controller.getRightJoyStickY() < -JOYSTICK_THRESHOLD) {
+                camera.moveRotation(controller.getRightJoyStickY() * CAMERA_ROTATION_AMOUNT, 0, 0);
+
+            }
+
+            if (gameInput.getKeyValue(GLFW_KEY_TAB) >= 1) {
+                Camera temp = camera;
+                camera = camera2;
+                camera2 = temp;
+            }
         }
     }
 

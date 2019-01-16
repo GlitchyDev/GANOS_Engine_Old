@@ -1,6 +1,7 @@
 package com.GlitchyDev.Utility;
 
 import org.joml.Matrix4f;
+import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWImage;
@@ -86,6 +87,7 @@ public class GameWindow {
 
         glfwSetWindowSize(windowHandle,width,height);
 
+
         // Setup resize callback
         /*
         glfwSetFramebufferSizeCallback(windowHandle, (window, width, height) -> {
@@ -131,7 +133,7 @@ public class GameWindow {
         glfwShowWindow(windowHandle);
     }
 
-    /*
+    /*.
        Required at the beginning of each loop
     */
     public void update() {
@@ -145,6 +147,13 @@ public class GameWindow {
         return projectionMatrix.setPerspective(FOV, aspectRatio, Z_NEAR, Z_FAR);
     }
 
+    public Vector2i getWindowPosition() {
+        int[] x = new int[1];
+        int[] y = new int[1];
+        glfwGetWindowPos(windowHandle,x,y);
+
+        return new Vector2i(x[0],y[0]);
+    }
     public void setCursor(InputStream stream, int xOffset, int yOffset) {
         BufferedImage image = null;
         try {
@@ -196,6 +205,9 @@ public class GameWindow {
         glfwSetCursor(getWindowHandle(), glfwCreateStandardCursor(glfwCursor));
     }
 
+    public void setCursorPosition(int x, int y) {
+        glfwSetCursorPos(windowHandle,x,y);
+    }
     public void setIcon(InputStream icon1, InputStream icon2) {
 
         BufferedImage img = null;

@@ -19,7 +19,7 @@ public class GANOSGame {
 
     public GANOSGame(String[] args) throws Exception {
         // Add potential permanent declaration
-        gameWindow = new GameWindow(args[0] + "_GANOS",800,800,true);
+        gameWindow = new GameWindow(args[0] + "_GANOS",500,500,true);
         globalGameData = new GlobalGameData(gameWindow);
         gameWindow.init();
 
