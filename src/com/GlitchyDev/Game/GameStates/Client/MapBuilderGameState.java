@@ -16,6 +16,8 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.*;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
+import org.joml.Vector2d;
+import org.joml.Vector2i;
 
 import java.io.*;
 import java.text.DecimalFormat;
@@ -50,6 +52,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
     private ArrayList<GameItem> gameItems = new ArrayList<>();
     private ArrayList<TextItem> hudItems = new ArrayList<>();
     private ArrayList<SpriteItem> spriteItems = new ArrayList<>();
+    private ArrayList<GameItem> debugItems = new ArrayList<>();
     private PartialCubicBlock cursor;
 
     // Init'd controller 1
@@ -129,6 +132,28 @@ public class MapBuilderGameState extends EnvironmentGameState {
             item.setPosition(55*3,i*12,0);
             hudItems.add(item);
         }
+
+
+        SpriteItem item = new SpriteItem(AssetLoader.getTextureAsset("Standing_Mirror"),true);
+        item.setPosition(0,2,0);
+
+        SpriteItem item2 = new SpriteItem(AssetLoader.getTextureAsset("Standing_Mirror"),true);
+        item2.setPosition(0,2,0);
+        item2.setRotation(0, 90,0);
+
+        SpriteItem item3 = new SpriteItem(AssetLoader.getTextureAsset("Standing_Mirror"),true);
+        item3.setPosition(0,2,0);
+        item3.setRotation(0, 180,0);
+
+        SpriteItem item4 = new SpriteItem(AssetLoader.getTextureAsset("Standing_Mirror"),true);
+        item4.setPosition(0,2,0);
+        item4.setRotation(0,270,0);
+
+
+        debugItems.add(item);
+        debugItems.add(item2);
+        debugItems.add(item3);
+        debugItems.add(item4);
 
 
 
@@ -222,6 +247,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
 
+
     }
 
 
@@ -233,6 +259,9 @@ public class MapBuilderGameState extends EnvironmentGameState {
     @Override
     public void logic() {
         controller.tick();
+        camera.updateViewMatrix();
+        camera2.updateViewMatrix();
+
         hudItems.get(1).setText("Render: " + formatter.format(getRenderUtilization()) + " Logic: " + formatter.format(getLogicUtilization()));
         hudItems.get(2).setText("FPS:" + getCurrentFPS());
         hudItems.get(4).setText("Pos:" + formatter.format(camera.getPosition().x) + "," + formatter.format(camera.getPosition().y) + "," + formatter.format(camera.getPosition().z)+ " Rot:" + formatter.format(camera.getRotation().x) + "," + formatter.format(camera.getRotation().y) + "," + formatter.format(camera.getRotation().z));
@@ -284,28 +313,23 @@ public class MapBuilderGameState extends EnvironmentGameState {
         ArrayList<BlockBase> aaa = new ArrayList<>();
         BlockBase blocks[][][] = world.getChunk(new ChunkCord(0,0)).getBlocks();
 
-
-        ArrayList<GameItem> aaa2 = new ArrayList<>();
         for(BlockBase[][] b : blocks) {
             for(BlockBase[] bb : b) {
                 for(BlockBase bbb : bb) {
-                    aaa.add(bbb);
                     if(bbb != null) {
-                        GameItem temp = new GameItem(null);
-                        temp.setPosition(bbb.getPosition().x, bbb.getPosition().y, bbb.getPosition().z);
-                        temp.setScale(2);
-                        aaa2.add(temp);
-                        System.out.println("Pos " + bbb.getPosition().x + " " + bbb.getPosition().y + " " + bbb.getPosition().z);
+                        aaa.add(bbb);
                     }
                 }
             }
         }
 
-        GameItem b = selectGameItem3D(aaa2,camera);
-        if(b != null) {
-            System.out.println("Woo");
-        }
 
+        BlockBase b = selectBlock3D(aaa,camera);
+        if(b != null) {
+            if(b instanceof PartialCubicBlock) {
+                ((PartialCubicBlock) b).setInstancedGridTexture(availableInstanceTextures.get(2));
+            }
+        }
         //logicCamera();
     }
 
@@ -709,6 +733,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
         renderer.updateFrustumCullingFilter(globalGameData.getGameWindow(),camera,world.getChunks());
         renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
         renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks(), true);
+        renderer.render3DElements(globalGameData.getGameWindow(),"Glitchy3D",camera, debugItems);
         if(currentEditState == EditState.EDIT_TEXTURE) {
             renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", spriteItems);
         }

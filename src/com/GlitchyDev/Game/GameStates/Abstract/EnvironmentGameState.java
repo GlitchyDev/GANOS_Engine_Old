@@ -101,8 +101,8 @@ public abstract class EnvironmentGameState extends InputGameStateBase {
 
         for (BlockBase block : blocks) {
             if (block != null) {
-                min.set(block.getLocation().getPosition());
-                max.set(block.getLocation().getPosition());
+                min.set(block.getNormalizedPosition());
+                max.set(block.getNormalizedPosition());
                 min.add(-block.getScale(), -block.getScale(), -block.getScale());
                 max.add(block.getScale(), block.getScale(), block.getScale());
                 if (Intersectionf.intersectRayAab(center, dir, min, max, nearFar) && nearFar.x < closestDistance) {
