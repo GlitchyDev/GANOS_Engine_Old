@@ -1,16 +1,8 @@
 package com.GlitchyDev.World.Blocks;
 
-import com.GlitchyDev.World.BlockBase;
-import com.GlitchyDev.World.BlockType;
+import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Location;
-import org.joml.Quaternionf;
 import org.joml.Vector3f;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * A unit representation of air, however since air is currently left NULL on arrays, such use is currently not required

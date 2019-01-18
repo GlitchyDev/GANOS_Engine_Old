@@ -5,7 +5,7 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.Utility.GlobalGameData;
-import com.GlitchyDev.World.BlockBase;
+import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import org.joml.*;
 
 import java.util.List;

@@ -1,14 +1,11 @@
 package com.GlitchyDev.Rendering;
 
 import com.GlitchyDev.IO.AssetLoader;
-import com.GlitchyDev.Rendering.Assets.InstancedGridTexture;
 import com.GlitchyDev.Rendering.Assets.InstancedMesh;
-import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.PartialCubicInstanceMesh;
 import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
 import com.GlitchyDev.Rendering.Assets.WorldElements.*;
 import com.GlitchyDev.Utility.GameWindow;
-import com.GlitchyDev.World.BlockBase;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
 import com.GlitchyDev.World.Chunk;
 import org.joml.Matrix4f;
@@ -120,6 +117,7 @@ public class Renderer {
     }
 
 
+    //
     public void renderInstancedPartialCubic(GameWindow window, String shaderName, Camera camera, PartialCubicInstanceMesh instancedMesh, List<PartialCubicBlock> blocks) {
         ShaderProgram shader = loadedShaders.get(shaderName);
         if(!previousShader.equals(shaderName)) {
@@ -142,6 +140,7 @@ public class Renderer {
         //shader.unbind();
     }
 
+    //
     public void renderInstancedPartialCubicChunk(GameWindow window, String shaderName, Camera camera, PartialCubicInstanceMesh instancedMesh, Collection<Chunk> chunks, boolean useFrustumCullingFilter) {
         ShaderProgram shader = loadedShaders.get(shaderName);
         if(!previousShader.equals(shaderName)) {

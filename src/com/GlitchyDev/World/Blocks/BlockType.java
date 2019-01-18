@@ -1,4 +1,4 @@
-package com.GlitchyDev.World;
+package com.GlitchyDev.World.Blocks;
 
 public enum BlockType {
     NONE,

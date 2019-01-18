@@ -1,11 +1,9 @@
-package com.GlitchyDev.World;
+package com.GlitchyDev.World.Blocks.Abstract;
 
-import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
-import org.joml.Quaternionf;
+import com.GlitchyDev.World.Blocks.BlockType;
+import com.GlitchyDev.World.Location;
 import org.joml.Vector3f;
 import org.joml.Vector3i;
-
-import java.io.Serializable;
 
 /**
  * A Block, the basic building units of the world map. Blocks should contain and run its own logic for

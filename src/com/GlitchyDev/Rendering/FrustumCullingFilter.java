@@ -1,14 +1,12 @@
 package com.GlitchyDev.Rendering;
 
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
-import com.GlitchyDev.World.BlockBase;
-import com.GlitchyDev.World.Blocks.PartialCubicBlock;
+import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Chunk;
 import org.joml.*;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 public class FrustumCullingFilter {
 

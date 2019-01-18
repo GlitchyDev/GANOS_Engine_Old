@@ -1,7 +1,6 @@
 package com.GlitchyDev.Game.GameStates.Client;
 
 import com.GlitchyDev.Game.GameStates.Abstract.EnvironmentGameState;
-import com.GlitchyDev.Game.GameStates.Abstract.InputGameStateBase;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.GameInput.ControllerDirectionPad;
 import com.GlitchyDev.GameInput.XBox360Controller;
@@ -15,9 +14,8 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.*;
+import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Blocks.PartialCubicBlock;
-import org.joml.Vector2d;
-import org.joml.Vector2i;
 
 import java.io.*;
 import java.text.DecimalFormat;

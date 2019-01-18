@@ -1,6 +1,8 @@
 package com.GlitchyDev.World;
 
 
+import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
+
 /**
  * An Rectangle of blocks and entities that can be loaded into the world map. Used to load/build structures
  */

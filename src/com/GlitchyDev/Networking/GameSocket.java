@@ -106,11 +106,11 @@ public class GameSocket {
             try {
                 while(keepThreadAlive.get())
                 {
-                    if(socketInput.ready())
-                    {
-                        Packet packet = new Packet(socketInput.readLine());
-                        if(packet.getPacketType() == PacketType.A_GOODBYE)
-                        {
+                            if(socketInput.ready())
+                            {
+                                Packet packet = new Packet(socketInput.readLine());
+                                if(packet.getPacketType() == PacketType.A_GOODBYE)
+                                {
                             disconnect();
                         }
                         unprocessedPackets.add(packet);
