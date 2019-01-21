@@ -11,8 +11,8 @@ import java.util.Arrays;
  * A Position within a world, each block and entity requires one to operate
  */
 public class Location {
-    private Vector3i position;
-    private World world;
+    private final Vector3i position;
+    private final World world;
 
 
     public Location(World world) {
@@ -43,32 +43,9 @@ public class Location {
     public Location getOffsetLocation(int x, int y, int z) {
 
         Location offsetCopy = this.clone();
-        offsetCopy.addOffset(x, y, z);
+        offsetCopy.getPosition().add(x,y,z);
         return offsetCopy;
     }
-
-    public void addOffset(int x, int y, int z) {
-        position.add(x, y, z);
-    }
-
-
-    public void setX(int x) {
-        this.position.x = x;
-    }
-
-    public void setY(int y) {
-        this.position.y = y;
-    }
-
-    public void setZ(int z) {
-        this.position.z = z;
-    }
-
-    public void setPosition(int x, int y, int z) {
-        position.set(x, y, z);
-    }
-
-    public void setWorld(World world) { this.world = world; }
 
 
     public int getX() {

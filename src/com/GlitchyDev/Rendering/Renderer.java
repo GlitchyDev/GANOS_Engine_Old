@@ -6,7 +6,7 @@ import com.GlitchyDev.Rendering.Assets.PartialCubicInstanceMesh;
 import com.GlitchyDev.Rendering.Assets.Shaders.ShaderProgram;
 import com.GlitchyDev.Rendering.Assets.WorldElements.*;
 import com.GlitchyDev.Utility.GameWindow;
-import com.GlitchyDev.World.Blocks.PartialCubicBlock;
+import com.GlitchyDev.World.Blocks.Abstract.PartialCubicBlock;
 import com.GlitchyDev.World.Chunk;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;

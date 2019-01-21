@@ -24,3 +24,7 @@ hs_err_pid*
 .idea/workspace.xml
 .idea/workspace.xml
 *.xml
+.idea/workspace.xml
+*.xml
+out/production/GANOS/META-INF/GANOS.kotlin_module
+.idea/workspace.xml

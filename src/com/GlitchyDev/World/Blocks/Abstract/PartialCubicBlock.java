@@ -1,7 +1,8 @@
-package com.GlitchyDev.World.Blocks;
+package com.GlitchyDev.World.Blocks.Abstract;
 
 import com.GlitchyDev.Rendering.Assets.InstancedGridTexture;
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
+import com.GlitchyDev.World.Blocks.BlockType;
 import com.GlitchyDev.World.Direction;
 import com.GlitchyDev.World.Location;
 import org.joml.Vector3f;

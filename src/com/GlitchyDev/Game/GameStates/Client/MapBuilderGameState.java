@@ -15,7 +15,7 @@ import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.*;
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
-import com.GlitchyDev.World.Blocks.PartialCubicBlock;
+import com.GlitchyDev.World.Blocks.Abstract.PartialCubicBlock;
 
 import java.io.*;
 import java.text.DecimalFormat;
@@ -329,6 +329,9 @@ public class MapBuilderGameState extends EnvironmentGameState {
             }
         }
         //logicCamera();
+
+
+        
     }
 
 
@@ -501,23 +504,23 @@ public class MapBuilderGameState extends EnvironmentGameState {
     private boolean enableWallMode = true;
     private void moveCursorControlsLogic() {
         if (controller.getToggleNorthButton()) {
-            cursorLocation.addOffset(0,0,-1);
+            cursorLocation = cursorLocation.getOffsetLocation(0,0,-1);
         }
         if (controller.getToggleSouthButton()) {
-            cursorLocation.addOffset(0,0,1);
+            cursorLocation = cursorLocation.getOffsetLocation(0,0,1);
         }
         if (controller.getToggleWestButton()) {
-            cursorLocation.addOffset(-1,0,0);
+            cursorLocation = cursorLocation.getOffsetLocation(-1,0,0);
         }
         if (controller.getToggleEastButton()) {
-            cursorLocation.addOffset(1,0,0);
+            cursorLocation = cursorLocation.getOffsetLocation(1,0,0);
         }
         if (controller.getToggleRightBumperButton()) {
-            cursorLocation.addOffset(0,1,0);
+            cursorLocation = cursorLocation.getOffsetLocation(0,1,0);
         }
         if (controller.getToggleRightTrigger()) {
             if(cursorLocation.getY() != 0) {
-                cursorLocation.addOffset(0, -1, 0);
+                cursorLocation = cursorLocation.getOffsetLocation(0, -1, 0);
             }
         }
         cursor.setLocation(cursorLocation);

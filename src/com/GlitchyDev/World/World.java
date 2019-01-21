@@ -1,7 +1,10 @@
 package com.GlitchyDev.World;
 
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
+import com.GlitchyDev.World.Blocks.Abstract.TickableBlock;
+import com.GlitchyDev.World.Entities.EntityBase;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -13,6 +16,8 @@ import java.util.HashMap;
 public class World {
     private final String worldName;
     private HashMap<String,Chunk> chunks;
+    private ArrayList<TickableBlock> tickableBlocks;
+    private ArrayList<EntityBase> entities;
 
     public static final int STANDARD_CHUNK_SIDE_LENGTH = 10;
     public static final int STANDARD_CHUNK_HEIGHT = 5;
@@ -21,6 +26,8 @@ public class World {
     public World(String worldName) {
         this.worldName = worldName;
         chunks = new HashMap<>();
+        tickableBlocks = new ArrayList<>();
+        entities = new ArrayList<>();
     }
 
     public String getWorldName() {
@@ -36,16 +43,17 @@ public class World {
         return chunks.get(chunkCord.toString());
     }
 
-    public void setChunk(Chunk chunk, ChunkCord chunkCord) {
-        chunks.put(chunkCord.toString(), chunk);
-    }
-
     public void addChunk(ChunkCord chunkCord, Chunk chunk)
     {
         chunks.put(chunkCord.toString(),chunk);
     }
 
     public void setBlock(Location location, BlockBase block) {
+        BlockBase previousBlock = getBlock(location);
+        if(previousBlock instanceof TickableBlock) {
+            tickableBlocks.remove(previousBlock);
+        }
+
         if(location.getY() >= 0) {
             int chunkX = getChunkNumfromCordNum(location.getX());
             int chunkZ = getChunkNumfromCordNum(location.getZ());
@@ -56,6 +64,10 @@ public class World {
             getChunk(chunkCord).setBlock(Math.abs(location.getX() - getPosNumFromChunkNum(chunkX)), location.getY(), Math.abs(location.getZ() - getPosNumFromChunkNum(chunkZ)), block);
             if(block != null) {
                 block.setLocation(location);
+
+                if(block instanceof TickableBlock) {
+                    tickableBlocks.add((TickableBlock) block);
+                }
             }
         } else {
             System.out.println("World: Block place error of " + block.getBlockType() + " @ " + location);

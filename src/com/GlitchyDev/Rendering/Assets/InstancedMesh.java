@@ -2,18 +2,13 @@ package com.GlitchyDev.Rendering.Assets;
 
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.Transformation;
-import com.GlitchyDev.World.Blocks.PartialCubicBlock;
 import org.joml.Matrix4f;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.opengl.ARBVertexArrayObject.glBindVertexArray;
