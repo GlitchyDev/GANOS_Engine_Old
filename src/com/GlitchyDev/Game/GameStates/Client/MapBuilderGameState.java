@@ -3,6 +3,8 @@ package com.GlitchyDev.Game.GameStates.Client;
 import com.GlitchyDev.Game.GameStates.Abstract.EnvironmentGameState;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.GameInput.ControllerDirectionPad;
+import com.GlitchyDev.GameInput.GameController;
+import com.GlitchyDev.GameInput.PS4Controller;
 import com.GlitchyDev.GameInput.XBox360Controller;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Rendering.Assets.*;
@@ -54,7 +56,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
     private PartialCubicBlock cursor;
 
     // Init'd controller 1
-    private XBox360Controller controller;
+    private GameController controller;
     // Mesh for PartialCubicBlocks
     private PartialCubicInstanceMesh instancedMesh;
     private InstancedGridTexture instancedGridTexture;
@@ -237,7 +239,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
             }
         }
 
-        controller = new XBox360Controller(0);
+        controller = new PS4Controller(0);
 
 
         backgroundMusic = new SoundSource(true,true);
