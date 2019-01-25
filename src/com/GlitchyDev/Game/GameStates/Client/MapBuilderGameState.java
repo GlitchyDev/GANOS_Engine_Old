@@ -4,8 +4,8 @@ import com.GlitchyDev.Game.GameStates.Abstract.EnvironmentGameState;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.GameInput.ControllerDirectionPad;
 import com.GlitchyDev.GameInput.GameController;
+import com.GlitchyDev.GameInput.GameControllerManager;
 import com.GlitchyDev.GameInput.PS4Controller;
-import com.GlitchyDev.GameInput.XBox360Controller;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Rendering.Assets.*;
 import com.GlitchyDev.Rendering.Assets.Fonts.CustomFontTexture;
@@ -19,7 +19,6 @@ import com.GlitchyDev.World.*;
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Blocks.Abstract.PartialCubicBlock;
 
-import java.io.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -51,7 +50,8 @@ public class MapBuilderGameState extends EnvironmentGameState {
     // Game Items held
     private ArrayList<GameItem> gameItems = new ArrayList<>();
     private ArrayList<TextItem> hudItems = new ArrayList<>();
-    private ArrayList<SpriteItem> spriteItems = new ArrayList<>();
+    private ArrayList<SpriteItem> centerCursor = new ArrayList<>();
+    private ArrayList<SpriteItem> textureEditHud = new ArrayList<>();
     private ArrayList<GameItem> debugItems = new ArrayList<>();
     private PartialCubicBlock cursor;
 
@@ -200,9 +200,9 @@ public class MapBuilderGameState extends EnvironmentGameState {
         spriteItem3.setScale(1);
         spriteItem3.setPosition(globalGameData.getGameWindow().getWidth()/2 - 25, globalGameData.getGameWindow().getHeight()/2 - 25,1);
 
-        spriteItems.add(spriteItem1);
-        spriteItems.add(spriteItem2);
-        spriteItems.add(spriteItem3);
+        textureEditHud.add(spriteItem1);
+        textureEditHud.add(spriteItem2);
+        textureEditHud.add(spriteItem3);
 
         int[] zeroTextureMap = new int[]{0,0,0,0,0,0};
         cursor = new PartialCubicBlock(new Location(0,0,0,world), cursorGridTexture,defaultOrientation,zeroTextureMap);
@@ -215,6 +215,9 @@ public class MapBuilderGameState extends EnvironmentGameState {
        // world = new World("DebugWorld");
 
 
+        SpriteItem centerMark = new SpriteItem(AssetLoader.getTextureAsset("Selector"),true);
+        centerMark.setPosition(globalGameData.getGameWindow().getWidth()/2 - 25,globalGameData.getGameWindow().getHeight()/2 - 25,0.5f);
+        centerCursor.add(centerMark);
 
         world = new World("DebugWorld");
         ArrayList<Integer> textureCode = new ArrayList<>();
@@ -239,7 +242,10 @@ public class MapBuilderGameState extends EnvironmentGameState {
             }
         }
 
-        controller = new PS4Controller(0);
+        GameControllerManager.loadControllers();
+        if(GameControllerManager.getLoadedControllerCount() != 0) {
+            controller = GameControllerManager.getControllers().get(0);
+        }
 
 
         backgroundMusic = new SoundSource(true,true);
@@ -282,60 +288,20 @@ public class MapBuilderGameState extends EnvironmentGameState {
         }
 
 
-        if(controller.getLeftHomeButton()) {
-            if(controller.getToggleLeftBumperButton()) {
-                System.out.println("WRITING TO FILE");
-                File file = new File("C:/Users/Robert/Desktop/TestWorld_0_0.wcnk");
-                try {
-                    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-                    Chunk chunk = world.getChunk(new ChunkCord(0, 0));
-                    chunk.writeObject(oos);
-                    oos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(controller.getToggleRightBumperButton()) {
-                System.out.println("READING FROM FILE");
-                File file = new File("C:/Users/Robert/Desktop/TestWorld_0_0.wcnk");
-                try {
-                    ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-                    Chunk chunk = world.getChunk(new ChunkCord(0, 0));
-                    chunk.readObject(in, new Location(world));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
 
 
 
-        ArrayList<BlockBase> aaa = new ArrayList<>();
-        BlockBase blocks[][][] = world.getChunk(new ChunkCord(0,0)).getBlocks();
-
-        for(BlockBase[][] b : blocks) {
-            for(BlockBase[] bb : b) {
-                for(BlockBase bbb : bb) {
-                    if(bbb != null) {
-                        aaa.add(bbb);
-                    }
-                }
-            }
-        }
-
-
-        BlockBase b = selectBlock3D(aaa,camera);
-        if(b != null) {
-            if(b instanceof PartialCubicBlock) {
-                ((PartialCubicBlock) b).setInstancedGridTexture(availableInstanceTextures.get(2));
-            }
-        }
-        //logicCamera();
 
 
         
     }
 
+    // Left Controller Bumper
+    public void debugFunction(Location location, BlockBase blockAtLocation) {
+
+
+
+    }
 
 
 
@@ -505,27 +471,50 @@ public class MapBuilderGameState extends EnvironmentGameState {
     private Location cursorLocation = new Location(0,0,0,null);
     private boolean enableWallMode = true;
     private void moveCursorControlsLogic() {
-        if (controller.getToggleNorthButton()) {
-            cursorLocation = cursorLocation.getOffsetLocation(0,0,-1);
-        }
-        if (controller.getToggleSouthButton()) {
-            cursorLocation = cursorLocation.getOffsetLocation(0,0,1);
-        }
-        if (controller.getToggleWestButton()) {
-            cursorLocation = cursorLocation.getOffsetLocation(-1,0,0);
-        }
-        if (controller.getToggleEastButton()) {
-            cursorLocation = cursorLocation.getOffsetLocation(1,0,0);
-        }
-        if (controller.getToggleRightBumperButton()) {
-            cursorLocation = cursorLocation.getOffsetLocation(0,1,0);
-        }
-        if (controller.getToggleRightTrigger()) {
-            if(cursorLocation.getY() != 0) {
-                cursorLocation = cursorLocation.getOffsetLocation(0, -1, 0);
+
+        if(!controller.getLeftHomeButton()) {
+            if (controller.getToggleNorthButton()) {
+                cursorLocation = cursorLocation.getOffsetLocation(0, 0, -1);
+            }
+            if (controller.getToggleSouthButton()) {
+                cursorLocation = cursorLocation.getOffsetLocation(0, 0, 1);
+            }
+            if (controller.getToggleWestButton()) {
+                cursorLocation = cursorLocation.getOffsetLocation(-1, 0, 0);
+            }
+            if (controller.getToggleEastButton()) {
+                cursorLocation = cursorLocation.getOffsetLocation(1, 0, 0);
+            }
+            if (controller.getToggleRightBumperButton()) {
+                cursorLocation = cursorLocation.getOffsetLocation(0, 1, 0);
+            }
+            if (controller.getToggleRightTrigger()) {
+                if (cursorLocation.getY() != 0) {
+                    cursorLocation = cursorLocation.getOffsetLocation(0, -1, 0);
+                }
+            }
+            cursor.setLocation(cursorLocation);
+        } else {
+            ArrayList<BlockBase> blocks = new ArrayList<>();
+            for(Chunk chunk: world.getChunks()) {
+                for (BlockBase[][] b : chunk.getBlocks()) {
+                    for (BlockBase[] bb : b) {
+                        for (BlockBase bbb : bb) {
+                            if (bbb != null) {
+                                blocks.add(bbb);
+                            }
+                        }
+                    }
+                }
+            }
+
+            BlockBase b = selectBlock3D(blocks,camera);
+            if(b != null) {
+                cursorLocation = b.getLocation();
+                cursor.setLocation(cursorLocation);
             }
         }
-        cursor.setLocation(cursorLocation);
+
 
         if (controller.getToggleLeftTrigger()) {
             BlockBase blockAtCursorLocation = world.getBlock(cursor.getLocation());
@@ -562,7 +551,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
             }
         }
         if (controller.getToggleLeftBumperButton()) {
-            enableWallMode = !enableWallMode;
+            debugFunction(cursorLocation.clone(),world.getBlock(cursorLocation));
         }
         if(world.getBlock(cursorLocation) instanceof PartialCubicBlock) {
             for(Direction direction: Direction.values()) {
@@ -582,6 +571,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
 
+    private final int FILL_RADIUS = 5;
 
 
     private void editTextureControlsLogic() {
@@ -641,60 +631,293 @@ public class MapBuilderGameState extends EnvironmentGameState {
                 InstancedGridTexture blockTexture = block.getInstancedGridTexture();
 
                 if (controller.getNorthButton()) {
-                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                        for(Direction direction: Direction.values()) {
-                            block.setDirectionTexture(direction,0);
-                        }
-                    }
-                    block.setDirectionTexture(Direction.NORTH,selectedTextureId);
-                }
-                if (controller.getSouthButton()) {
-                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                        for(Direction direction: Direction.values()) {
-                            block.setDirectionTexture(direction,0);
-                        }
-                    }
-                    block.setDirectionTexture(Direction.SOUTH,selectedTextureId);
-                }
-                if (controller.getEastButton()) {
-                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                        for(Direction direction: Direction.values()) {
-                            block.setDirectionTexture(direction,0);
-                        }
-                    }
-                    block.setDirectionTexture(Direction.EAST,selectedTextureId);
-                }
-                if (controller.getWestButton()) {
-                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                        for(Direction direction: Direction.values()) {
-                            block.setDirectionTexture(direction,0);
-                        }
-                    }
-                    block.setDirectionTexture(Direction.WEST,selectedTextureId);
-                }
-                if (controller.getRightBumperButton()) {
-                    if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                        block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                        for(Direction direction: Direction.values()) {
-                            block.setDirectionTexture(direction,0);
-                        }
-                    }
-                    block.setDirectionTexture(Direction.ABOVE,selectedTextureId);
-                }
-                if (controller.getRightTrigger() >= 0.95) {
-                    if(cursorLocation.getY() != 0) {
-                        if(availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                            block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                            for(Direction direction: Direction.values()) {
-                                block.setDirectionTexture(direction,0);
+                    final Direction assignedDirection = Direction.NORTH;
+                    if(controller.getLeftHomeButton()) {
+                        BlockBase baseBlock = world.getBlock(cursorLocation);
+                        if(baseBlock instanceof PartialCubicBlock && ((PartialCubicBlock) baseBlock).getDirectionFaceState(assignedDirection)) {
+                            InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
+                            int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
+                            for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
+                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
+                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
+                                        if(b instanceof PartialCubicBlock) {
+                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                        for (Direction direction : Direction.values()) {
+                                                            pb2.setDirectionTexture(direction, 0);
+                                                        }
+                                                    }
+                                                    pb2.setDirectionFaceState(assignedDirection, true);
+                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
-                        block.setDirectionTexture(Direction.BELOW,selectedTextureId);
+                    } else {
+                        if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                            block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                            for (Direction direction : Direction.values()) {
+                                block.setDirectionTexture(direction, 0);
+                            }
+                        }
+                        block.setDirectionFaceState(assignedDirection, true);
+                        block.setDirectionTexture(assignedDirection, selectedTextureId);
                     }
+                }
+                if (controller.getSouthButton()) {
+                    final Direction assignedDirection = Direction.SOUTH;
+                    if(controller.getLeftHomeButton()) {
+                        BlockBase baseBlock = world.getBlock(cursorLocation);
+                        if(baseBlock instanceof PartialCubicBlock && ((PartialCubicBlock) baseBlock).getDirectionFaceState(assignedDirection)) {
+                            InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
+                            int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
+                            for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
+                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
+                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
+                                        if(b instanceof PartialCubicBlock) {
+                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                        for (Direction direction : Direction.values()) {
+                                                            pb2.setDirectionTexture(direction, 0);
+                                                        }
+                                                    }
+                                                    pb2.setDirectionFaceState(assignedDirection, true);
+                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                            block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                            for (Direction direction : Direction.values()) {
+                                block.setDirectionTexture(direction, 0);
+                            }
+                        }
+                        block.setDirectionFaceState(assignedDirection, true);
+                        block.setDirectionTexture(assignedDirection, selectedTextureId);
+                    }
+                }
+                if (controller.getEastButton()) {
+                    final Direction assignedDirection = Direction.EAST;
+                    if(controller.getLeftHomeButton()) {
+                        BlockBase baseBlock = world.getBlock(cursorLocation);
+                        if(baseBlock instanceof PartialCubicBlock && ((PartialCubicBlock) baseBlock).getDirectionFaceState(assignedDirection)) {
+                            InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
+                            int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
+                            for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
+                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
+                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
+                                        if(b instanceof PartialCubicBlock) {
+                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                        for (Direction direction : Direction.values()) {
+                                                            pb2.setDirectionTexture(direction, 0);
+                                                        }
+                                                    }
+                                                    pb2.setDirectionFaceState(assignedDirection, true);
+                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                            block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                            for (Direction direction : Direction.values()) {
+                                block.setDirectionTexture(direction, 0);
+                            }
+                        }
+                        block.setDirectionFaceState(assignedDirection, true);
+                        block.setDirectionTexture(assignedDirection, selectedTextureId);
+                    }
+                }
+                if (controller.getWestButton()) {
+                    final Direction assignedDirection = Direction.WEST;
+                    if(controller.getLeftHomeButton()) {
+                        BlockBase baseBlock = world.getBlock(cursorLocation);
+                        if(baseBlock instanceof PartialCubicBlock && ((PartialCubicBlock) baseBlock).getDirectionFaceState(assignedDirection)) {
+                            InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
+                            int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
+                            for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
+                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
+                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
+                                        if(b instanceof PartialCubicBlock) {
+                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                        for (Direction direction : Direction.values()) {
+                                                            pb2.setDirectionTexture(direction, 0);
+                                                        }
+                                                    }
+                                                    pb2.setDirectionFaceState(assignedDirection, true);
+                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                            block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                            for (Direction direction : Direction.values()) {
+                                block.setDirectionTexture(direction, 0);
+                            }
+                        }
+                        block.setDirectionFaceState(assignedDirection, true);
+                        block.setDirectionTexture(assignedDirection, selectedTextureId);
+                    }
+                }
+                if (controller.getRightBumperButton()) {
+                    final Direction assignedDirection = Direction.ABOVE;
+                    if(controller.getLeftHomeButton()) {
+                        BlockBase baseBlock = world.getBlock(cursorLocation);
+                        if(baseBlock instanceof PartialCubicBlock && ((PartialCubicBlock) baseBlock).getDirectionFaceState(assignedDirection)) {
+                            InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
+                            int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
+                            for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
+                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
+                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
+                                        if(b instanceof PartialCubicBlock) {
+                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                        for (Direction direction : Direction.values()) {
+                                                            pb2.setDirectionTexture(direction, 0);
+                                                        }
+                                                    }
+                                                    pb2.setDirectionFaceState(assignedDirection, true);
+                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                            block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                            for (Direction direction : Direction.values()) {
+                                block.setDirectionTexture(direction, 0);
+                            }
+                        }
+                        block.setDirectionFaceState(assignedDirection, true);
+                        block.setDirectionTexture(assignedDirection, selectedTextureId);
+                    }
+                }
+                if (controller.getRightTrigger() >= 0.95) {
+                    final Direction assignedDirection = Direction.BELOW;
+                    if(controller.getLeftHomeButton()) {
+                        BlockBase baseBlock = world.getBlock(cursorLocation);
+                        if(baseBlock instanceof PartialCubicBlock && ((PartialCubicBlock) baseBlock).getDirectionFaceState(assignedDirection)) {
+                            InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
+                            int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
+                            for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
+                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
+                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
+                                        if(b instanceof PartialCubicBlock) {
+                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                        for (Direction direction : Direction.values()) {
+                                                            pb2.setDirectionTexture(direction, 0);
+                                                        }
+                                                    }
+                                                    pb2.setDirectionFaceState(assignedDirection, true);
+                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                            block.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                            for (Direction direction : Direction.values()) {
+                                block.setDirectionTexture(direction, 0);
+                            }
+                        }
+                        block.setDirectionFaceState(assignedDirection, true);
+                        block.setDirectionTexture(assignedDirection, selectedTextureId);
+                    }
+                }
+            }
+            else {
+                if (world.getBlock(cursorLocation) == null) {
+                    PartialCubicBlock block = new PartialCubicBlock(cursorLocation, availableInstanceTextures.get(selectedTexturePackId));
+                    world.setBlock(cursorLocation, block);
+                    for (Direction direction : Direction.values()) {
+                        block.setDirectionFaceState(direction, false);
+                    }
+
+                    if (controller.getNorthButton()) {
+                        block.setDirectionFaceState(Direction.NORTH, true);
+                        block.setDirectionTexture(Direction.NORTH, selectedTextureId);
+                    }
+                    if (controller.getSouthButton()) {
+                        block.setDirectionFaceState(Direction.SOUTH, true);
+                        block.setDirectionTexture(Direction.SOUTH, selectedTextureId);
+                    }
+                    if (controller.getEastButton()) {
+                        block.setDirectionFaceState(Direction.EAST, true);
+                        block.setDirectionTexture(Direction.EAST, selectedTextureId);
+                    }
+                    if (controller.getWestButton()) {
+                        block.setDirectionFaceState(Direction.WEST, true);
+                        block.setDirectionTexture(Direction.WEST, selectedTextureId);
+                    }
+                    if (controller.getRightBumperButton()) {
+                        block.setDirectionFaceState(Direction.ABOVE, true);
+                        block.setDirectionTexture(Direction.ABOVE, selectedTextureId);
+                    }
+                    if (controller.getRightTrigger() >= 0.95) {
+                        if (cursorLocation.getY() != 0) {
+                            block.setDirectionFaceState(Direction.BELOW, true);
+                            block.setDirectionTexture(Direction.BELOW, selectedTextureId);
+                        }
+                    }
+
                 }
             }
         }
@@ -703,16 +926,16 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
     private void loadTexturePack() {
-        spriteItems.get(0).setSprite(availableInstanceTextures.get(selectedTexturePackId),true);
-        spriteItems.get(1).setSprite(AssetLoader.getTextureAsset("Cursor"), availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() ,availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength(), true);
+        textureEditHud.get(0).setSprite(availableInstanceTextures.get(selectedTexturePackId),true);
+        textureEditHud.get(1).setSprite(AssetLoader.getTextureAsset("Cursor"), availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() ,availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength(), true);
         textureCursorX = 0;
         textureCursorY = 0;
         setCursorPosition(0,0);
     }
 
     private void setCursorPosition(int x, int y) {
-        spriteItems.get(0).setPosition(XOFFSET,YOFFSET,0);
-        spriteItems.get(1).setPosition(XOFFSET + availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() * x * TEXTURE_SCALING,YOFFSET + availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() * y * TEXTURE_SCALING,1);
+        textureEditHud.get(0).setPosition(XOFFSET,YOFFSET,0);
+        textureEditHud.get(1).setPosition(XOFFSET + availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() * x * TEXTURE_SCALING,YOFFSET + availableInstanceTextures.get(selectedTexturePackId).getCubeSideLength() * y * TEXTURE_SCALING,1);
     }
       /*
        int num = ((PartialCubicBlock) block).getAssignedTextures()[i];
@@ -737,8 +960,9 @@ public class MapBuilderGameState extends EnvironmentGameState {
         renderer.render3DElements(globalGameData.getGameWindow(),"FlipDefault3D",camera,gameItems);
         renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks(), true);
         renderer.render3DElements(globalGameData.getGameWindow(),"Glitchy3D",camera, debugItems);
+        renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", centerCursor);
         if(currentEditState == EditState.EDIT_TEXTURE) {
-            renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", spriteItems);
+            renderer.renderSprites(globalGameData.getGameWindow(), "Default2D", textureEditHud);
         }
         renderer.renderHUD(globalGameData.getGameWindow(),"Default2D",hudItems);
 

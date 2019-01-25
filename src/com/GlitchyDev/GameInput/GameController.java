@@ -153,6 +153,9 @@ public abstract class GameController {
         axes[0] = BufferUtils.createFloatBuffer(6);
         axes[1] = BufferUtils.createFloatBuffer(6);
 
+        name = glfwGetJoystickName(controllerID);
+
+
         // 14
         // 4
     }
@@ -169,6 +172,7 @@ public abstract class GameController {
             buttons[0] = glfwGetJoystickButtons(controllerID);
             axes[0] = glfwGetJoystickAxes(controllerID);
             name = glfwGetJoystickName(controllerID);
+
         }
 
 
