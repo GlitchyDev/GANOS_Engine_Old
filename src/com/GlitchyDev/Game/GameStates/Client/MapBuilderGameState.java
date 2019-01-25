@@ -23,6 +23,7 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -161,24 +162,17 @@ public class MapBuilderGameState extends EnvironmentGameState {
         AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("EditCursor"),"EditCursor",2,3);
         InstancedGridTexture cursorGridTexture = AssetLoader.getInstanceGridTexture("EditCursor");
 
-        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("UVMapCubeTexture"),"UVMapCubeTexture",2,3);
+        HashMap<String,String> gridTextureRegistry = AssetLoader.getConfigOptionAsset("InstanceTextureRegistry");
+        for(String name: gridTextureRegistry.keySet()) {
+            AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset(name),name, AssetLoader.getTextureAsset(name).getWidth()/Integer.valueOf(gridTextureRegistry.get(name)),AssetLoader.getTextureAsset(name).getHeight()/Integer.valueOf(gridTextureRegistry.get(name)));
+            availableInstanceTextures.add(AssetLoader.getInstanceGridTexture(name));
+        }
+
         instancedGridTexture = AssetLoader.getInstanceGridTexture("UVMapCubeTexture");
 
         cursorInstancedMesh = new PartialCubicInstanceMesh(AssetLoader.getMeshAsset("CubicMesh1"),3600, cursorGridTexture);
         instancedMesh = new PartialCubicInstanceMesh(AssetLoader.loadMesh("/Mesh/PartialCubicBlock/CubicMesh1.obj"),60*60, instancedGridTexture);
 
-
-
-        availableInstanceTextures.add(instancedGridTexture);
-
-        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("TestDice"),"TestDice",6,7);
-        availableInstanceTextures.add(AssetLoader.getInstanceGridTexture("TestDice"));
-
-        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("SchoolTiles"),"SchoolTiles",2,4);
-        availableInstanceTextures.add(AssetLoader.getInstanceGridTexture("SchoolTiles"));
-
-        AssetLoader.registerInstanceGridTexture(AssetLoader.getTextureAsset("School_Tiles"),"School_Tiles",7,6);
-        availableInstanceTextures.add(AssetLoader.getInstanceGridTexture("School_Tiles"));
 
 
 
@@ -211,7 +205,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
         centerMark.setPosition(globalGameData.getGameWindow().getWidth()/2 - 25,globalGameData.getGameWindow().getHeight()/2 - 25,0.5f);
         centerCursor.add(centerMark);
 
-        world = new World("DebugWorld");
+        world = new World("TestWorld");
         ArrayList<Integer> textureCode = new ArrayList<>();
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
@@ -228,7 +222,9 @@ public class MapBuilderGameState extends EnvironmentGameState {
                         a[b] = textureCode.get(b);
                     }
                     PartialCubicBlock b = new PartialCubicBlock(location, instancedGridTexture,faceStates,a);
-                    world.setBlock(location,b);
+
+                        world.setBlock(location, b);
+
 
                 }
             }
@@ -289,7 +285,47 @@ public class MapBuilderGameState extends EnvironmentGameState {
         //logicCamera();
 
 
-  
+
+        ArrayList<String> files = gameInput.getDraggedFiles();
+        if(files.size() != 0) {
+            System.out.println("File Dragged");
+            for(String filePath: files) {
+                File draggedFile = new File(filePath);
+                if(draggedFile.getName().contains("wcnk")) {
+
+                    try {
+                        ObjectInputStream in = new ObjectInputStream(new FileInputStream(draggedFile));
+                        Region region = new Region(in,cursorLocation.clone() );
+
+                        Direction direction = Direction.NORTH;
+                        if(controller.getNorthButton()) {
+                            direction = Direction.NORTH;
+                        }
+                        if(controller.getEastButton()) {
+                            direction = Direction.EAST;
+                        }
+                        if(controller.getSouthButton()) {
+                            direction = Direction.SOUTH;
+                        }
+                        if(controller.getWestButton()) {
+                            direction = Direction.WEST;
+                        }
+                        System.out.println("Adding Region in " + direction);
+                        world.addRegion(region,cursorLocation.clone(),direction);
+
+
+
+
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        }
 
 
 
@@ -297,10 +333,35 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
     // Left Controller Bumper
-    public void debugFunction(Location location, BlockBase blockAtLocation) {
+    public void debugButtonFunction(Location location, BlockBase blockAtLocation) {
 
+        if(controller.getLeftTrigger() >= 0.95) {
+            for(Chunk chunk: world.getChunks()) {
+                world.addRegion(new Chunk(chunk.getChunkCord()),cursorLocation,Direction.NORTH);
+            }
+        } else {
+            File file = new File(System.getProperty("user.home") + "/Desktop" + "/Hallway.wcnk");
+            try {
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+                world.getChunk(new ChunkCord(0, 0)).writeObject(oos);
+                oos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-
+    public void debugDirectionButtonFunction(Location location, BlockBase blockAtLocation, Direction direction) {
+        File file = new File(System.getProperty("user.home") + "/Desktop" + "/Hallway.wcnk");
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new FileInputStream(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(direction);
+        Region region = new Region(in,cursorLocation);
+        world.addRegion(region,location,direction);
     }
 
 
@@ -325,7 +386,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
         final float CAMERA_ROTATION_AMOUNT = 3.0f;
         final float JOYSTICK_THRESHOLD = 0.2f;
 
-        if(controller.isCurrentlyActive()) {
+        if(controller != null && controller.isCurrentlyActive()) {
             if (!controller.getLeftJoyStickButton()) {
                 if (controller.getLeftJoyStickY() < -JOYSTICK_THRESHOLD) {
                     camera.moveForward(controller.getLeftJoyStickY() * CAMERA_MOVEMENT_AMOUNT);
@@ -546,9 +607,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
                 }
             }
         }
-        if (controller.getToggleLeftBumperButton()) {
-            debugFunction(cursorLocation.clone(),world.getBlock(cursorLocation));
-        }
+
         if(world.getBlock(cursorLocation) instanceof PartialCubicBlock) {
             for(Direction direction: Direction.values()) {
                 cursor.setDirectionTexture(direction,0);
@@ -559,6 +618,19 @@ public class MapBuilderGameState extends EnvironmentGameState {
                 cursor.setDirectionTexture(direction,1);
             }
         }
+
+
+
+
+        if (controller.getToggleLeftBumperButton()) {
+            debugButtonFunction(cursorLocation.clone(),world.getBlock(cursorLocation));
+        }
+        if(controller.getToggleDirectionPad() != ControllerDirectionPad.NONE) {
+            debugDirectionButtonFunction(cursorLocation,world.getBlock(cursorLocation),controller.getDirectionPad().getDirection());
+        }
+
+
+
 
         /*
             Use DirectionPad to change models
@@ -798,15 +870,11 @@ public class MapBuilderGameState extends EnvironmentGameState {
                             int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
                             for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
                                 for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
-                                    System.out.println(x + " " + z);
                                     BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,0,z));
                                     if(b instanceof PartialCubicBlock) {
-                                        System.out.println("Dope");
                                         PartialCubicBlock pb2 = (PartialCubicBlock) b;
                                         if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
-                                            System.out.println("AHHHH");
                                             if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
-                                                System.out.println("YESSSS");
                                                 if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
                                                     pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
                                                     for (Direction direction : Direction.values()) {
@@ -974,17 +1042,17 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
 
-        File folder = new File(System.getProperty("user.home") + "/Desktop" + "/TestWorld");
+        File folder = new File(System.getProperty("user.home") + "/Desktop" + "/" + world.getWorldName());
+
+        System.out.println("Loading World " + world.getWorldName());
         folder.mkdir();
         if(folder.exists()) {
             for (File file : folder.listFiles()) {
                 String name = file.getName();
-                System.out.println(folder.getName());
                 name = name.replace(folder.getName(), "");
                 name = name.replace(".wcnk", "");
                 String[] cords = name.split("_");
 
-                System.out.println(name);
                 int x = Integer.parseInt(cords[0]);
                 int z = Integer.parseInt(cords[1]);
                 ChunkCord cord = new ChunkCord(x, z);
@@ -1011,9 +1079,8 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
     @Override
     public void windowClose() {
-        System.out.println("Saving World Data");
         for(Chunk chunk: world.getChunks()) {
-            File file = new File(System.getProperty("user.home") + "/Desktop" + "/TestWorld/TestWorld" + chunk.getChunkCord().getX() + "_" + chunk.getChunkCord().getZ() + ".wcnk");
+            File file = new File(System.getProperty("user.home") + "/Desktop" + "/" + world.getWorldName() + "/" + world.getWorldName() + chunk.getChunkCord().getX() + "_" + chunk.getChunkCord().getZ() + ".wcnk");
             try {
                 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
                 chunk.writeObject(oos);

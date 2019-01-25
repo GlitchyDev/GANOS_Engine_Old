@@ -1,6 +1,7 @@
 package com.GlitchyDev.World;
 
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
+import com.GlitchyDev.World.Blocks.Abstract.PartialCubicBlock;
 import com.GlitchyDev.World.Blocks.Abstract.TickableBlock;
 import com.GlitchyDev.World.Entities.EntityBase;
 
@@ -48,10 +49,6 @@ public class World {
         return chunks.get(chunkCord.toString());
     }
 
-    public void addChunk(ChunkCord chunkCord, Chunk chunk)
-    {
-        chunks.put(chunkCord.toString(),chunk);
-    }
 
     public void setBlock(Location location, BlockBase block) {
         BlockBase previousBlock = getBlock(location);
@@ -64,7 +61,7 @@ public class World {
             int chunkZ = getChunkNumfromCordNum(location.getZ());
             ChunkCord chunkCord = new ChunkCord(chunkX,chunkZ);
             if (!doesChunkExist(chunkCord)) {
-                addChunk(chunkCord, new Chunk(chunkCord));
+                chunks.put(chunkCord.toString(),new Chunk(chunkCord));
             }
             getChunk(chunkCord).setBlock(Math.abs(location.getX() - getPosNumFromChunkNum(chunkX)), location.getY(), Math.abs(location.getZ() - getPosNumFromChunkNum(chunkZ)), block);
             if(block != null) {
@@ -85,7 +82,7 @@ public class World {
         int chunkZ = getChunkNumfromCordNum(location.getZ());
         ChunkCord chunkCord = new ChunkCord(chunkX,chunkZ);
         if(!doesChunkExist(chunkCord)) {
-            addChunk(chunkCord,new Chunk(chunkCord));
+            chunks.put(chunkCord.toString(),new Chunk(chunkCord));
         }
         return getChunk(chunkCord).getBlock(Math.abs(location.getX() - getPosNumFromChunkNum(chunkX)), location.getY(), Math.abs(location.getZ() - getPosNumFromChunkNum(chunkZ)));
     }
@@ -97,7 +94,11 @@ public class World {
                 for(int y = 0; y < blocks.length; y++) {
                     for (int x = 0; x < blocks[0].length; x++) {
                         for (int z = 0; z < blocks[0][0].length; z++) {
-                            setBlock(location.getOffsetLocation(x,y,-z),blocks[y][x][z]);
+                            setBlock(location.getOffsetLocation(x,y,z),blocks[y][x][z]);
+                            if(getBlock(location.getOffsetLocation(x,y,z)) != null) {
+                                getBlock(location.getOffsetLocation(x,y,z)).rotate(direction);
+                            }
+
                         }
                     }
                 }
@@ -107,6 +108,9 @@ public class World {
                     for (int x = 0; x < blocks[0].length; x++) {
                         for (int z = 0; z < blocks[0][0].length; z++) {
                             setBlock(location.getOffsetLocation(z,y,-x),blocks[y][x][z]);
+                            if(getBlock(location.getOffsetLocation(z,y,-x)) != null) {
+                                getBlock(location.getOffsetLocation(z,y,-x)).rotate(direction);
+                            }
                         }
                     }
                 }
@@ -115,7 +119,10 @@ public class World {
                 for(int y = 0; y < blocks.length; y++) {
                     for (int x = 0; x < blocks[0].length; x++) {
                         for (int z = 0; z < blocks[0][0].length; z++) {
-                            setBlock(location.getOffsetLocation(-x,y,z),blocks[y][x][z]);
+                            setBlock(location.getOffsetLocation(-x,y,-z),blocks[y][x][z]);
+                            if(getBlock(location.getOffsetLocation(-x,y,-z)) != null) {
+                                getBlock(location.getOffsetLocation(-x,y,-z)).rotate(direction);
+                            }
                         }
                     }
                 }
@@ -125,10 +132,13 @@ public class World {
                     for (int x = 0; x < blocks[0].length; x++) {
                         for (int z = 0; z < blocks[0][0].length; z++) {
                             setBlock(location.getOffsetLocation(-z,y,-x),blocks[y][x][z]);
-                        }
+                            if(getBlock(location.getOffsetLocation(-z,y,-x)) != null) {
+                                getBlock(location.getOffsetLocation(-z,y,-x)).rotate(direction);
+                            }                        }
                     }
                 }
                 break;
+                /*
             case ABOVE:
                 for(int y = 0; y < blocks.length; y++) {
                     for (int x = 0; x < blocks[0].length; x++) {
@@ -147,9 +157,19 @@ public class World {
                     }
                 }
                 break;
+                */
         }
     }
 
+    /**
+     * Doesn't properly rotate Blocks
+     * @param location
+     * @param direction
+     * @param width
+     * @param length
+     * @param height
+     * @return
+     */
     public Region createRegion(Location location, Direction direction, int width, int length, int height) {
         BlockBase[][][] blocks = new BlockBase[height][width][length];
 
@@ -158,7 +178,7 @@ public class World {
                 for(int y = 0; y < blocks.length; y++) {
                     for (int x = 0; x < blocks[0].length; x++) {
                         for (int z = 0; z < blocks[0][0].length; z++) {
-                            blocks[y][x][z] = getBlock(location.getOffsetLocation(x,y,-z));
+                            blocks[y][x][z] = getBlock(location.getOffsetLocation(x,y,z));
                         }
                     }
                 }
@@ -176,7 +196,7 @@ public class World {
                 for(int y = 0; y < blocks.length; y++) {
                     for (int x = 0; x < blocks[0].length; x++) {
                         for (int z = 0; z < blocks[0][0].length; z++) {
-                            blocks[y][x][z] = getBlock(location.getOffsetLocation(-x,y,z));
+                            blocks[y][x][z] = getBlock(location.getOffsetLocation(-x,y,-z));
                         }
                     }
                 }
@@ -190,24 +210,14 @@ public class World {
                     }
                 }
                 break;
-            case ABOVE:
+            default:
                 for(int y = 0; y < blocks.length; y++) {
                     for (int x = 0; x < blocks[0].length; x++) {
                         for (int z = 0; z < blocks[0][0].length; z++) {
-                            blocks[y][x][z] = getBlock(location.getOffsetLocation(x,z,-y));
+                            blocks[y][x][z] = getBlock(location.getOffsetLocation(x,y,z));
                         }
                     }
                 }
-                break;
-            case BELOW:
-                for(int y = 0; y < blocks.length; y++) {
-                    for (int x = 0; x < blocks[0].length; x++) {
-                        for (int z = 0; z < blocks[0][0].length; z++) {
-                            blocks[y][x][z] = getBlock(location.getOffsetLocation(x,-z,y));
-                        }
-                    }
-                }
-                break;
         }
 
         return new Region(blocks);

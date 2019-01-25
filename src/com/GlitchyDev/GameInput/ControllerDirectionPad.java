@@ -1,5 +1,7 @@
 package com.GlitchyDev.GameInput;
 
+import com.GlitchyDev.World.Direction;
+
 public enum ControllerDirectionPad {
     NONE,
     NORTH,
@@ -36,5 +38,20 @@ public enum ControllerDirectionPad {
             default:
                 return NONE;
         }
+    }
+
+    public Direction getDirection() {
+        switch(this)
+        {
+            case NORTH:
+                return Direction.NORTH;
+            case EAST:
+                return Direction.EAST;
+            case SOUTH:
+                return Direction.SOUTH;
+            case WEST:
+                return Direction.WEST;
+        }
+        return Direction.NORTH;
     }
 }

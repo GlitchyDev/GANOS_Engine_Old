@@ -3,6 +3,7 @@ package com.GlitchyDev.World.Blocks.Abstract;
 import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Blocks.BlockType;
+import com.GlitchyDev.World.Direction;
 import com.GlitchyDev.World.Location;
 import org.joml.Vector3f;
 
@@ -20,6 +21,24 @@ public class MeshBlock extends BlockBase {
     @Override
     public boolean isUseless() {
         return true;
+    }
+
+    @Override
+    public void rotate(Direction direction) {
+        switch(direction) {
+            case NORTH:
+                setRotation(new Vector3f(0,0,0));
+                break;
+            case EAST:
+                setRotation(new Vector3f(0,90,0));
+                break;
+            case SOUTH:
+                setRotation(new Vector3f(0,180,0));
+                break;
+            case WEST:
+                setRotation(new Vector3f(0,270,0));
+                break;
+        }
     }
 
 

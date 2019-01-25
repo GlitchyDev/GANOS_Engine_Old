@@ -1,5 +1,5 @@
 GameAssets\8-Bit_RPG_Music.ogv
-GameAssets\Configs\General\InstanceTextureRegistry.configList
+GameAssets\Configs\General\InstanceTextureRegistry.configOptions
 GameAssets\Configs\Server\ApprovedUsers.configList
 GameAssets\Mesh\PartialCubicBlock\CubicMesh1.obj
 GameAssets\Mesh\PartialCubicBlock\CubicMesh2.obj

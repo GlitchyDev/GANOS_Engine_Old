@@ -303,6 +303,50 @@ public class PartialCubicBlock extends BlockBase {
         this.instancedGridTexture = instancedGridTexture;
     }
 
+    @Override
+    public void rotate(Direction direction) {
+        boolean[] orientation = getFaceStates();
+        int[] assignedTextures = getAssignedTextures();
+
+        switch(direction) {
+            case NORTH:
+                break;
+            case EAST:
+                setDirectionFaceState(Direction.NORTH,orientation[5]);
+                setDirectionFaceState(Direction.EAST,orientation[2]);
+                setDirectionFaceState(Direction.SOUTH,orientation[3]);
+                setDirectionFaceState(Direction.WEST,orientation[4]);
+
+                setDirectionTexture(Direction.NORTH,assignedTextures[5]);
+                setDirectionTexture(Direction.EAST,assignedTextures[2]);
+                setDirectionTexture(Direction.SOUTH,assignedTextures[3]);
+                setDirectionTexture(Direction.WEST,assignedTextures[4]);
+                break;
+            case SOUTH:
+                setDirectionFaceState(Direction.NORTH,orientation[4]);
+                setDirectionFaceState(Direction.EAST,orientation[5]);
+                setDirectionFaceState(Direction.SOUTH,orientation[2]);
+                setDirectionFaceState(Direction.WEST,orientation[3]);
+
+                setDirectionTexture(Direction.NORTH,assignedTextures[4]);
+                setDirectionTexture(Direction.EAST,assignedTextures[5]);
+                setDirectionTexture(Direction.SOUTH,assignedTextures[2]);
+                setDirectionTexture(Direction.WEST,assignedTextures[3]);
+                break;
+            case WEST:
+                setDirectionFaceState(Direction.NORTH,orientation[3]);
+                setDirectionFaceState(Direction.EAST,orientation[4]);
+                setDirectionFaceState(Direction.SOUTH,orientation[5]);
+                setDirectionFaceState(Direction.WEST,orientation[2]);
+
+                setDirectionTexture(Direction.NORTH,assignedTextures[3]);
+                setDirectionTexture(Direction.EAST,assignedTextures[4]);
+                setDirectionTexture(Direction.SOUTH,assignedTextures[5]);
+                setDirectionTexture(Direction.WEST,assignedTextures[2]);
+                break;
+        }
+    }
+
     /*
     public ArrayList<String> getModifiers() {
         return modifiers;

@@ -132,6 +132,8 @@ public class GameInput {
     }
 
     public ArrayList<String> getDraggedFiles() {
-        return draggedFiles;
+        ArrayList<String> clone = draggedFiles;
+        draggedFiles = new ArrayList<>();
+        return clone;
     }
 }

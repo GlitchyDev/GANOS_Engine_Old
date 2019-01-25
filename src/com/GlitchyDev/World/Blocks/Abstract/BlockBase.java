@@ -1,6 +1,7 @@
 package com.GlitchyDev.World.Blocks.Abstract;
 
 import com.GlitchyDev.World.Blocks.BlockType;
+import com.GlitchyDev.World.Direction;
 import com.GlitchyDev.World.Location;
 import org.joml.Vector3f;
 import org.joml.Vector3i;
@@ -35,6 +36,8 @@ public abstract class BlockBase {
     }
 
     public abstract boolean isUseless();
+
+    public abstract void rotate(Direction direction);
 
 
     public BlockType getBlockType() {
@@ -89,6 +92,7 @@ public abstract class BlockBase {
     public boolean isInsideFrustum() {
         return insideFrustum;
     }
+
 
 
 

@@ -224,7 +224,7 @@ public class AssetLoader {
         while(configOptionReader.ready())
         {
             String line = configOptionReader.readLine();
-            String[] configList = line.trim().split(":");
+            String[] configList = line.trim().replace(" ","").split(":");
             configMap.put(configList[0],configList[1]);
         }
         return configMap;

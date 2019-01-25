@@ -4,8 +4,10 @@ package com.GlitchyDev.World;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Blocks.Abstract.PartialCubicBlock;
+import org.lwjgl.system.CallbackI;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -24,6 +26,13 @@ public class Region {
         this.blocks = blocks;
     }
 
+    public Region(ObjectInputStream in, Location location) {
+        try {
+            readObject(in, location);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -60,6 +69,13 @@ public class Region {
     }
 
     public void writeObject(ObjectOutputStream oos) throws IOException {
+        String[] instanceTextureRegistryCache = new String[AssetLoader.getConfigOptionAsset("InstanceTextureRegistry").keySet().size()];
+        int index = 0;
+        for(String string: AssetLoader.getConfigOptionAsset("InstanceTextureRegistry").keySet()) {
+            instanceTextureRegistryCache[index] = string;
+            index++;
+        }
+
 
         // Write Chunk Information here NOW Y X Z
         oos.writeInt(blocks.length);
@@ -134,7 +150,7 @@ public class Region {
 
 
                         int id = 0;
-                        for(String textureName: AssetLoader.getConfigListAsset("InstanceTextureRegistry")) {
+                        for(String textureName: instanceTextureRegistryCache) {
                             if(textureName.equals(((PartialCubicBlock) blockBase).getInstancedGridTexture().getName())) {
                                 break;
                             }
@@ -187,6 +203,14 @@ public class Region {
      */
 
     public void readObject(ObjectInputStream in, Location location) throws IOException{
+
+        String[] instanceTextureRegistryCache = new String[AssetLoader.getConfigOptionAsset("InstanceTextureRegistry").keySet().size()];
+        int index = 0;
+        for(String string: AssetLoader.getConfigOptionAsset("InstanceTextureRegistry").keySet()) {
+            instanceTextureRegistryCache[index] = string;
+            index++;
+        }
+
         int chunkHeight = in.readInt();
         int chunkWidth = in.readInt();
         int chunkLength = in.readInt();
@@ -225,8 +249,10 @@ public class Region {
                     // First Byte Complete
                     byte textureId = in.readByte();
                     int correctedId = (textureId<0) ? (127 + (129 + textureId)) : textureId;
-                    String textureName = AssetLoader.getConfigListAsset("InstanceTextureRegistry").get(correctedId);
-                    //System.out.println(i + " " + textureName);
+
+
+                    String textureName = instanceTextureRegistryCache[correctedId];
+                    System.out.println(i + " " + textureName);
                     block.setInstancedGridTexture(AssetLoader.getInstanceGridTexture(textureName));
                     // Load Texture data for sides
                     for (int a = 0; a < totalValid; a++) {
