@@ -256,7 +256,9 @@ public class MapBuilderGameState extends EnvironmentGameState {
     private final NumberFormat formatter = new DecimalFormat("#0.00");
     @Override
     public void logic() {
-        controller.tick();
+        if(controller != null) {
+            controller.tick();
+        }
         camera.updateViewMatrix();
         camera2.updateViewMatrix();
 
@@ -633,24 +635,23 @@ public class MapBuilderGameState extends EnvironmentGameState {
                             int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
                             for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
                                 for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
-                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
-                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
-                                        if(b instanceof PartialCubicBlock) {
-                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
-                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
-                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
-                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                                                        for (Direction direction : Direction.values()) {
-                                                            pb2.setDirectionTexture(direction, 0);
-                                                        }
+                                    BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,0));
+                                    if(b instanceof PartialCubicBlock) {
+                                        PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                        if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                            if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                    pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                    for (Direction direction : Direction.values()) {
+                                                        pb2.setDirectionTexture(direction, 0);
                                                     }
-                                                    pb2.setDirectionFaceState(assignedDirection, true);
-                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
-
                                                 }
+                                                pb2.setDirectionFaceState(assignedDirection, true);
+                                                pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
                                             }
                                         }
+
                                     }
                                 }
                             }
@@ -675,26 +676,25 @@ public class MapBuilderGameState extends EnvironmentGameState {
                             int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
                             for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
                                 for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
-                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
-                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
-                                        if(b instanceof PartialCubicBlock) {
-                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
-                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
-                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
-                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                                                        for (Direction direction : Direction.values()) {
-                                                            pb2.setDirectionTexture(direction, 0);
-                                                        }
+                                    BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,0));
+                                    if(b instanceof PartialCubicBlock) {
+                                        PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                        if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                            if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                    pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                    for (Direction direction : Direction.values()) {
+                                                        pb2.setDirectionTexture(direction, 0);
                                                     }
-                                                    pb2.setDirectionFaceState(assignedDirection, true);
-                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
-
                                                 }
+                                                pb2.setDirectionFaceState(assignedDirection, true);
+                                                pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
                                             }
                                         }
                                     }
                                 }
+
                             }
                         }
                     } else {
@@ -715,24 +715,22 @@ public class MapBuilderGameState extends EnvironmentGameState {
                         if(baseBlock instanceof PartialCubicBlock && ((PartialCubicBlock) baseBlock).getDirectionFaceState(assignedDirection)) {
                             InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
                             int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
-                            for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
-                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
-                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
-                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
-                                        if(b instanceof PartialCubicBlock) {
-                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
-                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
-                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
-                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                                                        for (Direction direction : Direction.values()) {
-                                                            pb2.setDirectionTexture(direction, 0);
-                                                        }
+                            for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
+                                for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                    BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(0,y,z));
+                                    if(b instanceof PartialCubicBlock) {
+                                        PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                        if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                            if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                    pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                    for (Direction direction : Direction.values()) {
+                                                        pb2.setDirectionTexture(direction, 0);
                                                     }
-                                                    pb2.setDirectionFaceState(assignedDirection, true);
-                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
-
                                                 }
+                                                pb2.setDirectionFaceState(assignedDirection, true);
+                                                pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
                                             }
                                         }
                                     }
@@ -757,26 +755,25 @@ public class MapBuilderGameState extends EnvironmentGameState {
                         if(baseBlock instanceof PartialCubicBlock && ((PartialCubicBlock) baseBlock).getDirectionFaceState(assignedDirection)) {
                             InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
                             int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
-                            for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
-                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
-                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
-                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
-                                        if(b instanceof PartialCubicBlock) {
-                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
-                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
-                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
-                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                                                        for (Direction direction : Direction.values()) {
-                                                            pb2.setDirectionTexture(direction, 0);
-                                                        }
+                            for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
+                                for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                    BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(0,y,z));
+                                    if(b instanceof PartialCubicBlock) {
+                                        PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                        if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                            if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                    pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                    for (Direction direction : Direction.values()) {
+                                                        pb2.setDirectionTexture(direction, 0);
                                                     }
-                                                    pb2.setDirectionFaceState(assignedDirection, true);
-                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
-
                                                 }
+                                                pb2.setDirectionFaceState(assignedDirection, true);
+                                                pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
                                             }
                                         }
+
                                     }
                                 }
                             }
@@ -800,27 +797,30 @@ public class MapBuilderGameState extends EnvironmentGameState {
                             InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
                             int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
                             for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
-                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
-                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
-                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
-                                        if(b instanceof PartialCubicBlock) {
-                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
-                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
-                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
-                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                                                        for (Direction direction : Direction.values()) {
-                                                            pb2.setDirectionTexture(direction, 0);
-                                                        }
+                                for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                    System.out.println(x + " " + z);
+                                    BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,0,z));
+                                    if(b instanceof PartialCubicBlock) {
+                                        System.out.println("Dope");
+                                        PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                        if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                            System.out.println("AHHHH");
+                                            if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                System.out.println("YESSSS");
+                                                if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                    pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                    for (Direction direction : Direction.values()) {
+                                                        pb2.setDirectionTexture(direction, 0);
                                                     }
-                                                    pb2.setDirectionFaceState(assignedDirection, true);
-                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
-
                                                 }
+                                                pb2.setDirectionFaceState(assignedDirection, true);
+                                                pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
                                             }
                                         }
                                     }
                                 }
+
                             }
                         }
                     } else {
@@ -842,23 +842,21 @@ public class MapBuilderGameState extends EnvironmentGameState {
                             InstancedGridTexture compareTexture = ((PartialCubicBlock) baseBlock).getInstancedGridTexture();
                             int compareTextureId = ((PartialCubicBlock) baseBlock).getDirectionTexture(assignedDirection);
                             for(int x = -FILL_RADIUS; x <= FILL_RADIUS; x++) {
-                                for(int y = -FILL_RADIUS; y <= FILL_RADIUS; y++) {
-                                    for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
-                                        BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,y,z));
-                                        if(b instanceof PartialCubicBlock) {
-                                            PartialCubicBlock pb2 = (PartialCubicBlock) b;
-                                            if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
-                                                if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
-                                                    if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
-                                                        pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
-                                                        for (Direction direction : Direction.values()) {
-                                                            pb2.setDirectionTexture(direction, 0);
-                                                        }
+                                for(int z = -FILL_RADIUS; z <=  FILL_RADIUS; z++) {
+                                    BlockBase b = world.getBlock(cursorLocation.getOffsetLocation(x,0,z));
+                                    if(b instanceof PartialCubicBlock) {
+                                        PartialCubicBlock pb2 = (PartialCubicBlock) b;
+                                        if(pb2.getInstancedGridTexture() == compareTexture && pb2.getDirectionTexture(assignedDirection) == compareTextureId) {
+                                            if(((PartialCubicBlock) b).getDirectionFaceState(assignedDirection)) {
+                                                if (availableInstanceTextures.get(selectedTexturePackId) != blockTexture) {
+                                                    pb2.setInstancedGridTexture(availableInstanceTextures.get(selectedTexturePackId));
+                                                    for (Direction direction : Direction.values()) {
+                                                        pb2.setDirectionTexture(direction, 0);
                                                     }
-                                                    pb2.setDirectionFaceState(assignedDirection, true);
-                                                    pb2.setDirectionTexture(assignedDirection, selectedTextureId);
-
                                                 }
+                                                pb2.setDirectionFaceState(assignedDirection, true);
+                                                pb2.setDirectionTexture(assignedDirection, selectedTextureId);
+
                                             }
                                         }
                                     }
@@ -976,24 +974,27 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
 
-        File folder = new File("C:/Users/Robert/Desktop/TestWorld");
-        for(File file: folder.listFiles()) {
-            String name = file.getName();
-            System.out.println(folder.getName());
-            name = name.replace(folder.getName(),"");
-            name = name.replace(".wcnk","");
-            String[] cords = name.split("_");
+        File folder = new File(System.getProperty("user.home") + "/Desktop" + "/TestWorld");
+        folder.mkdir();
+        if(folder.exists()) {
+            for (File file : folder.listFiles()) {
+                String name = file.getName();
+                System.out.println(folder.getName());
+                name = name.replace(folder.getName(), "");
+                name = name.replace(".wcnk", "");
+                String[] cords = name.split("_");
 
-            System.out.println(name);
-            int x = Integer.parseInt(cords[0]);
-            int z = Integer.parseInt(cords[1]);
-            ChunkCord cord = new ChunkCord(x,z);
+                System.out.println(name);
+                int x = Integer.parseInt(cords[0]);
+                int z = Integer.parseInt(cords[1]);
+                ChunkCord cord = new ChunkCord(x, z);
 
-            try {
-                ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-                world.getChunk(cord).readObject(in,new Location(world.getPosNumFromChunkNum(cord.getX()),0,world.getPosNumFromChunkNum(cord.getZ()),world));
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+                    world.getChunk(cord).readObject(in, new Location(world.getPosNumFromChunkNum(cord.getX()), 0, world.getPosNumFromChunkNum(cord.getZ()), world));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -1012,7 +1013,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
     public void windowClose() {
         System.out.println("Saving World Data");
         for(Chunk chunk: world.getChunks()) {
-            File file = new File("C:/Users/Robert/Desktop/TestWorld/TestWorld" + chunk.getChunkCord().getX() + "_" + chunk.getChunkCord().getZ() + ".wcnk");
+            File file = new File(System.getProperty("user.home") + "/Desktop" + "/TestWorld/TestWorld" + chunk.getChunkCord().getX() + "_" + chunk.getChunkCord().getZ() + ".wcnk");
             try {
                 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
                 chunk.writeObject(oos);

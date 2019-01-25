@@ -19,6 +19,7 @@ public class World {
     private ArrayList<TickableBlock> tickableBlocks;
     private ArrayList<EntityBase> entities;
 
+
     public static final int STANDARD_CHUNK_SIDE_LENGTH = 10;
     public static final int STANDARD_CHUNK_HEIGHT = 5;
     // Entities
