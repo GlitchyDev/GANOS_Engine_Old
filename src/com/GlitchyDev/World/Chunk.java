@@ -132,11 +132,11 @@ public class Chunk implements Serializable {
                     // Write Byte
                     oos.write(blankByte);
 
-                    System.out.print("Block " + i + " ");
+                    //System.out.print("Block " + i + " ");
                     for (int a = 0; a < 8; a++) {
-                        System.out.print((blankByte >> (a - 1)) & 1);
+                        //System.out.print((blankByte >> (a - 1)) & 1);
                     }
-                    System.out.println();
+                    //System.out.println();
 
                 } else {
                     if (blockBase instanceof PartialCubicBlock) {
@@ -187,14 +187,14 @@ public class Chunk implements Serializable {
                         // Add code for modifier
 
 
-                        System.out.print("Block B " + i + " ");
+                        //System.out.print("Block B " + i + " ");
                         for (int a = 0; a < 8; a++) {
-                            System.out.print((partialCubicBlockByte >> (a - 1)) & 1);
+                            //System.out.print((partialCubicBlockByte >> (a - 1)) & 1);
                         }
-                        System.out.println();
+                        //System.out.println();
                     } else {
                         // Non PartialCubicBlock Support here in future
-                        System.out.println("ERROR! NO BLOCKTYPE HANDLER IO");
+                        //System.out.println("ERROR! NO BLOCKTYPE HANDLER IO");
 
                     }
                 }
@@ -218,7 +218,7 @@ public class Chunk implements Serializable {
         int chunkWidth = in.readInt();
         int chunkLength = in.readInt();
 
-        System.out.println("Chunk Dim " + chunkHeight + " " + chunkWidth + " " + chunkLength);
+        // System.out.println("Chunk Dim " + chunkHeight + " " + chunkWidth + " " + chunkLength);
 
         BlockBase[][][] loadedBlocks = new BlockBase[chunkHeight][chunkWidth][chunkLength];
         BlockBase[] totalBlocks = new BlockBase[chunkHeight * chunkWidth * chunkLength];
@@ -232,11 +232,11 @@ public class Chunk implements Serializable {
             if(!alreadyCheckedBlocks[i]) {
                 byte initByte = in.readByte();
 
-                System.out.print("Block " + i + " ");
+                //System.out.print("Block " + i + " ");
                 for (int a = 0; a < 8; a++) {
-                    System.out.print((initByte >> (a - 1)) & 1);
+                    // System.out.print((initByte >> (a - 1)) & 1);
                 }
-                System.out.println();
+                //System.out.println();
 
                 boolean firstBit = ((initByte >> (0 - 1)) & 1) == 1;
                 if (firstBit) {
@@ -261,7 +261,7 @@ public class Chunk implements Serializable {
                     int correctedId = (textureId<0) ? (127 + (129 + textureId)) : textureId;
 
                     String textureName = AssetLoader.getConfigListAsset("InstanceTextureRegistry").get(correctedId);
-                    System.out.println(i + " " + textureName);
+                    //System.out.println(i + " " + textureName);
                     block.setInstancedGridTexture(AssetLoader.getInstanceGridTexture(textureName));
 
 

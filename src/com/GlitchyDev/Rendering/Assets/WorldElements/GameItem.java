@@ -11,7 +11,8 @@ import java.util.ArrayList;
 public class GameItem {
 
     private Mesh mesh;
-    
+
+    // True Rotation
     private final Vector3f position;
     private float scale;
     private final Vector3f rotation;
@@ -24,11 +25,13 @@ public class GameItem {
         position = new Vector3f(0, 0, 0);
         scale = 1;
         rotation = new Vector3f(0, 0, 0);
+
     }
 
     public Vector3f getPosition() {
         return position;
     }
+
 
     public void setPosition(float x, float y, float z) {
         this.position.x = x;
@@ -73,4 +76,6 @@ public class GameItem {
     public boolean isInsideFrustum() {
         return insideFrustum;
     }
+
+
 }

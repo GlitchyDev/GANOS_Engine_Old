@@ -40,6 +40,10 @@ public class World {
     }
 
     public Chunk getChunk(ChunkCord chunkCord) {
+        if(!chunks.containsKey(chunkCord.toString())) {
+            chunks.put(chunkCord.toString(),new Chunk(chunkCord));
+        }
+
         return chunks.get(chunkCord.toString());
     }
 
@@ -219,7 +223,7 @@ public class World {
 
     }
 
-    private int getPosNumFromChunkNum(int z) {
+    public int getPosNumFromChunkNum(int z) {
         return (z==0 ? 0 : (z >= 0) ? z * World.STANDARD_CHUNK_SIDE_LENGTH : z * World.STANDARD_CHUNK_SIDE_LENGTH + 1);
     }
 

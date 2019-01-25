@@ -77,6 +77,10 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
     private SoundSource backgroundMusic;
 
+    private EditState currentEditState = EditState.MOVE_CURSOR;
+    private Location cursorLocation = new Location(0,0,0,null);
+    private boolean enableWallMode = true;
+
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.MAPBUILDER);
         init();
@@ -132,26 +136,14 @@ public class MapBuilderGameState extends EnvironmentGameState {
         }
 
 
-        SpriteItem item = new SpriteItem(AssetLoader.getTextureAsset("Standing_Mirror"),true);
-        item.setPosition(0,2,0);
 
-        SpriteItem item2 = new SpriteItem(AssetLoader.getTextureAsset("Standing_Mirror"),true);
-        item2.setPosition(0,2,0);
-        item2.setRotation(0, 90,0);
+        SpriteItem item = new SpriteItem(AssetLoader.getTextureAsset("Text_Cursor"), 2, 2, true,true);
+        item.setPosition(-1f,1f,-1f);
 
-        SpriteItem item3 = new SpriteItem(AssetLoader.getTextureAsset("Standing_Mirror"),true);
-        item3.setPosition(0,2,0);
-        item3.setRotation(0, 180,0);
-
-        SpriteItem item4 = new SpriteItem(AssetLoader.getTextureAsset("Standing_Mirror"),true);
-        item4.setPosition(0,2,0);
-        item4.setRotation(0,270,0);
 
 
         debugItems.add(item);
-        debugItems.add(item2);
-        debugItems.add(item3);
-        debugItems.add(item4);
+
 
 
 
@@ -325,13 +317,20 @@ public class MapBuilderGameState extends EnvironmentGameState {
         BlockBase b = selectBlock3D(aaa,camera);
         if(b != null) {
             if(b instanceof PartialCubicBlock) {
-                ((PartialCubicBlock) b).setInstancedGridTexture(availableInstanceTextures.get(2));
+               // ((PartialCubicBlock) b).setInstancedGridTexture(availableInstanceTextures.get(2));
             }
         }
+
+
+        debugItems.get(0).setRotation(debugItems.get(0).getRotation().x,debugItems.get(0).getRotation().y,debugItems.get(0).getRotation().z + 1);
+
         //logicCamera();
 
 
-        
+  
+
+
+
     }
 
 
@@ -464,7 +463,6 @@ public class MapBuilderGameState extends EnvironmentGameState {
         }
     }
 
-    private EditState currentEditState = EditState.MOVE_CURSOR;
     private void editControlsLogic()
     {
         if(controller.getToggleRightHomeButton()) {
@@ -500,8 +498,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
     // BLECK!
 
-    private Location cursorLocation = new Location(0,0,0,null);
-    private boolean enableWallMode = true;
+
     private void moveCursorControlsLogic() {
         if (controller.getToggleNorthButton()) {
             cursorLocation = cursorLocation.getOffsetLocation(0,0,-1);
@@ -753,6 +750,34 @@ public class MapBuilderGameState extends EnvironmentGameState {
     @Override
     public void enterState(GameStateType previousGameState) {
         globalGameData.getGameWindow().setIcon(AssetLoader.getInputStream("Icon16x16.png"), AssetLoader.getInputStream("Icon24x24.png"));
+
+
+
+        File folder = new File("C:/Users/Robert/Desktop/TestWorld");
+        for(File file: folder.listFiles()) {
+            String name = file.getName();
+            System.out.println(folder.getName());
+            name = name.replace(folder.getName(),"");
+            name = name.replace(".wcnk","");
+            String[] cords = name.split("_");
+
+            System.out.println(name);
+            int x = Integer.parseInt(cords[0]);
+            int z = Integer.parseInt(cords[1]);
+            ChunkCord cord = new ChunkCord(x,z);
+
+            try {
+                ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+                world.getChunk(cord).readObject(in,new Location(world.getPosNumFromChunkNum(cord.getX()),0,world.getPosNumFromChunkNum(cord.getZ()),world));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+
+
     }
 
     @Override
@@ -762,7 +787,18 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
     @Override
     public void windowClose() {
+        System.out.println("Saving World Data");
+        for(Chunk chunk: world.getChunks()) {
+            File file = new File("C:/Users/Robert/Desktop/TestWorld/TestWorld" + chunk.getChunkCord().getX() + "_" + chunk.getChunkCord().getZ() + ".wcnk");
+            try {
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+                chunk.writeObject(oos);
+                oos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+        }
     }
 
 
