@@ -4,7 +4,6 @@ import org.lwjgl.opengl.GL14;
 
 import static org.lwjgl.opengl.EXTFramebufferObject.*;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 
 /**
  * Works to store the texture outputted via a rendering process

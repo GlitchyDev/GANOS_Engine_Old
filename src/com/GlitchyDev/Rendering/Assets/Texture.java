@@ -2,9 +2,6 @@ package com.GlitchyDev.Rendering.Assets;
 
 import de.matthiasmann.twl.utils.PNGDecoder;
 import de.matthiasmann.twl.utils.PNGDecoder.Format;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL14;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,9 +9,7 @@ import java.nio.ByteBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_TEXTURE_MAX_LEVEL;
-import static org.lwjgl.opengl.GL12.glCopyTexSubImage3D;
 import static org.lwjgl.opengl.GL14.GL_GENERATE_MIPMAP;
-import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 
 public class Texture {
     private int id;

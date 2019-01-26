@@ -2,7 +2,6 @@ package com.GlitchyDev.Rendering.Assets.Fonts;
 
 import com.GlitchyDev.Rendering.Assets.Texture;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 

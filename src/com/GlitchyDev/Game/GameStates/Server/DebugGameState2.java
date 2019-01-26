@@ -1,7 +1,7 @@
 package com.GlitchyDev.Game.GameStates.Server;
 
-import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Game.GameStates.Abstract.InputGameStateBase;
+import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Networking.ServerNetworkConnection;
 import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;

@@ -1,7 +1,5 @@
 package com.GlitchyDev.Rendering.Assets;
 
-import java.io.InputStream;
-
 public class InstancedGridTexture extends Texture {
     private final int texWidth;
     private final int texHeight;

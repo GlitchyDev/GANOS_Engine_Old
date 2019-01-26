@@ -5,25 +5,22 @@ import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Networking.GameSocket;
 import com.GlitchyDev.Networking.Packets.NetworkDisconnectType;
-import com.GlitchyDev.Rendering.Assets.*;
 import com.GlitchyDev.Rendering.Assets.Fonts.CustomFontTexture;
 import com.GlitchyDev.Rendering.Assets.Fonts.FontTexture;
+import com.GlitchyDev.Rendering.Assets.Mesh;
 import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Assets.WorldElements.GameItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
 import com.GlitchyDev.Rendering.Assets.WorldElements.TextItem;
 import com.GlitchyDev.Utility.GlobalGameData;
-import org.joml.*;
 
 import java.awt.*;
-import java.lang.Math;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.glFinish;
 
 /**
  * A Debug Game State used currently to show Rendering Implementtion, Hud Text, and Controls

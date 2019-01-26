@@ -1,8 +1,8 @@
 package com.GlitchyDev.Game.GameStates.Client;
 
 
-import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Game.GameStates.Abstract.InputGameStateBase;
+import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Utility.GlobalGameData;
 
 
