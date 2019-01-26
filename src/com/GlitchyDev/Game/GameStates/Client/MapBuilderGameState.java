@@ -331,15 +331,21 @@ public class MapBuilderGameState extends EnvironmentGameState {
             }
         }
 
+        System.out.println(gameInput.getMouseX());
 
+
+        playerLn.tick();
         if(gameInput.getKeyValue(GLFW_KEY_LEFT) >= 1) {
+            System.out.println("Yo");
             playerLn.addModifier(-0.1);
         }
         if(gameInput.getKeyValue(GLFW_KEY_RIGHT) >= 1) {
             playerLn.addModifier(0.1);
         }
 
-        playerLn.tick();
+
+
+
         ArrayList<String> commands = debugCommandRunnable.getCommands();
         if(commands.size() != 0) {
             for(String command: commands) {
@@ -1080,7 +1086,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
     public void enterState(GameStateType previousGameState) {
         globalGameData.getGameWindow().setIcon(AssetLoader.getInputStream("Icon16x16.png"), AssetLoader.getInputStream("Icon24x24.png"));
 
-        globalGameData.registerGameState(new OverworldGameState(globalGameData,world,playerLn));
+        globalGameData.registerGameState(new OverworldGameState(globalGameData,world,playerLn,debugCommandRunnable));
 
 
 
@@ -1121,6 +1127,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
     @Override
     public void exitState(GameStateType nextGameState) {
 
+
     }
 
     @Override
@@ -1136,6 +1143,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
             }
 
         }
+        debugCommandThread.stop();
     }
 
 

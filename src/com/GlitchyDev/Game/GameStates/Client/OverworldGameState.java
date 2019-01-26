@@ -1,6 +1,7 @@
 package com.GlitchyDev.Game.GameStates.Client;
 
 import com.GlitchyDev.Game.GameStates.Abstract.EnvironmentGameState;
+import com.GlitchyDev.Game.GameStates.Abstract.GameStateBase;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.GameInput.GameController;
 import com.GlitchyDev.IO.AssetLoader;
@@ -11,13 +12,15 @@ import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.Entities.Player_LN;
 import com.GlitchyDev.World.World;
 
-public class OverworldGameState extends EnvironmentGameState {
-    private Camera camera;
+public class OverworldGameState extends GameStateBase {
     private World world;
+    private Player_LN player;
+    private MapBuilderGameState.DebugCommandRunnable debugCommandRunnable;
+
+    private Camera camera;
     private GameController gameController;
     private PartialCubicInstanceMesh instancedMesh;
     private InstancedGridTexture instancedGridTexture;
-    private Player_LN player;
 
     public OverworldGameState(GlobalGameData globalGameDataBase, World world, Player_LN player_ln) {
         super(globalGameDataBase, GameStateType.OVERWORLD);
@@ -29,21 +32,21 @@ public class OverworldGameState extends EnvironmentGameState {
         this.player = player_ln;
     }
 
-    @Override
-    public void logic() {
-
-    }
-
-    @Override
-    public void render() {
-        renderer.prepRender(globalGameData.getGameWindow());
-        renderer.updateFrustumCullingFilter(globalGameData.getGameWindow(),camera,world.getChunks());
-        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks(), true);
-
-    }
 
     @Override
     public void init() {
+
+    }
+
+    @Override
+    public void doRender() {
+        renderer.prepRender(globalGameData.getGameWindow());
+        renderer.updateFrustumCullingFilter(globalGameData.getGameWindow(),camera,world.getChunks());
+        renderer.renderInstancedPartialCubicChunk(globalGameData.getGameWindow(),"Instance3D", camera, instancedMesh, world.getChunks(), true);
+    }
+
+    @Override
+    public void doLogic() {
 
     }
 

@@ -1,10 +1,8 @@
 package com.GlitchyDev.Game;
 
 import com.GlitchyDev.Game.GameStates.Abstract.GameStateBase;
-import com.GlitchyDev.Game.GameStates.Client.DebugGameState1;
-import com.GlitchyDev.Game.GameStates.Client.DebugGameState3;
 import com.GlitchyDev.Game.GameStates.Client.MapBuilderGameState;
-import com.GlitchyDev.Game.GameStates.Server.DebugGameState2;
+import com.GlitchyDev.Game.GameStates.Client.OverworldGameState;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.Utility.GlobalGameData;
@@ -39,13 +37,7 @@ public class GANOSGame {
         if(args.length != 0) {
             switch (args[0]) {
                 case "CLIENT":
-                    globalGameData.registerGameState(new DebugGameState1(globalGameData));
-                    break;
-                case "SERVER":
-                    globalGameData.registerGameState(new DebugGameState2(globalGameData));
-                    break;
-                case "GENERAL":
-                    globalGameData.registerGameState(new DebugGameState3(globalGameData));
+                    //
                     break;
                 case "MAPBUILDER":
                     globalGameData.registerGameState(new MapBuilderGameState(globalGameData));
@@ -55,7 +47,7 @@ public class GANOSGame {
         else
         {
            // Debug GameState
-            globalGameData.registerGameState(new DebugGameState1(globalGameData));
+            globalGameData.registerGameState(new MapBuilderGameState(globalGameData));
         }
 
     }
