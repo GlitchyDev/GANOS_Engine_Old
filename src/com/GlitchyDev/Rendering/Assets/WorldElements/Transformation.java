@@ -1,8 +1,9 @@
 package com.GlitchyDev.Rendering.Assets.WorldElements;
 
-import org.joml.*;
-
-import java.lang.Math;
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+import org.joml.Vector3i;
 
 public class Transformation {
 

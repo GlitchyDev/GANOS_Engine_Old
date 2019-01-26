@@ -3,8 +3,6 @@ package com.GlitchyDev.Game.GameStates.Abstract;
 import com.GlitchyDev.Game.GameStates.GameStateType;
 import com.GlitchyDev.Utility.GlobalGameData;
 
-import static org.lwjgl.opengl.GL11.glEnd;
-
 /**
  * Implements Performance Metrics and Measurements for a GameState, as well as methods to access the specified information
  */

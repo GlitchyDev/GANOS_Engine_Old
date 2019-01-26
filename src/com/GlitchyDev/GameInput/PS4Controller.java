@@ -1,7 +1,5 @@
 package com.GlitchyDev.GameInput;
 
-import java.nio.ByteBuffer;
-
 public class PS4Controller extends GameController {
     private boolean previousLeftTriggerToggleState = false;
     private boolean currentLeftTriggerToggleState = false;

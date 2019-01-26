@@ -1,11 +1,9 @@
 package com.GlitchyDev.GameInput;
 
 import com.GlitchyDev.IO.AssetLoader;
-import com.GlitchyDev.Rendering.Assets.Texture;
 import com.GlitchyDev.Rendering.Assets.WorldElements.SpriteItem;
 import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.Utility.GameWindow;
-import com.GlitchyDev.World.Direction;
 import org.lwjgl.BufferUtils;
 
 import java.nio.ByteBuffer;

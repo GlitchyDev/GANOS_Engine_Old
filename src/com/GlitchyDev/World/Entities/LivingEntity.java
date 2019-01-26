@@ -1,6 +1,5 @@
 package com.GlitchyDev.World.Entities;
 
-import com.GlitchyDev.Rendering.Renderer;
 import com.GlitchyDev.World.Direction;
 import com.GlitchyDev.World.Location;
 
