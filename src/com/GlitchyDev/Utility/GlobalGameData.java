@@ -21,6 +21,7 @@ public class GlobalGameData {
     }
 
 
+    // Yp
     public void switchGameState(GameStateType gameStateType)
     {
         GameStateType previousState = currentGameState;
