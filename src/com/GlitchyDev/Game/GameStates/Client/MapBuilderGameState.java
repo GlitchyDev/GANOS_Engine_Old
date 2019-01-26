@@ -17,6 +17,7 @@ import com.GlitchyDev.Utility.GlobalGameData;
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Blocks.Abstract.PartialCubicBlock;
 import com.GlitchyDev.World.*;
+import com.GlitchyDev.World.Entities.Player_LN;
 
 import java.io.*;
 import java.text.DecimalFormat;
@@ -84,6 +85,8 @@ public class MapBuilderGameState extends EnvironmentGameState {
     private Location cursorLocation = new Location(0,0,0,null);
     private boolean enableWallMode = true;
 
+    private Player_LN playerLn;
+
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.MAPBUILDER);
         init();
@@ -140,7 +143,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
 
-        SpriteItem item = new SpriteItem(AssetLoader.getTextureAsset("Text_Cursor"), 2, 2, true,true);
+        SpriteItem item = new SpriteItem(AssetLoader.getTextureAsset("Text_Cursor"), 2, 2, true,true,false);
         item.setPosition(-1f,1f,-1f);
 
 
@@ -239,6 +242,8 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
 
+        playerLn = new Player_LN(new Location(world));
+
 
 
     }
@@ -312,11 +317,6 @@ public class MapBuilderGameState extends EnvironmentGameState {
                         System.out.println("Adding Region in " + direction);
                         world.addRegion(region,cursorLocation.clone(),direction);
 
-
-
-
-
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -327,6 +327,14 @@ public class MapBuilderGameState extends EnvironmentGameState {
         }
 
 
+        if(gameInput.getKeyValue(GLFW_KEY_LEFT) >= 1) {
+            playerLn.addModifier(-0.1);
+        }
+        if(gameInput.getKeyValue(GLFW_KEY_RIGHT) >= 1) {
+            playerLn.addModifier(0.1);
+        }
+
+        playerLn.tick();
 
     }
 
@@ -1031,6 +1039,8 @@ public class MapBuilderGameState extends EnvironmentGameState {
         cc.add(cursor);
         renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, cursorInstancedMesh, cc);
 
+        playerLn.render(renderer,globalGameData.getGameWindow(),camera);
+
 
     }
 
@@ -1038,6 +1048,8 @@ public class MapBuilderGameState extends EnvironmentGameState {
     @Override
     public void enterState(GameStateType previousGameState) {
         globalGameData.getGameWindow().setIcon(AssetLoader.getInputStream("Icon16x16.png"), AssetLoader.getInputStream("Icon24x24.png"));
+
+        globalGameData.registerGameState(new OverworldGameState(globalGameData,world,playerLn));
 
 
 
@@ -1091,6 +1103,14 @@ public class MapBuilderGameState extends EnvironmentGameState {
         }
     }
 
+
+    public World getWorld() {
+        return world;
+    }
+
+    public Player_LN getPlayerLn() {
+        return playerLn;
+    }
 
 
 

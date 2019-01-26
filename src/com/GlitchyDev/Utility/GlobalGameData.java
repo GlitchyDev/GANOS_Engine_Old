@@ -50,4 +50,8 @@ public class GlobalGameData {
         return gameWindow;
     }
 
+    public GameStateBase getGameState(String gameState) {
+        return loadedGameStates.get(gameState);
+    }
+
 }

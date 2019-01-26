@@ -4,5 +4,5 @@ import com.GlitchyDev.World.Entities.EntityBase;
 
 public interface InteractableBlock {
 
-    void interact(EntityBase entity);
+    void interact(EntityBase entity, BlockInteractionType blockInteractionType);
 }

@@ -1,6 +1,8 @@
 package com.GlitchyDev.World.Entities;
 
+import com.GlitchyDev.Rendering.Assets.WorldElements.Camera;
 import com.GlitchyDev.Rendering.Renderer;
+import com.GlitchyDev.Utility.GameWindow;
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Blocks.Abstract.TriggerableBlock;
 import com.GlitchyDev.World.Direction;
@@ -96,7 +98,7 @@ public abstract class EntityBase {
     /**
      * Implement Rendering Logic
      */
-    public abstract void render(Renderer renderer);
+    public abstract void render(Renderer renderer, GameWindow gameWindow, Camera camera);
 
     public abstract void tick();
 
@@ -395,7 +397,7 @@ public abstract class EntityBase {
                 }
         }
 
-        location = new Location(newLocation);
+        this.location = new Location(newLocation);
 
         return true;
     }
@@ -536,6 +538,8 @@ public abstract class EntityBase {
                     }
                 }
         }
+
+        this.location = new Location(newLocation);
 
     }
 

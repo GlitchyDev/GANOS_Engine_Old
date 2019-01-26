@@ -1,5 +1,7 @@
 package com.GlitchyDev.World.Blocks.Abstract;
 
 public enum BlockInteractionType {
-    DEBUG;
+    USE_PORTAL,
+    OPEN_PORTAL,
+    CLOSE_PORTAL,
 }

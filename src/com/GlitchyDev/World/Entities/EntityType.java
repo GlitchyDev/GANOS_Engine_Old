@@ -1,7 +1,10 @@
 package com.GlitchyDev.World.Entities;
 
 public enum EntityType {
-    DEBUG;
+    DEBUG,
+    PLAYER,
+    STATIONARY,
+    ENEMY;
 
 
     public boolean hasAI() {

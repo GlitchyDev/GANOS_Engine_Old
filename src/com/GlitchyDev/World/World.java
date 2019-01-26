@@ -20,6 +20,7 @@ public class World {
     private ArrayList<EntityBase> entities;
 
 
+
     public static final int STANDARD_CHUNK_SIDE_LENGTH = 10;
     public static final int STANDARD_CHUNK_HEIGHT = 5;
     // Entities
@@ -239,5 +240,9 @@ public class World {
 
     public Collection<Chunk> getChunks() {
         return chunks.values();
+    }
+
+    public ArrayList<EntityBase> getEntities() {
+        return entities;
     }
 }

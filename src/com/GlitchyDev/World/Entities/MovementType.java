@@ -4,5 +4,6 @@ public enum MovementType {
     WALKING,
     RUNNING,
     FALLING,
-    DEBUG;
+    DEBUG,
+    TELEPORT;
 }
