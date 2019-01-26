@@ -24,6 +24,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -84,6 +85,9 @@ public class MapBuilderGameState extends EnvironmentGameState {
     private EditState currentEditState = EditState.MOVE_CURSOR;
     private Location cursorLocation = new Location(0,0,0,null);
     private boolean enableWallMode = true;
+
+    private Thread debugCommandThread;
+    private DebugCommandRunnable debugCommandRunnable;
 
     public MapBuilderGameState(GlobalGameData globalGameDataBase) {
         super(globalGameDataBase, GameStateType.MAPBUILDER);
@@ -328,7 +332,33 @@ public class MapBuilderGameState extends EnvironmentGameState {
         }
 
 
+        ArrayList<String> commands = debugCommandRunnable.getCommands();
+        if(commands.size() != 0) {
+            for(String command: commands) {
+                String[] parsedCommand = command.split(" ");
+                String[] args = new String[parsedCommand.length-1];
+                int index = 0;
+                for(String arg: parsedCommand) {
+                    if(index != 0) {
+                        args[index-1] = arg;
+                    }
+                    index++;
+                }
+                debugCommands(parsedCommand[0],args);
+            }
+        }
 
+
+    }
+
+
+    public void debugCommands(String command, String[] args) {
+        System.out.println("Recieved Command " + command);
+        switch(command) {
+
+
+
+        }
     }
 
 
@@ -1069,6 +1099,10 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
 
+        debugCommandRunnable = new DebugCommandRunnable();
+        debugCommandThread = new Thread(debugCommandRunnable);
+        debugCommandThread.start();
+
 
     }
 
@@ -1095,6 +1129,31 @@ public class MapBuilderGameState extends EnvironmentGameState {
 
 
 
+
+    public class DebugCommandRunnable implements Runnable {
+        private Scanner scanner = new Scanner(System.in);
+        private ArrayList<String> commands = new ArrayList<>();
+
+        @Override
+        public void run() {
+            while(true) {
+                String input = scanner.nextLine();
+                synchronized (commands) {
+                    commands.add(input);
+                }
+            }
+        }
+
+
+        public ArrayList<String> getCommands(){
+            ArrayList<String> c = null;
+            synchronized (commands) {
+                c = commands;
+                commands = new ArrayList<>();
+            }
+            return c;
+        }
+    }
 
 
 

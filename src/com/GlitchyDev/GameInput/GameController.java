@@ -148,8 +148,8 @@ public abstract class GameController {
             buttonSprites.get("SouthWest"+i).setScale(SCALING);
         }
 
-        buttons[0] = BufferUtils.createByteBuffer(14);
-        buttons[1] = BufferUtils.createByteBuffer(14);
+        buttons[0] = BufferUtils.createByteBuffer(18);
+        buttons[1] = BufferUtils.createByteBuffer(18);
         axes[0] = BufferUtils.createFloatBuffer(6);
         axes[1] = BufferUtils.createFloatBuffer(6);
 
