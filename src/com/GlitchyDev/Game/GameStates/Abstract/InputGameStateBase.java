@@ -9,8 +9,8 @@ import com.GlitchyDev.Utility.GlobalGameData;
  * A rendering framework for GameStates that include Keyboard Inputs,
  */
 public abstract class InputGameStateBase extends MonitoredGameStateBase {
-    protected GameInput gameInput;
-    protected GameInputTimings gameInputTimings;
+    protected static GameInput gameInput;
+    protected static GameInputTimings gameInputTimings;
 
 
     public InputGameStateBase(GlobalGameData globalGameDataBase, GameStateType gameStateType) {
