@@ -28,3 +28,8 @@ hs_err_pid*
 *.xml
 out/production/GANOS/META-INF/GANOS.kotlin_module
 .idea/workspace.xml
+*.xml
+*.xml
+.idea/workspace.xml
+*.xml
+.idea/libraries/LWJGL.xml
