@@ -11,13 +11,13 @@ import java.util.HashMap;
 public class GlobalGameData {
     private GameWindow gameWindow;
     private HashMap<GameStateType,GameStateBase> loadedGameStates;
-    private GameStateType currentGameState = GameStateType.NONE;
+    private GameStateType currentGameState;
 
     public GlobalGameData(GameWindow gameWindow)
     {
         this.gameWindow = gameWindow;
         loadedGameStates = new HashMap<>();
-        currentGameState = null;
+        currentGameState = currentGameState;
     }
 
 
@@ -42,6 +42,7 @@ public class GlobalGameData {
     {
         System.out.println("Registering gameState " + gameState);
         loadedGameStates.put(gameState.getGameStateType(),gameState);
+        System.out.println(currentGameState);
         if(currentGameState == GameStateType.NONE)
         {
             System.out.println("Initial GameState is " + gameState);
