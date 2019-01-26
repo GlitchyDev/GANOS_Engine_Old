@@ -21,15 +21,5 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-.idea/workspace.xml
-.idea/workspace.xml
 *.xml
-.idea/workspace.xml
-*.xml
-out/production/GANOS/META-INF/GANOS.kotlin_module
-.idea/workspace.xml
-*.xml
-*.xml
-.idea/workspace.xml
-*.xml
-.idea/libraries/LWJGL.xml
+.idea

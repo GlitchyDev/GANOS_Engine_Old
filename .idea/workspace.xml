@@ -11,12 +11,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java" line="317" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e9bc26f-019e-4c83-8913-d8041e6027fb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/InputGameStateBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/InputGameStateBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/OverworldGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/OverworldGameState.java" afterDir="false" />
-    </list>
+    <list default="true" id="3e9bc26f-019e-4c83-8913-d8041e6027fb" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -431,7 +426,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="s&#9;FILE&#9;file://C:/Users/Rober/Desktop/control/Java Projects/GANOS/src/com/GlitchyDev/Game/GameStates/Client/DebugGameState1.java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548518771251" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548519712760" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ITSE_GameProject" />
     <property name="project.structure.last.edited" value="Libraries" />
