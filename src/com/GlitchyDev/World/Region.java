@@ -250,7 +250,6 @@ public class Region {
 
 
                     String textureName = instanceTextureRegistryCache[correctedId];
-                    System.out.println(i + " " + textureName);
                     block.setInstancedGridTexture(AssetLoader.getInstanceGridTexture(textureName));
                     // Load Texture data for sides
                     for (int a = 0; a < totalValid; a++) {
