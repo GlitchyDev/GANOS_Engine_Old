@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class GlobalGameData {
     private GameWindow gameWindow;
     private HashMap<GameStateType,GameStateBase> loadedGameStates;
-    private GameStateType currentGameState;
+    private GameStateType currentGameState = GameStateType.NONE;
 
     public GlobalGameData(GameWindow gameWindow)
     {
@@ -26,6 +26,10 @@ public class GlobalGameData {
         GameStateType previousState = currentGameState;
         loadedGameStates.get(previousState).exitState(gameStateType);
         currentGameState = gameStateType;
+
+        if(loadedGameStates.get(currentGameState) == null) {
+            System.out.println("DIE POTATOE");
+        }
         loadedGameStates.get(currentGameState).enterState(previousState);
     }
 
@@ -36,11 +40,13 @@ public class GlobalGameData {
 
     public void registerGameState(GameStateBase gameState)
     {
+        System.out.println("Registering gameState " + gameState);
         loadedGameStates.put(gameState.getGameStateType(),gameState);
-        if(currentGameState == null)
+        if(currentGameState == GameStateType.NONE)
         {
+            System.out.println("Initial GameState is " + gameState);
             currentGameState = gameState.getGameStateType();
-            gameState.enterState(GameStateType.NONE);
+            gameState.enterState(gameState.getGameStateType());
         }
     }
 
