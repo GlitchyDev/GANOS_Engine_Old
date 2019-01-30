@@ -10,7 +10,8 @@ import static org.lwjgl.glfw.GLFW.*;
  * Game Input for Keyboard, mouse buttons, as well as Cursor positions, mouse scrolling, Dragged Files
  */
 public class GameInput {
-    private int[] keyMapping = new int[512];
+    public static int KEYBOARD_SIZE = 512;
+    private int[] keyMapping = new int[KEYBOARD_SIZE];
     private ArrayList<Integer> activeKeys = new ArrayList<>();
     private int currentKeyModifier = 0;
     private double mouseX = 0;

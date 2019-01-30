@@ -3,6 +3,8 @@ package com.GlitchyDev.GameInput;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_L;
+
 /**
  * Takes the information gained from GameInput, and allows for timings to be associated with keys
  */
@@ -16,107 +18,70 @@ public class GameInputTimings {
 
     public GameInputTimings(GameInput gameInput)
     {
+
         this.gameInput = gameInput;
+        for(int i = 0; i < GameInput.KEYBOARD_SIZE; i++) {
+            activeKeyTime.put(i,0);
+        }
     }
 
-    public void updateTimings()
-    {
+    public void updateTimings() {
         updateActiveKeyTime();
         updateMouseKeyTime();
     }
 
-    public void updateActiveKeyTime()
-    {
-        ArrayList<Integer> removeList = new ArrayList<>();
-        for(int key: activeKeyTime.keySet())
-        {
-            if(!gameInput.getActiveKeys().contains(key)) {
-                removeList.add(key);
-            }
-            else {
-                activeKeyTime.put(key,activeKeyTime.get(key) + 1);
-            }
-        }
-        for(int removeKey: removeList)
-        {
-            activeKeyTime.remove(removeKey);
+    public void updateActiveKeyTime() {
+        for(int i = 0; i < GameInput.KEYBOARD_SIZE; i++) {
+            activeKeyTime.put(i,gameInput.getActiveKeys().contains(i) ? activeKeyTime.get(i) + 1: 0);
         }
 
-
-        for(int key: gameInput.getActiveKeys())
-        {
-            if(!activeKeyTime.containsKey(key))
-            {
-                activeKeyTime.put(key,1);
-            }
-        }
     }
 
     public void updateMouseKeyTime()
     {
-        if(activeMouseButton1Time == 0)
-        {
-            if(gameInput.getMouseButton1() == 1)
-            {
+        if(activeMouseButton1Time == 0) {
+            if(gameInput.getMouseButton1() == 1) {
                 activeMouseButton1Time = 1;
             }
-        }
-        else
-        {
-            if(gameInput.getMouseButton1() == 0)
-            {
+        } else {
+            if(gameInput.getMouseButton1() == 0) {
                 activeMouseButton1Time = 0;
-            }
-            else
-            {
+            } else {
                 activeMouseButton1Time++;
             }
         }
         // **
         if(activeMouseButton2Time == 0)
         {
-            if(gameInput.getMouseButton2() == 1)
-            {
+            if(gameInput.getMouseButton2() == 1) {
                 activeMouseButton2Time = 1;
             }
-        }
-        else
-        {
-            if(gameInput.getMouseButton2() == 0)
-            {
+        } else {
+            if(gameInput.getMouseButton2() == 0) {
                 activeMouseButton2Time = 0;
-            }
-            else
-            {
+            } else {
                 activeMouseButton2Time++;
             }
         }
         // **
-        if(activeMouseButton3Time == 0)
-        {
-            if(gameInput.getMouseButton3() == 1)
-            {
+        if(activeMouseButton3Time == 0) {
+            if(gameInput.getMouseButton3() == 1) {
                 activeMouseButton3Time = 1;
             }
         }
         else
         {
-            if(gameInput.getMouseButton3() == 0)
-            {
+            if(gameInput.getMouseButton3() == 0) {
                 activeMouseButton3Time = 0;
-            }
-            else
-            {
+            } else {
                 activeMouseButton3Time++;
             }
         }
-        if(gameInput.isMouseScrollEnabled())
-        {
+        if(gameInput.isMouseScrollEnabled()) {
             currentScroll = gameInput.getMouseScroll();
             gameInput.setMouseScrollEnabled(false);
         }
-        else
-        {
+        else {
             currentScroll = 0;
         }
     }

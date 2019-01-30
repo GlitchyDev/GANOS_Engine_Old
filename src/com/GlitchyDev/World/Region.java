@@ -4,24 +4,23 @@ package com.GlitchyDev.World;
 import com.GlitchyDev.IO.AssetLoader;
 import com.GlitchyDev.World.Blocks.Abstract.BlockBase;
 import com.GlitchyDev.World.Blocks.Abstract.PartialCubicBlock;
+import com.GlitchyDev.World.Entities.EntityBase;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 /**
  * An Rectangle of blocks and entities that can be loaded into the world map. Used to load/build structures
  */
 public class Region {
     protected BlockBase[][][] blocks;
+    protected ArrayList<EntityBase> entities;
 
 
     public Region(int width, int length, int height) {
         this.blocks = new BlockBase[height][width][length];
-    }
-
-    public Region(BlockBase[][][] blocks) {
-        this.blocks = blocks;
     }
 
     public Region(ObjectInputStream in, Location location) {

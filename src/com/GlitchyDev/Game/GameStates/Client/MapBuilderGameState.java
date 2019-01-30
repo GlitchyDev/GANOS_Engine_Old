@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * A gamestate designed to be the main form of building Map files in the game, as well as debugging functions
@@ -266,13 +267,15 @@ public class MapBuilderGameState extends EnvironmentGameState {
         hudItems.get(4).setText("Pos:" + formatter.format(camera.getPosition().x) + "," + formatter.format(camera.getPosition().y) + "," + formatter.format(camera.getPosition().z)+ " Rot:" + formatter.format(camera.getRotation().x) + "," + formatter.format(camera.getRotation().y) + "," + formatter.format(camera.getRotation().z));
         hudItems.get(5).setText("Editor Mode: " + currentEditState + " EnableWallMode: " + enableWallMode);
         hudItems.get(6).setText("Cursor Location: " + cursorLocation.getX() + " Y:" + cursorLocation.getY() + " Z:" + cursorLocation.getZ());
-        hudItems.get(6).setText("Blocks Rendered: " + instancedMesh.getBlocksRendered() + " Blocks Ignored: " + instancedMesh.getBlocksIgnored());
+        hudItems.get(7).setText("Blocks Rendered: " + instancedMesh.getBlocksRendered() + " Blocks Ignored: " + instancedMesh.getBlocksIgnored());
         if(currentEditState == EditState.EDIT_TEXTURE) {
-            hudItems.get(7).setText("TexturePackID: " + selectedTexturePackId + " TextureID: " + selectedTextureId + " Cursor " + textureCursorX + "," + textureCursorY);
+            hudItems.get(8).setText("TexturePackID: " + selectedTexturePackId + " TextureID: " + selectedTextureId + " Cursor " + textureCursorX + "," + textureCursorY);
         }
         else {
-            hudItems.get(7).setText("");
+            hudItems.get(8).setText("");
         }
+        hudItems.get(9).setText("Time: " + gameInputTimings.getActiveMouseButton1Time());
+
 
 
         cameraControlsLogic();
@@ -1062,6 +1065,7 @@ public class MapBuilderGameState extends EnvironmentGameState {
         renderer.renderInstancedPartialCubic(globalGameData.getGameWindow(),"Instance3D", camera, cursorInstancedMesh, cc);
 
 
+
     }
 
 
@@ -1123,6 +1127,8 @@ public class MapBuilderGameState extends EnvironmentGameState {
             }
 
         }
+
+        System.exit(0);
     }
 
 
