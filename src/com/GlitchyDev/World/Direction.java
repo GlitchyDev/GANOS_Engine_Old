@@ -8,10 +8,8 @@ public enum Direction {
     WEST,
     BELOW;
 
-    public Direction reverse()
-    {
-        switch(this)
-        {
+    public Direction reverse() {
+        switch(this) {
             case ABOVE:
                 return BELOW;
             case BELOW:
@@ -26,5 +24,19 @@ public enum Direction {
                 return EAST;
         }
         return ABOVE;
+    }
+
+    public int getRotation() {
+        switch(this) {
+            case NORTH:
+                return 0;
+            case EAST:
+                return 90;
+            case SOUTH:
+                return 180;
+            case WEST:
+                return 270;
+        }
+        return 0;
     }
 }

@@ -2,17 +2,12 @@ package com.GlitchyDev.World;
 
 import org.joml.Vector3i;
 
-
-/**
- * A Position within a world, each block and entity requires one to operate
- */
 public class Location {
     private final Vector3i position;
     private final World world;
 
 
     public Location(World world) {
-
         position = new Vector3i();
         this.world = world;
     }
@@ -23,82 +18,21 @@ public class Location {
         this.world = world;
     }
 
-    public Location(Vector3i position, World world) {
-        this.position = position;
-        this.world = world;
-    }
-
-    public Location(Location location)
-    {
+    public Location(Location location) {
         position = new Vector3i(location.getPosition());
         this.world = location.getWorld();
     }
 
 
-
     public Location getOffsetLocation(int x, int y, int z) {
-
-        Location offsetCopy = this.clone();
-        offsetCopy.getPosition().add(x,y,z);
-        return offsetCopy;
+        return new Location(this.position.x + x, this.position.y + y, this.position.z + z, world);
     }
 
 
-    public int getX() {
-        return position.x;
-    }
-
-    public int getY() {
-        return position.y;
-    }
-
-    public int getZ() {
-        return position.z;
-    }
-
-    public World getWorld() {return world;}
 
 
-
-    public Vector3i getPosition() {
-        return position;
-    }
-
-    public Location getAbove()
-    {
-        return getOffsetLocation(0,1,0);
-    }
-    public Location getBelow()
-    {
-        return getOffsetLocation(0,-1,0);
-    }
-    public Location getNorth()
-    {
-        return getOffsetLocation(0,0,-1);
-    }
-    public Location getEast()
-    {
-        return getOffsetLocation(1,0,0);
-    }
-    public Location getSouth()
-    {
-        return getOffsetLocation(0,0,1);
-    }
-    public Location getWest()
-    {
-        return getOffsetLocation(-1,0,0);
-    }
-
-    public Location clone()
-    {
-        return new Location(this);
-    }
-
-
-    public Location getDirectionLocation(Direction direction)
-    {
-        switch(direction)
-        {
+    public Location getDirectionLocation(Direction direction) {
+        switch (direction) {
             case ABOVE:
                 return getAbove();
             case BELOW:
@@ -115,8 +49,66 @@ public class Location {
         return this;
     }
 
+    public Location getAbove() {
+        return getOffsetLocation(0, 1, 0);
+    }
+
+    public Location getBelow() {
+        return getOffsetLocation(0, -1, 0);
+    }
+
+    public Location getNorth() {
+        return getOffsetLocation(0, 0, -1);
+    }
+
+    public Location getEast() {
+        return getOffsetLocation(1, 0, 0);
+    }
+
+    public Location getSouth() {
+        return getOffsetLocation(0, 0, 1);
+    }
+
+    public Location getWest() {
+        return getOffsetLocation(-1, 0, 0);
+    }
+
+
+    @Override
+    public Location clone() {
+        return new Location(this);
+    }
+
     @Override
     public String toString() {
         return "l@" + getX() + "," + getY() + "," + getZ();
+    }
+
+    // Getters
+
+
+    public int getX() {
+        return position.x;
+    }
+
+    public int getY() {
+        return position.y;
+    }
+
+    public int getZ() {
+        return position.z;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+
+    public Vector3i getPosition() {
+        return position;
+    }
+
+    public Vector3i getNormalizedPosition() {
+        return new Vector3i(position).mul(2);
     }
 }
