@@ -10,134 +10,13 @@
     <bookmark url="file://$PROJECT_DIR$/Old/Game/GameStates/Client/MapBuilderGameState.java" line="199" />
     <bookmark url="file://$PROJECT_DIR$/Old/Game/GameStates/Client/MapBuilderGameState.java" line="320" />
     <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/HuffmanTreeUtility.java" line="57" />
-    <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java" line="64" />
+    <bookmark url="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java" line="65" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e9bc26f-019e-4c83-8913-d8041e6027fb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Old/IO/RegionIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Blocks/Abstract/BlockInteractionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Blocks/Abstract/InteractableBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Blocks/BlockType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Chunk.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Direction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Entities/EntityInteractionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Entities/EntityType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Entities/InteractableEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Entities/LivingEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Entities/MovementType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Location.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/Region.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Old/World/World.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/A/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AbstractBlocks/BlockBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AbstractBlocks/BlockInteractionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AbstractBlocks/InteractableBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AbstractBlocks/TickableBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AbstractBlocks/TriggerableBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AirBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/DebugBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/AbstractEntities/EntityBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/DebugEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/HuffmanTreeUtility.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/RegionFileType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh1.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh2.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh3.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh3.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh4.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh4.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh5.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh5.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh6.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/PartialCubicBlock/CubicMesh6.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/DefaultCube.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/DefaultCube.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/DefaultSquare.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/DefaultSquare.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/cube.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/cube.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/flatWall.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/flatWall.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/flatWall1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Mesh/Testing/flatWall1.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Shaders/Default/Default3D.vs" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Shaders/Default/Default3D.vs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GANOS/Shaders/Default/FlipDefault3D.vs" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GANOS/Shaders/Default/FlipDefault3D.vs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/DebugMain/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/DebugMain/ClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/DebugMain/GeneralMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/DebugMain/GeneralMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/DebugMain/MapBuilderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/DebugMain/MapBuilderMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/DebugMain/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/DebugMain/ServerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GANOSGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GANOSGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/EnvironmentGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/Abstract/EnvironmentGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/GameStateBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/Abstract/GameStateBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/InputGameStateBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/Abstract/InputGameStateBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Abstract/MonitoredGameStateBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/Abstract/MonitoredGameStateBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/DebugGameState1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/Client/DebugGameState1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/DebugGameState3.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/Client/DebugGameState3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Client/MapBuilderGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/Client/MapBuilderGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/GameStateType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/GameStateType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Game/GameStates/Server/DebugGameState2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Game/GameStates/Server/DebugGameState2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameInput/ControllerDirectionPad.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/GameInput/ControllerDirectionPad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameInput/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/GameInput/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameInput/GameControllerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/GameInput/GameControllerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameInput/GameInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/GameInput/GameInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameInput/GameInputTimings.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/GameInput/GameInputTimings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameInput/PS4Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/GameInput/PS4Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/GameInput/XBox360Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/GameInput/XBox360Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/AssetLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/IO/AssetLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/OBJLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/IO/OBJLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/IO/SaveLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/IO/SaveLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/GameSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/GameSocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/BasicPackets/GoodbyePacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/BasicPackets/GoodbyePacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ClientPackets/ClientIntroductionPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/ClientPackets/ClientIntroductionPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/General/DebugScrollPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/General/DebugScrollPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/NetworkDisconnectType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/NetworkDisconnectType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/Packet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/PacketType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/PacketType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/General/ServerReturnGreetingPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/ServerPackets/General/ServerReturnGreetingPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/DespawnEntityPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/ServerPackets/OverworldPackets/DespawnEntityPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/MoveEntityPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/ServerPackets/OverworldPackets/MoveEntityPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/Packets/ServerPackets/OverworldPackets/SpawnEntityPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/Packets/ServerPackets/OverworldPackets/SpawnEntityPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Networking/ServerNetworkConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Networking/ServerNetworkConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Fonts/CustomFontTexture.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Fonts/CustomFontTexture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Fonts/FontTexture.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Fonts/FontTexture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Fonts/HudTexture.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Fonts/HudTexture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/InstancedGridTexture.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/InstancedGridTexture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/InstancedMesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/InstancedMesh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Mesh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/PartialCubicInstanceMesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/PartialCubicInstanceMesh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/RenderBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/RenderBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Shaders/ShaderProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Shaders/ShaderProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Sounds/SoundBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Sounds/SoundBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Sounds/SoundListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Sounds/SoundListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Sounds/SoundManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Sounds/SoundManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Sounds/SoundSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Sounds/SoundSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Texture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/WorldElements/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/GameItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/WorldElements/GameItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/WorldElements/Mesh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/SpriteItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/WorldElements/SpriteItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/TextItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/WorldElements/TextItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/WorldElements/Transformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Assets/WorldElements/Transformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/FrustumCullingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/FrustumCullingFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Rendering/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Utility/GameWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/Utility/GlobalGameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/Utility/GlobalGameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/Abstract/BlockBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/World/Blocks/Abstract/BlockBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/Abstract/BlockInteractionType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/Abstract/InteractableBlock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/Abstract/MeshBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/World/Blocks/Abstract/MeshBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/Abstract/PartialCubicBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/World/Blocks/Abstract/PartialCubicBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/Abstract/TickableBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/World/Blocks/Abstract/TickableBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/Abstract/TriggerableBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/World/Blocks/Abstract/TriggerableBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/BlockType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/BlockType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Chunk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/ChunkCord.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/World/ChunkCord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/EntityBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Old/World/Entities/EntityBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/EntityInteractionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/AbstractEntities/EntityInteractionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/EntityType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/EntityType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/InteractableEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/AbstractEntities/InteractableEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/LivingEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/AbstractEntities/LivingEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/MovementType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/AbstractEntities/MovementType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Region.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/RegionFileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/RegionFileType.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -151,13 +30,34 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="22" column="61" lean-forward="true" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
+            <state relative-caret-position="1243">
+              <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5111#5112#0" expanded="true" />
-                <element signature="e#5220#5221#0" expanded="true" />
+                <element signature="e#5588#5589#0" expanded="true" />
+                <element signature="e#5696#5697#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Old/World/Region.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="167" column="58" selection-start-line="167" selection-end-line="168" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/RegionFileType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -224,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/ChunkCord.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Assets/RenderBuffer.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/Rendering/Renderer.java" />
         <option value="$PROJECT_DIR$/GameAssets/Shaders/Default/Instance3D.vs" />
@@ -258,7 +157,6 @@
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/EntityBase.java" />
         <option value="$PROJECT_DIR$/Old/World/Blocks/Abstract/BlockBase.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/EntityInteractionType.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/RegionFileType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Region.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/AbstractEntities/LivingEntity.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AbstractBlocks/InteractableBlock.java" />
@@ -269,12 +167,14 @@
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/EntityType.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/A/Main.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/BlockType.java" />
-        <option value="$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AbstractBlocks/BlockBase.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/DebugEntity.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/DebugBlock.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Blocks/AirBlock.java" />
         <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Entities/AbstractEntities/EntityBase.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/RegionFileType.java" />
+        <option value="$PROJECT_DIR$/Old/World/Region.java" />
+        <option value="$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java" />
       </list>
     </option>
   </component>
@@ -284,7 +184,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="766" />
     <option name="y" value="70" />
     <option name="width" value="895" />
@@ -455,7 +355,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="s&#9;FILE&#9;file://C:/Users/Rober/Desktop/control/Java Projects/GANOS/src/com/GlitchyDev/Game/GameStates/Client/DebugGameState1.java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549229438591" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549257836549" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../GameJam" />
     <property name="project.structure.last.edited" value="Project" />
@@ -594,7 +494,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22547974" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22547974" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -604,7 +504,7 @@
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.3290938" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" sideWeight="0.48400852" weight="0.3347779" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.64605546" visible="true" weight="0.30119178" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.64605546" visible="true" weight="0.30119178" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.48773986" weight="0.4078091" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -863,29 +763,6 @@
     <entry file="file://$PROJECT_DIR$/Old/Game/GameStates/Server/DebugGameState2.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Old/World/Region.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="247" column="92" lean-forward="true" selection-start-line="247" selection-start-column="20" selection-end-line="247" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/RegionFileType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-          <folding>
-            <element signature="e#198#199#0" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Old/Game/GameStates/Client/MapBuilderGameState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="385">
@@ -1060,14 +937,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java">
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/World/Utility/RegionFileType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="22" column="61" lean-forward="true" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old/World/Region.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="167" column="58" selection-start-line="167" selection-end-line="168" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5111#5112#0" expanded="true" />
-            <element signature="e#5220#5221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GlitchyDev/IO/RegionIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1243">
+          <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5588#5589#0" expanded="true" />
+            <element signature="e#5696#5697#0" expanded="true" />
           </folding>
         </state>
       </provider>
